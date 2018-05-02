@@ -80,6 +80,22 @@ namespace DotRas.Internal
 
         #region Methods
 
+        private void CorrectRASENTRYSize(ref int size)
+        {
+            //
+            // todo: Temporary
+            var osv = Environment.OSVersion.Version;
+            if (osv.Major == 10 && osv.Build >= 17134)
+            {
+                var oldSize = size;
+                if (size != 6720)
+                {
+                    size = 6720;
+                    Trace.WriteLine(string.Format("Corrected RASENTRY size -> Prev: {0}. New: {1}", oldSize, size));
+                }
+            }
+        }
+
         /// <summary>
         /// Generates a new locally unique identifier.
         /// </summary>
@@ -992,6 +1008,7 @@ namespace DotRas.Internal
             RasEntry retval = null;
 
             int size = Marshal.SizeOf(typeof(NativeMethods.RASENTRY));
+            CorrectRASENTRYSize(ref size);
             bool retry = false;
 
             IntPtr lpCb = new IntPtr(size);
@@ -2644,6 +2661,7 @@ namespace DotRas.Internal
 
             bool retval = false;
             int size = Marshal.SizeOf(typeof(NativeMethods.RASENTRY));
+            CorrectRASENTRYSize(ref size);
             int lpCb = size;
 
             IntPtr lpRasEntry = IntPtr.Zero;
