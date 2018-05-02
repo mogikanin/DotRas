@@ -1,0 +1,953 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+***********************************************************************************************
+build.proj
+
+WARNING: DO NOT MODIFY this file unless you are knowledgeable about MSBuild and have created a backup copy.  Incorrect 
+  changes to this file will make it impossible to load or build the DotRas project from the command-line.
+
+Copyright (c) Jeff Winn. All rights reserved.
+***********************************************************************************************
+-->
+<Project DefaultTargets="DesktopBuild" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+
+  <!-- Do not edit this. -->
+  <Import Project=".\Components\DotRas.Build.Tasks\DotRas.Build.tasks" />
+
+  <PropertyGroup>
+    <!-- This property identifies the output folder for the build files. -->
+    <OutputFolder Condition=" '$(OutputFolder)' == '' ">.\Output</OutputFolder>
+
+    <!-- Defines the relative or absolute path to the Source folder. -->
+    <SourceCodeFolder Condition=" '$(SourceCodeFolder)' == '' ">.\Source\DotRas</SourceCodeFolder>
+
+    <!-- Defines the relative or absolute path to the Components folder. -->
+    <ComponentsFolder Condition=" '$(ComponentsFolder)' == '' ">.\Components</ComponentsFolder>
+
+    <!-- Defines the relative or absolute path to the Help folder. -->
+    <HelpFolder Condition=" '$(HelpFolder)' == '' ">$(SourceCodeFolder)\Help</HelpFolder>
+
+    <!-- Defines the relative or absolute path to the Examples folder. -->
+    <ExamplesFolder Condition=" '$(ExamplesFolder)' == '' ">.\Examples</ExamplesFolder>
+
+    <!-- Defines the relative or absolute path to the Media folder. -->
+    <MediaFolder Condition=" '$(MediaFolder)' == '' ">.\Media</MediaFolder>
+
+    <!-- Defines the relative or absolute path to the temporary build directory. -->
+    <TempBuildDir>.\TempBuildDir</TempBuildDir>
+
+    <!-- Defines the relative or absolute path to the tools used by the build process. -->
+    <ToolsPath Condition=" '$(ToolsPath)' == '' ">.\Components</ToolsPath>
+
+    <!-- Default the strong-name key file for signing the assemblies during the staging build process. -->
+    <PublicStrongNameKeyFile>$(SourceCodeFolder)\Public.snk</PublicStrongNameKeyFile>
+
+    <!-- Defines the relative or absolute path to the strong-name key file used to sign the assemblies. -->
+    <StrongNameKeyFile Condition=" '$(StrongNameKeyFile)' == '' ">$(PublicStrongNameKeyFile)</StrongNameKeyFile>
+
+    <!-- This property identifies the certificate key file that will be used for signing the assemblies. -->
+    <CertificateKeyFile Condition=" '$(CertificateKeyFile)' == '' "></CertificateKeyFile>
+
+    <!-- Defines the relative or absolute path to the project to build. -->
+    <ProjectToBuild Condition=" '$(ProjectToBuild)' == '' ">$(SourceCodeFolder)\DotRas\DotRas.csproj</ProjectToBuild>
+
+    <!-- Defines the relative or absolute path to the integration tests project. -->
+    <IntegrationTestsProject>$(SourceCodeFolder)\DotRas.IntegrationTests\DotRas.IntegrationTests.csproj</IntegrationTestsProject>
+
+    <!-- Defines the relative or absolute path to the unit tests project. -->
+    <UnitTestsProject>$(SourceCodeFolder)\DotRas.UnitTests\DotRas.UnitTests.csproj</UnitTestsProject>
+    
+    <!-- Defines the relative or absolute path to the installer project to build. -->
+    <InstallerProjectToBuild Condition=" '$(InstallerProjectToBuild)' == '' ">$(SourceCodeFolder)\Installer\Installer\Installer.wixproj</InstallerProjectToBuild>
+
+    <!-- Defines the relative or absolute path to the documentation file to build. -->
+    <DocumentationProjectToBuild Condition=" '$(DocumentationToBuild)' == '' ">$(HelpFolder)\Help.shfbproj</DocumentationProjectToBuild>
+
+    <!-- Set this property to true to skip the CoreClean target. -->
+    <SkipClean Condition=" '$(SkipClean)' == '' ">false</SkipClean>
+
+    <!-- Set this property to true to skip the CoreTest target. -->
+    <SkipTests Condition=" '$(SkipTests)' == '' ">false</SkipTests>
+
+    <!-- Set this property to true to skip the -->
+    <SkipIntegrationTests Condition=" '$(SkipIntegrationTests)' == '' ">false</SkipIntegrationTests>
+
+    <!-- Set this property to true to skip the CoreGenerateDocumentation target. -->
+    <SkipDocumentation Condition=" '$(SkipDocumentation)' == '' ">false</SkipDocumentation>
+
+    <!-- Set this property to true to skip the CorePackage target. -->
+    <SkipPackage Condition=" '$(SkipPackage)' == '' ">false</SkipPackage>
+
+    <!-- Defines the relative or absolute path to the WiX tasks. -->
+    <WixTasksPath Condition=" '$(WixTasksPath)' == '' ">$(WIX)bin\WixTasks.dll</WixTasksPath>
+  </PropertyGroup>
+
+  <UsingTask TaskName="HeatDirectory" AssemblyFile="$(WixTasksPath)" Condition=" '$(SkipPackage)' == 'false' AND Exists('$(WixTasksPath)') " />
+
+  <!--
+  **********************************************************************************************************
+  
+  WARNING: DO NOT MODIFY ANYTHING BELOW THIS POINT!
+  
+  **********************************************************************************************************
+  -->
+
+  <PropertyGroup>
+    <!-- Defines the platform to build. -->
+    <Platform>AnyCPU</Platform>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Defines the list of operating systems to build. 
+    NOTE: The last build defined in this list is used to generate the documentation.
+    -->
+    <OperatingSystemToBuild Include="WIN2K;WINXP;WIN2K8;WIN7;WIN8" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Defines the list of virtual machines to use during integration testing. 
+      The names listed here be available to the Sun VirtualBox installation on the build server. If the virtual machines are unavailable, the build will fail.      
+    -->
+    <VirtualMachineToTest Include="WIN2K (32-bit);WIN2K3 (32-bit);WIN2K3 (64-bit);WIN2K8 (32-bit);WIN2K8 (64-bit);WIN2K8R2 (64-bit)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Defines the list of .NET Framework versions to build.-->
+    <DotNetVersionToBuild Include="2;4"/>
+  </ItemGroup>
+
+  <!-- 
+  ********************************************
+  DesktopBuild
+  ********************************************
+  -->
+  <PropertyGroup>
+    <BuildDependsOn>
+      Initialize;
+      Clean;
+      Test;
+      BuildRelease;
+      GenerateDocumentation;
+      Package;
+      PostBuild;
+    </BuildDependsOn>
+  </PropertyGroup>
+
+  <Target Name="DesktopBuild" DependsOnTargets="$(BuildDependsOn)" />
+
+  <!-- 
+  ********************************************
+  Initialize
+  ********************************************
+  -->
+  <Target Name="Initialize">
+    <PropertyGroup>
+      <!-- Check if packaging is to be skipped, if so redirect all files directly to the output folder. -->
+      <TempBuildDir Condition=" '$(SkipPackage)' == 'true' ">$(OutputFolder)</TempBuildDir>
+
+      <!-- Defines the relative or absolute path to the package temporary build directory. -->
+      <PackageTempBuildDir Condition=" '$(PackageTempBuildDir)' == '' ">$(TempBuildDir)\Installer</PackageTempBuildDir>
+
+      <!-- Defines the relative or absolute path to the source packaging temporary build directory. -->
+      <SourceTempBuildDir Condition=" '$(SourceTempBuildDir)' == '' ">$(TempBuildDir)\Source</SourceTempBuildDir>
+
+      <!-- Skip packaging since the Wix tasks could not be found. -->
+      <SkipPackage Condition=" !Exists('$(WixTasksPath)') ">true</SkipPackage>
+
+      <!-- Force the documentation to be built if the package is being generated. 
+      NOTE: If the package is generated without the documentation it causes problems with the advertisement of the documentation feature.
+      -->
+      <SkipDocumentation Condition=" '$(SkipPackage)' == 'false' ">false</SkipDocumentation>
+
+      <!-- Sandcastle Help File Builder or Sandcastle is not installed, skip the documentation generation. -->
+      <SkipDocumentation Condition=" '$(SHFBROOT)' == '' ">true</SkipDocumentation>
+
+      <!-- Force the unit tests to be skipped if MSTest or VBoxManage was not found. -->
+      <SkipTests Condition=" !Exists('$(DevEnvDir)\MSTest.exe')">true</SkipTests>
+    </PropertyGroup>
+
+    <ConvertToAbsolutePath Paths="$(PublicStrongNameKeyFile)">
+      <Output TaskParameter="AbsolutePaths" PropertyName="PublicStrongNameKeyFile"/>
+    </ConvertToAbsolutePath>
+    
+    <ConvertToAbsolutePath Paths="$(StrongNameKeyFile)">
+      <Output TaskParameter="AbsolutePaths" PropertyName="StrongNameKeyFile"/>
+    </ConvertToAbsolutePath>
+    
+    <ConvertToAbsolutePath Paths="$(SourceCodeFolder)">
+      <Output TaskParameter="AbsolutePaths" PropertyName="SourceCodeFolder"/>
+    </ConvertToAbsolutePath>
+    
+    <ConvertToAbsolutePath Paths="$(TempBuildDir)">
+      <Output TaskParameter="AbsolutePaths" PropertyName="TempBuildDir" />
+    </ConvertToAbsolutePath>
+
+    <ConvertToAbsolutePath Paths="$(PackageTempBuildDir)">
+      <Output TaskParameter="AbsolutePaths" PropertyName="PackageTempBuildDir" />
+    </ConvertToAbsolutePath>
+
+    <ConvertToAbsolutePath Paths="$(SourceTempBuildDir)">
+      <Output TaskParameter="AbsolutePaths" PropertyName="SourceTempBuildDir" />
+    </ConvertToAbsolutePath>
+
+    <ConvertToAbsolutePath Paths="$(CertificateKeyFile)">
+      <Output TaskParameter="AbsolutePaths" PropertyName="CertificateKeyFile"/>
+    </ConvertToAbsolutePath>
+
+    <Message Text="The key file '$(StrongNameKeyFile)' could not be located."
+      Condition=" !Exists('$(StrongNameKeyFile)') " Importance="high" />
+
+    <Message Text="Sandcastle Help File Builder was not found on the build machine. Automatically skipping documentation generating target."
+        Condition=" '$(SHFBROOT)' == '' " Importance="high"/>
+
+    <Message Text="WiX was not found on the build machine. Automatically skipping packaging target."
+        Condition=" !Exists('$(WixTasksPath)') " Importance="high" />
+
+    <Message Text="MSTest was not found on the build machine. Automatically skipping test target."
+        Condition=" !Exists('$(DevEnvDir)\MSTest.exe') " Importance="high" />
+
+    <Message Text="Sun VirtualBox was not found on the build machine. Automatically skipping integration tests."
+        Condition=" !Exists('$(VBOX_INSTALL_PATH)\VBoxManage.exe') " Importance="high" />
+
+    <Message Text="PublicStrongNameKeyFile: '$(PublicStrongNameKeyFile)'"/>
+    <Message Text="StrongNameKeyFile: '$(StrongNameKeyFile)'"/>
+    <Message Text="SourceCodeFolder: '$(SourceCodeFolder)'"/>
+    <Message Text="TempBuildDir: '$(TempBuildDir)'" />
+    <Message Text="PackageTempBuildDir: '$(PackageTempBuildDir)'" />
+    <Message Text="SourceTempBuildDir: '$(SourceTempBuildDir)'" />
+    <Message Text="SkipPackage: $(SkipPackage)"/>
+    <Message Text="SkipDocumentation: $(SkipDocumentation)"/>
+    <Message Text="SkipTests: $(SkipTests)"/>
+  </Target>
+
+  <!-- 
+  ********************************************
+  Clean
+  ********************************************
+  -->
+  <PropertyGroup>
+    <CleanDependsOn>
+      BeforeClean;
+      CoreClean;
+      AfterClean;
+    </CleanDependsOn>
+  </PropertyGroup>
+
+  <Target Name="Clean" DependsOnTargets="$(CleanDependsOn)" />
+
+  <!-- Override this target to execute custom tasks before cleaning. -->
+  <Target Name="BeforeClean" />
+
+  <PropertyGroup>
+    <CoreCleanDependsOn>
+      CleanTempBuildDir;
+      CleanOutputFolder;
+      CleanTestResults;
+    </CoreCleanDependsOn>
+  </PropertyGroup>
+
+  <Target Name="CoreClean" DependsOnTargets="$(CoreCleanDependsOn)"
+      Condition=" '$(SkipClean)' == 'false' " />
+
+  <Target Name="CleanTempBuildDir" Condition=" '$(TempBuildDir)' != '' ">
+    <RemoveDir Directories="$(TempBuildDir)" Condition=" '$(TempBuildDir)' != '' "/>
+  </Target>
+
+  <Target Name="CleanOutputFolder" Condition=" '$(OutputFolder)' != '' ">
+    <RemoveDir Directories="$(OutputFolder)" Condition=" '$(OutputFolder)' != '' "/>
+  </Target>
+
+  <Target Name="CleanTestResults">
+    <RemoveDir Directories=".\TestResults" />
+    <RemoveDir Condition=" '$(SkipPackage)' == 'false' " Directories=".\Source\DotRas\TestResults" />
+  </Target>
+
+  <!-- Override this target to execute custom tasks after cleaning. -->
+  <Target Name="AfterClean" />
+
+  <!-- 
+  ********************************************
+  Test
+  ********************************************
+  -->
+  <PropertyGroup>
+    <TestDependsOn>
+      BeforeTest;
+      CallTest;
+      AfterTest;
+    </TestDependsOn>
+  </PropertyGroup>
+
+  <Target Name="Test" DependsOnTargets="$(TestDependsOn)" />
+
+  <!-- Override this target to execute custom tasks before testing. -->
+  <Target Name="BeforeTest" />
+
+  <PropertyGroup>
+    <CallTestDependsOn>
+      ComputeVirtualMachineList;
+    </CallTestDependsOn>
+  </PropertyGroup>
+
+  <Target Name="CallTest" Condition=" '$(SkipTests)' == 'false' " DependsOnTargets="$(CallTestDependsOn)">
+    <MSBuild Projects="@(VirtualMachineList)" Targets="CoreTest" BuildInParallel="false" StopOnFirstFailure="true" />
+  </Target>
+
+  <!-- Override this target to execute custom tasks after testing. -->
+  <Target Name="AfterTest" />
+
+  <PropertyGroup>
+    <CoreTestDependsOn>
+      Initialize;
+      InitVM;
+      RunTests;
+      ShutdownVM;
+    </CoreTestDependsOn>
+  </PropertyGroup>
+
+  <Target Name="CoreTest" DependsOnTargets="$(CoreTestDependsOn)" />
+
+  <!-- Initializes the virtual machine to use while performing the integration tests. -->
+  <Target Name="InitVM" Condition=" Exists('$(VBOX_INSTALL_PATH)\VBoxManage.exe') and '$(SkipIntegrationTests)' == 'false' ">
+    <!--<VBoxManage
+      ToolPath="$(VBOX_INSTALL_PATH)"
+      Command="snapshot"
+      Paramters="&quot;$(VirtualMachine)&quot; restore &quot;PPTP&quot;" />-->
+    
+    <VBoxManage
+      ToolPath="$(VBOX_INSTALL_PATH)"
+      Command="startvm"
+      Parameters="&quot;$(VirtualMachine)&quot;" />
+
+    <!-- Pause the MSBuild task to give the virtual machine enough time to load. -->
+    <Sleep Timeout="120000" />
+  </Target>
+
+  <!-- Performs the unit tests. -->
+  <Target Name="RunTests">
+    <PropertyGroup>
+      <Configuration>Staging</Configuration>
+    </PropertyGroup>
+
+    <!-- Call the project file to build using the staging configuration.-->
+    <MSBuild Projects="$(MSBuildProjectFile)"
+        BuildInParallel="false"
+        Properties="Configuration=$(Configuration);Platform=$(Platform);AssemblyOriginatorKeyFile=$(PublicStrongNameKeyFile);SkipIntegrationTests=$(SkipIntegrationTests);IsTestBuild=true"
+        Targets="Build" />
+  </Target>
+
+  <!-- Shuts down the loaded virtual machine that was used for the integration tests.  -->
+  <Target Name="ShutdownVM" Condition=" Exists('$(VBOX_INSTALL_PATH)\VBoxManage.exe')  and '$(SkipIntegrationTests)' == 'false' ">
+    <VBoxManage
+      ToolPath="$(VBOX_INSTALL_PATH)"
+      Command="controlvm"
+      Parameters="&quot;$(VirtualMachine)&quot; savestate" />
+
+    <!-- Pause the MSBuild task to give the virtual machine enough time to shutdown. -->
+    <Sleep Timeout="120000" />
+  </Target>
+
+  <Target Name="ComputeVirtualMachineList">
+    <ItemGroup>
+      <VirtualMachineList Include="$(MSBuildProjectFile)">
+        <Properties>VirtualMachine=%(VirtualMachineToTest.Identity)</Properties>
+      </VirtualMachineList>
+    </ItemGroup>
+  </Target>
+
+  <!-- 
+  ********************************************
+  BuildRelease
+  ********************************************
+  -->
+  <PropertyGroup>
+    <BuildReleaseDependsOn>
+      BeforeBuildRelease;
+      CoreBuildRelease;
+      AfterBuildRelease;
+    </BuildReleaseDependsOn>
+  </PropertyGroup>
+
+  <Target Name="BuildRelease" DependsOnTargets="$(BuildReleaseDependsOn)" />
+
+  <!-- Override this target to perform custom tasks before the release build is performed. -->
+  <Target Name="BeforeBuildRelease" />
+
+  <Target Name="CoreBuildRelease">
+    <PropertyGroup>
+      <Configuration>Release</Configuration>
+    </PropertyGroup>
+
+    <!-- Call the project file to build using the release configuration. -->
+    <MSBuild Projects="$(MSBuildProjectFile)"
+        BuildInParallel="false"
+        Properties="Configuration=$(Configuration);Platform=$(Platform);CertificateKeyFile=$(CertificateKeyFile);AssemblyOriginatorKeyFile=$(StrongNameKeyFile);TempBuildDir=$(PackageTempBuildDir);IsReleaseBuild=true"
+        Targets="Build" />
+  </Target>
+
+  <!-- Override this target to perform custom tasks after the release build is performed. -->
+  <Target Name="AfterBuildRelease" />
+
+  <!-- 
+  ********************************************
+  Build
+  ********************************************
+  -->
+  <PropertyGroup>
+    <CompileDependsOn>
+      BeforeBuild;
+      CoreBuild;
+      AfterBuild;
+    </CompileDependsOn>
+  </PropertyGroup>
+
+  <Target Name="Build" DependsOnTargets="$(CompileDependsOn)"
+      Outputs="@(BuildOutputs)" />
+
+  <!-- Override this target to execute custom tasks before building. -->
+  <Target Name="BeforeBuild" />
+
+  <PropertyGroup>
+    <CoreBuildDependsOn>
+      ComputeDotNetVersionList;
+    </CoreBuildDependsOn>
+  </PropertyGroup>
+
+  <Target Name="CoreBuild" DependsOnTargets="$(CoreBuildDependsOn)" Outputs="@(BuildOutputs)">
+    <MSBuild Projects="@(DotNetVersionList)" Targets="CoreBuild2" BuildInParallel="false" StopOnFirstFailure="true">
+      <Output TaskParameter="TargetOutputs" ItemName="BuildOutputs" />
+    </MSBuild>
+
+    <ItemGroup>
+      <BuildOutputs>
+        <Platform>$(Platform)</Platform>
+        <Configuration>$(Configuration)</Configuration>
+      </BuildOutputs>
+    </ItemGroup>
+  </Target>
+
+  <PropertyGroup>
+    <BuildSolutionDependsOn>
+      Initialize;
+    </BuildSolutionDependsOn>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <CoreBuild2DependsOn>
+      ComputeOperatingSystemList;
+    </CoreBuild2DependsOn>
+  </PropertyGroup>
+  
+  <Target Name="CoreBuild2" DependsOnTargets="$(CoreBuild2DependsOn)" Outputs="@(BuildOutputs)">
+    <MSBuild Projects="@(OperatingSystemList)" Targets="BuildSolution" BuildInParallel="false" StopOnFirstFailure="true">
+      <Output TaskParameter="TargetOutputs" ItemName="BuildOutputs"/>
+    </MSBuild>
+  </Target>
+
+  <Target Name="BuildSolution" DependsOnTargets="$(BuildSolutionDependsOn)">
+    <Message Text="AssemblyOriginatorKeyFile: '$(AssemblyOriginatorKeyFile)'" />
+
+    <MSBuild Projects="$(ProjectToBuild)"
+      Properties="Configuration=$(Configuration);Platform=$(Platform);AssemblyOriginatorKeyFile=$(AssemblyOriginatorKeyFile);TargetFrameworkVersion=$(DotNetVersion);DefineConstants=$(OSVersion);$(CustomProperties)"
+      Targets="Rebuild">
+      <Output TaskParameter="TargetOutputs" ItemName="BuildOutputs"/>
+    </MSBuild>
+
+    <ItemGroup>
+      <BuildOutputs>
+        <OSVersion>$(OSVersion)</OSVersion>
+      </BuildOutputs>
+    </ItemGroup>
+
+    <CallTarget Targets="TestBuild" Condition=" '$(IsTestBuild)' == 'true' " />
+    <CallTarget Targets="SignAssembly" Condition=" '$(CertificateKeyFile)' != '' "/>
+    <CallTarget Targets="CopyOutputToBinDropLocation" Condition=" '$(IsReleaseBuild)' == 'true' " />
+  </Target>
+
+  <!-- Override this target to execute custom tasks after building. -->
+  <Target Name="AfterBuild" />
+
+  <PropertyGroup>
+    <SignAssemblyDependsOn>
+      ResolveCertificate;
+    </SignAssemblyDependsOn>
+  </PropertyGroup>
+  
+  <Target Name="SignAssembly" DependsOnTargets="$(SignAssemblyDependsOn)">
+    <SignFile CertificateThumbprint="$(ResolvedCertificateThumbprint)" SigningTarget="$(SourceCodeFolder)\DotRas\bin\$(Configuration)\DotRas.dll" 
+        TimestampUrl="http://timestamp.comodoca.com/authenticode" />
+  </Target>
+
+  <Target Name="ResolveCertificate">
+    <ResolveKeySource CertificateFile="$(CertificateKeyFile)">
+      <Output TaskParameter="ResolvedThumbprint" PropertyName="ResolvedCertificateThumbprint"/>
+    </ResolveKeySource>
+  </Target>
+
+  <!-- Copies the assembly output -->
+  <Target Name="CopyOutputToBinDropLocation">
+    <ItemGroup>
+      <FilesToCopy Include="$(SourceCodeFolder)\DotRas\bin\$(Configuration)\*.*" />
+    </ItemGroup>
+
+    <Copy SourceFiles="@(FilesToCopy)" DestinationFolder="$(TempBuildDir)\Libraries\$(DotNetOutputFolder)\$(OSVersion)" />
+  </Target>
+
+  <PropertyGroup>
+    <TestBuildDependsOn>
+      RunUnitTests;
+      RunIntegrationTests;
+    </TestBuildDependsOn>
+  </PropertyGroup>
+
+  <Target Name="TestBuild" DependsOnTargets="$(TestBuildDependsOn)" />
+
+  <PropertyGroup>
+    <RunUnitTestsDependsOn>
+      BuildUnitTestsProject;
+    </RunUnitTestsDependsOn>
+  </PropertyGroup>
+
+  <Target Name="BuildUnitTestsProject">
+    <MSBuild Projects="$(UnitTestsProject)"
+            Properties="Configuration=$(Configuration);Platform=$(Platform);DefineConstants=$(OSVersion)">
+    </MSBuild>
+  </Target>
+  
+  <Target Name="RunUnitTests" DependsOnTargets="$(RunUnitTestsDependsOn)">
+    <Exec Command="&quot;$(DevEnvDir)\MSTest.exe&quot; /testcontainer:&quot;$(SourceCodeFolder)\DotRas.UnitTests\bin\$(Configuration)\DotRas.UnitTests.dll&quot; " />
+  </Target>
+
+  <PropertyGroup>
+    <RunIntegrationTestsDependsOn>
+      BuildIntegrationTestsProject;
+    </RunIntegrationTestsDependsOn>
+  </PropertyGroup>
+
+  <Target Name="BuildIntegrationTestsProject">
+    <MSBuild Projects="$(IntegrationTestsProject)"
+            Properties="Configuration=$(Configuration);Platform=$(Platform);DefineConstants=$(OSVersion)">
+    </MSBuild>
+  </Target>
+
+  <Target Name="RunIntegrationTests" Condition=" Exists('$(VBOX_INSTALL_PATH)\VBoxManage.exe') and '$(SkipIntegrationTests)' == 'false' " DependsOnTargets="$(RunIntegrationTestsDependsOn)">
+    <Exec Command="&quot;$(DevEnvDir)\MSTest.exe&quot; /testcontainer:&quot;$(SourceCodeFolder)\DotRas.IntegrationTests\bin\$(Configuration)\DotRas.IntegrationTests.dll&quot; " />
+  </Target>
+
+  <Target Name="ComputeOperatingSystemList">
+    <ItemGroup>
+      <OperatingSystemList Include="$(MSBuildProjectFile)">
+        <Properties>OSVersion=%(OperatingSystemToBuild.Identity)</Properties>
+      </OperatingSystemList>
+    </ItemGroup>
+  </Target>
+
+  <Target Name="ComputeDotNetVersionList">
+    <ItemGroup>
+      <DotNetVersionList Include="$(MSBuildProjectFile)">
+        <Properties>DotNetVersion=v%(DotNetVersionToBuild.Identity).0;DotNetOutputFolder=NET%(DotNetVersionToBuild.Identity)0</Properties>
+      </DotNetVersionList>
+    </ItemGroup>
+  </Target>
+
+  <!-- 
+  ********************************************
+  GenerateDocumentation
+  ********************************************
+  -->
+  <PropertyGroup>
+    <GenerateDocumentationDependsOn>
+      BeforeGenerateDocumentation;
+      CoreGenerateDocumentation;
+      AfterGenerateDocumentation;
+    </GenerateDocumentationDependsOn>
+  </PropertyGroup>
+
+  <Target Name="GenerateDocumentation" DependsOnTargets="$(GenerateDocumentationDependsOn)" />
+
+  <!-- Override this target to execute custom tasks before generating the documentation. -->
+  <Target Name="BeforeGenerateDocumentation" />
+
+  <Target Name="CoreGenerateDocumentation" Condition=" '$(SkipDocumentation)' == 'false' ">
+    <MSBuild Projects="$(DocumentationProjectToBuild)"
+        Properties="Configuration=$(Configuration);Platform=$(Platform)">
+    </MSBuild>
+
+    <ItemGroup>
+      <HelpFilesToCopy Include="$(HelpFolder)\Output\DotRas.chm" />
+    </ItemGroup>
+
+    <Copy SourceFiles="@(HelpFilesToCopy)" DestinationFolder="$(PackageTempBuildDir)\Help" />
+  </Target>
+
+  <!-- Override this target to execute custom tasks after generating the documentation. -->
+  <Target Name="AfterGenerateDocumentation" />
+
+  <!-- 
+  ********************************************
+  Package
+  ********************************************
+  -->
+  <PropertyGroup>
+    <PackageDependsOn>
+      BeforePackage;
+      CorePackage;
+      AfterPackage;
+    </PackageDependsOn>
+  </PropertyGroup>
+
+  <Target Name="Package" DependsOnTargets="$(PackageDependsOn)" />
+
+  <!-- Override this target to execute custom tasks before packaging. -->
+  <Target Name="BeforePackage" />
+
+  <PropertyGroup>
+    <CorePackageDependsOn>
+      PackageExamples;
+      PackageLicense;
+      PackageReadMe;
+      BuildInstaller;
+      PackageSourceCode;
+    </CorePackageDependsOn>
+  </PropertyGroup>
+
+  <Target Name="CorePackage" DependsOnTargets="$(CorePackageDependsOn)"
+      Condition=" '$(SkipPackage)' == 'false' "/>
+
+  <!-- Override this target to execute custom tasks before packaging. -->
+  <Target Name="AfterPackage" />
+  
+  <PropertyGroup>
+    <PackageExamplesDependsOn>
+      BuildExamples;
+      CopyExamplesToDropFolder;
+      RemoveExampleSccBindings;
+    </PackageExamplesDependsOn>
+  </PropertyGroup>
+
+  <!-- Packages the examples. -->
+  <Target Name="PackageExamples" DependsOnTargets="$(PackageExamplesDependsOn)" />
+
+  <PropertyGroup>
+    <BuildExamplesDependsOn>
+      CopyExamplesToTempFolder;
+      CopyExampleReferences;
+      CoreBuildExamples;
+    </BuildExamplesDependsOn>
+  </PropertyGroup>
+
+  <!-- Builds the examples to verify they compile correctly. -->
+  <Target Name="BuildExamples" DependsOnTargets="$(BuildExamplesDependsOn)" />
+
+  <!-- Copies the examples to the temporary folder to prepare for building all example solutions. -->
+  <Target Name="CopyExamplesToTempFolder">
+    <ItemGroup>
+      <!-- Only copy the files from the example projects, not the bin folder used for project references. -->
+      <ExampleFilesToCopy Include="$(ExamplesFolder)\Examples\**\*.*"
+          Exclude="$(ExamplesFolder)\**\obj\**;$(ExamplesFolder)\**\bin\**;$(ExamplesFolder)\**\*.suo;$(ExamplesFolder)\**\*.*proj.user;$(ExamplesFolder)\**\*.cache"/>
+    </ItemGroup>
+
+    <Copy SourceFiles="@(ExampleFilesToCopy)" DestinationFiles="@(ExampleFilesToCopy -> '$(PackageTempBuildDir)\Temp\Examples\%(RecursiveDir)%(Filename)%(Extension)')" />
+  </Target>
+
+  <!-- Replaces the binaries referenced by the examples to the current version. -->
+  <Target Name="CopyExampleReferences">
+    <ItemGroup>
+      <ReferenceFilesToCopy Include="$(PackageTempBuildDir)\Libraries\**\*.*" />
+    </ItemGroup>
+
+    <Copy SourceFiles="@(ReferenceFilesToCopy)" DestinationFiles="@(ReferenceFilesToCopy -> '$(PackageTempBuildDir)\Temp\Libraries\%(RecursiveDir)%(Filename)%(Extension)')" />
+  </Target>
+
+  <!-- Compiles all example solutions. -->
+  <Target Name="CoreBuildExamples">
+    <ItemGroup>
+      <ExamplesToBuild Include="$(PackageTempBuildDir)\Temp\Examples\**\*.sln" />
+    </ItemGroup>
+
+    <MSBuild Projects="@(ExamplesToBuild)"
+        Properties="Configuration=Release;Platform=Any CPU"
+        BuildInParallel="true" />
+  </Target>
+
+  <!-- Copies the examples to the drop folder. -->
+  <Target Name="CopyExamplesToDropFolder">
+    <Copy SourceFiles="@(ExampleFilesToCopy)" DestinationFiles="@(ExampleFilesToCopy -> '$(PackageTempBuildDir)\Examples\%(RecursiveDir)%(Filename)%(Extension)')" />
+  </Target>
+
+  <!-- Removes the TFS source control bindings for the examples. -->
+  <Target Name="RemoveExampleSccBindings">
+    <StripSccBindings Provider="vstfs"
+                      ToolPath="$(ToolsPath)\StripSccBindings"
+                      Recursive="true"
+                      Path="$(PackageTempBuildDir)\Examples" />
+  </Target>
+
+  <!-- Packages the license files. -->
+  <Target Name="PackageLicense">
+    <ItemGroup>
+      <LicenseFilesToCopy Include=".\License.rtf" />
+    </ItemGroup>
+
+    <Copy SourceFiles="@(LicenseFilesToCopy)" DestinationFiles="@(LicenseFilesToCopy -> '$(PackageTempBuildDir)\%(RecursiveDir)%(Filename)%(Extension)')" />
+  </Target>
+
+  <!-- Packages the readme files. -->
+  <Target Name="PackageReadMe">
+    <ItemGroup>
+      <ReadMeFilesToCopy Include=".\ReadMe.txt" />
+    </ItemGroup>
+
+    <Copy SourceFiles="@(ReadMeFilesToCopy)" DestinationFiles="@(ReadMeFilesToCopy -> '$(PackageTempBuildDir)\%(RecursiveDir)%(Filename)%(Extension)')" />
+  </Target>
+
+  <PropertyGroup>
+    <BuildInstallerDependsOn>
+      CoreBuildInstaller;
+      SignPackage;
+      CopyPackageToDropFolder;
+    </BuildInstallerDependsOn>
+  </PropertyGroup>
+
+  <Target Name="BuildInstaller" DependsOnTargets="$(BuildInstallerDependsOn)" />
+
+  <Target Name="RemoveInstallerFilesReadOnlyAttribute">
+    <Exec Command="attrib -r &quot;$(SourceCodeFolder)\Installer\Installer\Content\Components\ProgramFilesFolder\*.*&quot; /s" />
+  </Target>
+
+  <!-- Heat the examples folder to generate the ExamplesFolder.wxs file. -->
+  <Target Name="HeatExamplesFolder">
+    <HeatDirectory Directory="$(PackageTempBuildDir)\Examples"
+      ComponentGroupName="ExamplesComponentGroup"
+      DirectoryRefId="ExamplesFolder"
+      GenerateGuidsNow="true"
+      SuppressRootDirectory="true"
+      OutputFile="$(SourceCodeFolder)\Installer\Installer\Content\Components\ProgramFilesFolder\ExamplesFolder.wxs"
+      ToolPath="$(WIX)\bin" />
+  </Target>
+
+  <PropertyGroup>
+    <CoreBuildInstallerDependsOn>
+      RemoveInstallerFilesReadOnlyAttribute;
+      HeatExamplesFolder;
+    </CoreBuildInstallerDependsOn>
+  </PropertyGroup>
+
+  <Target Name="CoreBuildInstaller" DependsOnTargets="$(CoreBuildInstallerDependsOn)">
+    <!-- Gather assembly information to be used in the packaging process. -->
+    <GetAssemblyInfo FilePath="$(PackageTempBuildDir)\Libraries\NET20\WIN2K\DotRas.dll">
+      <Output TaskParameter="MajorVersion" PropertyName="MajorVersion" />
+      <Output TaskParameter="MinorVersion" PropertyName="MinorVersion" />
+      <Output TaskParameter="Build" PropertyName="BuildNumber" />
+      <Output TaskParameter="AssemblyVersion" PropertyName="DN2WIN2KVER" />
+    </GetAssemblyInfo>
+
+    <GetAssemblyInfo FilePath="$(PackageTempBuildDir)\Libraries\NET20\WINXP\DotRas.dll">
+      <Output TaskParameter="AssemblyVersion" PropertyName="DN2WINXPVER" />
+    </GetAssemblyInfo>
+
+    <GetAssemblyInfo FilePath="$(PackageTempBuildDir)\Libraries\NET20\WIN2K8\DotRas.dll">
+      <Output TaskParameter="AssemblyVersion" PropertyName="DN2WIN2K8VER" />
+    </GetAssemblyInfo>
+
+    <GetAssemblyInfo FilePath="$(PackageTempBuildDir)\Libraries\NET20\WIN7\DotRas.dll">
+      <Output TaskParameter="AssemblyVersion" PropertyName="DN2WIN7VER" />
+    </GetAssemblyInfo>
+
+    <GetAssemblyInfo FilePath="$(PackageTempBuildDir)\Libraries\NET20\WIN8\DotRas.dll">
+      <Output TaskParameter="AssemblyVersion" PropertyName="DN2WIN8VER" />
+    </GetAssemblyInfo>
+    
+    <GetAssemblyInfo FilePath="$(PackageTempBuildDir)\Libraries\NET40\WIN2K\DotRas.dll">
+      <Output TaskParameter="AssemblyVersion" PropertyName="DN4WIN2KVER" />
+    </GetAssemblyInfo>
+
+    <GetAssemblyInfo FilePath="$(PackageTempBuildDir)\Libraries\NET40\WINXP\DotRas.dll">
+      <Output TaskParameter="AssemblyVersion" PropertyName="DN4WINXPVER" />
+    </GetAssemblyInfo>
+
+    <GetAssemblyInfo FilePath="$(PackageTempBuildDir)\Libraries\NET40\WIN2K8\DotRas.dll">
+      <Output TaskParameter="AssemblyVersion" PropertyName="DN4WIN2K8VER" />
+    </GetAssemblyInfo>
+
+    <GetAssemblyInfo FilePath="$(PackageTempBuildDir)\Libraries\NET40\WIN7\DotRas.dll">
+      <Output TaskParameter="AssemblyVersion" PropertyName="DN4WIN7VER" />
+    </GetAssemblyInfo>
+
+    <GetAssemblyInfo FilePath="$(PackageTempBuildDir)\Libraries\NET40\WIN8\DotRas.dll">
+      <Output TaskParameter="AssemblyVersion" PropertyName="DN4WIN8VER" />
+    </GetAssemblyInfo>
+    
+    <!-- Must invoke MSBuild directly to build the WiX package due to a limitation with the MSBuild task. -->
+    <Exec Command="MSBuild.exe /p:Configuration=Release /p:Platform=x86 /p:DefineSolutionProperties=false /p:DefineConstants=&quot;DN2WIN2KVER=$(DN2WIN2KVER);DN2WINXPVER=$(DN2WINXPVER);DN2WIN2K8VER=$(DN2WIN2K8VER);DN2WIN7VER=$(DN2WIN7VER);DN2WIN8VER=$(DN2WIN8VER);DN4WIN2KVER=$(DN4WIN2KVER);DN4WINXPVER=$(DN4WINXPVER);DN4WIN2K8VER=$(DN4WIN2K8VER);DN4WIN7VER=$(DN4WIN7VER);DN4WIN8VER=$(DN4WIN8VER);ProductVersion=$(MajorVersion).$(MinorVersion).$(BuildNumber).0;SDKVersion=$(MajorVersion).$(MinorVersion)&quot; /p:BaseInputPaths=&quot;$(PackageTempBuildDir);$(PackageTempBuildDir)\Examples&quot; $(InstallerProjectToBuild)" />
+  </Target>
+
+  <Target Name="CopyPackageToDropFolder">
+    <Copy SourceFiles="$(SourceCodeFolder)\Installer\Installer\bin\$(Configuration)\en-us\DotRas SDK.msi" DestinationFiles="$(OutputFolder)\DotRas v$(MajorVersion).$(MinorVersion) SDK.msi" />
+  </Target>
+
+  <!-- 
+  ********************************************
+  SignPackage
+  ********************************************
+  -->
+  <PropertyGroup>
+    <SignPackageDependsOn>
+      ResolveCertificate;
+    </SignPackageDependsOn>
+  </PropertyGroup>
+  
+  <Target Name="SignPackage" DependsOnTargets="$(SignPackageDependsOn)" Condition=" '$(CertificateKeyFile)' != '' ">
+    <ItemGroup>
+      <PackageFilesToSign Include="$(SourceCodeFolder)\Installer\Installer\bin\$(Configuration)\**\*.msi"></PackageFilesToSign>
+    </ItemGroup>
+
+    <Exec Command="signtool.exe sign /sha1 &quot;$(ResolvedCertificateThumbprint)&quot; /d &quot;DotRas v$(MajorVersion).$(MinorVersion) SDK&quot; /du &quot;http://dotras.codeplex.com&quot; /t &quot;http://timestamp.comodoca.com/authenticode&quot; &quot;@(PackageFilesToSign)&quot;" />
+  </Target>
+  
+  <!-- 
+  ********************************************
+  PackageSourceCode
+  ********************************************
+  -->
+  <PropertyGroup>
+    <PackageSourceCodeDependsOn>
+      BeforePackageSourceCode;
+      CorePackageSourceCode;
+      AfterPackageSourceCode;
+    </PackageSourceCodeDependsOn>
+  </PropertyGroup>
+
+  <Target Name="PackageSourceCode" DependsOnTargets="$(PackageSourceCodeDependsOn)" />
+
+  <!-- Override this target to execute custom tasks before packaging the source code. -->
+  <Target Name="BeforePackageSourceCode" />
+
+  <PropertyGroup>
+    <CorePackageSourceCodeDependsOn>
+      BuildSourceCodePackage;
+      RemoveSourceCodeSccBindings;
+      RemoveStyleCopFromProjects;
+      CompressSourceCode;
+    </CorePackageSourceCodeDependsOn>
+  </PropertyGroup>
+
+  <Target Name="CorePackageSourceCode" Condition=" '$(SkipPackage)' == 'false' "
+          DependsOnTargets="$(CorePackageSourceCodeDependsOn)" />
+
+  <!-- Override this target to execute custom tasks after packaging the source code. -->
+  <Target Name="AfterPackageSourceCode" />
+
+  <PropertyGroup>
+    <BuildSourceCodePackageDependsOn>
+      CopyRootFilesToTempFolder;
+      CopyComponentsToTempFolder;
+      CopyExampleFilesToTempFolder;
+      CopyHelpFilesToTempFolder;
+      CopyMediaFilesToTempFolder;
+      CopySourceCodeToTempFolder;
+    </BuildSourceCodePackageDependsOn>
+  </PropertyGroup>
+
+  <Target Name="BuildSourceCodePackage" DependsOnTargets="$(BuildSourceCodePackageDependsOn)" />
+
+  <!-- Copies the root files to the temp folder. -->
+  <Target Name="CopyRootFilesToTempFolder">
+    <ItemGroup>
+      <RootFilesToCopy Include=".\*.*" Exclude=".\msbuild*.log" />
+    </ItemGroup>
+
+    <Copy SourceFiles="@(RootFilesToCopy)" DestinationFiles="@(RootFilesToCopy -> '$(SourceTempBuildDir)\%(Filename)%(Extension)')" />
+  </Target>
+  
+  <!-- Copies the components to the temp folder. -->
+  <Target Name="CopyComponentsToTempFolder">
+    <ItemGroup>
+      <ComponentFilesToCopy Include="$(ComponentsFolder)\**\*.*" />
+    </ItemGroup>
+
+    <Copy SourceFiles="@(ComponentFilesToCopy)" DestinationFiles="@(ComponentFilesToCopy -> '$(SourceTempBuildDir)\Components\%(RecursiveDir)%(Filename)%(Extension)')" />
+  </Target>
+
+  <!-- Copies the example files to the temp folder. -->
+  <Target Name="CopyExampleFilesToTempFolder">
+    <ItemGroup>
+      <ExampleSourceFilesToCopy Include="$(ExamplesFolder)\**\*.*"
+          Exclude="$(ExamplesFolder)\**\obj\**;$(ExamplesFolder)\**\bin\**;$(ExamplesFolder)\**\*.suo;$(ExamplesFolder)\**\*.*proj.user;$(ExamplesFolder)\**\*.cache" />
+
+      <!-- Add the example folder binary files to the group. -->
+      <ExampleReferencesToCopy Include="$(ExamplesFolder)\Bin\**\*.*" />
+    </ItemGroup>
+
+    <Copy SourceFiles="@(ExampleSourceFilesToCopy)" DestinationFiles="@(ExampleSourceFilesToCopy -> '$(SourceTempBuildDir)\Examples\%(RecursiveDir)%(Filename)%(Extension)')" />
+    <Copy SourceFiles="@(ExampleReferencesToCopy)" DestinationFiles="@(ExampleReferencesToCopy -> '$(SourceTempBuildDir)\Examples\Bin\%(RecursiveDir)%(Filename)%(Extension)')" />
+  </Target>
+
+  <!-- Copies the help documentation files to the temp folder. -->
+  <Target Name="CopyHelpFilesToTempFolder">
+    <ItemGroup>
+      <HelpContentFilesToCopy Include="$(HelpFolder)\**\*.*"
+          Exclude="$(HelpFolder)\TempBuildDir\**\*.*;$(HelpFolder)\Output\**\*.*" />
+    </ItemGroup>
+
+    <Copy SourceFiles="@(HelpContentFilesToCopy)" DestinationFiles="@(HelpContentFilesToCopy -> '$(SourceTempBuildDir)\Help\%(RecursiveDir)%(Filename)%(Extension)')" />
+  </Target>
+
+  <!-- Copies the media files to the temp folder. -->
+  <Target Name="CopyMediaFilesToTempFolder">
+    <ItemGroup>
+      <MediaFilesToCopy Include="$(MediaFolder)\**\*.*" />
+    </ItemGroup>
+
+    <Copy SourceFiles="@(MediaFilesToCopy)" DestinationFiles="@(MediaFilesToCopy -> '$(SourceTempBuildDir)\Media\%(RecursiveDir)%(Filename)%(Extension)')" />
+  </Target>
+
+  <!-- Copies the source code files to the temp folder. -->
+  <Target Name="CopySourceCodeToTempFolder">
+    <ItemGroup>
+      <SourceCodeFilesToCopy Include=".\Source\**\*.*"
+          Exclude=".\Source\**\obj\**;.\Source\**\bin\**;.\Source\**\*.suo;.\Source\**\*.*proj.user;.\Source\**\*.cache;.\Source\**\*.msi"/>
+    </ItemGroup>
+
+    <Copy SourceFiles="@(SourceCodeFilesToCopy)" DestinationFiles="@(SourceCodeFilesToCopy -> '$(SourceTempBuildDir)\Source\%(RecursiveDir)%(Filename)%(Extension)')" />
+  </Target>
+
+  <!-- Remove the TFS source control bindings for the source code. -->
+  <Target Name="RemoveSourceCodeSccBindings">
+    <StripSccBindings Provider="vstfs"
+                  ToolPath="$(ToolsPath)\StripSccBindings"
+                  Recursive="true"
+                  Path="$(SourceTempBuildDir)" />
+  </Target>
+
+  <Target Name="RemoveStyleCopFromProjects">
+    <ItemGroup>
+      <ProjectFilesToStrip Include="$(SourceTempBuildDir)\Source\DotRas\**\*.*proj"/>
+    </ItemGroup>
+
+    <StripStyleCop ProjectFiles="@(ProjectFilesToStrip)" />
+  </Target>
+
+  <!-- Compress the source code. -->
+  <Target Name="CompressSourceCode">
+    <Exec Command="$(ComponentsFolder)\7Zip\7za.exe a -tzip -r &quot;$(OutputFolder)\DotRas v$(MajorVersion).$(MinorVersion) Source.zip&quot; &quot;$(SourceTempBuildDir)\*&quot; -mx9" />
+  </Target>
+
+  <!-- 
+  ********************************************
+  DesktopBuild
+  ********************************************
+  -->
+  <Target Name="PostBuild">
+    <Message Text="DN2WIN2K: $(DN2WIN2KVER)" />
+    <Message Text="DN2WINXPVER: $(DN2WINXPVER)" />
+    <Message Text="DN2WIN2K8VER: $(DN2WIN2K8VER)" />
+    <Message Text="DN2WIN7VER: $(DN2WIN7VER)" />
+    <Message Text="DN2WIN8VER: $(DN2WIN8VER)" />
+    <Message Text="DN4WIN2K: $(DN4WIN2KVER)" />
+    <Message Text="DN4WINXPVER: $(DN4WINXPVER)" />
+    <Message Text="DN4WIN2K8VER: $(DN4WIN2K8VER)" />
+    <Message Text="DN4WIN7VER: $(DN4WIN7VER)" />
+    <Message Text="DN4WIN8VER: $(DN4WIN8VER)" />
+  </Target>
+</Project>

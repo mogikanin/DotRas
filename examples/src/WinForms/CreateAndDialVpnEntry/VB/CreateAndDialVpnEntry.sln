@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "CreateAndDialVpnEntry", "CreateAndDialVpnEntry\CreateAndDialVpnEntry.vbproj", "{9F3F780B-2DC9-4844-8AE5-FF7A2652FE66}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 2
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://tfs04.codeplex.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = CreateAndDialVpnEntry\\CreateAndDialVpnEntry.vbproj
+		SccProjectName1 = CreateAndDialVpnEntry
+		SccLocalPath1 = CreateAndDialVpnEntry
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9F3F780B-2DC9-4844-8AE5-FF7A2652FE66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F3F780B-2DC9-4844-8AE5-FF7A2652FE66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F3F780B-2DC9-4844-8AE5-FF7A2652FE66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F3F780B-2DC9-4844-8AE5-FF7A2652FE66}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

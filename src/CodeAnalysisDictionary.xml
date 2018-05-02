@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Dictionary>
+  <Words>
+    <Deprecated>
+      <!--<Term PreferredAlternate="EnterpriseServices">ComPlus</Term>-->
+    </Deprecated>
+    <Recognized>
+      <Word>Acfc</Word>
+      <Word>Atm</Word>
+      <Word>Auth</Word>
+      <Word>Ack</Word>
+      <Word>Amb</Word>
+      <Word>Ccp</Word>
+      <Word>Crc</Word>
+      <Word>Ddm</Word>
+      <Word>Eap</Word>
+      <Word>Eku</Word>
+      <Word>Ev</Word>
+      <Word>Ikev</Word>
+      <Word>Irda</Word>
+      <Word>Ipx</Word>
+      <Word>Lcp</Word>
+      <Word>Mppc</Word>
+      <Word>Luid</Word>
+      <Word>Nbf</Word>
+      <Word>Nbt</Word>
+      <Word>Pfc</Word>
+      <Word>Ppp</Word>
+      <Word>Pv</Word>
+      <Word>Pptp</Word>
+      <Word>Sonet</Word>
+      <Word>Spap</Word>
+      <Word>Sshf</Word>
+      <Word>Sstp</Word>
+      <Word>Stac</Word>
+      <Word>Vpn</Word>
+      <Word>tp</Word>
+    </Recognized>
+    <Unrecognized>
+      <!--<Word></Word>-->
+    </Unrecognized>
+    <Compound>
+      <Term CompoundAlternate="AutoDial">Autodial</Term>
+      <Term CompoundAlternate="DialUp">Dialup</Term>
+      <Term CompoundAlternate="NonExistent">Nonexistent</Term>
+      <Term CompoundAlternate="PhoneBook">Phonebook</Term>
+      <Term CompoundAlternate="SubEntry">Subentry</Term>
+      <Term CompoundAlternate="SubEntries">Subentries</Term>
+    </Compound>
+  </Words>
+  <Acronyms>
+    <CasingExceptions>
+      <Acronym>Po</Acronym>
+      <Acronym>tp</Acronym>
+    </CasingExceptions>
+  </Acronyms>
+</Dictionary>

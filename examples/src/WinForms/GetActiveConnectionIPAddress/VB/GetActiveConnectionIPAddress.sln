@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "GetActiveConnectionIPAddress", "GetActiveConnectionIPAddress\GetActiveConnectionIPAddress.vbproj", "{BB6BAD77-8CDC-4848-A617-66685624CDCD}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 2
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs04
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = GetActiveConnectionIPAddress\\GetActiveConnectionIPAddress.vbproj
+		SccProjectName1 = GetActiveConnectionIPAddress
+		SccLocalPath1 = GetActiveConnectionIPAddress
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BB6BAD77-8CDC-4848-A617-66685624CDCD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB6BAD77-8CDC-4848-A617-66685624CDCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB6BAD77-8CDC-4848-A617-66685624CDCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB6BAD77-8CDC-4848-A617-66685624CDCD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

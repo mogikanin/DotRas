@@ -1,0 +1,28 @@
+﻿<Window x:Class="MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:g="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Extras.WPF4"
+        xmlns:d="clr-namespace:DotRas;assembly=DotRas"
+        Title="MainWindow" Height="350" Width="525" Name="WindowRoot" DataContext="{Binding Source={StaticResource vml}, Path=MainWindowViewModel}">
+    <Grid Name="LayoutRoot">
+        <Button Content="Dial" Height="23" HorizontalAlignment="Right" Margin="0,0,12,12" VerticalAlignment="Bottom" Width="75" Command="{Binding Path=Dial, Mode=OneWay}" CommandParameter="{Binding SelectedItem, ElementName=ConnectionsComboBox}" IsEnabled="{Binding Path=IsDialButtonEnabled, Mode=TwoWay, FallbackValue=False}" />
+        <ComboBox Height="23" Margin="12,0,251,12" VerticalAlignment="Bottom" Name="ConnectionsComboBox" ItemsSource="{Binding Path=ConnectionsDataSource, Mode=OneWay}" SelectedIndex="{Binding Path=SelectedConnectionIndex, Mode=TwoWay}" IsEnabled="{Binding Path=IsConnectionsComboBoxEnabled, Mode=TwoWay}">
+            <ComboBox.ItemTemplate>
+                <HierarchicalDataTemplate DataType="{x:Type d:RasEntry}">
+                    <StackPanel>
+                        <TextBlock Text="{Binding Path=Name}" />
+                    </StackPanel>
+                </HierarchicalDataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <Button Content="Create" Height="23" HorizontalAlignment="Right" Margin="0,0,12,41" VerticalAlignment="Bottom" Width="75" Command="{Binding Path=CreateEntry, Mode=OneWay}" IsEnabled="{Binding Path=IsCreateButtonEnabled, Mode=TwoWay}" />
+        <TextBox Margin="12,12,12,92" AcceptsReturn="True" IsReadOnly="True" VerticalScrollBarVisibility="Visible" IsReadOnlyCaretVisible="True" IsUndoEnabled="False" TextWrapping="Wrap" Name="StatusTextBox" />
+        <Button Content="Disconnect" Margin="0,0,93,12" Command="{Binding Path=Disconnect, Mode=OneWay}"  IsEnabled="{Binding Path=IsDisconnectButtonEnabled, Mode=TwoWay}" HorizontalAlignment="Right" Width="75" Height="23" VerticalAlignment="Bottom" />
+    </Grid>
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <g:EventToCommand Command="{Binding Path=WindowInit, Mode=OneWay}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+</Window>

@@ -1,0 +1,47 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreateAndDialVpnEntryMvvm", "CreateAndDialVpnEntryMvvm\CreateAndDialVpnEntryMvvm.csproj", "{5562BA3A-BDA2-4C54-920C-6D467A9B1DCD}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 2
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs04
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = CreateAndDialVpnEntryMvvm\\CreateAndDialVpnEntryMvvm.csproj
+		SccProjectName1 = CreateAndDialVpnEntryMvvm
+		SccLocalPath1 = CreateAndDialVpnEntryMvvm
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|x86 = Release|x86
+		Staging|Any CPU = Staging|Any CPU
+		Staging|Mixed Platforms = Staging|Mixed Platforms
+		Staging|x86 = Staging|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5562BA3A-BDA2-4C54-920C-6D467A9B1DCD}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{5562BA3A-BDA2-4C54-920C-6D467A9B1DCD}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{5562BA3A-BDA2-4C54-920C-6D467A9B1DCD}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{5562BA3A-BDA2-4C54-920C-6D467A9B1DCD}.Debug|x86.ActiveCfg = Debug|x86
+		{5562BA3A-BDA2-4C54-920C-6D467A9B1DCD}.Debug|x86.Build.0 = Debug|x86
+		{5562BA3A-BDA2-4C54-920C-6D467A9B1DCD}.Release|Any CPU.ActiveCfg = Release|x86
+		{5562BA3A-BDA2-4C54-920C-6D467A9B1DCD}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{5562BA3A-BDA2-4C54-920C-6D467A9B1DCD}.Release|Mixed Platforms.Build.0 = Release|x86
+		{5562BA3A-BDA2-4C54-920C-6D467A9B1DCD}.Release|x86.ActiveCfg = Release|x86
+		{5562BA3A-BDA2-4C54-920C-6D467A9B1DCD}.Release|x86.Build.0 = Release|x86
+		{5562BA3A-BDA2-4C54-920C-6D467A9B1DCD}.Staging|Any CPU.ActiveCfg = Release|x86
+		{5562BA3A-BDA2-4C54-920C-6D467A9B1DCD}.Staging|Mixed Platforms.ActiveCfg = Release|x86
+		{5562BA3A-BDA2-4C54-920C-6D467A9B1DCD}.Staging|Mixed Platforms.Build.0 = Release|x86
+		{5562BA3A-BDA2-4C54-920C-6D467A9B1DCD}.Staging|x86.ActiveCfg = Release|x86
+		{5562BA3A-BDA2-4C54-920C-6D467A9B1DCD}.Staging|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

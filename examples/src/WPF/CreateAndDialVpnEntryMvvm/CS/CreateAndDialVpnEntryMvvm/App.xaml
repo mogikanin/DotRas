@@ -1,0 +1,9 @@
+﻿<Application x:Class="CreateAndDialVpnEntryMvvm.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:my="clr-namespace:CreateAndDialVpnEntryMvvm"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <my:ViewModelLocator x:Key="vml" />
+    </Application.Resources>
+</Application>

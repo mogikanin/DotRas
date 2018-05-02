@@ -1,0 +1,46 @@
+Initialize
+Clean
+	BeforeClean
+	CoreClean
+		CleanTempBuildDir
+		CleanoutputFolder
+		CleanTestResults
+	AfterClean
+Test
+	BeforeTest
+	CallTest
+		ComputeVirtualMachineList
+		@CoreTest
+			Initialize
+			InitVM
+			RunTests
+				Build
+			ShutdownVM
+	AfterTest
+BuildRelease
+GenerateDocumentation
+Package
+PostBuild
+
+
+
+
+
+
+Build
+	BeforeBuild
+	CoreBuild
+		ComputeDotNetVersionList
+		@CoreBuild2
+			ComputeOperatingSystemList
+			@BuildSolution
+				Initialize
+				TestBuild
+					BuildUnitTestsProject
+					RunUnitTests
+					BuildIntegrationTestsProject
+					RunIntegrationTests
+				SignAssembly
+					ResolveCertificate
+				CopyOutputToBinDropLocation
+	AfterBuild

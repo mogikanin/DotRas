@@ -1,0 +1,48 @@
+<StyleCopSettings Version="105">
+  <GlobalSettings>
+    <CollectionProperty Name="RecognizedWords">
+      <Value>Advapi</Value>
+      <Value>Auth</Value>
+      <Value>CredUI</Value>
+      <Value>Dlg</Value>
+      <Value>Dll</Value>
+      <Value>Eap</Value>
+      <Value>Ev</Value>
+      <Value>Gdi</Value>
+      <Value>Ir</Value>
+      <Value>Lan</Value>
+      <Value>Luid</Value>
+      <Value>Minipuerto</Value>
+      <Value>Param</Value>
+      <Value>Pv</Value>
+      <Value>Ras</Value>
+      <Value>Rasapi</Value>
+      <Value>Sonet</Value>
+    </CollectionProperty>
+  </GlobalSettings>
+  <Analyzers>
+    <Analyzer AnalyzerId="StyleCop.CSharp.DocumentationRules">
+      <AnalyzerSettings>
+        <BooleanProperty Name="IncludeFields">False</BooleanProperty>
+        <BooleanProperty Name="IgnorePrivates">True</BooleanProperty>
+      </AnalyzerSettings>
+    </Analyzer>
+    <Analyzer AnalyzerId="StyleCop.CSharp.NamingRules">
+      <Rules>
+        <Rule Name="FieldNamesMustNotBeginWithUnderscore">
+          <RuleSettings>
+            <BooleanProperty Name="Enabled">False</BooleanProperty>
+          </RuleSettings>
+        </Rule>
+      </Rules>
+      <AnalyzerSettings>
+        <CollectionProperty Name="Hungarian">
+          <Value>ip</Value>
+          <Value>lp</Value>
+          <Value>p</Value>
+          <Value>x</Value>
+        </CollectionProperty>
+      </AnalyzerSettings>
+    </Analyzer>
+  </Analyzers>
+</StyleCopSettings>

@@ -1,0 +1,435 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Argument_EapOptionsRequireInteractiveMode" xml:space="preserve">
+    <value>{0} contained a non-interactive flag, however the authentication protocol  must display a UI to obtain the required identity information.</value>
+  </data>
+  <data name="Argument_EmptyEntryNameAndPhoneNumber" xml:space="preserve">
+    <value>The phone number cannot be an empty string if the entry name has not been provided.</value>
+  </data>
+  <data name="Argument_EntryAlreadyExists" xml:space="preserve">
+    <value>'{0}' already exists in the phone book.</value>
+  </data>
+  <data name="Argument_IncorrectAddressFamily" xml:space="preserve">
+    <value>{0} contains an incorrect address family.</value>
+  </data>
+  <data name="Argument_InvalidEntryName" xml:space="preserve">
+    <value>The {0} '{1}' is invalid. Ensure the entry does not already exist in the phone book, and does not contain invalid characters.</value>
+  </data>
+  <data name="Argument_InvalidHandle" xml:space="preserve">
+    <value>'{0}' was not a valid handle.</value>
+  </data>
+  <data name="Argument_MissingRequiredInfo" xml:space="preserve">
+    <value>'{0}' must have the PhoneNumber, DeviceType, DeviceName, FramingProtocol, and EntryType properties set as a minimum.</value>
+  </data>
+  <data name="Argument_StringCannotBeNullOrEmpty" xml:space="preserve">
+    <value>'{0}' cannot be a null reference or empty string.</value>
+  </data>
+  <data name="Argument_ValueCannotBeLessThanOrEqualToZero" xml:space="preserve">
+    <value>{0} must be greater than zero.</value>
+  </data>
+  <data name="CatBehavior" xml:space="preserve">
+    <value>Behavior</value>
+  </data>
+  <data name="CatData" xml:space="preserve">
+    <value>Data</value>
+  </data>
+  <data name="CatLayout" xml:space="preserve">
+    <value>Layout</value>
+  </data>
+  <data name="EPBEDEntryNameDesc" xml:space="preserve">
+    <value>The name of the phone book entry to modify.</value>
+  </data>
+  <data name="Exception_AccessDeniedBySecurity" xml:space="preserve">
+    <value>The caller does not have the required permission to perform the action requested.</value>
+  </data>
+  <data name="Exception_EntryNotInPhoneBook" xml:space="preserve">
+    <value>The entry is not associated with a phone book.</value>
+  </data>
+  <data name="Exception_PhonebookCorrupted" xml:space="preserve">
+    <value>The phone book is corrupted or missing components.</value>
+  </data>
+  <data name="Exception_PhoneNumberOrEntryNameRequired" xml:space="preserve">
+    <value>The phone number or entry name (with phone book path) is required to dial an entry.</value>
+  </data>
+  <data name="NotSupported_ItemsCannotBeSet" xml:space="preserve">
+    <value>Items within the collection cannot be set directly.</value>
+  </data>
+  <data name="RDCallbackNumberDesc" xml:space="preserve">
+    <value>The callback number for the remote server to dial.</value>
+  </data>
+  <data name="RDEapOptionsDesc" xml:space="preserve">
+    <value>The extensible authentication protocol (EAP) options.</value>
+  </data>
+  <data name="RDEntryOptionsDesc" xml:space="preserve">
+    <value>The entry options.</value>
+  </data>
+  <data name="RDOwnerDesc" xml:space="preserve">
+    <value>The parent window used for dialog box creation and centering.</value>
+  </data>
+  <data name="RDPhoneBookPathDesc" xml:space="preserve">
+    <value>The full path (including file name) of the phone book.</value>
+  </data>
+  <data name="RDStateChangedDesc" xml:space="preserve">
+    <value>Occurs when the connection state changes.</value>
+  </data>
+  <data name="RDSubEntryIdDesc" xml:space="preserve">
+    <value>The zero-based index of the sub-entry to dial.</value>
+  </data>
+  <data name="RCSyncObjectDesc" xml:space="preserve">
+    <value>The object used to marshal event-handler calls.</value>
+  </data>
+  <data name="REDEntryNameDesc" xml:space="preserve">
+    <value>The name of the entry.</value>
+  </data>
+  <data name="RCDLocationDesc" xml:space="preserve">
+    <value>The coordinates of the upper-left corner of the dialog box.</value>
+  </data>
+  <data name="REDNoRenameDesc" xml:space="preserve">
+    <value>Indicates whether entries cannot be renamed while in edit mode.</value>
+  </data>
+  <data name="REDPhoneBookPathDesc" xml:space="preserve">
+    <value>The full path (including file name) of the phone book to modify.</value>
+  </data>
+  <data name="REDPhoneNumberDesc" xml:space="preserve">
+    <value>The phone number to dial.</value>
+  </data>
+  <data name="REDRasDialogStyleDesc" xml:space="preserve">
+    <value>The style of dialog box to display.</value>
+  </data>
+  <data name="Exception_PhoneBookNotOpened" xml:space="preserve">
+    <value>The phone book must be opened prior to performing this operation.</value>
+  </data>
+  <data name="RPBChangedDesc" xml:space="preserve">
+    <value>Occurs when the phone book has changed.</value>
+  </data>
+  <data name="RPBDeletedDesc" xml:space="preserve">
+    <value>Occurs when the phone book has been deleted.</value>
+  </data>
+  <data name="RPBEnableFileWatcherDesc" xml:space="preserve">
+    <value>Indicates whether the phone book file will be monitored for external changes.</value>
+  </data>
+  <data name="RPBRenamedDesc" xml:space="preserve">
+    <value>Occurs when the phone book has been renamed.</value>
+  </data>
+  <data name="Argument_InvalidFileName" xml:space="preserve">
+    <value>'{0}' contains an invalid file name.</value>
+  </data>
+  <data name="Argument_ValueLongerThanString" xml:space="preserve">
+    <value>'{0}' specified is longer than the string.</value>
+  </data>
+  <data name="RDDPhoneNumberDesc" xml:space="preserve">
+    <value>The phone number to dial (overriding the entry phone number).</value>
+  </data>
+  <data name="RCErrorDesc" xml:space="preserve">
+    <value>Occurs when the component has encountered an error.</value>
+  </data>
+  <data name="RCWConnectedDesc" xml:space="preserve">
+    <value>Occurs when a remote access connection is established.</value>
+  </data>
+  <data name="RCWDisconnectedDesc" xml:space="preserve">
+    <value>Occurs when a remote access connection is disconnected.</value>
+  </data>
+  <data name="RCWEnableRaisingEventsDesc" xml:space="preserve">
+    <value>Indicates whether the component will be enabled.</value>
+  </data>
+  <data name="RCWBandwidthAddedDesc" xml:space="preserve">
+    <value>Occurs when a remote access connection sub-entry has connected.</value>
+  </data>
+  <data name="RCWBandwidthRemovedDesc" xml:space="preserve">
+    <value>Occurs when a remote access connection sub-entry has disconnected.</value>
+  </data>
+  <data name="RDTimeoutDesc" xml:space="preserve">
+    <value>The length of time (in milliseconds) until the asynchronous connection attempt times out.</value>
+  </data>
+  <data name="Exception_OperationTimedOut" xml:space="preserve">
+    <value>The operation has timed out.</value>
+  </data>
+  <data name="RDDialCompletedDesc" xml:space="preserve">
+    <value>Occurs when the asynchronous dial operation has completed.</value>
+  </data>
+  <data name="Exception_HandleNotNapCapable" xml:space="preserve">
+    <value>The handle is not network access protection (NAP) capable.</value>
+  </data>
+  <data name="RPBDEntryNameDesc" xml:space="preserve">
+    <value>The name of the entry to initially highlight.</value>
+  </data>
+  <data name="RPBDAddedEntryDesc" xml:space="preserve">
+    <value>Occurs when the user creates a new entry or copies an existing entry.</value>
+  </data>
+  <data name="RPBDChangedEntryDesc" xml:space="preserve">
+    <value>Occurs when the user changes an existing phone book entry.</value>
+  </data>
+  <data name="RPBDDialedEntryDesc" xml:space="preserve">
+    <value>Occurs when the user successfully dials an entry.</value>
+  </data>
+  <data name="RPBDRemovedEntryDesc" xml:space="preserve">
+    <value>Occurs when the user removes a phone book entry.</value>
+  </data>
+  <data name="Exception_UnexpectedSizeReturned" xml:space="preserve">
+    <value>The size of the object returned was not expected.</value>
+  </data>
+  <data name="Argument_ValueCannotBeLessThanZero" xml:space="preserve">
+    <value>{0} cannot be less than zero.</value>
+  </data>
+  <data name="RADMConnectionQueryTimeoutDesc" xml:space="preserve">
+    <value>The length of time (in seconds) before the connection attempt is aborted.</value>
+  </data>
+  <data name="RADMDisableConnectionQueryDesc" xml:space="preserve">
+    <value>Indicates whether AutoDial displays a dialog box to query the user before creating a connection.</value>
+  </data>
+  <data name="RADMFailedConnectionTimeoutDesc" xml:space="preserve">
+    <value>The length of time (in seconds) between AutoDial connection attempts.</value>
+  </data>
+  <data name="RADMLogOnSessionDisableDesc" xml:space="preserve">
+    <value>Indicates whether the system disables all AutoDial connections for the current session.</value>
+  </data>
+  <data name="RADMSavedAddressesLimitDesc" xml:space="preserve">
+    <value>The maximum number of addresses that AutoDial stores in the registry.</value>
+  </data>
+  <data name="Exception_NotSupportedOnPlatform" xml:space="preserve">
+    <value>Not supported on the current platform.</value>
+  </data>
+  <data name="Exception_InvalidOrClosedHandle" xml:space="preserve">
+    <value>The handle is invalid or closed.</value>
+  </data>
+  <data name="RDAutoUpdateCredentialsDesc" xml:space="preserve">
+    <value>Indicates whether the saved credentials will update upon completion of a successful connection attempt.</value>
+  </data>
+  <data name="RDAllowUseStoredCredentialsDesc" xml:space="preserve">
+    <value>Indicates whether stored credentials will be allowed if the credentials have not been provided.</value>
+  </data>
+  <data name="RDInterfaceIndexDesc" xml:space="preserve">
+    <value>The interface index on which the VPN connection will be dialed.</value>
+  </data>
+  <data name="RDSkipPppAuthDesc" xml:space="preserve">
+    <value>Indicates whether point-to-point authentication is skipped.</value>
+  </data>
+  <data name="Exception_InvalidIkeV2Handle" xml:space="preserve">
+    <value>The connection must be a valid IKEv2 connection.</value>
+  </data>
+  <data name="Exception_SetCredentialsAccessDenied" xml:space="preserve">
+    <value>The application attempted to set default credentials for a per-user connection, or the user does not have the correct privileges to set pre-shared keys or credentials for all users.</value>
+  </data>
+  <data name="RDOCustomDialDesc" xml:space="preserve">
+    <value>Indicates whether to not call the custom dial entry point of the custom dialer.</value>
+  </data>
+  <data name="RDODisableConnectedUIDesc" xml:space="preserve">
+    <value>Indicates whether to disable the connected user interface.</value>
+  </data>
+  <data name="RDODisableReconnectDesc" xml:space="preserve">
+    <value>Indicates whether to disable reconnect.</value>
+  </data>
+  <data name="RDODisableReconnectUIDesc" xml:space="preserve">
+    <value>Indicates whether to disable the reconnect user interface.</value>
+  </data>
+  <data name="RDONoUserDesc" xml:space="preserve">
+    <value>Indicates whether no user is present.</value>
+  </data>
+  <data name="RDOPausedStatesDesc" xml:space="preserve">
+    <value>Indicates whether to accept paused states.</value>
+  </data>
+  <data name="RDORouterDesc" xml:space="preserve">
+    <value>Indicates whether the connecting device is a router.</value>
+  </data>
+  <data name="RDOSetModemSpeakerDesc" xml:space="preserve">
+    <value>Indicates whether to set the modem speaker.</value>
+  </data>
+  <data name="RDOSetSoftwareCompressionDesc" xml:space="preserve">
+    <value>Indicates whether to enable software compression.</value>
+  </data>
+  <data name="RDOUseCustomScriptingDesc" xml:space="preserve">
+    <value>Indicates whether the dialer should invoke a custom-scripting DLL after connecting.</value>
+  </data>
+  <data name="RDOUsePrefixSuffixDesc" xml:space="preserve">
+    <value>Indicates whether the prefix and suffix that is in the phone book should be used.</value>
+  </data>
+  <data name="REAPOLogOnDesc" xml:space="preserve">
+    <value>Indicates whether the user data is obtained from WinLogon.</value>
+  </data>
+  <data name="REAPONonInteractiveDesc" xml:space="preserve">
+    <value>Indicates whether the authentication protocol should not display a graphical user interface.</value>
+  </data>
+  <data name="REAPOPreviewDesc" xml:space="preserve">
+    <value>Indicates whether the user should be prompted for identity information before dialing.</value>
+  </data>
+  <data name="Exception_TargetNameCannotBeNullReference" xml:space="preserve">
+    <value>The TargetName property cannot be a null reference.</value>
+  </data>
+  <data name="RDHangUpPollingIntervalDesc" xml:space="preserve">
+    <value>Indicates the polling interval, in milliseconds, to determine whether the connection has completed disconnecting.</value>
+  </data>
+  <data name="CatAppearance" xml:space="preserve">
+    <value>Appearance</value>
+  </data>
+  <data name="Argument_ValueMustBeGreaterThanZeroLessThanOrEqualToOtherValue" xml:space="preserve">
+    <value>{0} must be greater than zero and less than or equal to {1}.</value>
+  </data>
+  <data name="CPDCaptionDesc" xml:space="preserve">
+    <value>The caption of the dialog box.</value>
+  </data>
+  <data name="CPDMaxPasswordLengthDesc" xml:space="preserve">
+    <value>The maximum length of the password.</value>
+  </data>
+  <data name="CPDMaxUserNameLengthDesc" xml:space="preserve">
+    <value>The maximum length of the user name.</value>
+  </data>
+  <data name="CPDMessageDesc" xml:space="preserve">
+    <value>The message of the dialog box.</value>
+  </data>
+  <data name="CPDPasswordDesc" xml:space="preserve">
+    <value>The password.</value>
+  </data>
+  <data name="CPDSaveCheckedDesc" xml:space="preserve">
+    <value>Indicates whether the save check box will be checked.</value>
+  </data>
+  <data name="CPDTargetNameDesc" xml:space="preserve">
+    <value>The target name.</value>
+  </data>
+  <data name="CPDUserNameDesc" xml:space="preserve">
+    <value>The user name.</value>
+  </data>
+  <data name="CPDDisableUserNameDesc" xml:space="preserve">
+    <value>Indicates whether the user name should be disabled.</value>
+  </data>
+  <data name="CPDNotifyIncorrectPasswordDesc" xml:space="preserve">
+    <value>Indicates whether the user should be notified the password was incorrect.</value>
+  </data>
+  <data name="CPDShowSaveCheckBoxDesc" xml:space="preserve">
+    <value>Indicates whether the 'Remember my password' check box will be shown.</value>
+  </data>
+  <data name="Argument_InvalidOrConflictingEntrySettings" xml:space="preserve">
+    <value>'{0}' contains invalid or conflicting settings. Please verify the settings are correct and try again.</value>
+  </data>
+  <data name="RCDErrorDesc" xml:space="preserve">
+    <value>Occurs when the dialog has encountered an error.</value>
+  </data>
+  <data name="Argument_FileNotFound" xml:space="preserve">
+    <value>The file '{0}' could not be found.</value>
+  </data>
+  <data name="Exception_TypeConverterCannotConvertFromType" xml:space="preserve">
+    <value>The type converter cannot convert from type {0}.</value>
+  </data>
+  <data name="Exception_TypeConverterNotFound" xml:space="preserve">
+    <value>The type converter for {0} could not be found.</value>
+  </data>
+  <data name="Exception_ConversionNotSupported" xml:space="preserve">
+    <value>The value '{0}' is not supported for conversion.</value>
+  </data>
+</root>
