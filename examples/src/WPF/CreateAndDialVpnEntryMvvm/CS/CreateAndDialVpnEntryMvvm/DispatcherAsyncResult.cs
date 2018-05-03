@@ -6,31 +6,19 @@ namespace CreateAndDialVpnEntryMvvm
 {
     internal class DispatcherAsyncResult : IAsyncResult
     {
-        private DispatcherOperation dispatcherOperation;
+        private readonly DispatcherOperation _dispatcherOperation;
 
         public DispatcherAsyncResult(DispatcherOperation dispatcherOperation)
         {
-            this.dispatcherOperation = dispatcherOperation;
+            _dispatcherOperation = dispatcherOperation;
         }
 
-        public object AsyncState
-        {
-            get { return this.dispatcherOperation; }
-        }
+        public object AsyncState => _dispatcherOperation;
 
-        public WaitHandle AsyncWaitHandle
-        {
-            get { return null; }
-        }
+        public WaitHandle AsyncWaitHandle => null;
 
-        public bool CompletedSynchronously
-        {
-            get { return false; }
-        }
+        public bool CompletedSynchronously => false;
 
-        public bool IsCompleted
-        {
-            get { return this.dispatcherOperation.Status == DispatcherOperationStatus.Completed; }
-        }
+        public bool IsCompleted => _dispatcherOperation.Status == DispatcherOperationStatus.Completed;
     }
 }

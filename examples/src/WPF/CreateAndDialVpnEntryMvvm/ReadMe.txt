@@ -3,7 +3,7 @@ ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO
 THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
 PARTICULAR PURPOSE.
 
-Copyright (C) Jeff Winn.  All Rights Reserved.
+Copyright (C) Jeff Winn, Max Miroshnikov.  All Rights Reserved.
 
 ---------------------------------------------------------------------------
 
@@ -18,16 +18,10 @@ Introduction:
   This example uses the MVVM architectural pattern and Windows Presentation 
   Foundation (WPF) for the user interface.
 
-
-Supported OS:
-
-  Windows 2000 and later
-
-
 Usage:
 
   Once the application has started, click the "Create" button. This
-  will generate the new entry in the All Users' profile phone book. Next
+  will generate entries for all possible protocols in phonebook file. Next
   click the Dial button to initiate dialing the new connection. To disconnect
   the connection attempt, click the disconnect button once enabled. As the 
   status of the connection attempt changes, the textbox will display the

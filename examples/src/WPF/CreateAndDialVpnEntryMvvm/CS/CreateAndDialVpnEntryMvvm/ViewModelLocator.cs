@@ -42,31 +42,8 @@ namespace CreateAndDialVpnEntryMvvm
     /// </summary>
     public class ViewModelLocator
     {
-        private static MainWindowViewModel mainWindowViewModel;
+        private static MainWindowViewModel _mainWindowViewModel;
 
-        /// <summary>
-        /// Initializes a new instance of the ViewModelLocator class.
-        /// </summary>
-        public ViewModelLocator()
-        {
-        }
-
-        public MainWindowViewModel MainWindowViewModel
-        {
-            get
-            {
-                if (mainWindowViewModel == null)
-                {
-                    mainWindowViewModel = new MainWindowViewModel();
-                }
-
-                return mainWindowViewModel;
-            }
-        }
-
-        public static void Cleanup()
-        {
-            mainWindowViewModel.Cleanup();
-        }
+        public MainWindowViewModel MainWindowViewModel => _mainWindowViewModel ?? (_mainWindowViewModel = new MainWindowViewModel());
     }
 }

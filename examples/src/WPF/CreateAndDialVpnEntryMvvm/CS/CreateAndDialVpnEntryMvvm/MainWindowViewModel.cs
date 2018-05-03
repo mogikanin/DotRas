@@ -1,214 +1,211 @@
 ﻿using System.Collections.Generic;
-using System.Windows.Controls;
 using DotRas;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using System.Windows.Threading;
 using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using System.Net;
-using System.Text;
+using System.Windows;
 using GalaSoft.MvvmLight.Messaging;
 
 namespace CreateAndDialVpnEntryMvvm
 {
     public class MainWindowViewModel : ViewModelBase
     {
-        private const string ConnectionName = "VPN Connection";
+        private readonly RasDialer _dialer;
+        private readonly RasPhoneBook _phonebook;
+        private IEnumerable<RasEntry> _connectionsDataSource;
+        private bool _isDialButtonEnabled;
+        private int _selectedConnectionIndex = -1;
+        private bool _isBusy;
+        private bool _isDisconnectButtonEnabled;
+        private RasHandle _handle;
+        private const string ADDRESS = "127.0.0.1";
+        private const string USERNAME = "user";
+        private const string PASSWORD = "pwd";
 
-        private RasDialer dialer;
-        private RasPhoneBook phonebook;
-        private IEnumerable<RasEntry> connectionsDataSource;
-        private bool isCreateButtonEnabled = true;
-        private bool isDisconnectButtonEnabled;
-        private bool isConnectionsComboBoxEnabled = true;
-        private bool isDialButtonEnabled;
-        private int selectedConnectionIndex = -1;
 
         /// <summary>
         /// Initializes a new instance of the MainWindowViewModel class.
         /// </summary>
         public MainWindowViewModel()
         {
-            this.phonebook = new RasPhoneBook();
-            this.phonebook.Changed += new EventHandler<EventArgs>(this.phonebook_Changed);
-            this.phonebook.EnableFileWatcher = true;
+            _phonebook = new RasPhoneBook();
+            _dialer = new RasDialer();
+            _dialer.DialCompleted += dialer_DialCompleted;
+            _dialer.StateChanged += dialer_StateChanged;
 
-            this.dialer = new RasDialer();
-            this.dialer.DialCompleted += new System.EventHandler<DialCompletedEventArgs>(this.dialer_DialCompleted);
-            this.dialer.StateChanged += new System.EventHandler<StateChangedEventArgs>(this.dialer_StateChanged);
-
-            this.CreateEntry = new RelayCommand(() => this.OnCreateEntry());
-            this.Dial = new RelayCommand<RasEntry>((item) => this.OnDial(item));
-            this.Disconnect = new RelayCommand(() => this.OnDisconnect());
-            this.WindowInit = new RelayCommand(() => this.OnWindowInit());
+            CreateEntry = new RelayCommand(OnCreateEntry);
+            Dial = new RelayCommand<RasEntry>(OnDial);
+            Disconnect = new RelayCommand(OnDisconnect);
+            WindowInit = new RelayCommand(OnWindowInit);
         }
 
-        public RelayCommand<RasEntry> Dial { get; set; }
-        public RelayCommand CreateEntry { get; set; }
-        public RelayCommand WindowInit { get; set; }
-        public RelayCommand Disconnect { get; set; }
+        public RelayCommand<RasEntry> Dial { get; }
+        public RelayCommand CreateEntry { get; }
+        public RelayCommand WindowInit { get; }
+        public RelayCommand Disconnect { get; }
 
         public IEnumerable<RasEntry> ConnectionsDataSource
         {
-            get
+            get => _connectionsDataSource ?? (_connectionsDataSource = new ObservableCollection<RasEntry>());
+            private set
             {
-                if (this.connectionsDataSource == null)
-                {
-                    this.connectionsDataSource = new ObservableCollection<RasEntry>();
-                }
-
-                return this.connectionsDataSource;
-            }
-
-            set
-            {
-                if (this.connectionsDataSource != value)
-                {
-                    this.connectionsDataSource = value;
-                    this.RaisePropertyChanged("ConnectionsDataSource");
-                }
+                if (_connectionsDataSource == value) return;
+                _connectionsDataSource = value;
+                RaisePropertyChanged(nameof(ConnectionsDataSource));
             }
         }
 
         public int SelectedConnectionIndex
         {
-            get
-            {
-                return this.selectedConnectionIndex;
-            }
-
+            get => _selectedConnectionIndex;
             set
             {
-                if (this.selectedConnectionIndex != value)
-                {
-                    this.selectedConnectionIndex = value;
-                    this.RaisePropertyChanged("SelectedConnectionIndex");
-
-                    this.IsDialButtonEnabled = value > 0;
-                }
+                if (_selectedConnectionIndex == value) return;
+                _selectedConnectionIndex = value;
+                RaisePropertyChanged(nameof(SelectedConnectionIndex));
+                IsDialButtonEnabled = value > 0;
             }
         }
 
-        public bool IsConnectionsComboBoxEnabled
+        public bool IsBusy
         {
-            get
+            get => _isBusy;
+            private set
             {
-                return this.isConnectionsComboBoxEnabled;
-            }
-
-            set
-            {
-                if (this.isConnectionsComboBoxEnabled != value)
-                {
-                    this.isConnectionsComboBoxEnabled = value;
-                    this.RaisePropertyChanged("IsConnectionsComboBoxEnabled");
-                }
+                if (value == _isBusy) return;
+                _isBusy = value;
+                RaisePropertyChanged(nameof(IsBusy));
+                RaisePropertyChanged(nameof(IsConnectionsComboBoxEnabled));
+                RaisePropertyChanged(nameof(IsCreateButtonEnabled));
             }
         }
 
-        /// <summary>
-        /// Gets or sets a value indicating whether the 'create entry' button is enabled.
-        /// </summary>
-        public bool IsCreateButtonEnabled
-        {
-            get
-            {
-                return this.isCreateButtonEnabled;
-            }
-
-            set
-            {
-                if (this.isCreateButtonEnabled != value)
-                {
-                    this.isCreateButtonEnabled = value;
-                    this.RaisePropertyChanged("IsCreateButtonEnabled");
-                }
-            }
-        }
+        public bool IsConnectionsComboBoxEnabled => !IsBusy;
+        public bool IsCreateButtonEnabled => !IsBusy;
 
         public bool IsDisconnectButtonEnabled
         {
-            get
+            get => _isDisconnectButtonEnabled;
+            private set
             {
-                return this.isDisconnectButtonEnabled;
-            }
-
-            set
-            {
-                if (this.isDisconnectButtonEnabled != value)
-                {
-                    this.isDisconnectButtonEnabled = value;
-                    this.RaisePropertyChanged("IsDisconnectButtonEnabled");
-                }
+                if (value == _isDisconnectButtonEnabled) return;
+                _isDisconnectButtonEnabled = value;
+                RaisePropertyChanged(nameof(IsDisconnectButtonEnabled));
             }
         }
 
         public bool IsDialButtonEnabled
         {
-            get
-            {
-                return this.isDialButtonEnabled;
-            }
-
+            get => _isDialButtonEnabled;
             set
             {
-                if (this.isDialButtonEnabled != value)
-                {
-                    this.isDialButtonEnabled = value;
-                    this.RaisePropertyChanged("IsDialButtonEnabled");
-                }
+                if (_isDialButtonEnabled == value) return;
+                _isDialButtonEnabled = value;
+                RaisePropertyChanged(nameof(IsDialButtonEnabled));
             }
         }
 
         public override void Cleanup()
         {
-            if (this.dialer != null)
-            {
-                this.dialer.Dispose();
-            }
-
-            if (this.phonebook != null)
-            {
-                this.phonebook.Dispose();
-            }
+            _dialer?.Dispose();
+            _phonebook?.Dispose();
 
             base.Cleanup();
         }
 
         private void LoadAllUserEntries()
         {
-            ObservableCollection<RasEntry> entries = (ObservableCollection<RasEntry>)this.ConnectionsDataSource;
+            var entries = (ObservableCollection<RasEntry>)ConnectionsDataSource;
             entries.Clear();
 
             entries.Add(new RasEntry("Select one..."));
-           
-            foreach (RasEntry entry in phonebook.Entries)
+            foreach (var entry in _phonebook.Entries)
             {
                 entries.Add(entry);
             }
+            AppendStatusText($"Loaded {_phonebook.Entries.Count} entries.");
 
-            this.IsCreateButtonEnabled = !this.phonebook.Entries.Contains(ConnectionName);
-            this.SelectedConnectionIndex = 0;
+            SelectedConnectionIndex = 0;
         }
 
         private void OnCreateEntry()
         {
-            if (this.phonebook.Entries.Contains(ConnectionName))
-            {
-                this.IsCreateButtonEnabled = false;
-            }
-            else
-            {
-                RasEntry entry = RasEntry.CreateVpnEntry(ConnectionName, IPAddress.Loopback.ToString(), RasVpnStrategy.Default, RasDevice.GetDeviceByName("(PPTP)", RasDeviceType.Vpn));
+            _phonebook.Entries.Clear();
 
-                this.phonebook.Entries.Add(entry);
+            foreach (VpnProtocol value in Enum.GetValues(typeof(VpnProtocol)))
+            {
+                var device = GetDevice(value);
+                if (device != null)
+                {
+                    var entry = RasEntry.CreateVpnEntry("Connection " + value, ADDRESS, GetStrategy(value), device);
+                    _phonebook.Entries.Add(entry);
+                    AppendStatusText($"Created {entry.Name}.");
+
+                }
+            }
+
+            LoadAllUserEntries();
+        }
+
+        private static RasVpnStrategy GetStrategy(VpnProtocol protocol)
+        {
+            switch (protocol)
+            {
+                case VpnProtocol.IKEv2:
+                    return RasVpnStrategy.IkeV2Only;
+                case VpnProtocol.PPTP:
+                    return RasVpnStrategy.PptpOnly;
+                case VpnProtocol.L2TP:
+                    return RasVpnStrategy.L2tpOnly;
+                case VpnProtocol.SSTP:
+                    return RasVpnStrategy.SstpOnly;
+                default:
+                    throw new NotSupportedException();
             }
         }
 
-        private void AppendStatusText(string value)
+        /// <summary>
+        /// Returns the RasDevice for the given protocol
+        /// </summary>
+        private static RasDevice GetDevice(VpnProtocol protocol)
         {
-            Messenger.Default.Send<DialerStateChangedMessage>(new DialerStateChangedMessage(value));
+            string name;
+            switch (protocol)
+            {
+                case VpnProtocol.IKEv2:
+                    name = "(IKEV2)".ToLower();
+                    break;
+                case VpnProtocol.PPTP:
+                    name = "(PPTP)".ToLower();
+                    break;
+                case VpnProtocol.L2TP:
+                    name = "(L2TP)".ToLower();
+                    break;
+                case VpnProtocol.SSTP:
+                    name = "(SSTP)".ToLower();
+                    break;
+                default:
+                    throw new NotSupportedException();
+            }
+            return RasDevice.GetDevices().FirstOrDefault(d => d.DeviceType == RasDeviceType.Vpn && d.Name.ToLower().Contains(name));
+        }
+
+        [SuppressMessage("ReSharper", "InconsistentNaming")]
+        private enum VpnProtocol
+        {
+            IKEv2,
+            PPTP,
+            L2TP,
+            SSTP,
+        }
+
+        private static void AppendStatusText(string value)
+        {
+            Messenger.Default.Send(new DialerStateChangedMessage(value));
         }
 
         private void OnDial(RasEntry entry)
@@ -220,83 +217,91 @@ namespace CreateAndDialVpnEntryMvvm
 
             try
             {
-                Messenger.Default.Send<DialerStateChangedMessage>(new DialerStateChangedMessage());
+                Messenger.Default.Send(new DialerStateChangedMessage());
 
-                this.dialer.EntryName = entry.Name;
-                this.dialer.PhoneBookPath = entry.Owner.Path;
+                _dialer.EntryName = entry.Name;
+                _dialer.PhoneBookPath = entry.Owner.Path;
 
-                this.dialer.Credentials = new System.Net.NetworkCredential("Test", "User");
-                this.dialer.SynchronizingObject = new DispatcherSynchronizingObject(App.Current.Dispatcher);
+                _dialer.Credentials = new NetworkCredential(USERNAME, PASSWORD);
+                _dialer.SynchronizingObject = new DispatcherSynchronizingObject(Application.Current.Dispatcher);
 
-                this.dialer.DialAsync();
+                _dialer.DialAsync();
 
                 // Make sure the user cannot change the selected connection, and change the buttons that are enabled.
-                this.IsConnectionsComboBoxEnabled = false;
-                this.IsDialButtonEnabled = false;
-                this.IsDisconnectButtonEnabled = true;
+                IsBusy = true;
+                IsDialButtonEnabled = false;
+                IsDisconnectButtonEnabled = true;
             }
             catch (Exception ex)
             {
-                this.AppendStatusText(ex.ToString());
+                AppendStatusText(ex.ToString());
             }
         }
 
         private void OnDisconnect()
         {
-            if (!this.dialer.IsBusy)
+            if (!_dialer.IsBusy)
             {
+                AppendStatusText("Disconnecting...");
+                var conn = RasConnection.GetActiveConnections().FirstOrDefault(_ => _.Handle == _handle);
+                if (conn != null)
+                {
+                    conn.HangUp();
+                    AppendStatusText("Disconnected!");
+                }
+                else
+                {
+                    AppendStatusText("Connection handle not found.");
+                }
+                IsDisconnectButtonEnabled = false;
+                IsBusy = false;
+                IsDialButtonEnabled = true;
                 return;
             }
 
-            this.dialer.DialAsyncCancel();
+            _dialer.DialAsyncCancel();
         }
 
         private void OnWindowInit()
         {
-            this.phonebook.SynchronizingObject = new DispatcherSynchronizingObject(App.Current.Dispatcher);
-            this.phonebook.Open();
+            _phonebook.SynchronizingObject = new DispatcherSynchronizingObject(Application.Current.Dispatcher);
+            _phonebook.Open("phonebook.pbk");
 
-            if (this.phonebook.Entries.Contains(ConnectionName))
+            LoadAllUserEntries();
+        }
+
+        private static void dialer_StateChanged(object sender, StateChangedEventArgs e)
+        {
+            AppendStatusText("State changed: " + e.State);
+            if (e.ErrorCode > 0)
             {
-                // The entry already exists within the phonebook, disable the button.
-                this.IsCreateButtonEnabled = false;
+                AppendStatusText($"Error code: {e.ErrorCode}. Message: {e.ErrorMessage}");
             }
-
-            this.LoadAllUserEntries();
-        }
-
-        private void phonebook_Changed(object sender, EventArgs e)
-        {
-            this.LoadAllUserEntries();
-        }
-
-        private void dialer_StateChanged(object sender, StateChangedEventArgs e)
-        {
-            this.AppendStatusText(string.Join(string.Empty, new string[] { e.State.ToString(), "\r\n" }));
         }
 
         private void dialer_DialCompleted(object sender, DialCompletedEventArgs e)
         {
             if (e.Cancelled)
             {
-                this.AppendStatusText("Cancelled!");
+                AppendStatusText("Cancelled!");
             }
             else if (e.Connected)
             {
-                this.AppendStatusText("Connected!");
+                _handle = e.Handle;
+                AppendStatusText("Connected!");
             }
             else if (e.TimedOut)
             {
-                this.AppendStatusText("Connection attempt timed out!");
+                AppendStatusText("Connection attempt timed out!");
             }
             else if (e.Error != null)
-            {
-                this.AppendStatusText(e.Error.ToString());
+            { 
+                AppendStatusText(e.Error.ToString());
             }
 
-            this.IsConnectionsComboBoxEnabled = true;
-            this.IsDisconnectButtonEnabled = false;
-            this.IsDialButtonEnabled = true;
+            IsBusy = e.Connected;
+            IsDialButtonEnabled = !e.Connected;
+            IsDisconnectButtonEnabled = e.Connected;
         }
     }
 }

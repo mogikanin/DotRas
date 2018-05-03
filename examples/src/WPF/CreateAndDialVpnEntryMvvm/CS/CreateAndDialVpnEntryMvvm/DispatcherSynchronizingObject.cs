@@ -6,35 +6,25 @@ namespace CreateAndDialVpnEntryMvvm
 {
     internal class DispatcherSynchronizingObject : ISynchronizeInvoke
     {
-        private Dispatcher dispatcher;
+        private readonly Dispatcher _dispatcher;
 
         public DispatcherSynchronizingObject(Dispatcher dispatcher)
         {
-            if (dispatcher == null)
-            {
-                throw new ArgumentNullException("dispatcher");
-            }
-
-            this.dispatcher = dispatcher;
+            _dispatcher = dispatcher ?? throw new ArgumentNullException(nameof(dispatcher));
         }
 
-        public bool InvokeRequired
-        {
-            get { return true; }
-        }
+        public bool InvokeRequired => true;
 
         public IAsyncResult BeginInvoke(Delegate method, object[] args)
         {
-            return new DispatcherAsyncResult(this.dispatcher.BeginInvoke(method, args));
+            return new DispatcherAsyncResult(_dispatcher.BeginInvoke(method, args));
         }
 
         public object EndInvoke(IAsyncResult result)
         {
-            DispatcherAsyncResult asyncResult = result as DispatcherAsyncResult;
-            if (asyncResult != null)
+            if (result is DispatcherAsyncResult asyncResult)
             {
-                DispatcherOperation dispatcherOperation = asyncResult.AsyncState as DispatcherOperation;
-                if (dispatcherOperation != null)
+                if (asyncResult.AsyncState is DispatcherOperation dispatcherOperation)
                 {
                     return dispatcherOperation.Wait();
                 }
@@ -45,7 +35,7 @@ namespace CreateAndDialVpnEntryMvvm
 
         public object Invoke(Delegate method, object[] args)
         {
-            return this.dispatcher.Invoke(method, args);
+            return _dispatcher.Invoke(method, args);
         }
     }
 }

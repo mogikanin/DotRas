@@ -11,22 +11,15 @@ namespace CreateAndDialVpnEntryMvvm
     {
         public MainWindow()
         {
-            this.InitializeComponent();
+            InitializeComponent();
 
-            Messenger.Default.Register<DialerStateChangedMessage>(this, (message) => this.OnDialerStateChanged(message));
+            Messenger.Default.Register<DialerStateChangedMessage>(this, OnDialerStateChanged);
         }
 
         private void OnDialerStateChanged(DialerStateChangedMessage message)
         {
-            if (string.IsNullOrEmpty(message.Message))
-            {
-                this.StatusTextBox.Clear();
-            }
-            else
-            {
-                this.StatusTextBox.AppendText(message.Message);
-                this.StatusTextBox.ScrollToEnd();
-            }
+            StatusTextBox.AppendText(message.Message + Environment.NewLine);
+            StatusTextBox.ScrollToEnd();
         }
     }
 }
