@@ -42,7 +42,7 @@ namespace DotRas.UnitTests
 
             for (var index = 0; index < length; index++)
             {
-                Assert.AreEqual<byte>(expected.addr[index], bytes[index]);
+                Assert.AreEqual(expected.addr[index], bytes[index]);
             }
         }
 #endif
@@ -98,7 +98,7 @@ namespace DotRas.UnitTests
             Assert.AreEqual(expected.PhoneNumber, actual.PhoneNumber);
             Assert.AreEqual(expected.Script, actual.Script);
 
-            AssertRasCollection<RasSubEntry>(expected.SubEntries, actual.SubEntries);
+            AssertRasCollection(expected.SubEntries, actual.SubEntries);
 
             Assert.AreEqual(expected.VpnStrategy, actual.VpnStrategy);
             Assert.AreEqual(expected.WinsAddress, actual.WinsAddress);
@@ -253,7 +253,7 @@ namespace DotRas.UnitTests
             {
                 for (var index = 0; index < expected.Count; index++)
                 {
-                    Assert.AreEqual<TObject>(expected[index], actual[index]);
+                    Assert.AreEqual(expected[index], actual[index]);
                 }
             }
         }

@@ -24,13 +24,6 @@ namespace DotRas
     {
         #region Constructors
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="RasNetworkProtocols"/> class.
-        /// </summary>
-        public RasNetworkProtocols()
-        {
-        }
-
         #endregion
 
         #region Properties

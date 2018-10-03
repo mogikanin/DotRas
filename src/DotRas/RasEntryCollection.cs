@@ -260,13 +260,6 @@ namespace DotRas
         {
             #region Constructors
 
-            /// <summary>
-            /// Initializes a new instance of the <see cref="DotRas.RasEntryCollection.RasEntryItemCollection"/> class.
-            /// </summary>
-            public RasEntryItemCollection()
-            {
-            }
-
             #endregion
 
             #region Methods

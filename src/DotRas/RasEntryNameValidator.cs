@@ -47,13 +47,6 @@ namespace DotRas
     {
         #region Constructors
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="DotRas.RasEntryNameValidator"/> class.
-        /// </summary>
-        public RasEntryNameValidator()
-        {
-        }
-
         #endregion
 
         #region Properties

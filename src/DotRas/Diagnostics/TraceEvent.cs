@@ -21,13 +21,6 @@ namespace DotRas.Diagnostics
     {
         #region Constructors
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="TraceEvent"/> class.
-        /// </summary>
-        protected TraceEvent()
-        {
-        }
-
         #endregion
 
         #region Methods

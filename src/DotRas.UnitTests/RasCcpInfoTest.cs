@@ -27,13 +27,6 @@ namespace DotRas.UnitTests
     {
         #region Constructors
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="RasCcpInfoTest"/> class.
-        /// </summary>
-        public RasCcpInfoTest()
-        {
-        }
-
         #endregion
 
         #region Methods

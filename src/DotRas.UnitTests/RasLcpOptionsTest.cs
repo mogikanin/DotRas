@@ -25,13 +25,6 @@ namespace DotRas.UnitTests
     {
         #region Constructors
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="RasLcpOptionsTest"/> class.
-        /// </summary>
-        public RasLcpOptionsTest()
-        {
-        }
-
         #endregion
 
         #region Methods

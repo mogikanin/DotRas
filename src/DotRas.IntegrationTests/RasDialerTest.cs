@@ -56,13 +56,6 @@ namespace DotRas.IntegrationTests
 
         #region Constructors
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="RasDialerTest"/> class.
-        /// </summary>
-        public RasDialerTest()
-        {
-        }
-
         #endregion
 
         #region Methods

@@ -27,13 +27,6 @@ namespace DotRas.UnitTests
     {
         #region Constructors
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="IPAddressConverterTest"/> class.
-        /// </summary>
-        public IPAddressConverterTest()
-        {
-        }
-
         #endregion
 
         [TestMethod]
@@ -104,7 +97,7 @@ namespace DotRas.UnitTests
 
             var actual = result.GetAddressBytes();
 
-            Assert.AreEqual<System.Net.Sockets.AddressFamily>(System.Net.Sockets.AddressFamily.InterNetwork, result.AddressFamily);
+            Assert.AreEqual(System.Net.Sockets.AddressFamily.InterNetwork, result.AddressFamily);
             CollectionAssert.AreEqual(expected, actual);
         }
 
@@ -210,7 +203,7 @@ namespace DotRas.UnitTests
 
             var actual = result.GetAddressBytes();
 
-            Assert.AreEqual<System.Net.Sockets.AddressFamily>(System.Net.Sockets.AddressFamily.InterNetworkV6, result.AddressFamily);
+            Assert.AreEqual(System.Net.Sockets.AddressFamily.InterNetworkV6, result.AddressFamily);
             CollectionAssert.AreEqual(expected, actual);
         }
 
@@ -269,7 +262,7 @@ namespace DotRas.UnitTests
 
             var actual = result.GetAddressBytes();
 
-            Assert.AreEqual<System.Net.Sockets.AddressFamily>(System.Net.Sockets.AddressFamily.InterNetwork, result.AddressFamily);
+            Assert.AreEqual(System.Net.Sockets.AddressFamily.InterNetwork, result.AddressFamily);
             CollectionAssert.AreEqual(expected, actual);
         }
 
@@ -287,7 +280,7 @@ namespace DotRas.UnitTests
 
             var actual = result.GetAddressBytes();
 
-            Assert.AreEqual<System.Net.Sockets.AddressFamily>(System.Net.Sockets.AddressFamily.InterNetworkV6, result.AddressFamily);
+            Assert.AreEqual(System.Net.Sockets.AddressFamily.InterNetworkV6, result.AddressFamily);
             CollectionAssert.AreEqual(expected, actual);
         }
 
@@ -313,7 +306,7 @@ namespace DotRas.UnitTests
 
             var actual = result.addr;
 
-            Assert.AreEqual<NativeMethods.RASTUNNELENDPOINTTYPE>(NativeMethods.RASTUNNELENDPOINTTYPE.IPv4, result.type);
+            Assert.AreEqual(NativeMethods.RASTUNNELENDPOINTTYPE.IPv4, result.type);
             CollectionAssert.IsSubsetOf(expected, actual);
         }
 
@@ -327,7 +320,7 @@ namespace DotRas.UnitTests
 
             var actual = result.addr;
 
-            Assert.AreEqual<NativeMethods.RASTUNNELENDPOINTTYPE>(NativeMethods.RASTUNNELENDPOINTTYPE.IPv6, result.type);
+            Assert.AreEqual(NativeMethods.RASTUNNELENDPOINTTYPE.IPv6, result.type);
             CollectionAssert.AreEqual(expected, actual);
         }
 

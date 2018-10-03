@@ -21,13 +21,6 @@ namespace DotRas.UnitTests.Mocking.Interop
     {
         #region Constructors
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="PInvokeMock"/> class.
-        /// </summary>
-        protected PInvokeMock()
-        {
-        }
-
         #endregion
     }
 }

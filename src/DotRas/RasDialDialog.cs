@@ -62,13 +62,6 @@ namespace DotRas
     {
         #region Constructors
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="DotRas.RasDialDialog"/> class.
-        /// </summary>
-        public RasDialDialog()
-        {
-        }
-
         #endregion
 
         #region Properties

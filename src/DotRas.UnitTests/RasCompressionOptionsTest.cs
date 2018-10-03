@@ -26,13 +26,6 @@ namespace DotRas.UnitTests
     {
         #region Constructors
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="RasCompressionOptionsTest"/> class.
-        /// </summary>
-        public RasCompressionOptionsTest()
-        {
-        }
-
         #endregion
 
         #region Methods

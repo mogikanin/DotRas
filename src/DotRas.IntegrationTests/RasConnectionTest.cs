@@ -15,7 +15,6 @@
 namespace DotRas.IntegrationTests
 {
     using System;
-    using System.Collections.ObjectModel;
     using System.IO;
     using System.Linq;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -38,13 +37,6 @@ namespace DotRas.IntegrationTests
         #endregion
 
         #region Constructors
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="RasConnectionTest"/> class.
-        /// </summary>
-        public RasConnectionTest()
-        {
-        }
 
         #endregion
 

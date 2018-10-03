@@ -95,8 +95,7 @@ namespace DotRas
         /// <returns>A new <see cref="DotRas.RasCountry"/> object.</returns>
         public static RasCountry GetCountryById(int countryId)
         {
-            var nextCountryId = 0;
-            return RasHelper.Instance.GetCountry(countryId, out nextCountryId);
+            return RasHelper.Instance.GetCountry(countryId, out _);
         }
 
         /// <summary>

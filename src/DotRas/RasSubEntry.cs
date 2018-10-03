@@ -67,13 +67,6 @@ namespace DotRas
 
         #region Constructors
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="DotRas.RasSubEntry"/> class.
-        /// </summary>
-        public RasSubEntry()
-        {
-        }
-
         #endregion
 
         #region Properties

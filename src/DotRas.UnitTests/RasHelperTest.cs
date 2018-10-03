@@ -15,7 +15,6 @@
 namespace DotRas.UnitTests
 {
     using System;
-    using System.Collections.ObjectModel;
     using System.ComponentModel;
     using System.Net;
     using System.Runtime.InteropServices;
@@ -33,13 +32,6 @@ namespace DotRas.UnitTests
     public class RasHelperTest : UnitTest
     {
         #region Constructors
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="RasHelperTest"/> class.
-        /// </summary>
-        public RasHelperTest()
-        {
-        }
 
         #endregion
 

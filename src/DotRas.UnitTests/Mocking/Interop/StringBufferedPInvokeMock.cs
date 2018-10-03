@@ -28,13 +28,6 @@ namespace DotRas.UnitTests.Mocking.Interop
     {
         #region Constructors
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="StringBufferedPInvokeMock&lt;TInput&gt;"/> class.
-        /// </summary>
-        public StringBufferedPInvokeMock()
-        {
-        }
-
         #endregion
 
         #region Properties

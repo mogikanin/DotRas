@@ -23,13 +23,6 @@ namespace DotRas.Internal
     {
         #region Constructors
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="RasGetEapUserDataParams"/> class.
-        /// </summary>
-        public RasGetEapUserDataParams()
-        {
-        }
-
         #endregion
 
         #region Properties

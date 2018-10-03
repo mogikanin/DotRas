@@ -28,13 +28,6 @@ namespace DotRas.UnitTests
     {
         #region Constructors
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="LuidTest"/> class.
-        /// </summary>
-        public LuidTest()
-        {
-        }
-
         #endregion
 
         #region Methods

@@ -31,13 +31,6 @@ namespace DotRas.Design
 
         #region Constructors
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="DotRas.Design.RasCommonDialog"/> class.
-        /// </summary>
-        protected RasCommonDialog()
-        {
-        }
-
         #endregion
 
         #region Events

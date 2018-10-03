@@ -401,7 +401,7 @@ namespace DotRas
                     {
                         // Retrieve the active connections to compare against the last state that was checked.
                         var connections = RasConnection.GetActiveConnections();
-                        RasConnection connection = null;
+                        RasConnection connection;
 
                         switch (((RasConnectionWatcherStateObject)obj).ChangeType)
                         {
@@ -466,7 +466,7 @@ namespace DotRas
         /// <param name="e">An <see cref="DotRas.RasConnectionEventArgs"/> containing event data.</param>
         private void OnConnected(RasConnectionEventArgs e)
         {
-            RaiseEvent<RasConnectionEventArgs>(Connected, e);
+            RaiseEvent(Connected, e);
         }
 
         /// <summary>
@@ -475,7 +475,7 @@ namespace DotRas
         /// <param name="e">An <see cref="DotRas.RasConnectionEventArgs"/> containing event data.</param>
         private void OnDisconnected(RasConnectionEventArgs e)
         {
-            RaiseEvent<RasConnectionEventArgs>(Disconnected, e);
+            RaiseEvent(Disconnected, e);
         }
 
         /// <summary>
@@ -484,7 +484,7 @@ namespace DotRas
         /// <param name="e">An <see cref="System.EventArgs"/> containing event data.</param>
         private void OnBandwidthAdded(EventArgs e)
         {
-            RaiseEvent<EventArgs>(BandwidthAdded, e);
+            RaiseEvent(BandwidthAdded, e);
         }
 
         /// <summary>
@@ -493,7 +493,7 @@ namespace DotRas
         /// <param name="e">An <see cref="System.EventArgs"/> containing event data.</param>
         private void OnBandwidthRemoved(EventArgs e)
         {
-            RaiseEvent<EventArgs>(BandwidthRemoved, e);
+            RaiseEvent(BandwidthRemoved, e);
         }
 
         #endregion

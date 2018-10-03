@@ -23,13 +23,6 @@ namespace DotRas.IntegrationTests
     {
         #region Constructors
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="IntegrationTest"/> class.
-        /// </summary>
-        protected IntegrationTest()
-        {
-        }
-
         #endregion
 
         #region Properties

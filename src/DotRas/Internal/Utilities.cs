@@ -456,7 +456,7 @@ namespace DotRas.Internal
             totalSize = array.Length * size;
 
             var ptr = Marshal.AllocHGlobal(totalSize);
-            CopyObjectsToPtr<T>(array, ptr, ref size);
+            CopyObjectsToPtr(array, ptr, ref size);
 
             return ptr;
         }

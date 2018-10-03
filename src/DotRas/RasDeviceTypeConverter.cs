@@ -27,13 +27,6 @@ namespace DotRas
     {
         #region Constructors
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="RasDeviceTypeConverter"/> class.
-        /// </summary>
-        public RasDeviceTypeConverter()
-        {
-        }
-
         #endregion
 
         /// <summary>

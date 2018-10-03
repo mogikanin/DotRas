@@ -26,13 +26,6 @@ namespace DotRas.UnitTests
     {
         #region Constructors
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="DotRas.UnitTests.RasPhoneBookTest"/> class.
-        /// </summary>
-        public RasPhoneBookTest()
-        {
-        }
-
         #endregion
 
         #region Methods
@@ -100,7 +93,7 @@ namespace DotRas.UnitTests
 
             var actual = target.PhoneBookType;
 
-            Assert.AreEqual<RasPhoneBookType>(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -119,7 +112,7 @@ namespace DotRas.UnitTests
 
             var actual = target.PhoneBookType;
 
-            Assert.AreEqual<RasPhoneBookType>(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         #endregion

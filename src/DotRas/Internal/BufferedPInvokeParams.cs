@@ -23,13 +23,6 @@ namespace DotRas.Internal
     {
         #region Constructors
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="BufferedPInvokeParams"/> class.
-        /// </summary>
-        public BufferedPInvokeParams()
-        {
-        }
-
         #endregion
 
         #region Properties

@@ -35,13 +35,6 @@ namespace DotRas.Internal
 
         #region Constructors
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="UnsafeNativeMethods"/> class.
-        /// </summary>
-        public UnsafeNativeMethods()
-        {
-        }
-
         #endregion
 
         #region Properties

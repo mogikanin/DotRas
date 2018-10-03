@@ -19,7 +19,6 @@ namespace DotRas
     using System.ComponentModel;
     using System.ComponentModel.Design.Serialization;
     using System.Globalization;
-    using System.Reflection;
     using Internal;
 
     /// <summary>
@@ -28,13 +27,6 @@ namespace DotRas
     public class RasDialOptionsConverter : TypeConverter
     {
         #region Constructors
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="DotRas.RasDialOptionsConverter"/> class.
-        /// </summary>
-        public RasDialOptionsConverter()
-        {
-        }
 
         #endregion
 

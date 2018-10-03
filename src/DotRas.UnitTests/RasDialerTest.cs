@@ -28,13 +28,6 @@ namespace DotRas.UnitTests
     {
         #region Constructors
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="DotRas.UnitTests.RasDialerTest"/> class.
-        /// </summary>
-        public RasDialerTest()
-        {
-        }
-
         #endregion
 
         #region Methods

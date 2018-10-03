@@ -21,13 +21,6 @@ namespace DotRas.Internal
     {
         #region Constructors
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="RasGetAutodialEnableParams"/> class.
-        /// </summary>
-        public RasGetAutodialEnableParams()
-        {
-        }
-
         #endregion
 
         #region Properties

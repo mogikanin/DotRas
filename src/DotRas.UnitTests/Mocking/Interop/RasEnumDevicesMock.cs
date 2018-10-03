@@ -23,13 +23,6 @@ namespace DotRas.UnitTests.Mocking.Interop
     {
         #region Constructors
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="RasEnumDevicesMock"/> class.
-        /// </summary>
-        public RasEnumDevicesMock()
-        {
-        }
-
         #endregion
     }
 }

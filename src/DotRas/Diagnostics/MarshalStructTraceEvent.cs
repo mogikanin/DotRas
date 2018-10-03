@@ -86,9 +86,7 @@ namespace DotRas.Diagnostics
 
                 foreach (var field in fields)
                 {
-                    object value = null;
-
-                    value = ShouldSerialize(field.FieldType) ? SerializeObject(field.GetValue(obj)) : field.GetValue(obj);
+                    var value = ShouldSerialize(field.FieldType) ? SerializeObject(field.GetValue(obj)) : field.GetValue(obj);
 
                     var arr = value as Array;
                     if (arr != null)

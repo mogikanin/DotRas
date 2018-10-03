@@ -28,13 +28,6 @@ namespace DotRas.UnitTests.Mocking.Interop
     {
         #region Constructors
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="BufferedPInvokeMock&lt;TInput, TResult&gt;"/> class.
-        /// </summary>
-        public BufferedPInvokeMock()
-        {
-        }
-
         #endregion
 
         #region Properties
@@ -67,7 +60,7 @@ namespace DotRas.UnitTests.Mocking.Interop
             }
             else if (this.Result.Length > 0)
             {
-                Utilities.CopyObjectsToPtr<TResult>(this.Result, value.Address, ref size);
+                Utilities.CopyObjectsToPtr(this.Result, value.Address, ref size);
                 value.BufferSize = new IntPtr(expectedSize);
             }
             else

@@ -36,13 +36,6 @@ namespace DotRas.Internal
 
         #region Constructors
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SafeNativeMethods"/> class.
-        /// </summary>
-        public SafeNativeMethods()
-        {
-        }
-
         #endregion
 
         #region Properties

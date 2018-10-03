@@ -88,7 +88,7 @@ namespace DotRas.Design
         /// <param name="e">An <see cref="System.IO.ErrorEventArgs"/> containing event data.</param>
         protected void OnError(ErrorEventArgs e)
         {
-            RaiseEvent<ErrorEventArgs>(Error, e);
+            RaiseEvent(Error, e);
         }
 
         /// <summary>

@@ -23,13 +23,6 @@ namespace DotRas.Internal
     {
         #region Constructors
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="RasGetAutodialAddressParams"/> class.
-        /// </summary>
-        public RasGetAutodialAddressParams()
-        {
-        }
-
         #endregion
 
         #region Properties

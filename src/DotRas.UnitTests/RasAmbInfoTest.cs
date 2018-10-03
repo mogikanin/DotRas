@@ -26,13 +26,6 @@ namespace DotRas.UnitTests
     {
         #region Constructors
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="RasAmbInfoTest"/> class.
-        /// </summary>
-        public RasAmbInfoTest()
-        {
-        }
-
         #endregion
 
         #region Methods

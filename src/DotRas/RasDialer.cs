@@ -717,7 +717,7 @@ namespace DotRas
         /// <param name="e">An <see cref="DotRas.DialCompletedEventArgs"/> containing event data.</param>
         private void OnDialCompleted(DialCompletedEventArgs e)
         {
-            RaiseEvent<DialCompletedEventArgs>(DialCompleted, e);
+            RaiseEvent(DialCompleted, e);
         }
 
         /// <summary>
@@ -726,7 +726,7 @@ namespace DotRas
         /// <param name="e">An <see cref="DotRas.StateChangedEventArgs"/> containing event data.</param>
         private void OnStateChanged(StateChangedEventArgs e)
         {
-            RaiseEvent<StateChangedEventArgs>(StateChanged, e);
+            RaiseEvent(StateChanged, e);
         }
 
         /// <summary>

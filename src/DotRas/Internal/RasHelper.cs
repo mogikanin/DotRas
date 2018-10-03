@@ -41,13 +41,6 @@ namespace DotRas.Internal
         #endregion
 
         #region Constructors
-       
-        /// <summary>
-        /// Initializes a new instance of the <see cref="RasHelper"/> class.
-        /// </summary>
-        internal RasHelper()
-        {
-        }
 
         #endregion
 
@@ -2403,7 +2396,7 @@ namespace DotRas.Internal
                         }
                     }
 
-                    pEntries = Utilities.CopyObjectsToNewPtr<NativeMethods.RASAUTODIALENTRY>(autoDialEntries, ref size, out totalSize);
+                    pEntries = Utilities.CopyObjectsToNewPtr(autoDialEntries, ref size, out totalSize);
                 }
 
                 var ret = UnsafeNativeMethods.Instance.SetAutodialAddress(address, 0, pEntries, totalSize, count);

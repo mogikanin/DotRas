@@ -335,7 +335,7 @@ namespace DotRas
         /// <param name="e">An <see cref="System.EventArgs"/> containing event data.</param>
         private void OnChanged(EventArgs e)
         {
-            RaiseEvent<EventArgs>(Changed, e);
+            RaiseEvent(Changed, e);
         }
 
         /// <summary>
@@ -344,7 +344,7 @@ namespace DotRas
         /// <param name="e">An <see cref="System.EventArgs"/> containing event data.</param>
         private void OnDeleted(EventArgs e)
         {
-            RaiseEvent<EventArgs>(Deleted, e);
+            RaiseEvent(Deleted, e);
         }
 
         /// <summary>
@@ -353,7 +353,7 @@ namespace DotRas
         /// <param name="e">An <see cref="System.EventArgs"/> containing event data.</param>
         private void OnRenamed(RenamedEventArgs e)
         {
-            RaiseEvent<RenamedEventArgs>(Renamed, e);
+            RaiseEvent(Renamed, e);
         }
 
         /// <summary>

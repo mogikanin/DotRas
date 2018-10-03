@@ -37,13 +37,6 @@ namespace DotRas.UnitTests
 
         #region Constructors
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="RasDeviceTest"/> class.
-        /// </summary>
-        public RasDeviceTest()
-        {
-        }
-
         #endregion
 
         #region Methods
@@ -197,7 +190,7 @@ namespace DotRas.UnitTests
             var target = RasDevice.Create(name, deviceType);
 
             Assert.AreEqual(name, target.Name);
-            Assert.AreEqual<RasDeviceType>(deviceType, target.DeviceType);
+            Assert.AreEqual(deviceType, target.DeviceType);
         }
 
         /////// <summary>
@@ -248,13 +241,6 @@ namespace DotRas.UnitTests
         private class RasDeviceComparer : IComparer
         {
             #region Constructors
-
-            /// <summary>
-            /// Initializes a new instance of the <see cref="RasDeviceComparer"/> class.
-            /// </summary>
-            public RasDeviceComparer()
-            {
-            }
 
             #endregion
 

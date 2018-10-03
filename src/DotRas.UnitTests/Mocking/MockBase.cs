@@ -24,13 +24,6 @@ namespace DotRas.UnitTests.Mocking
         #region Constructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MockBase"/> class.
-        /// </summary>
-        protected MockBase()
-        {
-        }
-
-        /// <summary>
         /// Finalizes an instance of the <see cref="MockBase"/> class.
         /// </summary>
         ~MockBase()

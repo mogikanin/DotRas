@@ -26,13 +26,6 @@ namespace DotRas.UnitTests
     {
         #region Constructors
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="RasLinkStatisticsTest"/> class.
-        /// </summary>
-        public RasLinkStatisticsTest()
-        {
-        }
-
         #endregion
 
         #region Properties

@@ -28,13 +28,6 @@ namespace DotRas.IntegrationTests
     {
         #region Constructors
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="RasPhoneBookTest"/> class.
-        /// </summary>
-        public RasPhoneBookTest()
-        {
-        }
-
         #endregion
 
         #region Methods

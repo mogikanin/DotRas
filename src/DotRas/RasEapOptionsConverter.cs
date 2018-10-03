@@ -18,7 +18,6 @@ namespace DotRas
     using System.ComponentModel;
     using System.ComponentModel.Design.Serialization;
     using System.Globalization;
-    using System.Reflection;
     using Internal;
 
     /// <summary>
@@ -27,13 +26,6 @@ namespace DotRas
     public class RasEapOptionsConverter : TypeConverter
     {
         #region Constructors
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="DotRas.RasEapOptionsConverter"/> class.
-        /// </summary>
-        public RasEapOptionsConverter()
-        {
-        }
 
         #endregion
 

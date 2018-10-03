@@ -25,13 +25,6 @@ namespace DotRas.UnitTests
     {
         #region Constructors
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="RasEntryOptionsTest"/> class.
-        /// </summary>
-        public RasEntryOptionsTest()
-        {
-        }
-
         #endregion
 
         #region Methods
@@ -59,7 +52,7 @@ namespace DotRas.UnitTests
 
             var actual = target.UseCountryAndAreaCodes;
 
-            Assert.AreEqual<bool>(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -76,7 +69,7 @@ namespace DotRas.UnitTests
 
             var actual = target.IPHeaderCompression;
 
-            Assert.AreEqual<bool>(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -93,7 +86,7 @@ namespace DotRas.UnitTests
 
             var actual = target.RemoteDefaultGateway;
 
-            Assert.AreEqual<bool>(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -110,7 +103,7 @@ namespace DotRas.UnitTests
 
             var actual = target.DisableLcpExtensions;
 
-            Assert.AreEqual<bool>(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -127,7 +120,7 @@ namespace DotRas.UnitTests
 
             var actual = target.TerminalBeforeDial;
 
-            Assert.AreEqual<bool>(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -144,7 +137,7 @@ namespace DotRas.UnitTests
 
             var actual = target.TerminalAfterDial;
 
-            Assert.AreEqual<bool>(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -161,7 +154,7 @@ namespace DotRas.UnitTests
 
             var actual = target.ModemLights;
 
-            Assert.AreEqual<bool>(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -178,7 +171,7 @@ namespace DotRas.UnitTests
 
             var actual = target.SoftwareCompression;
 
-            Assert.AreEqual<bool>(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -195,7 +188,7 @@ namespace DotRas.UnitTests
 
             var actual = target.RequireEncryptedPassword;
 
-            Assert.AreEqual<bool>(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -212,7 +205,7 @@ namespace DotRas.UnitTests
 
             var actual = target.RequireMSEncryptedPassword;
 
-            Assert.AreEqual<bool>(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -229,7 +222,7 @@ namespace DotRas.UnitTests
 
             var actual = target.RequireDataEncryption;
 
-            Assert.AreEqual<bool>(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -246,7 +239,7 @@ namespace DotRas.UnitTests
 
             var actual = target.NetworkLogOn;
 
-            Assert.AreEqual<bool>(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -263,7 +256,7 @@ namespace DotRas.UnitTests
 
             var actual = target.UseLogOnCredentials;
 
-            Assert.AreEqual<bool>(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -280,7 +273,7 @@ namespace DotRas.UnitTests
 
             var actual = target.PromoteAlternates;
 
-            Assert.AreEqual<bool>(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -297,7 +290,7 @@ namespace DotRas.UnitTests
 
             var actual = target.SecureLocalFiles;
 
-            Assert.AreEqual<bool>(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -314,7 +307,7 @@ namespace DotRas.UnitTests
 
             var actual = target.RequireEap;
 
-            Assert.AreEqual<bool>(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -331,7 +324,7 @@ namespace DotRas.UnitTests
 
             var actual = target.RequirePap;
 
-            Assert.AreEqual<bool>(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -348,7 +341,7 @@ namespace DotRas.UnitTests
 
             var actual = target.RequireSpap;
 
-            Assert.AreEqual<bool>(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -365,7 +358,7 @@ namespace DotRas.UnitTests
 
             var actual = target.CustomEncryption;
 
-            Assert.AreEqual<bool>(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -382,7 +375,7 @@ namespace DotRas.UnitTests
 
             var actual = target.PreviewPhoneNumber;
 
-            Assert.AreEqual<bool>(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -399,7 +392,7 @@ namespace DotRas.UnitTests
 
             var actual = target.SharedPhoneNumbers;
 
-            Assert.AreEqual<bool>(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -416,7 +409,7 @@ namespace DotRas.UnitTests
 
             var actual = target.PreviewUserPassword;
 
-            Assert.AreEqual<bool>(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -433,7 +426,7 @@ namespace DotRas.UnitTests
 
             var actual = target.PreviewDomain;
 
-            Assert.AreEqual<bool>(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -450,7 +443,7 @@ namespace DotRas.UnitTests
 
             var actual = target.ShowDialingProgress;
 
-            Assert.AreEqual<bool>(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -467,7 +460,7 @@ namespace DotRas.UnitTests
 
             var actual = target.RequireChap;
 
-            Assert.AreEqual<bool>(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -484,7 +477,7 @@ namespace DotRas.UnitTests
 
             var actual = target.RequireMSChap;
 
-            Assert.AreEqual<bool>(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -501,7 +494,7 @@ namespace DotRas.UnitTests
 
             var actual = target.RequireMSChap2;
 
-            Assert.AreEqual<bool>(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -518,7 +511,7 @@ namespace DotRas.UnitTests
 
             var actual = target.RequireWin95MSChap;
 
-            Assert.AreEqual<bool>(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -535,7 +528,7 @@ namespace DotRas.UnitTests
 
             var actual = target.CustomScript;
 
-            Assert.AreEqual<bool>(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
 #if (WINXP || WIN2K8 || WIN7 || WIN8)
@@ -554,7 +547,7 @@ namespace DotRas.UnitTests
 
             var actual = target.SecureFileAndPrint;
 
-            Assert.AreEqual<bool>(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -571,7 +564,7 @@ namespace DotRas.UnitTests
 
             var actual = target.SecureClientForMSNet;
 
-            Assert.AreEqual<bool>(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -588,7 +581,7 @@ namespace DotRas.UnitTests
 
             var actual = target.DoNotNegotiateMultilink;
 
-            Assert.AreEqual<bool>(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -605,7 +598,7 @@ namespace DotRas.UnitTests
 
             var actual = target.DoNotUseRasCredentials;
 
-            Assert.AreEqual<bool>(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -622,7 +615,7 @@ namespace DotRas.UnitTests
 
             var actual = target.UsePreSharedKey;
 
-            Assert.AreEqual<bool>(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -639,7 +632,7 @@ namespace DotRas.UnitTests
 
             var actual = target.Internet;
 
-            Assert.AreEqual<bool>(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -656,7 +649,7 @@ namespace DotRas.UnitTests
 
             var actual = target.DisableNbtOverIP;
 
-            Assert.AreEqual<bool>(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -673,7 +666,7 @@ namespace DotRas.UnitTests
 
             var actual = target.UseGlobalDeviceSettings;
 
-            Assert.AreEqual<bool>(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -690,7 +683,7 @@ namespace DotRas.UnitTests
 
             var actual = target.ReconnectIfDropped;
 
-            Assert.AreEqual<bool>(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -707,7 +700,7 @@ namespace DotRas.UnitTests
 
             var actual = target.SharePhoneNumbers;
 
-            Assert.AreEqual<bool>(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
 #endif
@@ -728,7 +721,7 @@ namespace DotRas.UnitTests
 
             var actual = target.SecureRoutingCompartment;
 
-            Assert.AreEqual<bool>(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -745,7 +738,7 @@ namespace DotRas.UnitTests
 
             var actual = target.UseTypicalSettings;
 
-            Assert.AreEqual<bool>(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -762,7 +755,7 @@ namespace DotRas.UnitTests
 
             var actual = target.IPv6RemoteDefaultGateway;
 
-            Assert.AreEqual<bool>(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -779,7 +772,7 @@ namespace DotRas.UnitTests
 
             var actual = target.RegisterIPWithDns;
 
-            Assert.AreEqual<bool>(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -796,7 +789,7 @@ namespace DotRas.UnitTests
 
             var actual = target.UseDnsSuffixForRegistration;
 
-            Assert.AreEqual<bool>(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -813,7 +806,7 @@ namespace DotRas.UnitTests
 
             var actual = target.DisableIkeNameEkuCheck;
 
-            Assert.AreEqual<bool>(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
 #endif
@@ -834,7 +827,7 @@ namespace DotRas.UnitTests
 
             var actual = target.DisableClassBasedStaticRoute;
 
-            Assert.AreEqual<bool>(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -851,7 +844,7 @@ namespace DotRas.UnitTests
 
             var actual = target.DisableMobility;
 
-            Assert.AreEqual<bool>(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         /// <summary>
@@ -868,7 +861,7 @@ namespace DotRas.UnitTests
 
             var actual = target.RequireMachineCertificates;
 
-            Assert.AreEqual<bool>(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
 #endif
@@ -1003,60 +996,60 @@ namespace DotRas.UnitTests
             Assert.IsNotNull(actual);
             Assert.AreNotSame(expected, actual);
 
-            Assert.AreEqual<bool>(expected.UseCountryAndAreaCodes, actual.UseCountryAndAreaCodes);
-            Assert.AreEqual<bool>(expected.IPHeaderCompression, actual.IPHeaderCompression);
-            Assert.AreEqual<bool>(expected.RemoteDefaultGateway, actual.RemoteDefaultGateway);
-            Assert.AreEqual<bool>(expected.DisableLcpExtensions, actual.DisableLcpExtensions);
-            Assert.AreEqual<bool>(expected.TerminalBeforeDial, actual.TerminalBeforeDial);
-            Assert.AreEqual<bool>(expected.TerminalAfterDial, actual.TerminalAfterDial);
-            Assert.AreEqual<bool>(expected.ModemLights, actual.ModemLights);
-            Assert.AreEqual<bool>(expected.SoftwareCompression, actual.SoftwareCompression);
-            Assert.AreEqual<bool>(expected.RequireEncryptedPassword, actual.RequireEncryptedPassword);
-            Assert.AreEqual<bool>(expected.RequireMSEncryptedPassword, actual.RequireMSEncryptedPassword);
-            Assert.AreEqual<bool>(expected.RequireDataEncryption, actual.RequireDataEncryption);
-            Assert.AreEqual<bool>(expected.NetworkLogOn, actual.NetworkLogOn);
-            Assert.AreEqual<bool>(expected.UseLogOnCredentials, actual.UseLogOnCredentials);
-            Assert.AreEqual<bool>(expected.PromoteAlternates, actual.PromoteAlternates);
-            Assert.AreEqual<bool>(expected.SecureLocalFiles, actual.SecureLocalFiles);
-            Assert.AreEqual<bool>(expected.RequireEap, actual.RequireEap);
-            Assert.AreEqual<bool>(expected.RequirePap, actual.RequirePap);
-            Assert.AreEqual<bool>(expected.RequireSpap, actual.RequireSpap);
-            Assert.AreEqual<bool>(expected.CustomEncryption, actual.CustomEncryption);
-            Assert.AreEqual<bool>(expected.PreviewPhoneNumber, actual.PreviewPhoneNumber);
-            Assert.AreEqual<bool>(expected.SharedPhoneNumbers, actual.SharedPhoneNumbers);
-            Assert.AreEqual<bool>(expected.PreviewUserPassword, actual.PreviewUserPassword);
-            Assert.AreEqual<bool>(expected.PreviewDomain, actual.PreviewDomain);
-            Assert.AreEqual<bool>(expected.ShowDialingProgress, actual.ShowDialingProgress);
-            Assert.AreEqual<bool>(expected.RequireChap, actual.RequireChap);
-            Assert.AreEqual<bool>(expected.RequireMSChap, actual.RequireMSChap);
-            Assert.AreEqual<bool>(expected.RequireMSChap2, actual.RequireMSChap2);
-            Assert.AreEqual<bool>(expected.RequireWin95MSChap, actual.RequireWin95MSChap);
-            Assert.AreEqual<bool>(expected.CustomScript, actual.CustomScript);
+            Assert.AreEqual(expected.UseCountryAndAreaCodes, actual.UseCountryAndAreaCodes);
+            Assert.AreEqual(expected.IPHeaderCompression, actual.IPHeaderCompression);
+            Assert.AreEqual(expected.RemoteDefaultGateway, actual.RemoteDefaultGateway);
+            Assert.AreEqual(expected.DisableLcpExtensions, actual.DisableLcpExtensions);
+            Assert.AreEqual(expected.TerminalBeforeDial, actual.TerminalBeforeDial);
+            Assert.AreEqual(expected.TerminalAfterDial, actual.TerminalAfterDial);
+            Assert.AreEqual(expected.ModemLights, actual.ModemLights);
+            Assert.AreEqual(expected.SoftwareCompression, actual.SoftwareCompression);
+            Assert.AreEqual(expected.RequireEncryptedPassword, actual.RequireEncryptedPassword);
+            Assert.AreEqual(expected.RequireMSEncryptedPassword, actual.RequireMSEncryptedPassword);
+            Assert.AreEqual(expected.RequireDataEncryption, actual.RequireDataEncryption);
+            Assert.AreEqual(expected.NetworkLogOn, actual.NetworkLogOn);
+            Assert.AreEqual(expected.UseLogOnCredentials, actual.UseLogOnCredentials);
+            Assert.AreEqual(expected.PromoteAlternates, actual.PromoteAlternates);
+            Assert.AreEqual(expected.SecureLocalFiles, actual.SecureLocalFiles);
+            Assert.AreEqual(expected.RequireEap, actual.RequireEap);
+            Assert.AreEqual(expected.RequirePap, actual.RequirePap);
+            Assert.AreEqual(expected.RequireSpap, actual.RequireSpap);
+            Assert.AreEqual(expected.CustomEncryption, actual.CustomEncryption);
+            Assert.AreEqual(expected.PreviewPhoneNumber, actual.PreviewPhoneNumber);
+            Assert.AreEqual(expected.SharedPhoneNumbers, actual.SharedPhoneNumbers);
+            Assert.AreEqual(expected.PreviewUserPassword, actual.PreviewUserPassword);
+            Assert.AreEqual(expected.PreviewDomain, actual.PreviewDomain);
+            Assert.AreEqual(expected.ShowDialingProgress, actual.ShowDialingProgress);
+            Assert.AreEqual(expected.RequireChap, actual.RequireChap);
+            Assert.AreEqual(expected.RequireMSChap, actual.RequireMSChap);
+            Assert.AreEqual(expected.RequireMSChap2, actual.RequireMSChap2);
+            Assert.AreEqual(expected.RequireWin95MSChap, actual.RequireWin95MSChap);
+            Assert.AreEqual(expected.CustomScript, actual.CustomScript);
 
 #if (WINXP || WIN2K8 || WIN7 || WIN8)
-            Assert.AreEqual<bool>(expected.SecureFileAndPrint, actual.SecureFileAndPrint);
-            Assert.AreEqual<bool>(expected.SecureClientForMSNet, actual.SecureClientForMSNet);
-            Assert.AreEqual<bool>(expected.DoNotNegotiateMultilink, actual.DoNotNegotiateMultilink);
-            Assert.AreEqual<bool>(expected.DoNotUseRasCredentials, actual.DoNotUseRasCredentials);
-            Assert.AreEqual<bool>(expected.UsePreSharedKey, actual.UsePreSharedKey);
-            Assert.AreEqual<bool>(expected.Internet, actual.Internet);
-            Assert.AreEqual<bool>(expected.DisableNbtOverIP, actual.DisableNbtOverIP);
-            Assert.AreEqual<bool>(expected.UseGlobalDeviceSettings, actual.UseGlobalDeviceSettings);
-            Assert.AreEqual<bool>(expected.ReconnectIfDropped, actual.ReconnectIfDropped);
-            Assert.AreEqual<bool>(expected.SharePhoneNumbers, actual.SharePhoneNumbers);
+            Assert.AreEqual(expected.SecureFileAndPrint, actual.SecureFileAndPrint);
+            Assert.AreEqual(expected.SecureClientForMSNet, actual.SecureClientForMSNet);
+            Assert.AreEqual(expected.DoNotNegotiateMultilink, actual.DoNotNegotiateMultilink);
+            Assert.AreEqual(expected.DoNotUseRasCredentials, actual.DoNotUseRasCredentials);
+            Assert.AreEqual(expected.UsePreSharedKey, actual.UsePreSharedKey);
+            Assert.AreEqual(expected.Internet, actual.Internet);
+            Assert.AreEqual(expected.DisableNbtOverIP, actual.DisableNbtOverIP);
+            Assert.AreEqual(expected.UseGlobalDeviceSettings, actual.UseGlobalDeviceSettings);
+            Assert.AreEqual(expected.ReconnectIfDropped, actual.ReconnectIfDropped);
+            Assert.AreEqual(expected.SharePhoneNumbers, actual.SharePhoneNumbers);
 #endif
 #if (WIN2K8 || WIN7 || WIN8)
-            Assert.AreEqual<bool>(expected.SecureRoutingCompartment, actual.SecureRoutingCompartment);
-            Assert.AreEqual<bool>(expected.UseTypicalSettings, actual.UseTypicalSettings);
-            Assert.AreEqual<bool>(expected.IPv6RemoteDefaultGateway, actual.IPv6RemoteDefaultGateway);
-            Assert.AreEqual<bool>(expected.RegisterIPWithDns, actual.RegisterIPWithDns);
-            Assert.AreEqual<bool>(expected.UseDnsSuffixForRegistration, actual.UseDnsSuffixForRegistration);
-            Assert.AreEqual<bool>(expected.DisableIkeNameEkuCheck, actual.DisableIkeNameEkuCheck);
+            Assert.AreEqual(expected.SecureRoutingCompartment, actual.SecureRoutingCompartment);
+            Assert.AreEqual(expected.UseTypicalSettings, actual.UseTypicalSettings);
+            Assert.AreEqual(expected.IPv6RemoteDefaultGateway, actual.IPv6RemoteDefaultGateway);
+            Assert.AreEqual(expected.RegisterIPWithDns, actual.RegisterIPWithDns);
+            Assert.AreEqual(expected.UseDnsSuffixForRegistration, actual.UseDnsSuffixForRegistration);
+            Assert.AreEqual(expected.DisableIkeNameEkuCheck, actual.DisableIkeNameEkuCheck);
 #endif
 #if (WIN7 || WIN8)
-            Assert.AreEqual<bool>(expected.DisableClassBasedStaticRoute, actual.DisableClassBasedStaticRoute);
-            Assert.AreEqual<bool>(expected.DisableMobility, actual.DisableMobility);
-            Assert.AreEqual<bool>(expected.RequireMachineCertificates, actual.RequireMachineCertificates);
+            Assert.AreEqual(expected.DisableClassBasedStaticRoute, actual.DisableClassBasedStaticRoute);
+            Assert.AreEqual(expected.DisableMobility, actual.DisableMobility);
+            Assert.AreEqual(expected.RequireMachineCertificates, actual.RequireMachineCertificates);
 #endif
 #if (WIN8)
             Assert.AreEqual<bool>(expected.UsePreSharedKeyForIkeV2Initiator, actual.UsePreSharedKeyForIkeV2Initiator);

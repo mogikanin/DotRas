@@ -26,13 +26,6 @@ namespace DotRas.UnitTests.Mocking.Interop
     {
         #region Constructors
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CopyStructToAddrMock&lt;T&gt;"/> class.
-        /// </summary>
-        public CopyStructToAddrMock()
-        {
-        }
-
         #endregion
 
         #region Properties
