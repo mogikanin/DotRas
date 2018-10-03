@@ -78,10 +78,7 @@ namespace DotRas.IntegrationTests
         public static void ClassCleanUp()
         {
             var connection = RasConnection.GetActiveConnections().Where(o => o.Handle == handle).FirstOrDefault();
-            if (connection != null)
-            {
-                connection.HangUp();
-            }
+            connection?.HangUp();
 
             if (File.Exists(phonebookPath))
             {

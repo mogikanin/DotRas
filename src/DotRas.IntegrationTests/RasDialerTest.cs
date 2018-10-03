@@ -127,20 +127,11 @@ namespace DotRas.IntegrationTests
         [TestCleanup]
         public void CleanUp()
         {
-            if (this.target != null)
-            {
-                this.target.Dispose();
-            }
+            target?.Dispose();
 
-            if (this.waitHandle != null)
-            {
-                this.waitHandle.Dispose();
-            }
+            waitHandle?.Dispose();
 
-            if (this.stateWaitHandle != null)
-            {
-                this.stateWaitHandle.Dispose();
-            }
+            stateWaitHandle?.Dispose();
 
             HangUpConnectionById(entryId);
             HangUpConnectionById(invalidEntryId);
@@ -269,10 +260,7 @@ namespace DotRas.IntegrationTests
         private static void HangUpConnectionById(Guid entryId)
         {
             var connection = RasConnection.GetActiveConnections().Where(o => o.EntryId == entryId).FirstOrDefault();
-            if (connection != null)
-            {
-                connection.HangUp();
-            }
+            connection?.HangUp();
         }
 
         private void Target_Error(object sender, System.IO.ErrorEventArgs e)

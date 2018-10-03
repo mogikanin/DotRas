@@ -110,10 +110,7 @@ namespace DotRas
         /// <param name="container">An <see cref="System.ComponentModel.IContainer"/> that will contain the component.</param>
         public CredentialPromptDialog(IContainer container)
         {
-            if (container != null)
-            {
-                container.Add(this);
-            }
+            container?.Add(this);
 
             InitializeComponent();
         }

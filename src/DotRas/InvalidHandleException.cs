@@ -125,10 +125,7 @@ namespace DotRas
         [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.SerializationFormatter)]
         public override void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            if (info != null)
-            {
-                info.AddValue("Handle", Handle, typeof(RasHandle));
-            }
+            info?.AddValue("Handle", Handle, typeof(RasHandle));
 
             base.GetObjectData(info, context);
         }

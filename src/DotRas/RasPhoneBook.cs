@@ -317,10 +317,7 @@ namespace DotRas
         {
             if (disposing)
             {
-                if (watcher != null)
-                {
-                    watcher.Dispose();
-                }
+                watcher?.Dispose();
 
                 Path = null;
                 entries = null;

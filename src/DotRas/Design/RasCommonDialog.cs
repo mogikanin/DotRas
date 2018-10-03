@@ -71,10 +71,7 @@ namespace DotRas.Design
         /// <param name="e">An <see cref="DotRas.RasErrorEventArgs"/> containing event data.</param>
         protected void OnError(RasErrorEventArgs e)
         {
-            if (Error != null)
-            {
-                Error(this, e);
-            }
+            Error?.Invoke(this, e);
         }
 
         #endregion

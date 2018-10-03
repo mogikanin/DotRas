@@ -44,10 +44,7 @@ namespace DotRas
         /// <param name="container">An <see cref="System.ComponentModel.IContainer"/> that will contain this component.</param>
         public RasAutoDialManager(IContainer container)
         {
-            if (container != null)
-            {
-                container.Add(this);
-            }
+            container?.Add(this);
 
             InitializeComponent();
         }

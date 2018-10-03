@@ -39,10 +39,7 @@ namespace DotRas.Design
         /// <param name="container">An <see cref="System.ComponentModel.IContainer"/> that will contain this component.</param>
         protected RasComponent(IContainer container)
         {
-            if (container != null)
-            {
-                container.Add(this);
-            }
+            container?.Add(this);
         }
 
         #endregion

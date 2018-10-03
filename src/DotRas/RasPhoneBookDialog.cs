@@ -265,10 +265,7 @@ namespace DotRas
         /// <param name="e">An <see cref="DotRas.RasPhoneBookDialogEventArgs"/> containing event data.</param>
         private void OnAddedEntry(RasPhoneBookDialogEventArgs e)
         {
-            if (AddedEntry != null)
-            {
-                AddedEntry(this, e);
-            }
+            AddedEntry?.Invoke(this, e);
         }
 
         /// <summary>
@@ -277,10 +274,7 @@ namespace DotRas
         /// <param name="e">An <see cref="DotRas.RasPhoneBookDialogEventArgs"/> containing event data.</param>
         private void OnDialedEntry(RasPhoneBookDialogEventArgs e)
         {
-            if (DialedEntry != null)
-            {
-                DialedEntry(this, e);
-            }
+            DialedEntry?.Invoke(this, e);
         }
 
         /// <summary>
@@ -289,10 +283,7 @@ namespace DotRas
         /// <param name="e">An <see cref="DotRas.RasPhoneBookDialogEventArgs"/> containing event data.</param>
         private void OnChangedEntry(RasPhoneBookDialogEventArgs e)
         {
-            if (ChangedEntry != null)
-            {
-                ChangedEntry(this, e);
-            }
+            ChangedEntry?.Invoke(this, e);
         }
 
         /// <summary>
@@ -301,10 +292,7 @@ namespace DotRas
         /// <param name="e">An <see cref="DotRas.RasPhoneBookDialogEventArgs"/> containing event data.</param>
         private void OnRemovedEntry(RasPhoneBookDialogEventArgs e)
         {
-            if (RemovedEntry != null)
-            {
-                RemovedEntry(this, e);
-            }
+            RemovedEntry?.Invoke(this, e);
         }
 
         /// <summary>
