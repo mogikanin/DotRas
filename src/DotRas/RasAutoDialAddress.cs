@@ -54,18 +54,7 @@ namespace DotRas
         /// <summary>
         /// Gets the collection of entries associated with the address.
         /// </summary>
-        public Collection<RasAutoDialEntry> Entries
-        {
-            get
-            {
-                if (_entries == null)
-                {
-                    _entries = new Collection<RasAutoDialEntry>();
-                }
-
-                return _entries;
-            }
-        }
+        public Collection<RasAutoDialEntry> Entries => _entries ?? (_entries = new Collection<RasAutoDialEntry>());
 
         #endregion
     }

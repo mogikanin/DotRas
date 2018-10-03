@@ -51,16 +51,7 @@ namespace DotRas.Internal
         /// </summary>
         public static IUnsafeNativeMethods Instance
         {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = new UnsafeNativeMethods();
-                }
-
-                return instance;
-            }
-
+            get => instance ?? (instance = new UnsafeNativeMethods());
             set => instance = value;
         }
 

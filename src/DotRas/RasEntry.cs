@@ -148,16 +148,7 @@ namespace DotRas
         /// </summary>
         public RasEntryOptions Options
         {
-            get
-            {
-                if (options == null)
-                {
-                    options = new RasEntryOptions();
-                }
-
-                return options;
-            }
-
+            get => options ?? (options = new RasEntryOptions());
             set => options = value;
         }
 
@@ -202,16 +193,7 @@ namespace DotRas
         /// </summary>
         public Collection<string> AlternatePhoneNumbers
         {
-            get
-            {
-                if (alternatePhoneNumbers == null)
-                {
-                    alternatePhoneNumbers = new Collection<string>();
-                }
-
-                return alternatePhoneNumbers;
-            }
-
+            get => alternatePhoneNumbers ?? (alternatePhoneNumbers = new Collection<string>());
             internal set => alternatePhoneNumbers = value;
         }
 
@@ -278,16 +260,7 @@ namespace DotRas
         /// </summary>
         public RasNetworkProtocols NetworkProtocols
         {
-            get
-            {
-                if (networkProtocols == null)
-                {
-                    networkProtocols = new RasNetworkProtocols();
-                }
-
-                return networkProtocols;
-            }
-
+            get => networkProtocols ?? (networkProtocols = new RasNetworkProtocols());
             set => networkProtocols = value;
         }
 
@@ -394,18 +367,7 @@ namespace DotRas
         /// <summary>
         /// Gets the collection of multilink subentries associated with this entry.
         /// </summary>
-        public RasSubEntryCollection SubEntries
-        {
-            get
-            {
-                if (subEntries == null)
-                {
-                    subEntries = new RasSubEntryCollection(this);
-                }
-
-                return subEntries;
-            }
-        }
+        public RasSubEntryCollection SubEntries => subEntries ?? (subEntries = new RasSubEntryCollection(this));
 
         /// <summary>
         /// Gets or sets the dial mode for the multilink subentries associated with this entry.

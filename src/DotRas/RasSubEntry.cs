@@ -111,16 +111,7 @@ namespace DotRas
         /// </summary>
         public Collection<string> AlternatePhoneNumbers
         {
-            get
-            {
-                if (alternatePhoneNumbers == null)
-                {
-                    alternatePhoneNumbers = new Collection<string>();
-                }
-
-                return alternatePhoneNumbers;
-            }
-
+            get => alternatePhoneNumbers ?? (alternatePhoneNumbers = new Collection<string>());
             internal set => alternatePhoneNumbers = value;
         }
 

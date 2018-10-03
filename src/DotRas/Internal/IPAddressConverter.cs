@@ -152,14 +152,7 @@ namespace DotRas.Internal
             {
                 NativeMethods.RASIPADDR ipv4 = new NativeMethods.RASIPADDR();
 
-                if (value == null)
-                {
-                    ipv4.addr = IPAddress.Any.GetAddressBytes();
-                }
-                else
-                {
-                    ipv4.addr = addr.GetAddressBytes();
-                }
+                ipv4.addr = value == null ? IPAddress.Any.GetAddressBytes() : addr.GetAddressBytes();
 
                 return ipv4;
             }
@@ -167,16 +160,7 @@ namespace DotRas.Internal
             else if (destinationType == typeof(NativeMethods.RASIPV6ADDR) && (addr == null || (addr != null && addr.AddressFamily == AddressFamily.InterNetworkV6)))
             {
                 NativeMethods.RASIPV6ADDR ipv6 = new NativeMethods.RASIPV6ADDR();
-
-                if (addr == null)
-                {
-                    ipv6.addr = IPAddress.IPv6Any.GetAddressBytes();
-                }
-                else
-                {
-                    ipv6.addr = addr.GetAddressBytes();
-                }
-
+                ipv6.addr = addr == null ? IPAddress.IPv6Any.GetAddressBytes() : addr.GetAddressBytes();
                 return ipv6;
             }
 #endif

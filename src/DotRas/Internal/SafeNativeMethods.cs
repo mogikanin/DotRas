@@ -52,16 +52,7 @@ namespace DotRas.Internal
         /// </summary>
         public static ISafeNativeMethods Instance
         {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = new SafeNativeMethods();
-                }
-
-                return instance;
-            }
-
+            get => instance ?? (instance = new SafeNativeMethods());
             set => instance = value;
         }
 

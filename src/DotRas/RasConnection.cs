@@ -141,16 +141,7 @@ namespace DotRas
         /// <remarks><b>Windows XP and later:</b> This property is available.</remarks>
         public RasConnectionOptions ConnectionOptions
         {
-            get
-            {
-                if (connectionOptions == null)
-                {
-                    connectionOptions = new RasConnectionOptions();
-                }
-
-                return connectionOptions;
-            }
-
+            get => connectionOptions ?? (connectionOptions = new RasConnectionOptions());
             internal set => connectionOptions = value;
         }
 

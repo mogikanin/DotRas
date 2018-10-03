@@ -53,18 +53,8 @@ namespace DotRas.Diagnostics
         /// <summary>
         /// Gets the default trace.
         /// </summary>
-        public static DiagnosticTrace Default
-        {
-            get
-            {
-                if (_default == null)
-                {
-                    _default = new DiagnosticTrace(new DiagnosticSource(new TraceSource(SourceName, SourceLevels.Off)));
-                }
-
-                return _default;
-            }
-        }
+        public static DiagnosticTrace Default => _default ?? (_default =
+                                                     new DiagnosticTrace(new DiagnosticSource(new TraceSource(SourceName, SourceLevels.Off))));
 
         /// <summary>
         /// Gets or sets the trace source.

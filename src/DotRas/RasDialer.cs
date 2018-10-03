@@ -276,16 +276,7 @@ namespace DotRas
         [SRDescription("RDEntryOptionsDesc")]
         public RasDialOptions Options
         {
-            get
-            {
-                if (_options == null)
-                {
-                    _options = new RasDialOptions();
-                }
-
-                return _options;
-            }
-
+            get => _options ?? (_options = new RasDialOptions());
             set => _options = value;
         }        
 
@@ -296,16 +287,7 @@ namespace DotRas
         [SRDescription("RDEapOptionsDesc")]
         public RasEapOptions EapOptions
         {
-            get
-            {
-                if (_eapOptions == null)
-                {
-                    _eapOptions = new RasEapOptions();
-                }
-
-                return _eapOptions;
-            }
-
+            get => _eapOptions ?? (_eapOptions = new RasEapOptions());
             set => _eapOptions = value;
         }
 
@@ -565,14 +547,7 @@ namespace DotRas
                         {
                             byte[] data = null;
 
-                            if (eapUserData != null)
-                            {
-                                data = eapUserData;
-                            }
-                            else
-                            {
-                                data = RasHelper.Instance.GetEapUserData(IntPtr.Zero, PhoneBookPath, EntryName);
-                            }
+                            data = eapUserData ?? RasHelper.Instance.GetEapUserData(IntPtr.Zero, PhoneBookPath, EntryName);
 
                             if (data != null)
                             {

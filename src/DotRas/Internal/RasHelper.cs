@@ -58,16 +58,7 @@ namespace DotRas.Internal
         /// </summary>
         public static IRasHelper Instance
         {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = new RasHelper();
-                }
-
-                return instance;
-            }
-
+            get => instance ?? (instance = new RasHelper());
             set => instance = value;
         }
 

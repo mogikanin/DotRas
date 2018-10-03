@@ -170,18 +170,7 @@ namespace DotRas
         /// Gets the collection of entries within the phone book.
         /// </summary>
         [Browsable(false)]
-        public RasEntryCollection Entries
-        {
-            get
-            {
-                if (entries == null)
-                {
-                    entries = new RasEntryCollection(this);
-                }
-
-                return entries;
-            }
-        }
+        public RasEntryCollection Entries => entries ?? (entries = new RasEntryCollection(this));
 
         /// <summary>
         /// Gets or sets a value indicating whether the phone book file will be monitored for external changes.

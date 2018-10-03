@@ -88,14 +88,7 @@ namespace DotRas.Diagnostics
                 {
                     object value = null;
 
-                    if (ShouldSerialize(field.FieldType))
-                    {
-                        value = SerializeObject(field.GetValue(obj));
-                    }
-                    else
-                    {
-                        value = field.GetValue(obj);
-                    }
+                    value = ShouldSerialize(field.FieldType) ? SerializeObject(field.GetValue(obj)) : field.GetValue(obj);
 
                     Array arr = value as Array;
                     if (arr != null)

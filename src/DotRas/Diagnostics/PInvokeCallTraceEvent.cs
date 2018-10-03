@@ -62,18 +62,7 @@ namespace DotRas.Diagnostics
         /// <summary>
         /// Gets the data associated with the trace event.
         /// </summary>
-        public Dictionary<string, object> Data
-        {
-            get
-            {
-                if (_data == null)
-                {
-                    _data = new Dictionary<string, object>();
-                }
-
-                return _data;
-            }
-        }
+        public Dictionary<string, object> Data => _data ?? (_data = new Dictionary<string, object>());
 
         /// <summary>
         /// Gets the DLL name.
