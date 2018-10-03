@@ -14,7 +14,6 @@
 
 namespace DotRas.IntegrationTests
 {
-    using System;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     /// <summary>

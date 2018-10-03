@@ -15,7 +15,6 @@
 namespace DotRas.Internal
 {
     using System;
-    using System.Collections.Generic;
     using System.ComponentModel;
     using System.Globalization;
     using System.IO;

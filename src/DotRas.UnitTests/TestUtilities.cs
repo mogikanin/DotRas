@@ -14,10 +14,7 @@
 
 namespace DotRas.UnitTests
 {
-    using System;
-    using System.Collections.Generic;
     using System.Net;
-    using System.Text;
     using DotRas.Design;
     using DotRas.Internal;
     using Microsoft.VisualStudio.TestTools.UnitTesting;

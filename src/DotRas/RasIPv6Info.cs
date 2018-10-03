@@ -15,7 +15,6 @@
 namespace DotRas
 {
     using System;
-    using System.Net;
 
 #if (WIN2K8 || WIN7 || WIN8)
 

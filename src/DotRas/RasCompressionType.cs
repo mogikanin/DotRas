@@ -14,8 +14,6 @@
 
 namespace DotRas
 {
-    using System;
-
     /// <summary>
     /// Defines the remote access service (RAS) compression algorithms.
     /// </summary>

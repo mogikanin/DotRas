@@ -14,8 +14,6 @@
 
 namespace DotRas.UnitTests.Mocking.Interop
 {
-    using System;
-
     /// <summary>
     /// Provides the base implementation for p/invoke mock objects. This class must be inherited.
     /// </summary>

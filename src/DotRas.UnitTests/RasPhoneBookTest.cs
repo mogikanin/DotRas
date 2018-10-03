@@ -15,11 +15,8 @@
 namespace DotRas.UnitTests
 {
     using System;
-    using System.IO;
-    using DotRas.Internal;
     using DotRas.UnitTests.Constants;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using Moq;
 
     /// <summary>
     /// This is a test class for <see cref="DotRas.RasPhoneBook"/> and is intended to contain all associated unit tests.

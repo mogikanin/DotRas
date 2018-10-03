@@ -18,7 +18,6 @@ namespace DotRas.IntegrationTests
     using System.Collections.ObjectModel;
     using System.IO;
     using System.Linq;
-    using System.Net;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     /// <summary>

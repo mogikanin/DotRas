@@ -14,7 +14,6 @@
 
 namespace DotRas.UnitTests
 {
-    using System;
     using DotRas.Internal;
     using DotRas.UnitTests.Constants;
     using Microsoft.VisualStudio.TestTools.UnitTesting;

@@ -21,7 +21,6 @@ namespace DotRas
     using System.ComponentModel;
     using System.Drawing;
     using System.Runtime.InteropServices;
-    using System.Windows.Forms;
 
     /// <summary>
     /// Prompts the user to create or modify a phone book entry. This class cannot be inherited.

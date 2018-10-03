@@ -16,7 +16,6 @@ namespace DotRas.UnitTests
 {
     using System;
     using System.Collections;
-    using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using DotRas;
     using DotRas.Internal;

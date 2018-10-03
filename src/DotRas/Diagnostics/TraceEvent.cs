@@ -14,8 +14,6 @@
 
 namespace DotRas.Diagnostics
 {
-    using System;
-
     /// <summary>
     /// Provides the base class for trace events. This class must be inherited.
     /// </summary>

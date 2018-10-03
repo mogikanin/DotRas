@@ -19,7 +19,6 @@ namespace DotRas.Internal
     using System.Runtime.InteropServices;
     using System.Text;
     using Diagnostics;
-    using Microsoft.Win32.SafeHandles;
 
     /// <summary>
     /// Contains the safe remote access service (RAS) API function declarations.

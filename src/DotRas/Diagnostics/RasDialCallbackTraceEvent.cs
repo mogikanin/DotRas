@@ -15,7 +15,6 @@
 namespace DotRas.Diagnostics
 {
     using System;
-    using System.Diagnostics;
     using System.Text;
 
     /// <summary>

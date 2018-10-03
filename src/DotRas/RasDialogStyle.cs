@@ -14,8 +14,6 @@
 
 namespace DotRas
 {
-    using System;
-
     /// <summary>
     /// Specifies the dialog styles for a <see cref="DotRas.RasEntryDialog"/> component.
     /// </summary>

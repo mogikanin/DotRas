@@ -14,8 +14,6 @@
 
 namespace DotRas
 {
-    using System;
-
     /// <summary>
     /// Defines the projection types.
     /// </summary>

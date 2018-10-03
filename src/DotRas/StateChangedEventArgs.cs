@@ -15,7 +15,6 @@
 namespace DotRas
 {
     using System;
-    using System.ComponentModel;
 
     /// <summary>
     /// Provides data for the <see cref="RasDialer.StateChanged"/> event.

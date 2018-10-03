@@ -14,8 +14,6 @@
 
 namespace DotRas
 {
-    using System;
-
     /// <summary>
     /// Contains constants used to specify remote access service (RAS) idle disconnect timeouts.
     /// </summary>

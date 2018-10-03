@@ -14,7 +14,6 @@
 
 namespace DotRas.UnitTests.Mocking.Interop
 {
-    using System;
     using DotRas.Internal;
 
     /// <summary>

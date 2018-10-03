@@ -14,8 +14,6 @@
 
 namespace DotRas
 {
-    using System;
-
     /// <summary>
     /// Defines the Link Control Protocol (LCP) authentication data types.
     /// </summary>

@@ -14,7 +14,6 @@
 
 namespace DotRas.Design
 {
-    using System;
     using Internal;
 
     /// <summary>

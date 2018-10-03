@@ -21,11 +21,9 @@ namespace DotRas.Internal
     using System.Globalization;
     using System.IO;
     using System.Net;
-    using System.Net.Sockets;
     using System.Runtime.InteropServices;
     using System.Text;
     using Diagnostics;
-    using Properties;
 
     /// <summary>
     /// Contains utility methods for the assembly.

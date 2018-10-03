@@ -20,9 +20,7 @@ namespace DotRas.Internal
     using System.ComponentModel;
     using System.Diagnostics;
     using System.Net;
-    using System.Net.Sockets;
     using System.Runtime.InteropServices;
-    using System.Text;
     using System.Threading;
     using System.Windows.Forms;
     using Properties;

@@ -14,7 +14,6 @@
 
 namespace DotRas
 {
-    using System;
     using System.Collections.ObjectModel;
     using Design;
     using Internal;

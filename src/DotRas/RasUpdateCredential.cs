@@ -14,8 +14,6 @@
 
 namespace DotRas
 {
-    using System;
-
     /// <summary>
     /// Defines where user credentials can be saved for a phone book.
     /// </summary>

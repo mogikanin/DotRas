@@ -15,7 +15,6 @@
 namespace DotRas
 {
     using System;
-    using Internal;
 
     /// <summary>
     /// Provides data for remote access service (RAS) connection events.

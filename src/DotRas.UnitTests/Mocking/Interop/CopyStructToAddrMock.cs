@@ -16,7 +16,6 @@ namespace DotRas.UnitTests.Mocking.Interop
 {
     using System;
     using System.Runtime.InteropServices;
-    using DotRas.Internal;
 
     /// <summary>
     /// Provides the implementation for mock objects used to copy a result to a memory address.

@@ -14,8 +14,6 @@
 
 namespace DotRas.Internal
 {
-    using System;
-
     /// <summary>
     /// Provides information for the RasGetAutodialEnable API call.
     /// </summary>
