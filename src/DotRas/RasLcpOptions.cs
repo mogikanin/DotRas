@@ -135,7 +135,7 @@ namespace DotRas
         /// <returns>A new <see cref="DotRas.RasLcpOptions"/> object.</returns>
         public object Clone()
         {
-            RasLcpOptions retval = new RasLcpOptions();
+            var retval = new RasLcpOptions();
 
             retval.Pfc = Pfc;
             retval.Acfc = Acfc;

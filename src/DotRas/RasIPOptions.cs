@@ -64,10 +64,7 @@ namespace DotRas
         /// <returns>A new <see cref="DotRas.RasLcpOptions"/> object.</returns>
         public object Clone()
         {
-            RasIPOptions retval = new RasIPOptions();
-
-            retval.VJ = VJ;
-
+            var retval = new RasIPOptions {VJ = VJ};
             return retval;
         }
 

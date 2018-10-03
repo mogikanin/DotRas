@@ -48,11 +48,11 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void GetHashCodeTest()
         {
-            int expected = 200;
+            var expected = 200;
 
-            Luid target = new Luid(100, 100);
+            var target = new Luid(100, 100);
 
-            int actual = target.GetHashCode();
+            var actual = target.GetHashCode();
 
             Assert.AreEqual(expected, actual);
         }
@@ -64,11 +64,11 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void GetHashCodeTestForMaxValueReturned()
         {
-            int expected = int.MaxValue;
+            var expected = int.MaxValue;
 
-            Luid target = new Luid(int.MaxValue, int.MaxValue);
+            var target = new Luid(int.MaxValue, int.MaxValue);
 
-            int actual = target.GetHashCode();
+            var actual = target.GetHashCode();
 
             Assert.AreEqual(expected, actual);
         }
@@ -84,14 +84,14 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void NewLuidTest()
         {
-            Luid expected = new Luid(1, 1);
+            var expected = new Luid(1, 1);
 
-            Mock<IRasHelper> mock = new Mock<IRasHelper>();
+            var mock = new Mock<IRasHelper>();
             RasHelper.Instance = mock.Object;
 
             mock.Setup(o => o.AllocateLocallyUniqueId()).Returns(expected);
 
-            Luid actual = Luid.NewLuid();
+            var actual = Luid.NewLuid();
 
             Assert.AreEqual(expected, actual);
         }
@@ -107,12 +107,12 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void InequalityOperatorTest()
         {
-            bool expected = false;
+            var expected = false;
 
-            Luid objA = new Luid(1, 1);
-            Luid objB = new Luid(1, 1);
+            var objA = new Luid(1, 1);
+            var objB = new Luid(1, 1);
 
-            bool actual = objA != objB;
+            var actual = objA != objB;
 
             Assert.AreEqual(expected, actual);
         }
@@ -124,12 +124,12 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void EqualityOperatorTest()
         {
-            bool expected = false;
+            var expected = false;
 
-            Luid objA = new Luid(1, 1);
-            Luid objB = new Luid(1, 2);
+            var objA = new Luid(1, 1);
+            var objB = new Luid(1, 2);
 
-            bool actual = objA == objB;
+            var actual = objA == objB;
 
             Assert.AreEqual(expected, actual);
         }
@@ -141,12 +141,12 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void EqualsTest()
         {
-            bool expected = false;
+            var expected = false;
 
-            Luid target = new Luid(1, 1);
-            Luid other = new Luid(2, 2);
+            var target = new Luid(1, 1);
+            var other = new Luid(2, 2);
 
-            bool actual = target.Equals(other);
+            var actual = target.Equals(other);
 
             Assert.AreEqual(expected, actual);
         }
@@ -158,12 +158,12 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void EqualsTestWithNullObject()
         {
-            bool expected = false;
+            var expected = false;
 
-            Luid target = new Luid(1, 1);
+            var target = new Luid(1, 1);
             object obj = null;
 
-            bool actual = target.Equals(obj);
+            var actual = target.Equals(obj);
             Assert.AreEqual(expected, actual);
         }
 
@@ -174,12 +174,12 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void EqualsTestWithBoxedLuidObject()
         {
-            bool expected = true;
+            var expected = true;
 
-            Luid target = new Luid(1, 1);
-            Luid other = new Luid(1, 1);
+            var target = new Luid(1, 1);
+            var other = new Luid(1, 1);
 
-            bool actual = target.Equals((object)other);
+            var actual = target.Equals((object)other);
 
             Assert.AreEqual(expected, actual);
         }

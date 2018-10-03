@@ -54,7 +54,7 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(ArgumentException))]
         public void OpenArgumentExceptionEmptyStringTest()
         {
-            RasPhoneBook target = new RasPhoneBook();
+            var target = new RasPhoneBook();
             target.Open(string.Empty);
         }
 
@@ -66,7 +66,7 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(ArgumentException))]
         public void OpenArgumentExceptionNullStringTest()
         {
-            RasPhoneBook target = new RasPhoneBook();
+            var target = new RasPhoneBook();
             target.Open(null);
         }
 
@@ -78,9 +78,9 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(ArgumentException))]
         public void OpenInvalidFileNameExceptionTest()
         {
-            string phoneBookPath = @"C:\Blah\";
+            var phoneBookPath = @"C:\Blah\";
 
-            RasPhoneBook target = new RasPhoneBook();
+            var target = new RasPhoneBook();
             target.Open(phoneBookPath);
         }
 
@@ -91,14 +91,14 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void OpenAllUsersProfileFileTest()
         {
-            RasPhoneBookType expected = RasPhoneBookType.AllUsers;
+            var expected = RasPhoneBookType.AllUsers;
 
-            string phoneBookPath = RasPhoneBook.GetPhoneBookPath(RasPhoneBookType.AllUsers);
+            var phoneBookPath = RasPhoneBook.GetPhoneBookPath(RasPhoneBookType.AllUsers);
 
-            RasPhoneBook target = new RasPhoneBook();
+            var target = new RasPhoneBook();
             target.Open(phoneBookPath);
 
-            RasPhoneBookType actual = target.PhoneBookType;
+            var actual = target.PhoneBookType;
 
             Assert.AreEqual<RasPhoneBookType>(expected, actual);
         }
@@ -110,14 +110,14 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void OpenUserProfileFileTest()
         {
-            RasPhoneBookType expected = RasPhoneBookType.User;
+            var expected = RasPhoneBookType.User;
 
-            string phoneBookPath = RasPhoneBook.GetPhoneBookPath(RasPhoneBookType.User);
+            var phoneBookPath = RasPhoneBook.GetPhoneBookPath(RasPhoneBookType.User);
 
-            RasPhoneBook target = new RasPhoneBook();
+            var target = new RasPhoneBook();
             target.Open(phoneBookPath);
 
-            RasPhoneBookType actual = target.PhoneBookType;
+            var actual = target.PhoneBookType;
 
             Assert.AreEqual<RasPhoneBookType>(expected, actual);
         }

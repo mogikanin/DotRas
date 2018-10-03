@@ -54,12 +54,12 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void AllocateLocallyUniqueIdTest()
         {
-            Luid expected = new Luid(100, 100);
+            var expected = new Luid(100, 100);
 
-            CopyStructToAddrMock<Luid> target = new CopyStructToAddrMock<Luid>();
+            var target = new CopyStructToAddrMock<Luid>();
             target.Result = expected;
 
-            Mock<ISafeNativeMethods> mock = new Mock<ISafeNativeMethods>();
+            var mock = new Mock<ISafeNativeMethods>();
             SafeNativeMethods.Instance = mock.Object;
 
             mock.Setup(o => o.AllocateLocallyUniqueIdImpl(It.IsAny<IntPtr>())).Callback((IntPtr pLuid) =>
@@ -67,7 +67,7 @@ namespace DotRas.UnitTests
                 target.Execute(pLuid);
             }).Returns(NativeMethods.SUCCESS);
 
-            Luid actual = RasHelper.Instance.AllocateLocallyUniqueId();
+            var actual = RasHelper.Instance.AllocateLocallyUniqueId();
 
             Assert.AreEqual(expected, actual);
         }
@@ -80,12 +80,12 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(Win32Exception))]
         public void AllocateLocallyUniqueIdUnexpectedExceptionTest()
         {
-            Mock<ISafeNativeMethods> mock = new Mock<ISafeNativeMethods>();
+            var mock = new Mock<ISafeNativeMethods>();
             SafeNativeMethods.Instance = mock.Object;
 
             mock.Setup(o => o.AllocateLocallyUniqueIdImpl(It.IsAny<IntPtr>())).Returns(NativeMethods.ERROR_INVALID_PARAMETER);
 
-            Luid result = RasHelper.Instance.AllocateLocallyUniqueId();
+            var result = RasHelper.Instance.AllocateLocallyUniqueId();
         }
 
         #endregion
@@ -99,14 +99,14 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void ClearConnectionStatisticsTest()
         {
-            RasHandle handle = new RasHandle(new IntPtr(1), false);
+            var handle = new RasHandle(new IntPtr(1), false);
 
-            Mock<ISafeNativeMethods> mock = new Mock<ISafeNativeMethods>();
+            var mock = new Mock<ISafeNativeMethods>();
             SafeNativeMethods.Instance = mock.Object;
 
             mock.Setup(o => o.ClearConnectionStatistics(It.IsAny<RasHandle>())).Returns(NativeMethods.SUCCESS);
 
-            bool result = RasHelper.Instance.ClearConnectionStatistics(handle);
+            var result = RasHelper.Instance.ClearConnectionStatistics(handle);
 
             Assert.IsTrue(result);
         }
@@ -119,9 +119,9 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(InvalidHandleException))]
         public void ClearConnectionStatisticsInvalidHandleTest()
         {
-            RasHandle handle = new RasHandle(new IntPtr(1), false);
+            var handle = new RasHandle(new IntPtr(1), false);
 
-            Mock<ISafeNativeMethods> mock = new Mock<ISafeNativeMethods>();
+            var mock = new Mock<ISafeNativeMethods>();
             SafeNativeMethods.Instance = mock.Object;
 
             mock.Setup(o => o.ClearConnectionStatistics(It.IsAny<RasHandle>())).Returns(NativeMethods.ERROR_INVALID_HANDLE);
@@ -137,9 +137,9 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(RasException))]
         public void ClearConnectionStatisticsUnexpectedResultTest()
         {
-            RasHandle handle = new RasHandle(new IntPtr(1), false);
+            var handle = new RasHandle(new IntPtr(1), false);
 
-            Mock<ISafeNativeMethods> mock = new Mock<ISafeNativeMethods>();
+            var mock = new Mock<ISafeNativeMethods>();
             SafeNativeMethods.Instance = mock.Object;
 
             mock.Setup(o => o.ClearConnectionStatistics(It.IsAny<RasHandle>())).Returns(NativeMethods.ERROR_INVALID_PARAMETER);
@@ -155,9 +155,9 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(NotSupportedException))]
         public void ClearConnectionStatisticsNotSupportedTest()
         {
-            RasHandle handle = new RasHandle(new IntPtr(1), false);
+            var handle = new RasHandle(new IntPtr(1), false);
 
-            Mock<ISafeNativeMethods> mock = new Mock<ISafeNativeMethods>();
+            var mock = new Mock<ISafeNativeMethods>();
             SafeNativeMethods.Instance = mock.Object;
 
             mock.Setup(o => o.ClearConnectionStatistics(It.IsAny<RasHandle>())).Throws<EntryPointNotFoundException>();
@@ -176,12 +176,12 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void ClearLinkStatisticsTest()
         {
-            Mock<ISafeNativeMethods> mock = new Mock<ISafeNativeMethods>();
+            var mock = new Mock<ISafeNativeMethods>();
             SafeNativeMethods.Instance = mock.Object;
 
             mock.Setup(o => o.ClearLinkStatistics(It.IsAny<RasHandle>(), It.IsAny<int>())).Returns(NativeMethods.SUCCESS);
 
-            bool result = RasHelper.Instance.ClearLinkStatistics(new RasHandle(new IntPtr(1), false), 1);
+            var result = RasHelper.Instance.ClearLinkStatistics(new RasHandle(new IntPtr(1), false), 1);
 
             Assert.IsTrue(result);
         }
@@ -194,7 +194,7 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(ArgumentException))]
         public void ClearLinkStatisticsSubEntryIdLessThanOrEqualToZeroTest()
         {
-            Mock<ISafeNativeMethods> mock = new Mock<ISafeNativeMethods>();
+            var mock = new Mock<ISafeNativeMethods>();
             SafeNativeMethods.Instance = mock.Object;
 
             mock.Setup(o => o.ClearLinkStatistics(It.IsAny<RasHandle>(), It.IsAny<int>())).Returns(NativeMethods.SUCCESS);
@@ -210,7 +210,7 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(InvalidHandleException))]
         public void ClearLinkStatisticsInvalidHandleTest()
         {
-            Mock<ISafeNativeMethods> mock = new Mock<ISafeNativeMethods>();
+            var mock = new Mock<ISafeNativeMethods>();
             SafeNativeMethods.Instance = mock.Object;
 
             mock.Setup(o => o.ClearLinkStatistics(It.IsAny<RasHandle>(), It.IsAny<int>())).Returns(NativeMethods.ERROR_INVALID_HANDLE);
@@ -226,7 +226,7 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(RasException))]
         public void ClearLinkStatisticsUnexpectedResultTest()
         {
-            Mock<ISafeNativeMethods> mock = new Mock<ISafeNativeMethods>();
+            var mock = new Mock<ISafeNativeMethods>();
             SafeNativeMethods.Instance = mock.Object;
 
             mock.Setup(o => o.ClearLinkStatistics(It.IsAny<RasHandle>(), It.IsAny<int>())).Returns(NativeMethods.ERROR_INVALID_PARAMETER);
@@ -242,7 +242,7 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(NotSupportedException))]
         public void ClearLinkStatisticsNotSupportedTest()
         {
-            Mock<ISafeNativeMethods> mock = new Mock<ISafeNativeMethods>();
+            var mock = new Mock<ISafeNativeMethods>();
             SafeNativeMethods.Instance = mock.Object;
 
             mock.Setup(o => o.ClearLinkStatistics(It.IsAny<RasHandle>(), It.IsAny<int>())).Throws<EntryPointNotFoundException>();
@@ -306,10 +306,10 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(UnauthorizedAccessException))]
         public void DeleteEntryAccessDeniedTest()
         {
-            string phoneBookPath = "C:\\Test.pbk";
-            string entryName = "Test Entry";
+            var phoneBookPath = "C:\\Test.pbk";
+            var entryName = "Test Entry";
 
-            Mock<IUnsafeNativeMethods> mock = new Mock<IUnsafeNativeMethods>();
+            var mock = new Mock<IUnsafeNativeMethods>();
             UnsafeNativeMethods.Instance = mock.Object;
 
             mock.Setup(o => o.DeleteEntry(phoneBookPath, entryName)).Returns(NativeMethods.ERROR_ACCESS_DENIED);
@@ -324,15 +324,15 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void DeleteEntryTest()
         {
-            string phoneBookPath = "C:\\Test.pbk";
-            string entryName = "Test Entry";
+            var phoneBookPath = "C:\\Test.pbk";
+            var entryName = "Test Entry";
 
-            Mock<IUnsafeNativeMethods> mock = new Mock<IUnsafeNativeMethods>();
+            var mock = new Mock<IUnsafeNativeMethods>();
             UnsafeNativeMethods.Instance = mock.Object;
 
             mock.Setup(o => o.DeleteEntry(phoneBookPath, entryName)).Returns(0);
 
-            bool result = RasHelper.Instance.DeleteEntry(phoneBookPath, entryName);
+            var result = RasHelper.Instance.DeleteEntry(phoneBookPath, entryName);
 
             Assert.IsTrue(result);
             mock.Verify();
@@ -346,10 +346,10 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(RasException))]
         public void DeleteEntryUnexpectedResultTest()
         {
-            string phoneBookPath = "C:\\Test.pbk";
-            string entryName = "Test Entry";
+            var phoneBookPath = "C:\\Test.pbk";
+            var entryName = "Test Entry";
 
-            Mock<IUnsafeNativeMethods> mock = new Mock<IUnsafeNativeMethods>();
+            var mock = new Mock<IUnsafeNativeMethods>();
             UnsafeNativeMethods.Instance = mock.Object;
 
             mock.Setup(o => o.DeleteEntry(phoneBookPath, entryName)).Returns(NativeMethods.ERROR_CANNOT_FIND_PHONEBOOK_ENTRY);
@@ -365,10 +365,10 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(NotSupportedException))]
         public void DeleteEntryNotSupportedTest()
         {
-            string phoneBookPath = "C:\\Test.pbk";
-            string entryName = "Test Entry";
+            var phoneBookPath = "C:\\Test.pbk";
+            var entryName = "Test Entry";
 
-            Mock<IUnsafeNativeMethods> mock = new Mock<IUnsafeNativeMethods>();
+            var mock = new Mock<IUnsafeNativeMethods>();
             UnsafeNativeMethods.Instance = mock.Object;
 
             mock.Setup(o => o.DeleteEntry(phoneBookPath, entryName)).Throws<EntryPointNotFoundException>();
@@ -436,7 +436,7 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(RasException))]
         public void GetActiveConnectionsUnexpectedResultTest()
         {
-            Mock<ISafeNativeMethods> mock = new Mock<ISafeNativeMethods>();
+            var mock = new Mock<ISafeNativeMethods>();
             SafeNativeMethods.Instance = mock.Object;
 
             mock.Setup(o => o.EnumConnections(It.IsAny<StructBufferedPInvokeParams>())).Returns(NativeMethods.ERROR_INVALID_PARAMETER);
@@ -451,14 +451,14 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void GetActiveConnectionsWithNoActiveConnectionsTest()
         {
-            int expected = 0;
+            var expected = 0;
 
-            Mock<ISafeNativeMethods> mock = new Mock<ISafeNativeMethods>();
+            var mock = new Mock<ISafeNativeMethods>();
             SafeNativeMethods.Instance = mock.Object;
 
             mock.Setup(o => o.EnumConnections(It.IsAny<StructBufferedPInvokeParams>())).Returns(NativeMethods.SUCCESS);
 
-            ReadOnlyCollection<RasConnection> actual = RasHelper.Instance.GetActiveConnections();
+            var actual = RasHelper.Instance.GetActiveConnections();
 
             Assert.AreEqual(expected, actual.Count);
         }
@@ -470,7 +470,7 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void GetActiveConnectionsTest()
         {
-            NativeMethods.RASCONN[] expected = new NativeMethods.RASCONN[]
+            var expected = new NativeMethods.RASCONN[]
             {
                 new NativeMethods.RASCONN()
                 {
@@ -506,12 +506,12 @@ namespace DotRas.UnitTests
                 }
             };
 
-            IntPtr expectedSize = new IntPtr(Marshal.SizeOf(typeof(NativeMethods.RASCONN)) * expected.Length);
+            var expectedSize = new IntPtr(Marshal.SizeOf(typeof(NativeMethods.RASCONN)) * expected.Length);
 
-            StructBufferedPInvokeMock<StructBufferedPInvokeParams, NativeMethods.RASCONN> target = new StructBufferedPInvokeMock<StructBufferedPInvokeParams, NativeMethods.RASCONN>();
+            var target = new StructBufferedPInvokeMock<StructBufferedPInvokeParams, NativeMethods.RASCONN>();
             target.Result = expected;
 
-            Mock<ISafeNativeMethods> mock = new Mock<ISafeNativeMethods>();
+            var mock = new Mock<ISafeNativeMethods>();
             SafeNativeMethods.Instance = mock.Object;
 
             mock.Setup(o => o.EnumConnections(It.Is<StructBufferedPInvokeParams>(i => i.BufferSize != expectedSize))).Callback((StructBufferedPInvokeParams info) =>
@@ -523,14 +523,14 @@ namespace DotRas.UnitTests
                     target.Execute(info);
                 }).Returns(NativeMethods.SUCCESS);
 
-            ReadOnlyCollection<RasConnection> actual = RasHelper.Instance.GetActiveConnections();
+            var actual = RasHelper.Instance.GetActiveConnections();
 
             Assert.AreEqual(expected.Length, actual.Count);
 
-            for (int index = 0; index < expected.Length; index++)
+            for (var index = 0; index < expected.Length; index++)
             {
-                NativeMethods.RASCONN objA = expected[index];
-                RasConnection objB = actual[index];
+                var objA = expected[index];
+                var objB = actual[index];
 
                 Assert.AreEqual(objA.deviceName, objB.Device.Name);
                 Assert.IsTrue(string.Equals(objA.deviceType, objB.Device.DeviceType.ToString(), StringComparison.CurrentCultureIgnoreCase));
@@ -557,7 +557,7 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(NotSupportedException))]
         public void GetActiveConnectionsNotSupportedTest()
         {
-            Mock<ISafeNativeMethods> mock = new Mock<ISafeNativeMethods>();
+            var mock = new Mock<ISafeNativeMethods>();
             SafeNativeMethods.Instance = mock.Object;
 
             mock.Setup(o => o.EnumConnections(It.IsAny<StructBufferedPInvokeParams>())).Throws<EntryPointNotFoundException>();
@@ -577,7 +577,7 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(RasException))]
         public void GetAutoDialAddressUnexpectedResultTest()
         {
-            Mock<IUnsafeNativeMethods> mock = new Mock<IUnsafeNativeMethods>();
+            var mock = new Mock<IUnsafeNativeMethods>();
             UnsafeNativeMethods.Instance = mock.Object;
 
             mock.Setup(o => o.GetAutodialAddress(It.IsAny<RasGetAutodialAddressParams>())).Returns(NativeMethods.ERROR_INVALID_PARAMETER);
@@ -592,12 +592,12 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void GetAutoDialAddressFileNotFoundTest()
         {
-            Mock<IUnsafeNativeMethods> mock = new Mock<IUnsafeNativeMethods>();
+            var mock = new Mock<IUnsafeNativeMethods>();
             UnsafeNativeMethods.Instance = mock.Object;
 
             mock.Setup(o => o.GetAutodialAddress(It.IsAny<RasGetAutodialAddressParams>())).Returns(NativeMethods.ERROR_FILE_NOT_FOUND);
 
-            RasAutoDialAddress result = RasHelper.Instance.GetAutoDialAddress("Test");
+            var result = RasHelper.Instance.GetAutoDialAddress("Test");
 
             Assert.IsNull(result);
         }
@@ -609,7 +609,7 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void GetAutoDialAddressTest()
         {
-            NativeMethods.RASAUTODIALENTRY[] expected = new NativeMethods.RASAUTODIALENTRY[]
+            var expected = new NativeMethods.RASAUTODIALENTRY[]
             {
                 new NativeMethods.RASAUTODIALENTRY()
                 {
@@ -625,12 +625,12 @@ namespace DotRas.UnitTests
                 }
             };
 
-            int expectedSize = Marshal.SizeOf(typeof(NativeMethods.RASAUTODIALENTRY)) * expected.Length;
+            var expectedSize = Marshal.SizeOf(typeof(NativeMethods.RASAUTODIALENTRY)) * expected.Length;
 
-            StructBufferedPInvokeMock<RasGetAutodialAddressParams, NativeMethods.RASAUTODIALENTRY> target = new StructBufferedPInvokeMock<RasGetAutodialAddressParams, NativeMethods.RASAUTODIALENTRY>();
+            var target = new StructBufferedPInvokeMock<RasGetAutodialAddressParams, NativeMethods.RASAUTODIALENTRY>();
             target.Result = expected;
 
-            Mock<IUnsafeNativeMethods> mock = new Mock<IUnsafeNativeMethods>();
+            var mock = new Mock<IUnsafeNativeMethods>();
             UnsafeNativeMethods.Instance = mock.Object;
 
             mock.Setup(o => o.GetAutodialAddress(It.Is<RasGetAutodialAddressParams>(i => i.BufferSize.ToInt32() != expectedSize))).Callback((RasGetAutodialAddressParams value) =>
@@ -642,14 +642,14 @@ namespace DotRas.UnitTests
                     target.Execute(value);
                 }).Returns(NativeMethods.SUCCESS);
 
-            string address = "Test";
-            RasAutoDialAddress actual = RasHelper.Instance.GetAutoDialAddress(address);
+            var address = "Test";
+            var actual = RasHelper.Instance.GetAutoDialAddress(address);
 
             Assert.AreEqual(address, actual.Address);
             Assert.IsNotNull(actual.Entries);
             Assert.AreEqual(expected.Length, actual.Entries.Count);
 
-            for (int index = 0; index < expected.Length; index++)
+            for (var index = 0; index < expected.Length; index++)
             {
                 Assert.AreEqual(expected[index].dialingLocation, actual.Entries[index].DialingLocation);
                 Assert.AreEqual(expected[index].entryName, actual.Entries[index].EntryName);
@@ -664,7 +664,7 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(NotSupportedException))]
         public void GetAutoDialAddressNotSupportedTest()
         {
-            Mock<IUnsafeNativeMethods> mock = new Mock<IUnsafeNativeMethods>();
+            var mock = new Mock<IUnsafeNativeMethods>();
             UnsafeNativeMethods.Instance = mock.Object;
 
             mock.Setup(o => o.GetAutodialAddress(It.IsAny<RasGetAutodialAddressParams>())).Throws<EntryPointNotFoundException>();
@@ -683,17 +683,17 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void GetAutoDialAddressesTest()
         {
-            string[] expected = new string[]
+            var expected = new string[]
             {
                 "1234567890",
                 "0987654321"
             };
 
-            StringBufferedPInvokeMock<StructBufferedPInvokeParams> target = new StringBufferedPInvokeMock<StructBufferedPInvokeParams>();
+            var target = new StringBufferedPInvokeMock<StructBufferedPInvokeParams>();
             target.Result = expected;
             target.Offset = expected.Length * IntPtr.Size;
 
-            Mock<IUnsafeNativeMethods> mock = new Mock<IUnsafeNativeMethods>();
+            var mock = new Mock<IUnsafeNativeMethods>();
             UnsafeNativeMethods.Instance = mock.Object;
 
             mock.Setup(o => o.EnumAutodialAddresses(It.Is<StructBufferedPInvokeParams>(i => i.BufferSize == IntPtr.Zero))).Callback((StructBufferedPInvokeParams info) =>
@@ -705,11 +705,11 @@ namespace DotRas.UnitTests
                     target.Execute(info);
                 }).Returns(NativeMethods.SUCCESS);
 
-            Collection<string> actual = RasHelper.Instance.GetAutoDialAddresses();
+            var actual = RasHelper.Instance.GetAutoDialAddresses();
 
             Assert.AreEqual(expected.Length, actual.Count);
 
-            for (int index = 0; index < expected.Length; index++)
+            for (var index = 0; index < expected.Length; index++)
             {
                 Assert.AreEqual(expected[index], actual[index]);
             }
@@ -723,7 +723,7 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(RasException))]
         public void GetAutoDialAddressesUnexpectedResultTest()
         {
-            Mock<IUnsafeNativeMethods> mock = new Mock<IUnsafeNativeMethods>();
+            var mock = new Mock<IUnsafeNativeMethods>();
             UnsafeNativeMethods.Instance = mock.Object;
 
             mock.Setup(o => o.EnumAutodialAddresses(It.IsAny<StructBufferedPInvokeParams>())).Returns(NativeMethods.ERROR_INVALID_PARAMETER);
@@ -739,7 +739,7 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(NotSupportedException))]
         public void GetAutoDialAddressesNotSupportedTest()
         {
-            Mock<IUnsafeNativeMethods> mock = new Mock<IUnsafeNativeMethods>();
+            var mock = new Mock<IUnsafeNativeMethods>();
             UnsafeNativeMethods.Instance = mock.Object;
 
             mock.Setup(o => o.EnumAutodialAddresses(It.IsAny<StructBufferedPInvokeParams>())).Throws<EntryPointNotFoundException>();
@@ -758,9 +758,9 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void GetAutoDialEnableTest()
         {
-            bool expected = true;
+            var expected = true;
 
-            Mock<IUnsafeNativeMethods> mock = new Mock<IUnsafeNativeMethods>();
+            var mock = new Mock<IUnsafeNativeMethods>();
             UnsafeNativeMethods.Instance = mock.Object;
             
             mock.Setup(o => o.GetAutodialEnable(It.IsAny<RasGetAutodialEnableParams>())).Callback((RasGetAutodialEnableParams value) =>
@@ -768,7 +768,7 @@ namespace DotRas.UnitTests
                     value.Enabled = expected;
                 }).Returns(NativeMethods.SUCCESS);
 
-            bool actual = RasHelper.Instance.GetAutoDialEnable(0);
+            var actual = RasHelper.Instance.GetAutoDialEnable(0);
 
             Assert.AreEqual(expected, actual);
         }
@@ -781,7 +781,7 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(RasException))]
         public void GetAutoDialEnableUnexpectedResultTest()
         {
-            Mock<IUnsafeNativeMethods> mock = new Mock<IUnsafeNativeMethods>();
+            var mock = new Mock<IUnsafeNativeMethods>();
             UnsafeNativeMethods.Instance = mock.Object;
             
             mock.Setup(o => o.GetAutodialEnable(It.IsAny<RasGetAutodialEnableParams>())).Returns(NativeMethods.ERROR_INVALID_PARAMETER);
@@ -797,7 +797,7 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(NotSupportedException))]
         public void GetAutoDialEnableNotSupportedTest()
         {
-            Mock<IUnsafeNativeMethods> mock = new Mock<IUnsafeNativeMethods>();
+            var mock = new Mock<IUnsafeNativeMethods>();
             UnsafeNativeMethods.Instance = mock.Object;
 
             mock.Setup(o => o.GetAutodialEnable(It.IsAny<RasGetAutodialEnableParams>())).Throws<EntryPointNotFoundException>();
@@ -816,9 +816,9 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void GetAutoDialParameterTest()
         {
-            int expected = 10;
+            var expected = 10;
 
-            Mock<IUnsafeNativeMethods> mock = new Mock<IUnsafeNativeMethods>();
+            var mock = new Mock<IUnsafeNativeMethods>();
             UnsafeNativeMethods.Instance = mock.Object;
 
             mock.Setup(o => o.GetAutodialParam(It.IsAny<RasGetAutodialParamParams>())).Callback((RasGetAutodialParamParams value) =>
@@ -826,7 +826,7 @@ namespace DotRas.UnitTests
                     Marshal.WriteInt32(value.Address, expected);
                 }).Returns(NativeMethods.SUCCESS);
 
-            int actual = RasHelper.Instance.GetAutoDialParameter(NativeMethods.RASADP.ConnectionQueryTimeout);
+            var actual = RasHelper.Instance.GetAutoDialParameter(NativeMethods.RASADP.ConnectionQueryTimeout);
 
             Assert.AreEqual(expected, actual);
         }
@@ -839,7 +839,7 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(InvalidOperationException))]
         public void GetAutoDialParameterIncorrectSizeTest()
         {
-            Mock<IUnsafeNativeMethods> mock = new Mock<IUnsafeNativeMethods>();
+            var mock = new Mock<IUnsafeNativeMethods>();
             UnsafeNativeMethods.Instance = mock.Object;
 
             mock.Setup(o => o.GetAutodialParam(It.IsAny<RasGetAutodialParamParams>())).Callback((RasGetAutodialParamParams value) =>
@@ -858,7 +858,7 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(RasException))]
         public void GetAutoDialParameterUnexpectedResultTest()
         {          
-            Mock<IUnsafeNativeMethods> mock = new Mock<IUnsafeNativeMethods>();
+            var mock = new Mock<IUnsafeNativeMethods>();
             UnsafeNativeMethods.Instance = mock.Object;
 
             mock.Setup(o => o.GetAutodialParam(It.IsAny<RasGetAutodialParamParams>())).Returns(NativeMethods.ERROR_INVALID_PARAMETER);
@@ -874,7 +874,7 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(NotSupportedException))]
         public void GetAutoDialParameterNotSupportedTest()
         {
-            Mock<IUnsafeNativeMethods> mock = new Mock<IUnsafeNativeMethods>();
+            var mock = new Mock<IUnsafeNativeMethods>();
             UnsafeNativeMethods.Instance = mock.Object;
 
             mock.Setup(o => o.GetAutodialParam(It.IsAny<RasGetAutodialParamParams>())).Throws<EntryPointNotFoundException>();
@@ -893,7 +893,7 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void GetConnectionStatusTest()
         {
-            NativeMethods.RASCONNSTATUS expected = new NativeMethods.RASCONNSTATUS()
+            var expected = new NativeMethods.RASCONNSTATUS()
             {
                 connectionState = RasConnectionState.AllDevicesConnected,
                 deviceName = "WAN Miniport (PPTP)",
@@ -907,10 +907,10 @@ namespace DotRas.UnitTests
 #endif
             };
 
-            CopyStructToAddrMock<NativeMethods.RASCONNSTATUS> target = new CopyStructToAddrMock<NativeMethods.RASCONNSTATUS>();
+            var target = new CopyStructToAddrMock<NativeMethods.RASCONNSTATUS>();
             target.Result = expected;
 
-            Mock<ISafeNativeMethods> mock = new Mock<ISafeNativeMethods>();
+            var mock = new Mock<ISafeNativeMethods>();
             SafeNativeMethods.Instance = mock.Object;
 
             mock.Setup(o => o.GetConnectStatus(It.IsAny<RasHandle>(), It.IsAny<IntPtr>())).Callback((RasHandle handle, IntPtr connectionStatus) =>
@@ -918,7 +918,7 @@ namespace DotRas.UnitTests
                     target.Execute(connectionStatus);
                 }).Returns(NativeMethods.SUCCESS);
 
-            RasConnectionStatus actual = RasHelper.Instance.GetConnectionStatus(new RasHandle(new IntPtr(1), false));
+            var actual = RasHelper.Instance.GetConnectionStatus(new RasHandle(new IntPtr(1), false));
 
             Assert.AreEqual(expected.connectionState, actual.ConnectionState);
             Assert.AreEqual(expected.deviceName, actual.Device.Name);
@@ -942,7 +942,7 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(InvalidHandleException))]
         public void GetConnectionStatusInvalidHandleTest()
         {
-            Mock<ISafeNativeMethods> mock = new Mock<ISafeNativeMethods>();
+            var mock = new Mock<ISafeNativeMethods>();
             SafeNativeMethods.Instance = mock.Object;
 
             mock.Setup(o => o.GetConnectStatus(It.IsAny<RasHandle>(), It.IsAny<IntPtr>())).Returns(NativeMethods.ERROR_INVALID_HANDLE);
@@ -957,7 +957,7 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void GetConnectionStatusErrorCodeTest()
         {
-            NativeMethods.RASCONNSTATUS expected = new NativeMethods.RASCONNSTATUS()
+            var expected = new NativeMethods.RASCONNSTATUS()
             {
                 connectionState = RasConnectionState.Authenticate,
                 deviceName = "WAN Miniport (PPTP)",
@@ -966,10 +966,10 @@ namespace DotRas.UnitTests
                 phoneNumber = IPAddress.Loopback.ToString()
             };
 
-            CopyStructToAddrMock<NativeMethods.RASCONNSTATUS> target = new CopyStructToAddrMock<NativeMethods.RASCONNSTATUS>();
+            var target = new CopyStructToAddrMock<NativeMethods.RASCONNSTATUS>();
             target.Result = expected;
 
-            Mock<ISafeNativeMethods> mock = new Mock<ISafeNativeMethods>();
+            var mock = new Mock<ISafeNativeMethods>();
             SafeNativeMethods.Instance = mock.Object;
 
             mock.Setup(o => o.GetConnectStatus(It.IsAny<RasHandle>(), It.IsAny<IntPtr>())).Callback((RasHandle handle, IntPtr status) =>
@@ -981,7 +981,7 @@ namespace DotRas.UnitTests
                     new SafeNativeMethods().GetErrorString(errorCode, result, bufferSize);
                 }).Returns(NativeMethods.SUCCESS);
 
-            RasConnectionStatus actual = RasHelper.Instance.GetConnectionStatus(new RasHandle(new IntPtr(1), false));
+            var actual = RasHelper.Instance.GetConnectionStatus(new RasHandle(new IntPtr(1), false));
 
             Assert.AreEqual(expected.connectionState, actual.ConnectionState);
             Assert.AreEqual(expected.deviceName, actual.Device.Name);
@@ -999,7 +999,7 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(RasException))]
         public void GetConnectionStatusUnexpectedResultTest()
         {
-            Mock<ISafeNativeMethods> mock = new Mock<ISafeNativeMethods>();
+            var mock = new Mock<ISafeNativeMethods>();
             SafeNativeMethods.Instance = mock.Object;
 
             mock.Setup(o => o.GetConnectStatus(It.IsAny<RasHandle>(), It.IsAny<IntPtr>())).Returns(NativeMethods.ERROR_INVALID_PARAMETER);
@@ -1015,7 +1015,7 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(NotSupportedException))]
         public void GetConnectionStatusNotSupportedTest()
         {
-            Mock<ISafeNativeMethods> mock = new Mock<ISafeNativeMethods>();
+            var mock = new Mock<ISafeNativeMethods>();
             SafeNativeMethods.Instance = mock.Object;
 
             mock.Setup(o => o.GetConnectStatus(It.IsAny<RasHandle>(), It.IsAny<IntPtr>())).Throws<EntryPointNotFoundException>();
@@ -1034,7 +1034,7 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void GetCredentialsTest()
         {
-            NativeMethods.RASCREDENTIALS expected = new NativeMethods.RASCREDENTIALS()
+            var expected = new NativeMethods.RASCREDENTIALS()
             {
                 userName = "User",
                 password = "Password",
@@ -1042,10 +1042,10 @@ namespace DotRas.UnitTests
                 options = NativeMethods.RASCM.UserName | NativeMethods.RASCM.Password | NativeMethods.RASCM.Domain
             };
 
-            CopyStructToAddrMock<NativeMethods.RASCREDENTIALS> target = new CopyStructToAddrMock<NativeMethods.RASCREDENTIALS>();
+            var target = new CopyStructToAddrMock<NativeMethods.RASCREDENTIALS>();
             target.Result = expected;
 
-            Mock<IUnsafeNativeMethods> mock = new Mock<IUnsafeNativeMethods>();
+            var mock = new Mock<IUnsafeNativeMethods>();
             UnsafeNativeMethods.Instance = mock.Object;
 
             mock.Setup(o => o.GetCredentials(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<IntPtr>())).Callback((string phoneBookPath, string entryName, IntPtr credentials) =>
@@ -1053,7 +1053,7 @@ namespace DotRas.UnitTests
                     target.Execute(credentials);
                 }).Returns(NativeMethods.SUCCESS);
 
-            NetworkCredential actual = RasHelper.Instance.GetCredentials("C:\\Test.pbk", "Test Entry", NativeMethods.RASCM.UserName | NativeMethods.RASCM.Password | NativeMethods.RASCM.Domain);
+            var actual = RasHelper.Instance.GetCredentials("C:\\Test.pbk", "Test Entry", NativeMethods.RASCM.UserName | NativeMethods.RASCM.Password | NativeMethods.RASCM.Domain);
 
             Assert.AreEqual(expected.userName, actual.UserName);
             Assert.AreEqual(expected.password, actual.Password);
@@ -1067,12 +1067,12 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void GetCredentialsNotFoundTest()
         {           
-            Mock<IUnsafeNativeMethods> mock = new Mock<IUnsafeNativeMethods>();
+            var mock = new Mock<IUnsafeNativeMethods>();
             UnsafeNativeMethods.Instance = mock.Object;
 
             mock.Setup(o => o.GetCredentials(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<IntPtr>())).Returns(NativeMethods.ERROR_FILE_NOT_FOUND);
 
-            NetworkCredential result = RasHelper.Instance.GetCredentials("C:\\Test.pbk", "Test Entry", NativeMethods.RASCM.UserName | NativeMethods.RASCM.Password | NativeMethods.RASCM.Domain);
+            var result = RasHelper.Instance.GetCredentials("C:\\Test.pbk", "Test Entry", NativeMethods.RASCM.UserName | NativeMethods.RASCM.Password | NativeMethods.RASCM.Domain);
 
             Assert.IsNull(result);
         }
@@ -1129,7 +1129,7 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(RasException))]
         public void GetCredentialsUnexpectedResultTest()
         {
-            Mock<IUnsafeNativeMethods> mock = new Mock<IUnsafeNativeMethods>();
+            var mock = new Mock<IUnsafeNativeMethods>();
             UnsafeNativeMethods.Instance = mock.Object;
 
             mock.Setup(o => o.GetCredentials(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<IntPtr>())).Returns(NativeMethods.ERROR_INVALID_PARAMETER);
@@ -1145,7 +1145,7 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(NotSupportedException))]
         public void GetCredentialsNotSupportedTest()
         {
-            Mock<IUnsafeNativeMethods> mock = new Mock<IUnsafeNativeMethods>();
+            var mock = new Mock<IUnsafeNativeMethods>();
             UnsafeNativeMethods.Instance = mock.Object;
 
             mock.Setup(o => o.GetCredentials(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<IntPtr>())).Throws<EntryPointNotFoundException>();
@@ -1208,12 +1208,12 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void GetCustomAuthDataTest()
         {
-            byte[] expected = new byte[] { 1, 0, 0, 0, 0, 0, 0, 1, 0 };
+            var expected = new byte[] { 1, 0, 0, 0, 0, 0, 0, 1, 0 };
 
-            Mock<ISafeNativeMethods> mock = new Mock<ISafeNativeMethods>();
+            var mock = new Mock<ISafeNativeMethods>();
             SafeNativeMethods.Instance = mock.Object;
 
-            BufferedPInvokeMock<RasGetCustomAuthDataParams, byte> target = new BufferedPInvokeMock<RasGetCustomAuthDataParams, byte>();
+            var target = new BufferedPInvokeMock<RasGetCustomAuthDataParams, byte>();
             target.Result = expected;
 
             mock.Setup(o => o.GetCustomAuthData(It.Is<RasGetCustomAuthDataParams>(i => i.BufferSize.ToInt32() < expected.Length))).Callback((RasGetCustomAuthDataParams value) =>
@@ -1225,7 +1225,7 @@ namespace DotRas.UnitTests
                     target.Execute(value);
                 }).Returns(NativeMethods.SUCCESS);
 
-            byte[] actual = RasHelper.Instance.GetCustomAuthData("C:\\Test.pbk", "Test Entry");
+            var actual = RasHelper.Instance.GetCustomAuthData("C:\\Test.pbk", "Test Entry");
 
             CollectionAssert.AreEqual(expected, actual);
         }
@@ -1241,7 +1241,7 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void GetDevicesTest()
         {
-            NativeMethods.RASDEVINFO[] expected = new NativeMethods.RASDEVINFO[]
+            var expected = new NativeMethods.RASDEVINFO[]
             {
                 new NativeMethods.RASDEVINFO()
                 {
@@ -1260,12 +1260,12 @@ namespace DotRas.UnitTests
                 }
             };
 
-            IntPtr expectedSize = new IntPtr(Marshal.SizeOf(typeof(NativeMethods.RASDEVINFO)) * expected.Length);
+            var expectedSize = new IntPtr(Marshal.SizeOf(typeof(NativeMethods.RASDEVINFO)) * expected.Length);
 
-            StructBufferedPInvokeMock<StructBufferedPInvokeParams, NativeMethods.RASDEVINFO> target = new StructBufferedPInvokeMock<StructBufferedPInvokeParams, NativeMethods.RASDEVINFO>();
+            var target = new StructBufferedPInvokeMock<StructBufferedPInvokeParams, NativeMethods.RASDEVINFO>();
             target.Result = expected;
 
-            Mock<ISafeNativeMethods> mock = new Mock<ISafeNativeMethods>();
+            var mock = new Mock<ISafeNativeMethods>();
             SafeNativeMethods.Instance = mock.Object;
 
             mock.Setup(o => o.EnumDevices(It.Is<StructBufferedPInvokeParams>(i => i.BufferSize != expectedSize))).Callback((StructBufferedPInvokeParams value) =>
@@ -1277,11 +1277,11 @@ namespace DotRas.UnitTests
                     target.Execute(value);
                 }).Returns(NativeMethods.SUCCESS);
 
-            ReadOnlyCollection<RasDevice> actual = RasHelper.Instance.GetDevices();
+            var actual = RasHelper.Instance.GetDevices();
 
             Assert.AreEqual(expected.Length, actual.Count);
 
-            for (int index = 0; index < expected.Length; index++)
+            for (var index = 0; index < expected.Length; index++)
             {
                 Assert.AreEqual(expected[index].name, actual[index].Name);
                 Assert.IsTrue(string.Equals(expected[index].type, actual[index].DeviceType.ToString(), StringComparison.CurrentCultureIgnoreCase));
@@ -1295,14 +1295,14 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void GetDevicesWithNoDevicesTest()
         {
-            int expected = 0;
+            var expected = 0;
 
-            Mock<ISafeNativeMethods> mock = new Mock<ISafeNativeMethods>();
+            var mock = new Mock<ISafeNativeMethods>();
             SafeNativeMethods.Instance = mock.Object;
 
             mock.Setup(o => o.EnumDevices(It.IsAny<StructBufferedPInvokeParams>())).Returns(NativeMethods.SUCCESS);
 
-            ReadOnlyCollection<RasDevice> actual = RasHelper.Instance.GetDevices();
+            var actual = RasHelper.Instance.GetDevices();
 
             Assert.AreEqual(expected, actual.Count);
         }
@@ -1315,7 +1315,7 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(RasException))]
         public void GetDevicesUnexpectedResultTest()
         {
-            Mock<ISafeNativeMethods> mock = new Mock<ISafeNativeMethods>();
+            var mock = new Mock<ISafeNativeMethods>();
             SafeNativeMethods.Instance = mock.Object;
 
             mock.Setup(o => o.EnumDevices(It.IsAny<StructBufferedPInvokeParams>())).Returns(NativeMethods.ERROR_INVALID_PARAMETER);
@@ -1331,7 +1331,7 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(NotSupportedException))]
         public void GetDevicesNotSupportedTest()
         {
-            Mock<ISafeNativeMethods> mock = new Mock<ISafeNativeMethods>();
+            var mock = new Mock<ISafeNativeMethods>();
             SafeNativeMethods.Instance = mock.Object;
 
             mock.Setup(o => o.EnumDevices(It.IsAny<StructBufferedPInvokeParams>())).Throws<EntryPointNotFoundException>();
@@ -1350,12 +1350,12 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void GetEapUserDataTest()
         {
-            byte[] expected = new byte[] { 0, 1, 2, 3, 4, 5 };
+            var expected = new byte[] { 0, 1, 2, 3, 4, 5 };
 
-            Mock<ISafeNativeMethods> mock = new Mock<ISafeNativeMethods>();
+            var mock = new Mock<ISafeNativeMethods>();
             SafeNativeMethods.Instance = mock.Object;
 
-            BufferedPInvokeMock<RasGetEapUserDataParams, byte> target = new BufferedPInvokeMock<RasGetEapUserDataParams, byte>();
+            var target = new BufferedPInvokeMock<RasGetEapUserDataParams, byte>();
             target.Result = expected;
 
             mock.Setup(o => o.GetEapUserData(It.Is<RasGetEapUserDataParams>(i => i.BufferSize.ToInt32() < expected.Length))).Callback((RasGetEapUserDataParams value) =>
@@ -1367,7 +1367,7 @@ namespace DotRas.UnitTests
                     target.Execute(value);
                 }).Returns(NativeMethods.SUCCESS);
 
-            byte[] actual = RasHelper.Instance.GetEapUserData(IntPtr.Zero, "C:\\Test.pbk", "Test Entry");
+            var actual = RasHelper.Instance.GetEapUserData(IntPtr.Zero, "C:\\Test.pbk", "Test Entry");
 
             CollectionAssert.AreEqual(expected, actual);
         }
@@ -1381,7 +1381,7 @@ namespace DotRas.UnitTests
         {
             byte[] expected = null;
 
-            Mock<ISafeNativeMethods> mock = new Mock<ISafeNativeMethods>();
+            var mock = new Mock<ISafeNativeMethods>();
             SafeNativeMethods.Instance = mock.Object;
 
             mock.Setup(o => o.GetEapUserData(It.IsAny<RasGetEapUserDataParams>())).Callback((RasGetEapUserDataParams value) =>
@@ -1389,7 +1389,7 @@ namespace DotRas.UnitTests
                 value.BufferSize = IntPtr.Zero;
             }).Returns(NativeMethods.SUCCESS);
 
-            byte[] actual = RasHelper.Instance.GetEapUserData(IntPtr.Zero, "C:\\Test.pbk", "Test Entry");
+            var actual = RasHelper.Instance.GetEapUserData(IntPtr.Zero, "C:\\Test.pbk", "Test Entry");
 
             Assert.AreEqual(expected, actual);
         }
@@ -1402,7 +1402,7 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(RasException))]
         public void GetEapUserDataRasExceptionTest()
         {
-            Mock<ISafeNativeMethods> mock = new Mock<ISafeNativeMethods>();
+            var mock = new Mock<ISafeNativeMethods>();
             SafeNativeMethods.Instance = mock.Object;
 
             mock.Setup(o => o.GetEapUserData(It.IsAny<RasGetEapUserDataParams>())).Returns(NativeMethods.ERROR_CANNOT_FIND_PHONEBOOK_ENTRY);
@@ -1418,7 +1418,7 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(NotSupportedException))]
         public void GetEapUserDataNotSupportedExceptionTest()
         {
-            Mock<ISafeNativeMethods> mock = new Mock<ISafeNativeMethods>();
+            var mock = new Mock<ISafeNativeMethods>();
             SafeNativeMethods.Instance = mock.Object;
 
             mock.Setup(o => o.GetEapUserData(It.IsAny<RasGetEapUserDataParams>())).Throws(new EntryPointNotFoundException());
@@ -1460,7 +1460,7 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(InvalidHandleException))]
         public void HangUpInvalidHandleTest()
         {
-            Mock<ISafeNativeMethods> mock = new Mock<ISafeNativeMethods>();
+            var mock = new Mock<ISafeNativeMethods>();
             mock.Setup(o => o.HangUp(It.IsAny<RasHandle>())).Returns(NativeMethods.ERROR_INVALID_HANDLE);
 
             SafeNativeMethods.Instance = mock.Object;
@@ -1475,17 +1475,17 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void HangUpNoConnectionErrorTest()
         {
-            Mock<ISafeNativeMethods> safeNativeMethods = new Mock<ISafeNativeMethods>();
+            var safeNativeMethods = new Mock<ISafeNativeMethods>();
             safeNativeMethods.Setup(o => o.HangUp(It.IsAny<RasHandle>())).Returns(NativeMethods.ERROR_NO_CONNECTION);
 
             SafeNativeMethods.Instance = safeNativeMethods.Object;
 
-            Mock<IRasHelper> rasHelper = new Mock<IRasHelper>();
+            var rasHelper = new Mock<IRasHelper>();
             rasHelper.Setup(o => o.IsConnectionActive(It.IsAny<RasHandle>())).Returns(false);
 
             RasHelper.Instance = rasHelper.Object;
 
-            RasHelper target = new RasHelper();
+            var target = new RasHelper();
             target.HangUp(new RasHandle(new IntPtr(1), false), 0, true);
         }
 
@@ -1545,19 +1545,19 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(UnauthorizedAccessException))]
         public void SetCredentialsUnauthorizedExceptionTest()
         {
-            Mock<IUnsafeNativeMethods> mock = new Mock<IUnsafeNativeMethods>();
+            var mock = new Mock<IUnsafeNativeMethods>();
             UnsafeNativeMethods.Instance = mock.Object;
 
             mock.Setup(o => o.SetCredentials(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<IntPtr>(), It.IsAny<bool>())).Returns(NativeMethods.ERROR_ACCESS_DENIED);
 
-            NativeMethods.RASCREDENTIALS credentials = new NativeMethods.RASCREDENTIALS()
+            var credentials = new NativeMethods.RASCREDENTIALS()
             {
                 userName = "User",
                 password = "Password",
                 domain = "Domain"
             };
 
-            bool actual = RasHelper.Instance.SetCredentials("C:\\Test.pbk", "Test Entry", credentials, false);
+            var actual = RasHelper.Instance.SetCredentials("C:\\Test.pbk", "Test Entry", credentials, false);
         }
 
         /// <summary>
@@ -1567,21 +1567,21 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void SetCredentialsTest()
         {
-            bool expected = true;
+            var expected = true;
 
-            Mock<IUnsafeNativeMethods> mock = new Mock<IUnsafeNativeMethods>();
+            var mock = new Mock<IUnsafeNativeMethods>();
             UnsafeNativeMethods.Instance = mock.Object;
 
             mock.Setup(o => o.SetCredentials(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<IntPtr>(), It.IsAny<bool>())).Returns(NativeMethods.SUCCESS);
 
-            NativeMethods.RASCREDENTIALS credentials = new NativeMethods.RASCREDENTIALS()
+            var credentials = new NativeMethods.RASCREDENTIALS()
             {
                 userName = "User",
                 password = "Password",
                 domain = "Domain"
             };
 
-            bool actual = RasHelper.Instance.SetCredentials("C:\\Test.pbk", "Test Entry", credentials, false);
+            var actual = RasHelper.Instance.SetCredentials("C:\\Test.pbk", "Test Entry", credentials, false);
 
             Assert.AreEqual(expected, actual);
         }
@@ -1594,12 +1594,12 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(RasException))]
         public void SetCredentialsUnexpectedResultTest()
         {
-            Mock<IUnsafeNativeMethods> mock = new Mock<IUnsafeNativeMethods>();
+            var mock = new Mock<IUnsafeNativeMethods>();
             UnsafeNativeMethods.Instance = mock.Object;
 
             mock.Setup(o => o.SetCredentials(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<IntPtr>(), It.IsAny<bool>())).Returns(NativeMethods.ERROR_CANNOT_FIND_PHONEBOOK_ENTRY);
 
-            NativeMethods.RASCREDENTIALS credentials = new NativeMethods.RASCREDENTIALS()
+            var credentials = new NativeMethods.RASCREDENTIALS()
             {
                 userName = "User",
                 password = "Password",
@@ -1617,12 +1617,12 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(NotSupportedException))]
         public void SetCredentialsNotSupportedTest()
         {
-            Mock<IUnsafeNativeMethods> mock = new Mock<IUnsafeNativeMethods>();
+            var mock = new Mock<IUnsafeNativeMethods>();
             UnsafeNativeMethods.Instance = mock.Object;
 
             mock.Setup(o => o.SetCredentials(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<IntPtr>(), It.IsAny<bool>())).Throws<EntryPointNotFoundException>();
 
-            NativeMethods.RASCREDENTIALS credentials = new NativeMethods.RASCREDENTIALS()
+            var credentials = new NativeMethods.RASCREDENTIALS()
             {
                 userName = "User",
                 password = "Password",
@@ -1643,14 +1643,14 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void SetCustomAuthDataTest()
         {
-            bool expected = true;
+            var expected = true;
 
-            Mock<IUnsafeNativeMethods> mock = new Mock<IUnsafeNativeMethods>();
+            var mock = new Mock<IUnsafeNativeMethods>();
             UnsafeNativeMethods.Instance = mock.Object;
 
             mock.Setup(o => o.SetCustomAuthData(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<IntPtr>(), It.IsAny<int>())).Returns(NativeMethods.SUCCESS);
 
-            bool actual = RasHelper.Instance.SetCustomAuthData("C:\\Test.pbk", "Test Entry", new byte[] { 0, 1, 2, 3, 4, 5 });
+            var actual = RasHelper.Instance.SetCustomAuthData("C:\\Test.pbk", "Test Entry", new byte[] { 0, 1, 2, 3, 4, 5 });
 
             Assert.AreEqual(expected, actual);
         }
@@ -1663,7 +1663,7 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(RasException))]
         public void SetCustomAuthDataRasExceptionTest()
         {
-            Mock<IUnsafeNativeMethods> mock = new Mock<IUnsafeNativeMethods>();
+            var mock = new Mock<IUnsafeNativeMethods>();
             UnsafeNativeMethods.Instance = mock.Object;
 
             mock.Setup(o => o.SetCustomAuthData(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<IntPtr>(), It.IsAny<int>())).Returns(NativeMethods.ERROR_CANNOT_FIND_PHONEBOOK_ENTRY);
@@ -1726,14 +1726,14 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void SetEapUserDataTest()
         {
-            bool expected = true;
+            var expected = true;
 
-            Mock<IUnsafeNativeMethods> mock = new Mock<IUnsafeNativeMethods>();
+            var mock = new Mock<IUnsafeNativeMethods>();
             UnsafeNativeMethods.Instance = mock.Object;
 
             mock.Setup(o => o.SetEapUserData(It.IsAny<IntPtr>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<IntPtr>(), It.IsAny<int>())).Returns(NativeMethods.SUCCESS);
 
-            bool actual = RasHelper.Instance.SetEapUserData(IntPtr.Zero, "C:\\Test.pbk", "Test Entry", new byte[] { 0, 1, 2, 3, 4, 5 });
+            var actual = RasHelper.Instance.SetEapUserData(IntPtr.Zero, "C:\\Test.pbk", "Test Entry", new byte[] { 0, 1, 2, 3, 4, 5 });
 
             Assert.AreEqual(expected, actual);
         }
@@ -1746,7 +1746,7 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(RasException))]
         public void SetEapUserDataRasExceptionTest()
         {
-            Mock<IUnsafeNativeMethods> mock = new Mock<IUnsafeNativeMethods>();
+            var mock = new Mock<IUnsafeNativeMethods>();
             UnsafeNativeMethods.Instance = mock.Object;
 
             mock.Setup(o => o.SetEapUserData(It.IsAny<IntPtr>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<IntPtr>(), It.IsAny<int>())).Returns(NativeMethods.ERROR_CANNOT_FIND_PHONEBOOK_ENTRY);
@@ -1762,7 +1762,7 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(NotSupportedException))]
         public void SetEapUserDataNotSupportedExceptionTest()
         {
-            Mock<IUnsafeNativeMethods> mock = new Mock<IUnsafeNativeMethods>();
+            var mock = new Mock<IUnsafeNativeMethods>();
             UnsafeNativeMethods.Instance = mock.Object;
 
             mock.Setup(o => o.SetEapUserData(It.IsAny<IntPtr>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<IntPtr>(), It.IsAny<int>())).Throws(new EntryPointNotFoundException());
@@ -1783,7 +1783,7 @@ namespace DotRas.UnitTests
         public void SetEntryPropertiesNullPhoneBookArgumentNullExceptionTest()
         {
             RasPhoneBook pbk = null;
-            RasEntry entry = new RasEntry("Test Entry");
+            var entry = new RasEntry("Test Entry");
 
             RasHelper.Instance.SetEntryProperties(pbk, entry);
         }
@@ -1796,7 +1796,7 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(ArgumentNullException))]
         public void SetEntryPropertiesNullEntryArgumentNullExceptionTest()
         {
-            RasPhoneBook pbk = new RasPhoneBook();
+            var pbk = new RasPhoneBook();
             RasEntry entry = null;
 
             RasHelper.Instance.SetEntryProperties(pbk, entry);
@@ -1810,18 +1810,18 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(ArgumentException))]
         public void SetEntryPropertiesNullPhoneNumberArgumentExceptionTest()
         {
-            Mock<IUnsafeNativeMethods> unsafeMock = new Mock<IUnsafeNativeMethods>();
+            var unsafeMock = new Mock<IUnsafeNativeMethods>();
             UnsafeNativeMethods.Instance = unsafeMock.Object;
 
-            Mock<ISafeNativeMethods> safeMock = new Mock<ISafeNativeMethods>();
+            var safeMock = new Mock<ISafeNativeMethods>();
             SafeNativeMethods.Instance = safeMock.Object;
 
             safeMock.Setup(o => o.ValidateEntryName(It.IsAny<string>(), It.IsAny<string>())).Returns(NativeMethods.SUCCESS);
 
             // Configure the entry so it works correctly, only leaving the phone number null for the test to fail.
-            RasPhoneBook pbk = new RasPhoneBook();
+            var pbk = new RasPhoneBook();
 
-            RasEntry entry = new RasEntry("Test Entry");
+            var entry = new RasEntry("Test Entry");
             entry.Owner = pbk;
             entry.PhoneNumber = null;
             entry.Device = RasDevice.Create("WAN Miniport (PPTP)", RasDeviceType.Vpn);

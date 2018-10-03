@@ -47,8 +47,8 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void IPAddressIsNullOrAnyAddressNullAddressTest()
         {
-            bool expected = true;
-            bool actual = Utilities.IsIPAddressNullOrAnyAddress(null);
+            var expected = true;
+            var actual = Utilities.IsIPAddressNullOrAnyAddress(null);
 
             Assert.AreEqual(expected, actual);
         }
@@ -60,8 +60,8 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void IPAddressIsNullOrAnyAddressAnyAddressTest()
         {
-            bool expected = true;
-            bool actual = Utilities.IsIPAddressNullOrAnyAddress(IPAddress.Any);
+            var expected = true;
+            var actual = Utilities.IsIPAddressNullOrAnyAddress(IPAddress.Any);
 
             Assert.AreEqual(expected, actual);
         }
@@ -73,8 +73,8 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void IPAddressIsNullOrAnyAddressParseAnyAddressTest()
         {
-            bool expected = true;
-            bool actual = Utilities.IsIPAddressNullOrAnyAddress(IPAddress.Parse("0.0.0.0"));
+            var expected = true;
+            var actual = Utilities.IsIPAddressNullOrAnyAddress(IPAddress.Parse("0.0.0.0"));
 
             Assert.AreEqual(expected, actual);
         }
@@ -86,8 +86,8 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void IPAddressIsNullOrAnyAddressParseIPv6AnyAddressTest()
         {
-            bool expected = true;
-            bool actual = Utilities.IsIPAddressNullOrAnyAddress(IPAddress.Parse("::"));
+            var expected = true;
+            var actual = Utilities.IsIPAddressNullOrAnyAddress(IPAddress.Parse("::"));
 
             Assert.AreEqual(expected, actual);
         }
@@ -99,8 +99,8 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void IPAddressIsNullOrAnyAddressIPv6AnyAddressTest()
         {
-            bool expected = true;
-            bool actual = Utilities.IsIPAddressNullOrAnyAddress(IPAddress.IPv6Any);
+            var expected = true;
+            var actual = Utilities.IsIPAddressNullOrAnyAddress(IPAddress.IPv6Any);
 
             Assert.AreEqual(expected, actual);
         }

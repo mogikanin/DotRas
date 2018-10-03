@@ -171,9 +171,9 @@ namespace DotRas.Design
                 ThrowHelper.ThrowArgumentNullException("item");
             }
 
-            bool retval = false;
+            var retval = false;
 
-            int index = IndexOf(item);
+            var index = IndexOf(item);
             if (index != -1)
             {
                 RemoveAt(index);

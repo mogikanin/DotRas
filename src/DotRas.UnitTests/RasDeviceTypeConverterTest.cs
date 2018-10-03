@@ -56,7 +56,7 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void RasDeviceTypeDescriptorTest()
         {
-            TypeConverter converter = TypeDescriptor.GetConverter(typeof(RasDeviceType));
+            var converter = TypeDescriptor.GetConverter(typeof(RasDeviceType));
             Assert.IsTrue(converter is RasDeviceTypeConverter);
         }
 
@@ -67,10 +67,10 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void CanConvertFromObjectTest()
         {
-            bool expected = false;
+            var expected = false;
 
-            RasDeviceTypeConverter target = new RasDeviceTypeConverter();
-            bool actual = target.CanConvertFrom(typeof(object));
+            var target = new RasDeviceTypeConverter();
+            var actual = target.CanConvertFrom(typeof(object));
 
             Assert.AreEqual(expected, actual);
         }
@@ -82,10 +82,10 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void CanConvertFromStringTest()
         {
-            bool expected = true;
+            var expected = true;
 
-            RasDeviceTypeConverter target = new RasDeviceTypeConverter();
-            bool actual = target.CanConvertFrom(typeof(string));
+            var target = new RasDeviceTypeConverter();
+            var actual = target.CanConvertFrom(typeof(string));
 
             Assert.AreEqual(expected, actual);
         }
@@ -97,10 +97,10 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void CanConvertToStringTest()
         {
-            bool expected = true;
+            var expected = true;
 
-            RasDeviceTypeConverter target = new RasDeviceTypeConverter();
-            bool actual = target.CanConvertTo(typeof(string));
+            var target = new RasDeviceTypeConverter();
+            var actual = target.CanConvertTo(typeof(string));
 
             Assert.AreEqual(expected, actual);
         }
@@ -112,10 +112,10 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void CanConvertToObjectTest()
         {
-            bool expected = false;
+            var expected = false;
 
-            RasDeviceTypeConverter target = new RasDeviceTypeConverter();
-            bool actual = target.CanConvertTo(typeof(object));
+            var target = new RasDeviceTypeConverter();
+            var actual = target.CanConvertTo(typeof(object));
 
             Assert.AreEqual(expected, actual);
         }
@@ -128,8 +128,8 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(NotSupportedException))]
         public void ConvertFromObjectTest()
         {
-            RasDeviceTypeConverter target = new RasDeviceTypeConverter();
-            object actual = target.ConvertFrom(new object());
+            var target = new RasDeviceTypeConverter();
+            var actual = target.ConvertFrom(new object());
         }
 
         /// <summary>
@@ -139,10 +139,10 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void ConvertFromModemTest()
         {
-            RasDeviceType expected = RasDeviceType.Modem;
+            var expected = RasDeviceType.Modem;
 
-            RasDeviceTypeConverter target = new RasDeviceTypeConverter();
-            RasDeviceType actual = (RasDeviceType)target.ConvertFromString(NativeMethods.RASDT_Modem);
+            var target = new RasDeviceTypeConverter();
+            var actual = (RasDeviceType)target.ConvertFromString(NativeMethods.RASDT_Modem);
 
             Assert.AreEqual<RasDeviceType>(expected, actual);
         }
@@ -155,7 +155,7 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(NotSupportedException))]
         public void ConvertFromInvalidStringTest()
         {
-            RasDeviceTypeConverter target = new RasDeviceTypeConverter();
+            var target = new RasDeviceTypeConverter();
             target.ConvertFromString(" ");
         }
 
@@ -166,10 +166,10 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void ConvertFromIsdnTest()
         {
-            RasDeviceType expected = RasDeviceType.Isdn;
+            var expected = RasDeviceType.Isdn;
 
-            RasDeviceTypeConverter target = new RasDeviceTypeConverter();
-            RasDeviceType actual = (RasDeviceType)target.ConvertFromString(NativeMethods.RASDT_Isdn);
+            var target = new RasDeviceTypeConverter();
+            var actual = (RasDeviceType)target.ConvertFromString(NativeMethods.RASDT_Isdn);
 
             Assert.AreEqual<RasDeviceType>(expected, actual);
         }
@@ -181,10 +181,10 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void ConvertFromX25Test()
         {
-            RasDeviceType expected = RasDeviceType.X25;
+            var expected = RasDeviceType.X25;
 
-            RasDeviceTypeConverter target = new RasDeviceTypeConverter();
-            RasDeviceType actual = (RasDeviceType)target.ConvertFromString(NativeMethods.RASDT_X25);
+            var target = new RasDeviceTypeConverter();
+            var actual = (RasDeviceType)target.ConvertFromString(NativeMethods.RASDT_X25);
 
             Assert.AreEqual<RasDeviceType>(expected, actual);
         }
@@ -196,10 +196,10 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void ConvertFromVpnTest()
         {
-            RasDeviceType expected = RasDeviceType.Vpn;
+            var expected = RasDeviceType.Vpn;
 
-            RasDeviceTypeConverter target = new RasDeviceTypeConverter();
-            RasDeviceType actual = (RasDeviceType)target.ConvertFromString(NativeMethods.RASDT_Vpn);
+            var target = new RasDeviceTypeConverter();
+            var actual = (RasDeviceType)target.ConvertFromString(NativeMethods.RASDT_Vpn);
 
             Assert.AreEqual<RasDeviceType>(expected, actual);
         }
@@ -211,10 +211,10 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void ConvertFromPadTest()
         {
-            RasDeviceType expected = RasDeviceType.Pad;
+            var expected = RasDeviceType.Pad;
 
-            RasDeviceTypeConverter target = new RasDeviceTypeConverter();
-            RasDeviceType actual = (RasDeviceType)target.ConvertFromString(NativeMethods.RASDT_Pad);
+            var target = new RasDeviceTypeConverter();
+            var actual = (RasDeviceType)target.ConvertFromString(NativeMethods.RASDT_Pad);
 
             Assert.AreEqual<RasDeviceType>(expected, actual);
         }
@@ -226,10 +226,10 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void ConvertFromGenericTest()
         {
-            RasDeviceType expected = RasDeviceType.Generic;
+            var expected = RasDeviceType.Generic;
 
-            RasDeviceTypeConverter target = new RasDeviceTypeConverter();
-            RasDeviceType actual = (RasDeviceType)target.ConvertFromString(NativeMethods.RASDT_Generic);
+            var target = new RasDeviceTypeConverter();
+            var actual = (RasDeviceType)target.ConvertFromString(NativeMethods.RASDT_Generic);
 
             Assert.AreEqual<RasDeviceType>(expected, actual);
         }
@@ -241,10 +241,10 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void ConvertFromSerialTest()
         {
-            RasDeviceType expected = RasDeviceType.Serial;
+            var expected = RasDeviceType.Serial;
 
-            RasDeviceTypeConverter target = new RasDeviceTypeConverter();
-            RasDeviceType actual = (RasDeviceType)target.ConvertFromString(NativeMethods.RASDT_Serial);
+            var target = new RasDeviceTypeConverter();
+            var actual = (RasDeviceType)target.ConvertFromString(NativeMethods.RASDT_Serial);
 
             Assert.AreEqual<RasDeviceType>(expected, actual);
         }
@@ -256,10 +256,10 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void ConvertFromFrameRelayTest()
         {
-            RasDeviceType expected = RasDeviceType.FrameRelay;
+            var expected = RasDeviceType.FrameRelay;
 
-            RasDeviceTypeConverter target = new RasDeviceTypeConverter();
-            RasDeviceType actual = (RasDeviceType)target.ConvertFromString(NativeMethods.RASDT_FrameRelay);
+            var target = new RasDeviceTypeConverter();
+            var actual = (RasDeviceType)target.ConvertFromString(NativeMethods.RASDT_FrameRelay);
 
             Assert.AreEqual<RasDeviceType>(expected, actual);
         }
@@ -271,10 +271,10 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void ConvertFromSonetTest()
         {
-            RasDeviceType expected = RasDeviceType.Sonet;
+            var expected = RasDeviceType.Sonet;
 
-            RasDeviceTypeConverter target = new RasDeviceTypeConverter();
-            RasDeviceType actual = (RasDeviceType)target.ConvertFromString(NativeMethods.RASDT_Sonet);
+            var target = new RasDeviceTypeConverter();
+            var actual = (RasDeviceType)target.ConvertFromString(NativeMethods.RASDT_Sonet);
 
             Assert.AreEqual<RasDeviceType>(expected, actual);
         }
@@ -286,10 +286,10 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void ConvertFromSW56Test()
         {
-            RasDeviceType expected = RasDeviceType.SW56;
+            var expected = RasDeviceType.SW56;
 
-            RasDeviceTypeConverter target = new RasDeviceTypeConverter();
-            RasDeviceType actual = (RasDeviceType)target.ConvertFromString(NativeMethods.RASDT_SW56);
+            var target = new RasDeviceTypeConverter();
+            var actual = (RasDeviceType)target.ConvertFromString(NativeMethods.RASDT_SW56);
 
             Assert.AreEqual<RasDeviceType>(expected, actual);
         }
@@ -301,10 +301,10 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void ConvertFromIrdaTest()
         {
-            RasDeviceType expected = RasDeviceType.Irda;
+            var expected = RasDeviceType.Irda;
 
-            RasDeviceTypeConverter target = new RasDeviceTypeConverter();
-            RasDeviceType actual = (RasDeviceType)target.ConvertFromString(NativeMethods.RASDT_Irda);
+            var target = new RasDeviceTypeConverter();
+            var actual = (RasDeviceType)target.ConvertFromString(NativeMethods.RASDT_Irda);
 
             Assert.AreEqual<RasDeviceType>(expected, actual);
         }
@@ -316,10 +316,10 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void ConvertFromParallelTest()
         {
-            RasDeviceType expected = RasDeviceType.Parallel;
+            var expected = RasDeviceType.Parallel;
 
-            RasDeviceTypeConverter target = new RasDeviceTypeConverter();
-            RasDeviceType actual = (RasDeviceType)target.ConvertFromString(NativeMethods.RASDT_Parallel);
+            var target = new RasDeviceTypeConverter();
+            var actual = (RasDeviceType)target.ConvertFromString(NativeMethods.RASDT_Parallel);
 
             Assert.AreEqual<RasDeviceType>(expected, actual);
         }
@@ -332,10 +332,10 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void ConvertFromPPPoETest()
         {
-            RasDeviceType expected = RasDeviceType.PPPoE;
+            var expected = RasDeviceType.PPPoE;
 
-            RasDeviceTypeConverter target = new RasDeviceTypeConverter();
-            RasDeviceType actual = (RasDeviceType)target.ConvertFromString(NativeMethods.RASDT_PPPoE);
+            var target = new RasDeviceTypeConverter();
+            var actual = (RasDeviceType)target.ConvertFromString(NativeMethods.RASDT_PPPoE);
 
             Assert.AreEqual<RasDeviceType>(expected, actual);
         }
@@ -349,7 +349,7 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(NotSupportedException))]
         public void ConvertToObjectTest()
         {
-            RasDeviceTypeConverter target = new RasDeviceTypeConverter();
+            var target = new RasDeviceTypeConverter();
             target.ConvertTo(RasDeviceType.Modem, typeof(object));
         }
 
@@ -360,10 +360,10 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void ConvertToModemTest()
         {
-            string expected = NativeMethods.RASDT_Modem;
+            var expected = NativeMethods.RASDT_Modem;
 
-            RasDeviceTypeConverter target = new RasDeviceTypeConverter();
-            string actual = (string)target.ConvertTo(RasDeviceType.Modem, typeof(string));
+            var target = new RasDeviceTypeConverter();
+            var actual = (string)target.ConvertTo(RasDeviceType.Modem, typeof(string));
 
             Assert.AreEqual(expected, actual);
         }
@@ -375,10 +375,10 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void ConvertToIsdnTest()
         {
-            string expected = NativeMethods.RASDT_Isdn;
+            var expected = NativeMethods.RASDT_Isdn;
 
-            RasDeviceTypeConverter target = new RasDeviceTypeConverter();
-            string actual = (string)target.ConvertTo(RasDeviceType.Isdn, typeof(string));
+            var target = new RasDeviceTypeConverter();
+            var actual = (string)target.ConvertTo(RasDeviceType.Isdn, typeof(string));
 
             Assert.AreEqual(expected, actual);
         }
@@ -390,10 +390,10 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void ConvertToX25Test()
         {
-            string expected = NativeMethods.RASDT_X25;
+            var expected = NativeMethods.RASDT_X25;
 
-            RasDeviceTypeConverter target = new RasDeviceTypeConverter();
-            string actual = (string)target.ConvertTo(RasDeviceType.X25, typeof(string));
+            var target = new RasDeviceTypeConverter();
+            var actual = (string)target.ConvertTo(RasDeviceType.X25, typeof(string));
 
             Assert.AreEqual(expected, actual);
         }
@@ -405,10 +405,10 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void ConvertToVpnTest()
         {
-            string expected = NativeMethods.RASDT_Vpn;
+            var expected = NativeMethods.RASDT_Vpn;
 
-            RasDeviceTypeConverter target = new RasDeviceTypeConverter();
-            string actual = (string)target.ConvertTo(RasDeviceType.Vpn, typeof(string));
+            var target = new RasDeviceTypeConverter();
+            var actual = (string)target.ConvertTo(RasDeviceType.Vpn, typeof(string));
 
             Assert.AreEqual(expected, actual);
         }
@@ -420,10 +420,10 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void ConvertToPadTest()
         {
-            string expected = NativeMethods.RASDT_Pad;
+            var expected = NativeMethods.RASDT_Pad;
 
-            RasDeviceTypeConverter target = new RasDeviceTypeConverter();
-            string actual = (string)target.ConvertTo(RasDeviceType.Pad, typeof(string));
+            var target = new RasDeviceTypeConverter();
+            var actual = (string)target.ConvertTo(RasDeviceType.Pad, typeof(string));
 
             Assert.AreEqual(expected, actual);
         }
@@ -435,10 +435,10 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void ConvertToGenericTest()
         {
-            string expected = NativeMethods.RASDT_Generic;
+            var expected = NativeMethods.RASDT_Generic;
 
-            RasDeviceTypeConverter target = new RasDeviceTypeConverter();
-            string actual = (string)target.ConvertTo(RasDeviceType.Generic, typeof(string));
+            var target = new RasDeviceTypeConverter();
+            var actual = (string)target.ConvertTo(RasDeviceType.Generic, typeof(string));
 
             Assert.AreEqual(expected, actual);
         }
@@ -450,10 +450,10 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void ConvertToSerialTest()
         {
-            string expected = NativeMethods.RASDT_Serial;
+            var expected = NativeMethods.RASDT_Serial;
 
-            RasDeviceTypeConverter target = new RasDeviceTypeConverter();
-            string actual = (string)target.ConvertTo(RasDeviceType.Serial, typeof(string));
+            var target = new RasDeviceTypeConverter();
+            var actual = (string)target.ConvertTo(RasDeviceType.Serial, typeof(string));
 
             Assert.AreEqual(expected, actual);
         }
@@ -465,10 +465,10 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void ConvertToFrameRelayTest()
         {
-            string expected = NativeMethods.RASDT_FrameRelay;
+            var expected = NativeMethods.RASDT_FrameRelay;
 
-            RasDeviceTypeConverter target = new RasDeviceTypeConverter();
-            string actual = (string)target.ConvertTo(RasDeviceType.FrameRelay, typeof(string));
+            var target = new RasDeviceTypeConverter();
+            var actual = (string)target.ConvertTo(RasDeviceType.FrameRelay, typeof(string));
 
             Assert.AreEqual(expected, actual);
         }
@@ -480,10 +480,10 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void ConvertToAtmTest()
         {
-            string expected = NativeMethods.RASDT_Atm;
+            var expected = NativeMethods.RASDT_Atm;
 
-            RasDeviceTypeConverter target = new RasDeviceTypeConverter();
-            string actual = (string)target.ConvertTo(RasDeviceType.Atm, typeof(string));
+            var target = new RasDeviceTypeConverter();
+            var actual = (string)target.ConvertTo(RasDeviceType.Atm, typeof(string));
 
             Assert.AreEqual(expected, actual);
         }
@@ -495,10 +495,10 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void ConvertToSonetTest()
         {
-            string expected = NativeMethods.RASDT_Sonet;
+            var expected = NativeMethods.RASDT_Sonet;
 
-            RasDeviceTypeConverter target = new RasDeviceTypeConverter();
-            string actual = (string)target.ConvertTo(RasDeviceType.Sonet, typeof(string));
+            var target = new RasDeviceTypeConverter();
+            var actual = (string)target.ConvertTo(RasDeviceType.Sonet, typeof(string));
 
             Assert.AreEqual(expected, actual);
         }
@@ -510,10 +510,10 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void ConvertToSW56Test()
         {
-            string expected = NativeMethods.RASDT_SW56;
+            var expected = NativeMethods.RASDT_SW56;
 
-            RasDeviceTypeConverter target = new RasDeviceTypeConverter();
-            string actual = (string)target.ConvertTo(RasDeviceType.SW56, typeof(string));
+            var target = new RasDeviceTypeConverter();
+            var actual = (string)target.ConvertTo(RasDeviceType.SW56, typeof(string));
 
             Assert.AreEqual(expected, actual);
         }
@@ -525,10 +525,10 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void ConvertToIrdaTest()
         {
-            string expected = NativeMethods.RASDT_Irda;
+            var expected = NativeMethods.RASDT_Irda;
 
-            RasDeviceTypeConverter target = new RasDeviceTypeConverter();
-            string actual = (string)target.ConvertTo(RasDeviceType.Irda, typeof(string));
+            var target = new RasDeviceTypeConverter();
+            var actual = (string)target.ConvertTo(RasDeviceType.Irda, typeof(string));
 
             Assert.AreEqual(expected, actual);
         }
@@ -540,10 +540,10 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void ConvertToParallelTest()
         {
-            string expected = NativeMethods.RASDT_Parallel;
+            var expected = NativeMethods.RASDT_Parallel;
 
-            RasDeviceTypeConverter target = new RasDeviceTypeConverter();
-            string actual = (string)target.ConvertTo(RasDeviceType.Parallel, typeof(string));
+            var target = new RasDeviceTypeConverter();
+            var actual = (string)target.ConvertTo(RasDeviceType.Parallel, typeof(string));
 
             Assert.AreEqual(expected, actual);
         }
@@ -556,10 +556,10 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void ConvertToPPPoETest()
         {
-            string expected = NativeMethods.RASDT_PPPoE;
+            var expected = NativeMethods.RASDT_PPPoE;
 
-            RasDeviceTypeConverter target = new RasDeviceTypeConverter();
-            string actual = (string)target.ConvertTo(RasDeviceType.PPPoE, typeof(string));
+            var target = new RasDeviceTypeConverter();
+            var actual = (string)target.ConvertTo(RasDeviceType.PPPoE, typeof(string));
 
             Assert.AreEqual(expected, actual);
         }

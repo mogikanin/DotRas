@@ -77,7 +77,7 @@ namespace DotRas
         /// <returns>An object that represents the converted value.</returns>
         public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
         {
-            string v = value as string;
+            var v = value as string;
             if (v != null)
             {
                 if (culture == null)
@@ -160,7 +160,7 @@ namespace DotRas
         {
             if (destinationType == typeof(string))
             {
-                RasDeviceType deviceType = (RasDeviceType)value;
+                var deviceType = (RasDeviceType)value;
 
                 switch (deviceType)
                 {

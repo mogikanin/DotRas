@@ -806,7 +806,7 @@ namespace DotRas
                 ThrowHelper.ThrowArgumentNullException("device");
             }
 
-            RasEntry entry = new RasEntry(name);
+            var entry = new RasEntry(name);
 
             entry.Device = device;
             entry.EncryptionType = RasEncryptionType.Require;
@@ -912,7 +912,7 @@ namespace DotRas
                 ThrowHelper.ThrowArgumentNullException("device");
             }
 
-            RasEntry entry = new RasEntry(name);
+            var entry = new RasEntry(name);
 
             entry.Device = device;
             entry.EncryptionType = RasEncryptionType.Optional;
@@ -961,12 +961,12 @@ namespace DotRas
         /// <returns>A new <see cref="DotRas.RasEntry"/> object.</returns>
         public object Clone()
         {
-            RasEntry retval = new RasEntry(Name);
+            var retval = new RasEntry(Name);
 
             if (AlternatePhoneNumbers != null && AlternatePhoneNumbers.Count > 0)
             {
                 retval.AlternatePhoneNumbers = new Collection<string>();
-                foreach (string value in AlternatePhoneNumbers)
+                foreach (var value in AlternatePhoneNumbers)
                 {
                     retval.AlternatePhoneNumbers.Add(value);
                 }
@@ -1005,7 +1005,7 @@ namespace DotRas
 
             if (SubEntries != null && SubEntries.Count > 0)
             {
-                foreach (RasSubEntry subEntry in SubEntries)
+                foreach (var subEntry in SubEntries)
                 {
                     retval.SubEntries.Add((RasSubEntry)subEntry.Clone());
                 }
@@ -1060,12 +1060,13 @@ namespace DotRas
                 ThrowHelper.ThrowInvalidOperationException(Resources.Exception_EntryNotInPhoneBook);
             }
 
-            NativeMethods.RASCREDENTIALS credentials = new NativeMethods.RASCREDENTIALS();
-            credentials.userName = string.Empty;
-            credentials.password = string.Empty;
-            credentials.domain = string.Empty;
-
-            credentials.options = NativeMethods.RASCM.UserName | NativeMethods.RASCM.Password | NativeMethods.RASCM.Domain;
+            var credentials = new NativeMethods.RASCREDENTIALS
+            {
+                userName = string.Empty,
+                password = string.Empty,
+                domain = string.Empty,
+                options = NativeMethods.RASCM.UserName | NativeMethods.RASCM.Password | NativeMethods.RASCM.Domain
+            };
 
             return RasHelper.Instance.SetCredentials(Owner.Path, Name, credentials, true);
         }
@@ -1090,8 +1091,7 @@ namespace DotRas
                 ThrowHelper.ThrowInvalidOperationException(Resources.Exception_EntryNotInPhoneBook);
             }
 
-            NativeMethods.RASCREDENTIALS credentials = new NativeMethods.RASCREDENTIALS();
-            credentials.password = string.Empty;
+            var credentials = new NativeMethods.RASCREDENTIALS {password = string.Empty};
 
             switch (key)
             {
@@ -1150,7 +1150,7 @@ namespace DotRas
                 ThrowHelper.ThrowInvalidOperationException(Resources.Exception_EntryNotInPhoneBook);
             }
 
-            NativeMethods.RASCM value = NativeMethods.RASCM.None;
+            var value = NativeMethods.RASCM.None;
             switch (key)
             {
                 case RasPreSharedKey.Client:
@@ -1216,7 +1216,7 @@ namespace DotRas
                 ThrowHelper.ThrowArgumentException("newEntryName", Resources.Argument_StringCannotBeNullOrEmpty);
             }
 
-            bool retval = false;
+            var retval = false;
 
             if (Owner == null)
             {
@@ -1248,7 +1248,7 @@ namespace DotRas
         /// <returns><b>true</b> if the operation was successful, otherwise <b>false</b>.</returns>
         public bool Remove()
         {
-            bool retval = false;
+            var retval = false;
 
             if (Owner != null)
             {
@@ -1383,8 +1383,7 @@ namespace DotRas
                 ThrowHelper.ThrowInvalidOperationException(Resources.Exception_EntryNotInPhoneBook);
             }
 
-            NativeMethods.RASCREDENTIALS credentials = new NativeMethods.RASCREDENTIALS();
-            credentials.password = value;
+            var credentials = new NativeMethods.RASCREDENTIALS {password = value};
 
             switch (key)
             {

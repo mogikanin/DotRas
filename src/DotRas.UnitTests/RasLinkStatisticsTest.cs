@@ -48,8 +48,8 @@ namespace DotRas.UnitTests
         {
             long expected = 1;
 
-            RasLinkStatistics target = new RasLinkStatistics(expected, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, TimeSpan.FromMilliseconds(0));
-            long actual = target.BytesTransmitted;
+            var target = new RasLinkStatistics(expected, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, TimeSpan.FromMilliseconds(0));
+            var actual = target.BytesTransmitted;
 
             Assert.AreEqual(expected, actual);
         }
@@ -63,8 +63,8 @@ namespace DotRas.UnitTests
         {
             long expected = uint.MaxValue;
 
-            RasLinkStatistics target = new RasLinkStatistics(expected, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, TimeSpan.FromMilliseconds(0));
-            long actual = target.BytesTransmitted;
+            var target = new RasLinkStatistics(expected, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, TimeSpan.FromMilliseconds(0));
+            var actual = target.BytesTransmitted;
 
             Assert.AreEqual(expected, actual);
         }
@@ -82,8 +82,8 @@ namespace DotRas.UnitTests
         {
             long expected = 1;
 
-            RasLinkStatistics target = new RasLinkStatistics(0, expected, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, TimeSpan.FromMilliseconds(0));
-            long actual = target.BytesReceived;
+            var target = new RasLinkStatistics(0, expected, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, TimeSpan.FromMilliseconds(0));
+            var actual = target.BytesReceived;
 
             Assert.AreEqual(expected, actual);
         }
@@ -97,8 +97,8 @@ namespace DotRas.UnitTests
         {
             long expected = uint.MaxValue;
 
-            RasLinkStatistics target = new RasLinkStatistics(0, expected, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, TimeSpan.FromMilliseconds(0));
-            long actual = target.BytesReceived;
+            var target = new RasLinkStatistics(0, expected, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, TimeSpan.FromMilliseconds(0));
+            var actual = target.BytesReceived;
 
             Assert.AreEqual(expected, actual);
         }
@@ -116,8 +116,8 @@ namespace DotRas.UnitTests
         {
             long expected = 1;
 
-            RasLinkStatistics target = new RasLinkStatistics(0, 0, expected, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, TimeSpan.FromMilliseconds(0));
-            long actual = target.FramesTransmitted;
+            var target = new RasLinkStatistics(0, 0, expected, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, TimeSpan.FromMilliseconds(0));
+            var actual = target.FramesTransmitted;
 
             Assert.AreEqual(expected, actual);
         }
@@ -131,8 +131,8 @@ namespace DotRas.UnitTests
         {
             long expected = uint.MaxValue;
 
-            RasLinkStatistics target = new RasLinkStatistics(0, 0, expected, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, TimeSpan.FromMilliseconds(0));
-            long actual = target.FramesTransmitted;
+            var target = new RasLinkStatistics(0, 0, expected, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, TimeSpan.FromMilliseconds(0));
+            var actual = target.FramesTransmitted;
 
             Assert.AreEqual(expected, actual);
         }
@@ -150,8 +150,8 @@ namespace DotRas.UnitTests
         {
             long expected = 1;
 
-            RasLinkStatistics target = new RasLinkStatistics(0, 0, 0, expected, 0, 0, 0, 0, 0, 0, 0, 0, 0, TimeSpan.FromMilliseconds(0));
-            long actual = target.FramesReceived;
+            var target = new RasLinkStatistics(0, 0, 0, expected, 0, 0, 0, 0, 0, 0, 0, 0, 0, TimeSpan.FromMilliseconds(0));
+            var actual = target.FramesReceived;
 
             Assert.AreEqual(expected, actual);
         }
@@ -165,8 +165,8 @@ namespace DotRas.UnitTests
         {
             long expected = uint.MaxValue;
 
-            RasLinkStatistics target = new RasLinkStatistics(0, 0, 0, expected, 0, 0, 0, 0, 0, 0, 0, 0, 0, TimeSpan.FromMilliseconds(0));
-            long actual = target.FramesReceived;
+            var target = new RasLinkStatistics(0, 0, 0, expected, 0, 0, 0, 0, 0, 0, 0, 0, 0, TimeSpan.FromMilliseconds(0));
+            var actual = target.FramesReceived;
 
             Assert.AreEqual(expected, actual);
         }
@@ -184,8 +184,8 @@ namespace DotRas.UnitTests
         {
             long expected = 1;
 
-            RasLinkStatistics target = new RasLinkStatistics(0, 0, 0, 0, expected, 0, 0, 0, 0, 0, 0, 0, 0, TimeSpan.FromMilliseconds(0));
-            long actual = target.CrcError;
+            var target = new RasLinkStatistics(0, 0, 0, 0, expected, 0, 0, 0, 0, 0, 0, 0, 0, TimeSpan.FromMilliseconds(0));
+            var actual = target.CrcError;
 
             Assert.AreEqual(expected, actual);
         }
@@ -199,8 +199,8 @@ namespace DotRas.UnitTests
         {
             long expected = uint.MaxValue;
 
-            RasLinkStatistics target = new RasLinkStatistics(0, 0, 0, 0, expected, 0, 0, 0, 0, 0, 0, 0, 0, TimeSpan.FromMilliseconds(0));
-            long actual = target.CrcError;
+            var target = new RasLinkStatistics(0, 0, 0, 0, expected, 0, 0, 0, 0, 0, 0, 0, 0, TimeSpan.FromMilliseconds(0));
+            var actual = target.CrcError;
 
             Assert.AreEqual(expected, actual);
         }
@@ -218,8 +218,8 @@ namespace DotRas.UnitTests
         {
             long expected = 1;
 
-            RasLinkStatistics target = new RasLinkStatistics(0, 0, 0, 0, 0, expected, 0, 0, 0, 0, 0, 0, 0, TimeSpan.FromMilliseconds(0));
-            long actual = target.TimeoutError;
+            var target = new RasLinkStatistics(0, 0, 0, 0, 0, expected, 0, 0, 0, 0, 0, 0, 0, TimeSpan.FromMilliseconds(0));
+            var actual = target.TimeoutError;
 
             Assert.AreEqual(expected, actual);
         }
@@ -233,8 +233,8 @@ namespace DotRas.UnitTests
         {
             long expected = uint.MaxValue;
 
-            RasLinkStatistics target = new RasLinkStatistics(0, 0, 0, 0, 0, expected, 0, 0, 0, 0, 0, 0, 0, TimeSpan.FromMilliseconds(0));
-            long actual = target.TimeoutError;
+            var target = new RasLinkStatistics(0, 0, 0, 0, 0, expected, 0, 0, 0, 0, 0, 0, 0, TimeSpan.FromMilliseconds(0));
+            var actual = target.TimeoutError;
 
             Assert.AreEqual(expected, actual);
         }
@@ -252,8 +252,8 @@ namespace DotRas.UnitTests
         {
             long expected = 1;
 
-            RasLinkStatistics target = new RasLinkStatistics(0, 0, 0, 0, 0, 0, expected, 0, 0, 0, 0, 0, 0, TimeSpan.FromMilliseconds(0));
-            long actual = target.AlignmentError;
+            var target = new RasLinkStatistics(0, 0, 0, 0, 0, 0, expected, 0, 0, 0, 0, 0, 0, TimeSpan.FromMilliseconds(0));
+            var actual = target.AlignmentError;
 
             Assert.AreEqual(expected, actual);
         }
@@ -267,8 +267,8 @@ namespace DotRas.UnitTests
         {
             long expected = uint.MaxValue;
 
-            RasLinkStatistics target = new RasLinkStatistics(0, 0, 0, 0, 0, 0, expected, 0, 0, 0, 0, 0, 0, TimeSpan.FromMilliseconds(0));
-            long actual = target.AlignmentError;
+            var target = new RasLinkStatistics(0, 0, 0, 0, 0, 0, expected, 0, 0, 0, 0, 0, 0, TimeSpan.FromMilliseconds(0));
+            var actual = target.AlignmentError;
 
             Assert.AreEqual(expected, actual);
         }
@@ -286,8 +286,8 @@ namespace DotRas.UnitTests
         {
             long expected = 1;
 
-            RasLinkStatistics target = new RasLinkStatistics(0, 0, 0, 0, 0, 0, 0, expected, 0, 0, 0, 0, 0, TimeSpan.FromMilliseconds(0));
-            long actual = target.HardwareOverrunError;
+            var target = new RasLinkStatistics(0, 0, 0, 0, 0, 0, 0, expected, 0, 0, 0, 0, 0, TimeSpan.FromMilliseconds(0));
+            var actual = target.HardwareOverrunError;
 
             Assert.AreEqual(expected, actual);
         }
@@ -301,8 +301,8 @@ namespace DotRas.UnitTests
         {
             long expected = uint.MaxValue;
 
-            RasLinkStatistics target = new RasLinkStatistics(0, 0, 0, 0, 0, 0, 0, expected, 0, 0, 0, 0, 0, TimeSpan.FromMilliseconds(0));
-            long actual = target.HardwareOverrunError;
+            var target = new RasLinkStatistics(0, 0, 0, 0, 0, 0, 0, expected, 0, 0, 0, 0, 0, TimeSpan.FromMilliseconds(0));
+            var actual = target.HardwareOverrunError;
 
             Assert.AreEqual(expected, actual);
         }
@@ -320,8 +320,8 @@ namespace DotRas.UnitTests
         {
             long expected = 1;
 
-            RasLinkStatistics target = new RasLinkStatistics(0, 0, 0, 0, 0, 0, 0, 0, expected, 0, 0, 0, 0, TimeSpan.FromMilliseconds(0));
-            long actual = target.FramingError;
+            var target = new RasLinkStatistics(0, 0, 0, 0, 0, 0, 0, 0, expected, 0, 0, 0, 0, TimeSpan.FromMilliseconds(0));
+            var actual = target.FramingError;
 
             Assert.AreEqual(expected, actual);
         }
@@ -335,8 +335,8 @@ namespace DotRas.UnitTests
         {
             long expected = uint.MaxValue;
 
-            RasLinkStatistics target = new RasLinkStatistics(0, 0, 0, 0, 0, 0, 0, 0, expected, 0, 0, 0, 0, TimeSpan.FromMilliseconds(0));
-            long actual = target.FramingError;
+            var target = new RasLinkStatistics(0, 0, 0, 0, 0, 0, 0, 0, expected, 0, 0, 0, 0, TimeSpan.FromMilliseconds(0));
+            var actual = target.FramingError;
 
             Assert.AreEqual(expected, actual);
         }
@@ -354,8 +354,8 @@ namespace DotRas.UnitTests
         {
             long expected = 1;
 
-            RasLinkStatistics target = new RasLinkStatistics(0, 0, 0, 0, 0, 0, 0, 0, 0, expected, 0, 0, 0, TimeSpan.FromMilliseconds(0));
-            long actual = target.BufferOverrunError;
+            var target = new RasLinkStatistics(0, 0, 0, 0, 0, 0, 0, 0, 0, expected, 0, 0, 0, TimeSpan.FromMilliseconds(0));
+            var actual = target.BufferOverrunError;
 
             Assert.AreEqual(expected, actual);
         }
@@ -369,8 +369,8 @@ namespace DotRas.UnitTests
         {
             long expected = uint.MaxValue;
 
-            RasLinkStatistics target = new RasLinkStatistics(0, 0, 0, 0, 0, 0, 0, 0, 0, expected, 0, 0, 0, TimeSpan.FromMilliseconds(0));
-            long actual = target.BufferOverrunError;
+            var target = new RasLinkStatistics(0, 0, 0, 0, 0, 0, 0, 0, 0, expected, 0, 0, 0, TimeSpan.FromMilliseconds(0));
+            var actual = target.BufferOverrunError;
 
             Assert.AreEqual(expected, actual);
         }
@@ -388,8 +388,8 @@ namespace DotRas.UnitTests
         {
             long expected = 1;
 
-            RasLinkStatistics target = new RasLinkStatistics(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, expected, 0, 0, TimeSpan.FromMilliseconds(0));
-            long actual = target.CompressionRatioIn;
+            var target = new RasLinkStatistics(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, expected, 0, 0, TimeSpan.FromMilliseconds(0));
+            var actual = target.CompressionRatioIn;
 
             Assert.AreEqual(expected, actual);
         }
@@ -403,8 +403,8 @@ namespace DotRas.UnitTests
         {
             long expected = uint.MaxValue;
 
-            RasLinkStatistics target = new RasLinkStatistics(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, expected, 0, 0, TimeSpan.FromMilliseconds(0));
-            long actual = target.CompressionRatioIn;
+            var target = new RasLinkStatistics(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, expected, 0, 0, TimeSpan.FromMilliseconds(0));
+            var actual = target.CompressionRatioIn;
 
             Assert.AreEqual(expected, actual);
         }
@@ -422,8 +422,8 @@ namespace DotRas.UnitTests
         {
             long expected = 1;
 
-            RasLinkStatistics target = new RasLinkStatistics(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, expected, 0, TimeSpan.FromMilliseconds(0));
-            long actual = target.CompressionRatioOut;
+            var target = new RasLinkStatistics(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, expected, 0, TimeSpan.FromMilliseconds(0));
+            var actual = target.CompressionRatioOut;
 
             Assert.AreEqual(expected, actual);
         }
@@ -437,8 +437,8 @@ namespace DotRas.UnitTests
         {
             long expected = uint.MaxValue;
 
-            RasLinkStatistics target = new RasLinkStatistics(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, expected, 0, TimeSpan.FromMilliseconds(0));
-            long actual = target.CompressionRatioOut;
+            var target = new RasLinkStatistics(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, expected, 0, TimeSpan.FromMilliseconds(0));
+            var actual = target.CompressionRatioOut;
 
             Assert.AreEqual(expected, actual);
         }
@@ -456,8 +456,8 @@ namespace DotRas.UnitTests
         {
             long expected = 1;
 
-            RasLinkStatistics target = new RasLinkStatistics(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, expected, TimeSpan.FromMilliseconds(0));
-            long actual = target.LinkSpeed;
+            var target = new RasLinkStatistics(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, expected, TimeSpan.FromMilliseconds(0));
+            var actual = target.LinkSpeed;
 
             Assert.AreEqual(expected, actual);
         }
@@ -471,8 +471,8 @@ namespace DotRas.UnitTests
         {
             long expected = uint.MaxValue;
 
-            RasLinkStatistics target = new RasLinkStatistics(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, expected, TimeSpan.FromMilliseconds(0));
-            long actual = target.LinkSpeed;
+            var target = new RasLinkStatistics(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, expected, TimeSpan.FromMilliseconds(0));
+            var actual = target.LinkSpeed;
 
             Assert.AreEqual(expected, actual);
         }
@@ -488,10 +488,10 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void ConnectionDurationTest()
         {
-            TimeSpan expected = TimeSpan.FromMilliseconds(1);
+            var expected = TimeSpan.FromMilliseconds(1);
 
-            RasLinkStatistics target = new RasLinkStatistics(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, expected);
-            TimeSpan actual = target.ConnectionDuration;
+            var target = new RasLinkStatistics(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, expected);
+            var actual = target.ConnectionDuration;
 
             Assert.AreEqual(expected, actual);
         }
@@ -503,10 +503,10 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void ConnectionDurationOverflowTest()
         {
-            TimeSpan expected = TimeSpan.FromMilliseconds(uint.MaxValue);
+            var expected = TimeSpan.FromMilliseconds(uint.MaxValue);
 
-            RasLinkStatistics target = new RasLinkStatistics(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, expected);
-            TimeSpan actual = target.ConnectionDuration;
+            var target = new RasLinkStatistics(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, expected);
+            var actual = target.ConnectionDuration;
 
             Assert.AreEqual(expected, actual);
         }

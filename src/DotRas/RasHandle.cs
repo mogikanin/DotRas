@@ -90,7 +90,7 @@ namespace DotRas
         /// <returns><b>true</b> if <paramref name="obj"/> is equal to the current object, otherwise <b>false</b>.</returns>
         public override bool Equals(object obj)
         {
-            RasHandle handle = obj as RasHandle;
+            var handle = obj as RasHandle;
 
             if (!ReferenceEquals(handle, null))
             {

@@ -146,10 +146,12 @@ namespace DotRas
         /// <returns><b>true</b> if the user completed the entry successfully, otherwise <b>false</b>.</returns>
         protected override bool RunDialog(IntPtr hwndOwner)
         {
-            NativeMethods.RASDIALDLG dlg = new NativeMethods.RASDIALDLG();
-            dlg.size = Marshal.SizeOf(typeof(NativeMethods.RASDIALDLG));
-            dlg.hwndOwner = hwndOwner;
-            dlg.subEntryId = SubEntryId;
+            var dlg = new NativeMethods.RASDIALDLG
+            {
+                size = Marshal.SizeOf(typeof(NativeMethods.RASDIALDLG)),
+                hwndOwner = hwndOwner,
+                subEntryId = SubEntryId
+            };
 
             if (Location != Point.Empty)
             {
@@ -159,13 +161,13 @@ namespace DotRas
                 dlg.flags |= NativeMethods.RASDDFLAG.PositionDlg;
             }
 
-            bool retval = false;
+            var retval = false;
             try
             {
                 retval = UnsafeNativeMethods.Instance.DialDlg(PhoneBookPath, EntryName, PhoneNumber, ref dlg);
                 if (!retval && dlg.error != NativeMethods.SUCCESS)
                 {
-                    RasErrorEventArgs e = new RasErrorEventArgs(dlg.error, RasHelper.Instance.GetRasErrorString(dlg.error));
+                    var e = new RasErrorEventArgs(dlg.error, RasHelper.Instance.GetRasErrorString(dlg.error));
                     OnError(e);
                 }
             }

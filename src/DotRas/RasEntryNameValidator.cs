@@ -132,7 +132,7 @@ namespace DotRas
         {
             try
             {
-                int errorCode = SafeNativeMethods.Instance.ValidateEntryName(PhoneBookPath, EntryName);
+                var errorCode = SafeNativeMethods.Instance.ValidateEntryName(PhoneBookPath, EntryName);
 
                 if (errorCode == NativeMethods.SUCCESS || (AllowExistingEntries && errorCode == NativeMethods.ERROR_ALREADY_EXISTS) || (AllowNonExistentPhoneBook && errorCode == NativeMethods.ERROR_CANNOT_OPEN_PHONEBOOK))
                 {

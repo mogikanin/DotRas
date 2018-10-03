@@ -70,7 +70,7 @@ namespace DotRas
         /// <returns>An <see cref="System.Object"/> that represents the converted value.</returns>
         public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
         {
-            string data = (string)value;
+            var data = (string)value;
             if (data == null)
             {
                 return base.ConvertFrom(context, culture, value);
@@ -82,18 +82,15 @@ namespace DotRas
                 return null;
             }
 
-            if (culture == null)
+            var items = data.Split(culture.TextInfo.ListSeparator.ToCharArray());
+            var converter = TypeDescriptor.GetConverter(typeof(bool));
+
+            var retval = new RasEapOptions
             {
-                culture = CultureInfo.CurrentCulture;
-            }
-
-            string[] items = data.Split(culture.TextInfo.ListSeparator.ToCharArray());
-            TypeConverter converter = TypeDescriptor.GetConverter(typeof(bool));
-
-            RasEapOptions retval = new RasEapOptions();
-            retval.NonInteractive = (bool)converter.ConvertFromString(context, culture, items[0]);
-            retval.LogOn = (bool)converter.ConvertFromString(context, culture, items[1]);
-            retval.Preview = (bool)converter.ConvertFromString(context, culture, items[2]);
+                NonInteractive = (bool) converter.ConvertFromString(context, culture, items[0]),
+                LogOn = (bool) converter.ConvertFromString(context, culture, items[1]),
+                Preview = (bool) converter.ConvertFromString(context, culture, items[2])
+            };
 
             return retval;
         }
@@ -113,7 +110,7 @@ namespace DotRas
                 ThrowHelper.ThrowArgumentNullException("destinationType");
             }
 
-            RasEapOptions options = value as RasEapOptions;
+            var options = value as RasEapOptions;
             if (options != null)
             {
                 if (culture == null)
@@ -123,7 +120,7 @@ namespace DotRas
 
                 if (destinationType == typeof(InstanceDescriptor))
                 {
-                    ConstructorInfo constructor = typeof(RasEapOptions).GetConstructor(new Type[] { typeof(bool), typeof(bool), typeof(bool) });
+                    var constructor = typeof(RasEapOptions).GetConstructor(new Type[] { typeof(bool), typeof(bool), typeof(bool) });
                     if (constructor != null)
                     {
                         return new InstanceDescriptor(constructor, new object[] { options.NonInteractive, options.LogOn, options.Preview });

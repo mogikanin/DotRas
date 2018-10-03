@@ -396,7 +396,7 @@ namespace DotRas
             if (projectionType == RasProjectionType.Ppp || projectionType == RasProjectionType.IkeV2)
             {
                 // The projection type requested is for the new projection types, pull it from the new extended method.
-                object retval = RasHelper.Instance.GetProjectionInfoEx(Handle);
+                var retval = RasHelper.Instance.GetProjectionInfoEx(Handle);
                 if (retval != null && ((projectionType == RasProjectionType.Ppp && (!(retval is RasPppInfo))) || (projectionType == RasProjectionType.IkeV2 && (!(retval is RasIkeV2Info)))))
                 {
                     retval = null;
@@ -408,7 +408,7 @@ namespace DotRas
 #endif
 
             // Use the standard projection method to retrieve the data.
-            NativeMethods.RASPROJECTION projection = NativeMethods.RASPROJECTION.Amb;
+            var projection = NativeMethods.RASPROJECTION.Amb;
             switch (projectionType)
             {
                 case RasProjectionType.Amb:

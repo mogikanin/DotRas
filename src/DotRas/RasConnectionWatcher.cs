@@ -209,7 +209,7 @@ namespace DotRas
         /// </summary>
         public void BeginInit()
         {
-            bool enabled = EnableRaisingEvents;
+            var enabled = EnableRaisingEvents;
             StopRaisingEvents();
 
             EnableRaisingEvents = enabled;
@@ -248,11 +248,11 @@ namespace DotRas
         {
             RasConnection entry = null;
 
-            foreach (RasConnection connectionA in collectionA)
+            foreach (var connectionA in collectionA)
             {
-                bool found = false;
+                var found = false;
 
-                foreach (RasConnection connectionB in collectionB)
+                foreach (var connectionB in collectionB)
                 {
                     if (connectionA.EntryId == connectionB.EntryId)
                     {
@@ -308,11 +308,11 @@ namespace DotRas
         {
             if (!IsSuspended() && EnableRaisingEvents)
             {				
-                int count = _stateObjects.Count;
+                var count = _stateObjects.Count;
 
-                for (int index = 0; index < count; index++)
+                for (var index = 0; index < count; index++)
                 {
-                    RasConnectionWatcherStateObject item = _stateObjects[0];
+                    var item = _stateObjects[0];
                     if (item != null)
                     {
                         Unregister(item);
@@ -341,14 +341,13 @@ namespace DotRas
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope", Justification = "The event must be disposed only after the change type is unregistered.")]
         private void Register(NativeMethods.RASCN changeType, RasHandle handle)
         {
-            AutoResetEvent waitObject = new AutoResetEvent(false);
+            var waitObject = new AutoResetEvent(false);
 
-            int ret = SafeNativeMethods.Instance.RegisterConnectionNotification(handle, waitObject.SafeWaitHandle, changeType);
+            var ret = SafeNativeMethods.Instance.RegisterConnectionNotification(handle, waitObject.SafeWaitHandle, changeType);
             if (ret == NativeMethods.SUCCESS)
             {
-                RasConnectionWatcherStateObject stateObject = new RasConnectionWatcherStateObject(changeType);
+                var stateObject = new RasConnectionWatcherStateObject(changeType) {WaitObject = waitObject};
 
-                stateObject.WaitObject = waitObject;
                 stateObject.WaitHandle = ThreadPool.RegisterWaitForSingleObject(waitObject, new WaitOrTimerCallback(ConnectionStateChanged), stateObject, Timeout.Infinite, false);
 
                 _stateObjects.Add(stateObject);
@@ -376,7 +375,7 @@ namespace DotRas
         /// <returns><b>true</b> if the component is suspended, otherwise <b>false</b>.</returns>
         private bool IsSuspended()
         {
-            bool retval = true;
+            var retval = true;
 
             if (!_initializing)
             {
@@ -401,7 +400,7 @@ namespace DotRas
                     try
                     {
                         // Retrieve the active connections to compare against the last state that was checked.
-                        ReadOnlyCollection<RasConnection> connections = RasConnection.GetActiveConnections();
+                        var connections = RasConnection.GetActiveConnections();
                         RasConnection connection = null;
 
                         switch (((RasConnectionWatcherStateObject)obj).ChangeType)

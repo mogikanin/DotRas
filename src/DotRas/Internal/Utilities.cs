@@ -38,7 +38,7 @@ namespace DotRas.Internal
         /// <returns>The managed object.</returns>
         public static T PtrToStructure<T>(IntPtr ptr)
         {
-            T result = default(T);
+            var result = default(T);
 
             try
             {
@@ -66,7 +66,7 @@ namespace DotRas.Internal
                 }
 
                 // The file does not exist, create the new file.
-                using (FileStream fs = new FileStream(file.FullName, FileMode.Create))
+                using (var fs = new FileStream(file.FullName, FileMode.Create))
                 {
                 }
             }
@@ -102,7 +102,7 @@ namespace DotRas.Internal
         /// <exception cref="System.ArgumentNullException"><paramref name="entry"/> is a null reference (<b>Nothing</b> in Visual Basic).</exception>
         public static NativeMethods.RASEO GetRasEntryOptions(RasEntry entry)
         {
-            NativeMethods.RASEO options = NativeMethods.RASEO.None;
+            var options = NativeMethods.RASEO.None;
 
             if (entry != null)
             {
@@ -151,7 +151,7 @@ namespace DotRas.Internal
         {
             if (entry != null)
             {
-                RasEntryOptions options = entry.Options;
+                var options = entry.Options;
 
                 options.UseCountryAndAreaCodes = HasFlag(value, NativeMethods.RASEO.UseCountryAndAreaCodes);
                 options.IPHeaderCompression = HasFlag(value, NativeMethods.RASEO.IPHeaderCompression);
@@ -196,7 +196,7 @@ namespace DotRas.Internal
         {
             if (connection != null)
             {
-                RasConnectionOptions options = connection.ConnectionOptions;
+                var options = connection.ConnectionOptions;
 
                 options.AllUsers = HasFlag(value, NativeMethods.RASCF.AllUsers);
                 options.GlobalCredentials = HasFlag(value, NativeMethods.RASCF.GlobalCredentials);
@@ -216,7 +216,7 @@ namespace DotRas.Internal
         {
             if (entry != null)
             {
-                RasNetworkProtocols protocols = entry.NetworkProtocols;
+                var protocols = entry.NetworkProtocols;
 
 #pragma warning disable 0618
                 protocols.NetBeui = HasFlag(value, NativeMethods.RASNP.NetBeui);
@@ -238,7 +238,7 @@ namespace DotRas.Internal
         /// <returns>The <see cref="NativeMethods.RASNP"/> flags.</returns>
         public static NativeMethods.RASNP GetRasNetworkProtocols(RasNetworkProtocols value)
         {
-            NativeMethods.RASNP protocols = NativeMethods.RASNP.None;
+            var protocols = NativeMethods.RASNP.None;
 
             if (value != null)
             {
@@ -272,7 +272,7 @@ namespace DotRas.Internal
                 ThrowHelper.ThrowArgumentNullException("entry");
             }
 
-            NativeMethods.RASEO2 options = NativeMethods.RASEO2.None;
+            var options = NativeMethods.RASEO2.None;
 
             options |= (NativeMethods.RASEO2)SetFlag(entry.Options.SecureFileAndPrint, NativeMethods.RASEO2.SecureFileAndPrint);
             options |= (NativeMethods.RASEO2)SetFlag(entry.Options.SecureClientForMSNet, NativeMethods.RASEO2.SecureClientForMSNet);
@@ -330,7 +330,7 @@ namespace DotRas.Internal
                 ThrowHelper.ThrowArgumentNullException("entry");
             }
 
-            RasEntryOptions options = entry.Options;
+            var options = entry.Options;
 
             options.SecureFileAndPrint = HasFlag(value, NativeMethods.RASEO2.SecureFileAndPrint);
             options.SecureClientForMSNet = HasFlag(value, NativeMethods.RASEO2.SecureClientForMSNet);
@@ -421,11 +421,11 @@ namespace DotRas.Internal
         /// <returns>An new array of <typeparamref name="T"/> objects.</returns>
         public static T[] CreateArrayOfType<T>(IntPtr ptr, int size, int count)
         {
-            T[] retval = new T[count];
+            var retval = new T[count];
 
-            for (int pos = 0; pos < count; pos++)
+            for (var pos = 0; pos < count; pos++)
             {
-                IntPtr tempPtr = new IntPtr(ptr.ToInt64() + (pos * size));
+                var tempPtr = new IntPtr(ptr.ToInt64() + (pos * size));
 
                 retval[pos] = (T)Marshal.PtrToStructure(tempPtr, typeof(T));
             }
@@ -455,7 +455,7 @@ namespace DotRas.Internal
 
             totalSize = array.Length * size;
 
-            IntPtr ptr = Marshal.AllocHGlobal(totalSize);
+            var ptr = Marshal.AllocHGlobal(totalSize);
             CopyObjectsToPtr<T>(array, ptr, ref size);
 
             return ptr;
@@ -480,9 +480,9 @@ namespace DotRas.Internal
                 size = Marshal.SizeOf(typeof(T));
             }
 
-            for (int pos = 0; pos < array.Length; pos++)
+            for (var pos = 0; pos < array.Length; pos++)
             {
-                IntPtr tempPtr = new IntPtr(ptr.ToInt64() + (pos * size));
+                var tempPtr = new IntPtr(ptr.ToInt64() + (pos * size));
 
                 Marshal.StructureToPtr(array[pos], tempPtr, true);
             }
@@ -497,14 +497,14 @@ namespace DotRas.Internal
         /// <returns>A new collection of strings.</returns>
         public static Collection<string> CreateStringCollectionByCount(IntPtr ptr, int offset, int count)
         {
-            Collection<string> retval = new Collection<string>();
+            var retval = new Collection<string>();
 
-            IntPtr pItem = new IntPtr(ptr.ToInt64() + offset);
-            int index = 0;
+            var pItem = new IntPtr(ptr.ToInt64() + offset);
+            var index = 0;
 
             do
             {
-                string item = Marshal.PtrToStringUni(pItem);
+                var item = Marshal.PtrToStringUni(pItem);
                 if (string.IsNullOrEmpty(item))
                 {
                     break;
@@ -531,14 +531,14 @@ namespace DotRas.Internal
         /// <returns>A new collection of strings.</returns>
         public static Collection<string> CreateStringCollectionByLength(IntPtr ptr, int offset, int length)
         {
-            Collection<string> retval = new Collection<string>();
+            var retval = new Collection<string>();
 
-            IntPtr pItem = new IntPtr(ptr.ToInt64() + offset);
-            int pos = 0;
+            var pItem = new IntPtr(ptr.ToInt64() + offset);
+            var pos = 0;
 
             do
             {
-                string item = Marshal.PtrToStringUni(pItem);
+                var item = Marshal.PtrToStringUni(pItem);
                 if (string.IsNullOrEmpty(item))
                 {
                     break;
@@ -547,7 +547,7 @@ namespace DotRas.Internal
                 {
                     retval.Add(item);
 
-                    int currentLength = (item.Length * 2) + 2;
+                    var currentLength = (item.Length * 2) + 2;
 
                     pItem = new IntPtr(pItem.ToInt64() + currentLength);
                     pos += currentLength;
@@ -573,9 +573,9 @@ namespace DotRas.Internal
                 ThrowHelper.ThrowArgumentNullException("value");
             }
 
-            IntPtr pDestination = new IntPtr(ptr.ToInt64() + offset);
+            var pDestination = new IntPtr(ptr.ToInt64() + offset);
 
-            IntPtr pSource = IntPtr.Zero;
+            var pSource = IntPtr.Zero;
             try
             {
                 pSource = Marshal.StringToHGlobalUni(value);
@@ -613,11 +613,11 @@ namespace DotRas.Internal
         /// <returns>The concatenated collection of strings.</returns>
         public static string BuildStringList(Collection<string> collection, char separatorChar, out int length)
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
 
             if (collection != null && collection.Count > 0)
             {
-                foreach (string value in collection)
+                foreach (var value in collection)
                 {
                     if (!string.IsNullOrEmpty(value))
                     {
@@ -677,9 +677,9 @@ namespace DotRas.Internal
                 ThrowHelper.ThrowArgumentNullException("collection");
             }
 
-            List<T> result = new List<T>();
+            var result = new List<T>();
 
-            foreach (T item in collection)
+            foreach (var item in collection)
             {
                 result.Add(item);
             }
@@ -702,11 +702,13 @@ namespace DotRas.Internal
                 return false;
             }
 
-            NativeMethods.RASCREDENTIALS value = new NativeMethods.RASCREDENTIALS();
-            value.userName = credentials.UserName;
-            value.password = credentials.Password;
-            value.domain = credentials.Domain;
-            value.options = NativeMethods.RASCM.UserName | NativeMethods.RASCM.Password | NativeMethods.RASCM.Domain;
+            var value = new NativeMethods.RASCREDENTIALS
+            {
+                userName = credentials.UserName,
+                password = credentials.Password,
+                domain = credentials.Domain,
+                options = NativeMethods.RASCM.UserName | NativeMethods.RASCM.Password | NativeMethods.RASCM.Domain
+            };
 
 #if (WINXP || WIN2K8 || WIN7 || WIN8)
 
@@ -761,17 +763,17 @@ namespace DotRas.Internal
         /// <returns>A new collection of <see cref="System.Net.IPAddress"/> objects.</returns>
         public static Collection<IPAddress> CreateIPv4AddressCollection(IntPtr ptr, int count)
         {
-            Collection<IPAddress> retval = new Collection<IPAddress>();
+            var retval = new Collection<IPAddress>();
 
             if (count > 0)
             {
-                int size = Marshal.SizeOf(typeof(NativeMethods.RASIPADDR));
+                var size = Marshal.SizeOf(typeof(NativeMethods.RASIPADDR));
 
-                for (int index = 0; index < count; index++)
+                for (var index = 0; index < count; index++)
                 {
-                    IntPtr current = new IntPtr(ptr.ToInt64() + (index * size));
+                    var current = new IntPtr(ptr.ToInt64() + (index * size));
 
-                    NativeMethods.RASIPADDR address = PtrToStructure<NativeMethods.RASIPADDR>(current);
+                    var address = PtrToStructure<NativeMethods.RASIPADDR>(current);
                     retval.Add(new IPAddress(address.addr));
                 }
             }
@@ -787,17 +789,17 @@ namespace DotRas.Internal
         /// <returns>A new collection of <see cref="System.Net.IPAddress"/> objects.</returns>
         public static Collection<IPAddress> CreateIPv6AddressCollection(IntPtr ptr, int count)
         {
-            Collection<IPAddress> retval = new Collection<IPAddress>();
+            var retval = new Collection<IPAddress>();
 
             if (count > 0)
             {
-                int size = Marshal.SizeOf(typeof(NativeMethods.RASIPV6ADDR));
+                var size = Marshal.SizeOf(typeof(NativeMethods.RASIPV6ADDR));
 
-                for (int index = 0; index < count; index++)
+                for (var index = 0; index < count; index++)
                 {
-                    IntPtr current = new IntPtr(ptr.ToInt64() + (index * size));
+                    var current = new IntPtr(ptr.ToInt64() + (index * size));
 
-                    NativeMethods.RASIPV6ADDR address = PtrToStructure<NativeMethods.RASIPV6ADDR>(current);
+                    var address = PtrToStructure<NativeMethods.RASIPV6ADDR>(current);
                     retval.Add(new IPAddress(address.addr));
                 }
             }

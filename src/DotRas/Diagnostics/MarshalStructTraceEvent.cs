@@ -61,7 +61,7 @@ namespace DotRas.Diagnostics
                 return "Result is [NULL].";
             }
 
-            object result = SerializeObject(Result);
+            var result = SerializeObject(Result);
             if (result == null)
             {
                 return "Result could not be serialized.";
@@ -77,29 +77,29 @@ namespace DotRas.Diagnostics
 
         private static object SerializeObject(object obj)
         {
-            Type t = obj.GetType();
+            var t = obj.GetType();
 
-            FieldInfo[] fields = t.GetFields(BindingFlags.Public | BindingFlags.Instance);
+            var fields = t.GetFields(BindingFlags.Public | BindingFlags.Instance);
             if (fields != null && fields.Length > 0)
             {
-                StringBuilder sb = new StringBuilder();
+                var sb = new StringBuilder();
 
-                foreach (FieldInfo field in fields)
+                foreach (var field in fields)
                 {
                     object value = null;
 
                     value = ShouldSerialize(field.FieldType) ? SerializeObject(field.GetValue(obj)) : field.GetValue(obj);
 
-                    Array arr = value as Array;
+                    var arr = value as Array;
                     if (arr != null)
                     {
-                        StringBuilder sb2 = new StringBuilder();
+                        var sb2 = new StringBuilder();
 
                         sb2.Append("{ ");
 
-                        for (int index = 0; index < arr.Length; index++)
+                        for (var index = 0; index < arr.Length; index++)
                         {
-                            object current = arr.GetValue(index);
+                            var current = arr.GetValue(index);
 
                             if (ShouldSerialize(current.GetType()))
                             {

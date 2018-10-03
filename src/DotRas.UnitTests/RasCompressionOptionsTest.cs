@@ -59,7 +59,7 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void MultipleFlagsConstructorTest()
         {
-            RasCompressionOptions target = new RasCompressionOptions(NativeMethods.RASCCPO.HistoryLess | NativeMethods.RASCCPO.Encryption128Bit);
+            var target = new RasCompressionOptions(NativeMethods.RASCCPO.HistoryLess | NativeMethods.RASCCPO.Encryption128Bit);
 
             Assert.IsFalse(target.CompressionOnly);
             Assert.IsTrue(target.HistoryLess);
@@ -75,7 +75,7 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void CompressionOnlyConstructorTest()
         {
-            RasCompressionOptions target = new RasCompressionOptions(NativeMethods.RASCCPO.CompressionOnly);
+            var target = new RasCompressionOptions(NativeMethods.RASCCPO.CompressionOnly);
 
             Assert.IsTrue(target.CompressionOnly);
             Assert.IsFalse(target.HistoryLess);
@@ -91,7 +91,7 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void HistoryLessConstructorTest()
         {
-            RasCompressionOptions target = new RasCompressionOptions(NativeMethods.RASCCPO.HistoryLess);
+            var target = new RasCompressionOptions(NativeMethods.RASCCPO.HistoryLess);
 
             Assert.IsFalse(target.CompressionOnly);
             Assert.IsTrue(target.HistoryLess);
@@ -107,7 +107,7 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void Encryption56BitConstructorTest()
         {
-            RasCompressionOptions target = new RasCompressionOptions(NativeMethods.RASCCPO.Encryption56Bit);
+            var target = new RasCompressionOptions(NativeMethods.RASCCPO.Encryption56Bit);
 
             Assert.IsFalse(target.CompressionOnly);
             Assert.IsFalse(target.HistoryLess);
@@ -123,7 +123,7 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void Encryption40BitConstructorTest()
         {
-            RasCompressionOptions target = new RasCompressionOptions(NativeMethods.RASCCPO.Encryption40Bit);
+            var target = new RasCompressionOptions(NativeMethods.RASCCPO.Encryption40Bit);
 
             Assert.IsFalse(target.CompressionOnly);
             Assert.IsFalse(target.HistoryLess);
@@ -139,7 +139,7 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void Encryption128BitConstructorTest()
         {
-            RasCompressionOptions target = new RasCompressionOptions(NativeMethods.RASCCPO.Encryption128Bit);
+            var target = new RasCompressionOptions(NativeMethods.RASCCPO.Encryption128Bit);
 
             Assert.IsFalse(target.CompressionOnly);
             Assert.IsFalse(target.HistoryLess);
@@ -159,9 +159,9 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void CloneTest()
         {
-            RasCompressionOptions target = new RasCompressionOptions(NativeMethods.RASCCPO.CompressionOnly | NativeMethods.RASCCPO.Encryption40Bit | NativeMethods.RASCCPO.HistoryLess);
+            var target = new RasCompressionOptions(NativeMethods.RASCCPO.CompressionOnly | NativeMethods.RASCCPO.Encryption40Bit | NativeMethods.RASCCPO.HistoryLess);
 
-            RasCompressionOptions actual = (RasCompressionOptions)target.Clone();
+            var actual = (RasCompressionOptions)target.Clone();
 
             Assert.AreEqual(target.CompressionOnly, actual.CompressionOnly);
             Assert.AreEqual(target.HistoryLess, actual.HistoryLess);

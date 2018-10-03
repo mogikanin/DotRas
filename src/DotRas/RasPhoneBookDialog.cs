@@ -198,13 +198,15 @@ namespace DotRas
         /// <returns><b>true</b> if the user completed the entry successfully, otherwise <b>false</b>.</returns>
         protected override bool RunDialog(IntPtr hwndOwner)
         {
-            NativeMethods.RASPBDLG dlg = new NativeMethods.RASPBDLG();
-            dlg.size = Marshal.SizeOf(typeof(NativeMethods.RASPBDLG));
-            dlg.hwndOwner = hwndOwner;
-            dlg.callback = rasPhonebookDlgCallback;
-            dlg.callbackId = CallbackId;
-            dlg.reserved = IntPtr.Zero;
-            dlg.reserved2 = IntPtr.Zero;
+            var dlg = new NativeMethods.RASPBDLG
+            {
+                size = Marshal.SizeOf(typeof(NativeMethods.RASPBDLG)),
+                hwndOwner = hwndOwner,
+                callback = rasPhonebookDlgCallback,
+                callbackId = CallbackId,
+                reserved = IntPtr.Zero,
+                reserved2 = IntPtr.Zero
+            };
 
             if (Location != Point.Empty)
             {
@@ -214,7 +216,7 @@ namespace DotRas
                 dlg.flags |= NativeMethods.RASPBDFLAG.PositionDlg;
             }
 
-            bool retval = false;
+            var retval = false;
             try
             {
                 retval = UnsafeNativeMethods.Instance.PhonebookDlg(PhoneBookPath, EntryName, ref dlg);
@@ -314,7 +316,7 @@ namespace DotRas
         /// <param name="data">Pointer to an additional buffer argument whose value depends on the <paramref name="eventType"/> parameter.</param>
         private void RasPhonebookDlgCallback(IntPtr callbackId, NativeMethods.RASPBDEVENT eventType, string text, IntPtr data)
         {
-            RasPhoneBookDialogEventArgs e = new RasPhoneBookDialogEventArgs(callbackId, text, data);
+            var e = new RasPhoneBookDialogEventArgs(callbackId, text, data);
 
             switch (eventType)
             {

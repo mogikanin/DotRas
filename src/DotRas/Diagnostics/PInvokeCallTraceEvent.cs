@@ -99,15 +99,15 @@ namespace DotRas.Diagnostics
         /// <returns>The serialized event data.</returns>
         public override string Serialize()
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
 
             sb.AppendFormat("DllName: {0}", DllName).AppendLine();
             sb.AppendFormat("EntryPoint: {0}", EntryPoint).AppendLine();
             sb.AppendFormat("ResultCode: {0}", ResultCode).AppendLine();
 
-            foreach (KeyValuePair<string, object> pair in Data)
+            foreach (var pair in Data)
             {
-                object value = pair.Value;
+                var value = pair.Value;
                 sb.AppendFormat("{0}: '{1}'", pair.Key, value == null ? "[NULL]" : value).AppendLine();
             }
 

@@ -37,10 +37,10 @@ namespace DotRas.UnitTests
                 return;
             }
 
-            int length = expected.type == NativeMethods.RASTUNNELENDPOINTTYPE.IPv4 ? 4 : 16;
-            byte[] bytes = actual.GetAddressBytes();
+            var length = expected.type == NativeMethods.RASTUNNELENDPOINTTYPE.IPv4 ? 4 : 16;
+            var bytes = actual.GetAddressBytes();
 
-            for (int index = 0; index < length; index++)
+            for (var index = 0; index < length; index++)
             {
                 Assert.AreEqual<byte>(expected.addr[index], bytes[index]);
             }
@@ -251,7 +251,7 @@ namespace DotRas.UnitTests
             }
             else if (expected != null && actual != null)
             {
-                for (int index = 0; index < expected.Count; index++)
+                for (var index = 0; index < expected.Count; index++)
                 {
                     Assert.AreEqual<TObject>(expected[index], actual[index]);
                 }

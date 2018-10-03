@@ -53,12 +53,12 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void NetBiosErrorMessageTest()
         {
-            int errorCode = 0;
-            string netBiosErrorMessage = "This is a test message.";
+            var errorCode = 0;
+            var netBiosErrorMessage = "This is a test message.";
             byte lana = 0;
 
-            RasAmbInfo target = new RasAmbInfo(errorCode, netBiosErrorMessage, lana);
-            string actual = target.NetBiosErrorMessage;
+            var target = new RasAmbInfo(errorCode, netBiosErrorMessage, lana);
+            var actual = target.NetBiosErrorMessage;
 
             Assert.AreEqual(netBiosErrorMessage, actual);
         }
@@ -70,12 +70,12 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void LanaTest()
         {
-            int errorCode = 0;
-            string netBiosErrorMessage = string.Empty;
+            var errorCode = 0;
+            var netBiosErrorMessage = string.Empty;
             byte lana = 100;
 
-            RasAmbInfo target = new RasAmbInfo(errorCode, netBiosErrorMessage, lana);
-            byte actual = target.Lana;
+            var target = new RasAmbInfo(errorCode, netBiosErrorMessage, lana);
+            var actual = target.Lana;
 
             Assert.AreEqual(lana, actual);
         }
@@ -87,12 +87,12 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void ErrorCodeTest()
         {
-            int errorCode = 100;
-            string netBiosErrorMessage = string.Empty;
+            var errorCode = 100;
+            var netBiosErrorMessage = string.Empty;
             byte lana = 0;
 
-            RasAmbInfo target = new RasAmbInfo(errorCode, netBiosErrorMessage, lana);
-            int actual = target.ErrorCode;
+            var target = new RasAmbInfo(errorCode, netBiosErrorMessage, lana);
+            var actual = target.ErrorCode;
 
             Assert.AreEqual(errorCode, actual);
         }
@@ -104,11 +104,11 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void RasAmbInfoConstructorTest()
         {
-            int errorCode = 0;
-            string netBiosErrorMessage = string.Empty;
+            var errorCode = 0;
+            var netBiosErrorMessage = string.Empty;
             byte lana = 0;
            
-            RasAmbInfo target = new RasAmbInfo(errorCode, netBiosErrorMessage, lana);
+            var target = new RasAmbInfo(errorCode, netBiosErrorMessage, lana);
 
             Assert.AreEqual(errorCode, target.ErrorCode);
             Assert.AreEqual(netBiosErrorMessage, target.NetBiosErrorMessage);

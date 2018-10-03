@@ -102,16 +102,16 @@ namespace DotRas.Internal
         /// <returns>A new <see cref="DotRas.Luid"/> structure.</returns>
         public Luid AllocateLocallyUniqueId()
         {
-            Luid retval = Luid.Empty;
+            var retval = Luid.Empty;
 
-            int size = Marshal.SizeOf(typeof(Luid));
+            var size = Marshal.SizeOf(typeof(Luid));
 
-            IntPtr pLuid = IntPtr.Zero;
+            var pLuid = IntPtr.Zero;
             try
             {
                 pLuid = Marshal.AllocHGlobal(size);
 
-                int ret = SafeNativeMethods.Instance.AllocateLocallyUniqueIdImpl(pLuid);
+                var ret = SafeNativeMethods.Instance.AllocateLocallyUniqueIdImpl(pLuid);
                 if (ret == NativeMethods.SUCCESS)
                 {
                     retval = Utilities.PtrToStructure<Luid>(pLuid);
@@ -154,12 +154,12 @@ namespace DotRas.Internal
                 phoneBookPath = null;
             }
 
-            IntPtr lpRasDialExtensions = IntPtr.Zero;
+            var lpRasDialExtensions = IntPtr.Zero;
             RasHandle handle = null;
 
             try
             {
-                int extensionsSize = Marshal.SizeOf(typeof(NativeMethods.RASDIALEXTENSIONS));
+                var extensionsSize = Marshal.SizeOf(typeof(NativeMethods.RASDIALEXTENSIONS));
                 extensions.size = extensionsSize;
 
 #if (WIN7 || WIN8)
@@ -169,16 +169,16 @@ namespace DotRas.Internal
                 lpRasDialExtensions = Marshal.AllocHGlobal(extensionsSize);
                 Marshal.StructureToPtr(extensions, lpRasDialExtensions, true);
 
-                IntPtr lpRasDialParams = IntPtr.Zero;
+                var lpRasDialParams = IntPtr.Zero;
                 try
                 {
-                    int parametersSize = Marshal.SizeOf(typeof(NativeMethods.RASDIALPARAMS));
+                    var parametersSize = Marshal.SizeOf(typeof(NativeMethods.RASDIALPARAMS));
                     parameters.size = parametersSize;
 
                     lpRasDialParams = Marshal.AllocHGlobal(parametersSize);
                     Marshal.StructureToPtr(parameters, lpRasDialParams, true);
 
-                    int ret = SafeNativeMethods.Instance.Dial(lpRasDialExtensions, phoneBookPath, lpRasDialParams, NativeMethods.RasNotifierType.RasDialFunc2, callback, out handle);
+                    var ret = SafeNativeMethods.Instance.Dial(lpRasDialExtensions, phoneBookPath, lpRasDialParams, NativeMethods.RasNotifierType.RasDialFunc2, callback, out handle);
                     if (ret != NativeMethods.SUCCESS)
                     {
                         ThrowHelper.ThrowRasException(ret);
@@ -222,12 +222,11 @@ namespace DotRas.Internal
         /// <returns><b>true</b> if the AutoDial feature is currently enabled for the dialing location, otherwise <b>false</b>.</returns>
         public bool GetAutoDialEnable(int dialingLocation)
         {
-            RasGetAutodialEnableParams info = new RasGetAutodialEnableParams();
-            info.DialingLocation = dialingLocation;
+            var info = new RasGetAutodialEnableParams {DialingLocation = dialingLocation};
 
             try
             {
-                int ret = UnsafeNativeMethods.Instance.GetAutodialEnable(info);
+                var ret = UnsafeNativeMethods.Instance.GetAutodialEnable(info);
                 if (ret != NativeMethods.SUCCESS)
                 {
                     ThrowHelper.ThrowRasException(ret);
@@ -248,19 +247,18 @@ namespace DotRas.Internal
         /// <returns>The value of the parameter.</returns>
         public int GetAutoDialParameter(NativeMethods.RASADP parameter)
         {
-            int retval = 0;
+            var retval = 0;
 
-            RasGetAutodialParamParams info = new RasGetAutodialParamParams();
-            info.BufferSize = sizeof(int);
+            var info = new RasGetAutodialParamParams {BufferSize = sizeof(int)};
 
-            bool retry = false;
+            var retry = false;
             do
             {
                 try
                 {
                     info.Address = Marshal.AllocHGlobal(info.BufferSize);
 
-                    int ret = UnsafeNativeMethods.Instance.GetAutodialParam(info);
+                    var ret = UnsafeNativeMethods.Instance.GetAutodialParam(info);
                     if (ret == NativeMethods.SUCCESS)
                     {
                         if (info.BufferSize == sizeof(int))
@@ -307,11 +305,11 @@ namespace DotRas.Internal
         /// <returns><b>true</b> if the function succeeds, otherwise <b>false</b>.</returns>
         public bool ClearConnectionStatistics(RasHandle handle)
         {
-            bool retval = false;
+            var retval = false;
 
             try
             {
-                int ret = SafeNativeMethods.Instance.ClearConnectionStatistics(handle);
+                var ret = SafeNativeMethods.Instance.ClearConnectionStatistics(handle);
                 if (ret == NativeMethods.SUCCESS)
                 {
                     retval = true;
@@ -347,11 +345,11 @@ namespace DotRas.Internal
                 ThrowHelper.ThrowArgumentException("subEntryId", Resources.Argument_ValueCannotBeLessThanOrEqualToZero);
             }
 
-            bool retval = false;
+            var retval = false;
 
             try
             {
-                int ret = SafeNativeMethods.Instance.ClearLinkStatistics(handle, subEntryId);
+                var ret = SafeNativeMethods.Instance.ClearLinkStatistics(handle, subEntryId);
                 if (ret == NativeMethods.SUCCESS)
                 {
                     retval = true;
@@ -392,11 +390,11 @@ namespace DotRas.Internal
                 ThrowHelper.ThrowArgumentException("entryName", Resources.Argument_StringCannotBeNullOrEmpty);
             }
 
-            bool retval = false;
+            var retval = false;
 
             try
             {
-                int ret = UnsafeNativeMethods.Instance.DeleteEntry(phoneBookPath, entryName);
+                var ret = UnsafeNativeMethods.Instance.DeleteEntry(phoneBookPath, entryName);
                 if (ret == NativeMethods.SUCCESS)
                 {
                     retval = true;
@@ -443,9 +441,9 @@ namespace DotRas.Internal
                 ThrowHelper.ThrowArgumentException("subEntryId", Resources.Argument_ValueCannotBeLessThanOrEqualToZero);
             }
 
-            bool retval = false;
+            var retval = false;
 
-            int ret = UnsafeNativeMethods.Instance.DeleteSubEntry(phoneBookPath, entryName, subEntryId);
+            var ret = UnsafeNativeMethods.Instance.DeleteSubEntry(phoneBookPath, entryName, subEntryId);
             if (ret == NativeMethods.SUCCESS)
             {
                 retval = true;
@@ -467,25 +465,22 @@ namespace DotRas.Internal
         {
             ReadOnlyCollection<RasConnection> retval = null;
 
-            int size = Marshal.SizeOf(typeof(NativeMethods.RASCONN));
+            var size = Marshal.SizeOf(typeof(NativeMethods.RASCONN));
 
-            StructBufferedPInvokeParams info = new StructBufferedPInvokeParams();
-            info.BufferSize = new IntPtr(size);
-            info.Count = IntPtr.Zero;
+            var info = new StructBufferedPInvokeParams {BufferSize = new IntPtr(size), Count = IntPtr.Zero};
 
-            bool retry = false;
+            var retry = false;
 
             do
             {
-                NativeMethods.RASCONN conn = new NativeMethods.RASCONN();
-                conn.size = size;
+                var conn = new NativeMethods.RASCONN {size = size};
 
                 try
                 {
                     info.Address = Marshal.AllocHGlobal(info.BufferSize);
                     Marshal.StructureToPtr(conn, info.Address, true);
                    
-                    int ret = SafeNativeMethods.Instance.EnumConnections(info);
+                    var ret = SafeNativeMethods.Instance.EnumConnections(info);
                     if (ret == NativeMethods.ERROR_BUFFER_TOO_SMALL)
                     {
                         retry = true;
@@ -494,7 +489,7 @@ namespace DotRas.Internal
                     {
                         retry = false;
 
-                        NativeMethods.RASCONN[] connections = Utilities.CreateArrayOfType<NativeMethods.RASCONN>(
+                        var connections = Utilities.CreateArrayOfType<NativeMethods.RASCONN>(
                             info.Address, size, info.Count.ToInt32());
                         RasConnection[] tempArray = null;
 
@@ -506,11 +501,11 @@ namespace DotRas.Internal
                         {
                             tempArray = new RasConnection[connections.Length];
 
-                            for (int index = 0; index < connections.Length; index++)
+                            for (var index = 0; index < connections.Length; index++)
                             {
-                                NativeMethods.RASCONN current = connections[index];
+                                var current = connections[index];
 
-                                RasConnection item = new RasConnection();
+                                var item = new RasConnection();
 
                                 item.Handle = new RasHandle(current.handle, current.subEntryId > 1);
                                 item.EntryName = current.entryName;
@@ -568,25 +563,22 @@ namespace DotRas.Internal
         {
             RasAutoDialAddress retval = null;
 
-            int size = Marshal.SizeOf(typeof(NativeMethods.RASAUTODIALENTRY));
+            var size = Marshal.SizeOf(typeof(NativeMethods.RASAUTODIALENTRY));
 
-            RasGetAutodialAddressParams info = new RasGetAutodialAddressParams();
-            info.BufferSize = new IntPtr(size);
-            info.Count = IntPtr.Zero;
+            var info = new RasGetAutodialAddressParams {BufferSize = new IntPtr(size), Count = IntPtr.Zero};
 
-            bool retry = false;
+            var retry = false;
 
             do
             {
-                NativeMethods.RASAUTODIALENTRY entry = new NativeMethods.RASAUTODIALENTRY();
-                entry.size = size;
+                var entry = new NativeMethods.RASAUTODIALENTRY {size = size};
 
                 try
                 {
                     info.Address = Marshal.AllocHGlobal(info.BufferSize);
                     Marshal.StructureToPtr(entry, info.Address, true);
 
-                    int ret = UnsafeNativeMethods.Instance.GetAutodialAddress(info);
+                    var ret = UnsafeNativeMethods.Instance.GetAutodialAddress(info);
                     if (ret == NativeMethods.ERROR_BUFFER_TOO_SMALL)
                     {
                         retry = true;
@@ -595,14 +587,14 @@ namespace DotRas.Internal
                     {
                         retry = false;
 
-                        NativeMethods.RASAUTODIALENTRY[] entries = Utilities.CreateArrayOfType<NativeMethods.RASAUTODIALENTRY>(info.Address, size, info.Count.ToInt32());
+                        var entries = Utilities.CreateArrayOfType<NativeMethods.RASAUTODIALENTRY>(info.Address, size, info.Count.ToInt32());
                         retval = new RasAutoDialAddress(address);
 
                         if (entries != null || entries.Length > 0)
                         {
-                            for (int index = 0; index < entries.Length; index++)
+                            for (var index = 0; index < entries.Length; index++)
                             {
-                                NativeMethods.RASAUTODIALENTRY current = entries[index];
+                                var current = entries[index];
                                 retval.Entries.Add(new RasAutoDialEntry(current.dialingLocation, current.entryName));
                             }
                         }
@@ -641,11 +633,9 @@ namespace DotRas.Internal
         {
             Collection<string> retval = null;
 
-            StructBufferedPInvokeParams info = new StructBufferedPInvokeParams();
-            info.BufferSize = IntPtr.Zero;
-            info.Count = IntPtr.Zero;
+            var info = new StructBufferedPInvokeParams {BufferSize = IntPtr.Zero, Count = IntPtr.Zero};
 
-            bool retry = false;
+            var retry = false;
 
             do
             {
@@ -653,7 +643,7 @@ namespace DotRas.Internal
                 {
                     info.Address = Marshal.AllocHGlobal(info.BufferSize);
 
-                    int ret = UnsafeNativeMethods.Instance.EnumAutodialAddresses(info);
+                    var ret = UnsafeNativeMethods.Instance.EnumAutodialAddresses(info);
                     if (ret == NativeMethods.SUCCESS)
                     {
                         if (info.Count.ToInt32() > 0)
@@ -699,18 +689,17 @@ namespace DotRas.Internal
         {
             RasConnectionStatus retval = null;
 
-            IntPtr lpRasConnStatus = IntPtr.Zero;
+            var lpRasConnStatus = IntPtr.Zero;
             try
             {
-                int size = Marshal.SizeOf(typeof(NativeMethods.RASCONNSTATUS));
+                var size = Marshal.SizeOf(typeof(NativeMethods.RASCONNSTATUS));
 
-                NativeMethods.RASCONNSTATUS status = new NativeMethods.RASCONNSTATUS();
-                status.size = size;
+                var status = new NativeMethods.RASCONNSTATUS {size = size};
 
                 lpRasConnStatus = Marshal.AllocHGlobal(size);
                 Marshal.StructureToPtr(status, lpRasConnStatus, true);
 
-                int ret = SafeNativeMethods.Instance.GetConnectStatus(handle, lpRasConnStatus);
+                var ret = SafeNativeMethods.Instance.GetConnectStatus(handle, lpRasConnStatus);
                 if (ret == NativeMethods.ERROR_INVALID_HANDLE)
                 {
                     ThrowHelper.ThrowInvalidHandleException(handle, "handle", Resources.Argument_InvalidHandle);
@@ -725,11 +714,13 @@ namespace DotRas.Internal
                         errorMessage = Instance.GetRasErrorString(status.errorCode);
                     }
 
-                    retval = new RasConnectionStatus();
-                    retval.ConnectionState = status.connectionState;
-                    retval.ErrorCode = status.errorCode;
-                    retval.ErrorMessage = errorMessage;
-                    retval.PhoneNumber = status.phoneNumber;
+                    retval = new RasConnectionStatus
+                    {
+                        ConnectionState = status.connectionState,
+                        ErrorCode = status.errorCode,
+                        ErrorMessage = errorMessage,
+                        PhoneNumber = status.phoneNumber
+                    };
 
                     if (!string.IsNullOrEmpty(status.deviceName) && !string.IsNullOrEmpty(status.deviceType))
                     {
@@ -737,7 +728,7 @@ namespace DotRas.Internal
                     }
 
 #if (WIN7 || WIN8)
-                    IPAddressConverter converter = new IPAddressConverter();
+                    var converter = new IPAddressConverter();
 
                     retval.LocalEndPoint = (IPAddress)converter.ConvertFrom(status.localEndPoint);
                     retval.RemoteEndPoint = (IPAddress)converter.ConvertFrom(status.remoteEndPoint);
@@ -786,13 +777,11 @@ namespace DotRas.Internal
 
             NetworkCredential retval = null;
 
-            int size = Marshal.SizeOf(typeof(NativeMethods.RASCREDENTIALS));
+            var size = Marshal.SizeOf(typeof(NativeMethods.RASCREDENTIALS));
 
-            NativeMethods.RASCREDENTIALS credentials = new NativeMethods.RASCREDENTIALS();
-            credentials.size = size;
-            credentials.options = options;
+            var credentials = new NativeMethods.RASCREDENTIALS {size = size, options = options};
 
-            IntPtr pCredentials = IntPtr.Zero;
+            var pCredentials = IntPtr.Zero;
             try
             {
                 pCredentials = Marshal.AllocHGlobal(size);
@@ -800,7 +789,7 @@ namespace DotRas.Internal
 
                 try
                 {
-                    int ret = UnsafeNativeMethods.Instance.GetCredentials(phoneBookPath, entryName, pCredentials);
+                    var ret = UnsafeNativeMethods.Instance.GetCredentials(phoneBookPath, entryName, pCredentials);
                     if (ret == NativeMethods.SUCCESS)
                     {
                         credentials = Utilities.PtrToStructure<NativeMethods.RASCREDENTIALS>(pCredentials);
@@ -853,12 +842,12 @@ namespace DotRas.Internal
 
             byte[] result = null;
 
-            RasGetCustomAuthDataParams info = new RasGetCustomAuthDataParams();
-            info.PhoneBookPath = phoneBookPath;
-            info.EntryName = entryName;
-            info.BufferSize = IntPtr.Zero;
+            var info = new RasGetCustomAuthDataParams
+            {
+                PhoneBookPath = phoneBookPath, EntryName = entryName, BufferSize = IntPtr.Zero
+            };
 
-            bool retry = false;
+            var retry = false;
 
             do
             {
@@ -866,14 +855,14 @@ namespace DotRas.Internal
                 {
                     info.Address = Marshal.AllocHGlobal(info.BufferSize);
 
-                    int ret = SafeNativeMethods.Instance.GetCustomAuthData(info);
+                    var ret = SafeNativeMethods.Instance.GetCustomAuthData(info);
                     if (ret == NativeMethods.ERROR_BUFFER_TOO_SMALL)
                     {
                         retry = true;
                     }
                     else if (ret == NativeMethods.SUCCESS)
                     {
-                        int bufferSize = info.BufferSize.ToInt32();
+                        var bufferSize = info.BufferSize.ToInt32();
 
                         if (bufferSize != 0)
                         {
@@ -913,25 +902,22 @@ namespace DotRas.Internal
         {
             ReadOnlyCollection<RasDevice> retval = null;
 
-            int size = Marshal.SizeOf(typeof(NativeMethods.RASDEVINFO));
+            var size = Marshal.SizeOf(typeof(NativeMethods.RASDEVINFO));
 
-            StructBufferedPInvokeParams info = new StructBufferedPInvokeParams();
-            info.BufferSize = new IntPtr(size);
-            info.Count = IntPtr.Zero;
-          
-            bool retry = false;
+            var info = new StructBufferedPInvokeParams {BufferSize = new IntPtr(size), Count = IntPtr.Zero};
+
+            var retry = false;
 
             do
             {
-                NativeMethods.RASDEVINFO device = new NativeMethods.RASDEVINFO();
-                device.size = size;
+                var device = new NativeMethods.RASDEVINFO {size = size};
 
                 try
                 {
                     info.Address = Marshal.AllocHGlobal(info.BufferSize);
                     Marshal.StructureToPtr(device, info.Address, true);
 
-                    int ret = SafeNativeMethods.Instance.EnumDevices(info);
+                    var ret = SafeNativeMethods.Instance.EnumDevices(info);
                     if (ret == NativeMethods.ERROR_BUFFER_TOO_SMALL)
                     {
                         retry = true;
@@ -940,7 +926,7 @@ namespace DotRas.Internal
                     {
                         retry = false;
 
-                        NativeMethods.RASDEVINFO[] devices = Utilities.CreateArrayOfType<NativeMethods.RASDEVINFO>(info.Address, size, info.Count.ToInt32());
+                        var devices = Utilities.CreateArrayOfType<NativeMethods.RASDEVINFO>(info.Address, size, info.Count.ToInt32());
                         RasDevice[] tempArray = null;
 
                         if (devices == null || devices.Length == 0)
@@ -951,9 +937,9 @@ namespace DotRas.Internal
                         {
                             tempArray = new RasDevice[devices.Length];
 
-                            for (int index = 0; index < devices.Length; index++)
+                            for (var index = 0; index < devices.Length; index++)
                             {
-                                NativeMethods.RASDEVINFO current = devices[index];
+                                var current = devices[index];
 
                                 tempArray[index] = RasDevice.Create(
                                     current.name,
@@ -1007,17 +993,16 @@ namespace DotRas.Internal
 
             RasEntry retval = null;
 
-            int size = Marshal.SizeOf(typeof(NativeMethods.RASENTRY));
+            var size = Marshal.SizeOf(typeof(NativeMethods.RASENTRY));
             CorrectRASENTRYSize(ref size);
-            bool retry = false;
+            var retry = false;
 
-            IntPtr lpCb = new IntPtr(size);
+            var lpCb = new IntPtr(size);
             do
             {
-                NativeMethods.RASENTRY entry = new NativeMethods.RASENTRY();
-                entry.size = size;
+                var entry = new NativeMethods.RASENTRY {size = size};
 
-                IntPtr lpRasEntry = IntPtr.Zero;
+                var lpRasEntry = IntPtr.Zero;
                 try
                 {
                     lpRasEntry = Marshal.AllocHGlobal(lpCb);
@@ -1025,7 +1010,7 @@ namespace DotRas.Internal
 
                     try
                     {
-                        int ret = UnsafeNativeMethods.Instance.GetEntryProperties(phoneBook.Path, entryName, lpRasEntry, ref lpCb, IntPtr.Zero, IntPtr.Zero);
+                        var ret = UnsafeNativeMethods.Instance.GetEntryProperties(phoneBook.Path, entryName, lpRasEntry, ref lpCb, IntPtr.Zero, IntPtr.Zero);
                         if (ret == NativeMethods.SUCCESS)
                         {
                             entry = Utilities.PtrToStructure<NativeMethods.RASENTRY>(lpRasEntry);
@@ -1064,7 +1049,7 @@ namespace DotRas.Internal
                                 retval.Device = RasDevice.Create(entry.deviceName, entry.deviceType);
                             }
 
-                            IPAddressConverter ipAddrConverter = new IPAddressConverter();
+                            var ipAddrConverter = new IPAddressConverter();
 
                             retval.DialExtraPercent = entry.dialExtraPercent;
                             retval.DialExtraSampleSeconds = entry.dialExtraSampleSeconds;
@@ -1168,8 +1153,8 @@ namespace DotRas.Internal
 
             try
             {
-                IntPtr tempHandle = IntPtr.Zero;
-                int ret = SafeNativeMethods.Instance.GetSubEntryHandle(handle, subEntryId, out tempHandle);
+                var tempHandle = IntPtr.Zero;
+                var ret = SafeNativeMethods.Instance.GetSubEntryHandle(handle, subEntryId, out tempHandle);
                 if (ret == NativeMethods.SUCCESS)
                 {
                     retval = new RasHandle(tempHandle, subEntryId > 1);
@@ -1209,16 +1194,15 @@ namespace DotRas.Internal
 
             RasSubEntry retval = null;
 
-            int size = Marshal.SizeOf(typeof(NativeMethods.RASSUBENTRY));
-            bool retry = false;
+            var size = Marshal.SizeOf(typeof(NativeMethods.RASSUBENTRY));
+            var retry = false;
 
-            IntPtr lpCb = new IntPtr(size);
+            var lpCb = new IntPtr(size);
             do
             {
-                NativeMethods.RASSUBENTRY subentry = new NativeMethods.RASSUBENTRY();
-                subentry.size = size;
+                var subentry = new NativeMethods.RASSUBENTRY {size = size};
 
-                IntPtr lpRasSubEntry = IntPtr.Zero;
+                var lpRasSubEntry = IntPtr.Zero;
                 try
                 {
                     lpRasSubEntry = Marshal.AllocHGlobal(lpCb);
@@ -1226,15 +1210,17 @@ namespace DotRas.Internal
 
                     try
                     {
-                        int ret = UnsafeNativeMethods.Instance.GetSubEntryProperties(phoneBook.Path, entry.Name, subEntryId + 2, lpRasSubEntry, ref lpCb, IntPtr.Zero, IntPtr.Zero);
+                        var ret = UnsafeNativeMethods.Instance.GetSubEntryProperties(phoneBook.Path, entry.Name, subEntryId + 2, lpRasSubEntry, ref lpCb, IntPtr.Zero, IntPtr.Zero);
                         if (ret == NativeMethods.SUCCESS)
                         {
                             subentry = Utilities.PtrToStructure<NativeMethods.RASSUBENTRY>(lpRasSubEntry);
 
-                            retval = new RasSubEntry();
+                            retval = new RasSubEntry
+                            {
+                                Device = RasDevice.Create(subentry.deviceName, subentry.deviceType),
+                                PhoneNumber = subentry.phoneNumber
+                            };
 
-                            retval.Device = RasDevice.Create(subentry.deviceName, subentry.deviceType);
-                            retval.PhoneNumber = subentry.phoneNumber;
 
                             if (subentry.alternateOffset != 0)
                             {
@@ -1281,13 +1267,15 @@ namespace DotRas.Internal
         {
             byte[] result = null;
 
-            RasGetEapUserDataParams info = new RasGetEapUserDataParams();
-            info.UserToken = userToken;
-            info.PhoneBookPath = phoneBookPath;
-            info.EntryName = entryName;
-            info.BufferSize = IntPtr.Zero;
+            var info = new RasGetEapUserDataParams
+            {
+                UserToken = userToken,
+                PhoneBookPath = phoneBookPath,
+                EntryName = entryName,
+                BufferSize = IntPtr.Zero
+            };
 
-            bool retry = false;
+            var retry = false;
 
             do
             {
@@ -1295,14 +1283,14 @@ namespace DotRas.Internal
                 {
                     info.Address = Marshal.AllocHGlobal(info.BufferSize);
 
-                    int ret = SafeNativeMethods.Instance.GetEapUserData(info);
+                    var ret = SafeNativeMethods.Instance.GetEapUserData(info);
                     if (ret == NativeMethods.ERROR_BUFFER_TOO_SMALL)
                     {
                         retry = true;
                     }
                     else if (ret == NativeMethods.SUCCESS)
                     {
-                        int bufferSize = info.BufferSize.ToInt32();
+                        var bufferSize = info.BufferSize.ToInt32();
 
                         if (bufferSize != 0)
                         {
@@ -1350,18 +1338,17 @@ namespace DotRas.Internal
 
             NativeMethods.RASENTRYNAME[] retval = null;
 
-            int size = Marshal.SizeOf(typeof(NativeMethods.RASENTRYNAME));
-            IntPtr lpCb = new IntPtr(size);
-            IntPtr lpcEntries = IntPtr.Zero;
+            var size = Marshal.SizeOf(typeof(NativeMethods.RASENTRYNAME));
+            var lpCb = new IntPtr(size);
+            var lpcEntries = IntPtr.Zero;
 
-            bool retry = false;
+            var retry = false;
 
             do
             {
-                NativeMethods.RASENTRYNAME entry = new NativeMethods.RASENTRYNAME();
-                entry.size = size;
+                var entry = new NativeMethods.RASENTRYNAME {size = size};
 
-                IntPtr pEntries = IntPtr.Zero;
+                var pEntries = IntPtr.Zero;
                 try
                 {
                     pEntries = Marshal.AllocHGlobal(lpCb);
@@ -1369,7 +1356,7 @@ namespace DotRas.Internal
 
                     try
                     {
-                        int ret = UnsafeNativeMethods.Instance.EnumEntries(IntPtr.Zero, phoneBook.Path, pEntries, ref lpCb, ref lpcEntries);
+                        var ret = UnsafeNativeMethods.Instance.EnumEntries(IntPtr.Zero, phoneBook.Path, pEntries, ref lpCb, ref lpcEntries);
                         if (ret == NativeMethods.ERROR_BUFFER_TOO_SMALL)
                         {
                             retry = true;
@@ -1378,7 +1365,7 @@ namespace DotRas.Internal
                         {
                             retry = false;
 
-                            int entries = lpcEntries.ToInt32();
+                            var entries = lpcEntries.ToInt32();
                             if (entries > 0)
                             {
                                 retval = Utilities.CreateArrayOfType<NativeMethods.RASENTRYNAME>(pEntries, size, entries);
@@ -1421,18 +1408,17 @@ namespace DotRas.Internal
 
             RasLinkStatistics retval = null;
 
-            int size = Marshal.SizeOf(typeof(NativeMethods.RAS_STATS));
+            var size = Marshal.SizeOf(typeof(NativeMethods.RAS_STATS));
 
-            NativeMethods.RAS_STATS stats = new NativeMethods.RAS_STATS();
-            stats.size = size;
+            var stats = new NativeMethods.RAS_STATS {size = size};
 
-            IntPtr lpStatistics = IntPtr.Zero;
+            var lpStatistics = IntPtr.Zero;
             try
             {
                 lpStatistics = Marshal.AllocHGlobal(size);
                 Marshal.StructureToPtr(stats, lpStatistics, true);
 
-                int ret = SafeNativeMethods.Instance.GetConnectionStatistics(handle, lpStatistics);
+                var ret = SafeNativeMethods.Instance.GetConnectionStatistics(handle, lpStatistics);
                 if (ret == NativeMethods.SUCCESS)
                 {
                     stats = Utilities.PtrToStructure<NativeMethods.RAS_STATS>(lpStatistics);
@@ -1483,25 +1469,23 @@ namespace DotRas.Internal
         {
             RasCountry retval = null;
 
-            int size = Marshal.SizeOf(typeof(NativeMethods.RASCTRYINFO));
-            IntPtr lpdwSize = new IntPtr(size);
+            var size = Marshal.SizeOf(typeof(NativeMethods.RASCTRYINFO));
+            var lpdwSize = new IntPtr(size);
             nextCountryId = 0;
 
-            bool retry = false;
+            var retry = false;
 
             do
             {
-                NativeMethods.RASCTRYINFO country = new NativeMethods.RASCTRYINFO();
-                country.size = size;
-                country.countryId = countryId;
+                var country = new NativeMethods.RASCTRYINFO {size = size, countryId = countryId};
 
-                IntPtr lpRasCtryInfo = IntPtr.Zero;
+                var lpRasCtryInfo = IntPtr.Zero;
                 try
                 {
                     lpRasCtryInfo = Marshal.AllocHGlobal(lpdwSize);
                     Marshal.StructureToPtr(country, lpRasCtryInfo, true);
 
-                    int ret = SafeNativeMethods.Instance.GetCountryInfo(lpRasCtryInfo, ref lpdwSize);
+                    var ret = SafeNativeMethods.Instance.GetCountryInfo(lpRasCtryInfo, ref lpdwSize);
                     if (ret == NativeMethods.ERROR_BUFFER_TOO_SMALL)
                     {
                         retry = true;
@@ -1513,7 +1497,7 @@ namespace DotRas.Internal
 
                         nextCountryId = country.nextCountryId;
 
-                        string name = string.Empty;
+                        var name = string.Empty;
                         if (country.countryNameOffset > 0)
                         {
                             name = Marshal.PtrToStringUni(new IntPtr(lpRasCtryInfo.ToInt64() + country.countryNameOffset));
@@ -1567,18 +1551,17 @@ namespace DotRas.Internal
 
             RasLinkStatistics retval = null;
 
-            int size = Marshal.SizeOf(typeof(NativeMethods.RAS_STATS));
+            var size = Marshal.SizeOf(typeof(NativeMethods.RAS_STATS));
 
-            NativeMethods.RAS_STATS stats = new NativeMethods.RAS_STATS();
-            stats.size = size;
+            var stats = new NativeMethods.RAS_STATS {size = size};
 
-            IntPtr lpRasLinkStatistics = IntPtr.Zero;
+            var lpRasLinkStatistics = IntPtr.Zero;
             try
             {
                 lpRasLinkStatistics = Marshal.AllocHGlobal(size);
                 Marshal.StructureToPtr(stats, lpRasLinkStatistics, true);
 
-                int ret = SafeNativeMethods.Instance.GetLinkStatistics(handle, subEntryId, lpRasLinkStatistics);
+                var ret = SafeNativeMethods.Instance.GetLinkStatistics(handle, subEntryId, lpRasLinkStatistics);
                 if (ret == NativeMethods.SUCCESS)
                 {
                     stats = Utilities.PtrToStructure<NativeMethods.RAS_STATS>(lpRasLinkStatistics);
@@ -1626,15 +1609,14 @@ namespace DotRas.Internal
         /// <returns><b>true</b> if the connection is active, otherwise <b>false</b>.</returns>
         public bool IsConnectionActive(RasHandle handle)
         {
-            bool retval = false;
+            var retval = false;
 
-            int size = Marshal.SizeOf(typeof(NativeMethods.RASCONNSTATUS));
+            var size = Marshal.SizeOf(typeof(NativeMethods.RASCONNSTATUS));
 
-            IntPtr lpRasConnStatus = IntPtr.Zero;
+            var lpRasConnStatus = IntPtr.Zero;
             try
             {
-                NativeMethods.RASCONNSTATUS status = new NativeMethods.RASCONNSTATUS();
-                status.size = size;
+                var status = new NativeMethods.RASCONNSTATUS {size = size};
 
                 lpRasConnStatus = Marshal.AllocHGlobal(size);
                 Marshal.StructureToPtr(status, lpRasConnStatus, true);
@@ -1674,7 +1656,7 @@ namespace DotRas.Internal
 
             try
             {
-                int ret = 0;
+                var ret = 0;
 
                 do
                 {
@@ -1723,9 +1705,9 @@ namespace DotRas.Internal
         {
             try
             {
-                int size = Marshal.SizeOf(typeof(NativeMethods.RASEAPUSERIDENTITY));
+                var size = Marshal.SizeOf(typeof(NativeMethods.RASEAPUSERIDENTITY));
 
-                IntPtr lpRasEapUserIdentity = Marshal.AllocHGlobal(size);
+                var lpRasEapUserIdentity = Marshal.AllocHGlobal(size);
                 Marshal.StructureToPtr(rasEapUserIdentity, lpRasEapUserIdentity, true);
 
                 SafeNativeMethods.Instance.FreeEapUserIdentity(lpRasEapUserIdentity);
@@ -1753,13 +1735,13 @@ namespace DotRas.Internal
                 ThrowHelper.ThrowArgumentException("entryName", Resources.Argument_StringCannotBeNullOrEmpty);
             }
 
-            bool retval = false;
+            var retval = false;
             identity = new NativeMethods.RASEAPUSERIDENTITY();
 
-            IntPtr lpRasEapUserIdentity = IntPtr.Zero;
+            var lpRasEapUserIdentity = IntPtr.Zero;
             try
             {
-                int ret = SafeNativeMethods.Instance.GetEapUserIdentity(phoneBookPath, entryName, eapOptions, owner != null ? owner.Handle : IntPtr.Zero, ref lpRasEapUserIdentity);
+                var ret = SafeNativeMethods.Instance.GetEapUserIdentity(phoneBookPath, entryName, eapOptions, owner != null ? owner.Handle : IntPtr.Zero, ref lpRasEapUserIdentity);
                 if (ret == NativeMethods.ERROR_INTERACTIVE_MODE)
                 {
                     ThrowHelper.ThrowArgumentException("options", Resources.Argument_EapOptionsRequireInteractiveMode);
@@ -1812,18 +1794,17 @@ namespace DotRas.Internal
 
             RasNapStatus retval = null;
 
-            int size = Marshal.SizeOf(typeof(NativeMethods.RASNAPSTATE));
+            var size = Marshal.SizeOf(typeof(NativeMethods.RASNAPSTATE));
 
-            NativeMethods.RASNAPSTATE napState = new NativeMethods.RASNAPSTATE();
-            napState.size = size;
+            var napState = new NativeMethods.RASNAPSTATE {size = size};
 
-            IntPtr pNapState = IntPtr.Zero;
+            var pNapState = IntPtr.Zero;
             try
             {
                 pNapState = Marshal.AllocHGlobal(size);
                 Marshal.StructureToPtr(napState, pNapState, true);
 
-                int ret = SafeNativeMethods.Instance.GetNapStatus(handle, pNapState);
+                var ret = SafeNativeMethods.Instance.GetNapStatus(handle, pNapState);
                 if (ret == NativeMethods.SUCCESS)
                 {
                     napState = Utilities.PtrToStructure<NativeMethods.RASNAPSTATE>(pNapState);
@@ -1880,7 +1861,7 @@ namespace DotRas.Internal
                 ThrowHelper.ThrowArgumentException("handle", Resources.Argument_InvalidHandle);
             }
 
-            int size = 0;
+            var size = 0;
 
             object retval = null;
             object structure = null;
@@ -1890,7 +1871,7 @@ namespace DotRas.Internal
                 case NativeMethods.RASPROJECTION.Amb:
                     size = Marshal.SizeOf(typeof(NativeMethods.RASAMB));
 
-                    NativeMethods.RASAMB amb = new NativeMethods.RASAMB();
+                    var amb = new NativeMethods.RASAMB();
                     amb.size = size;
 
                     structure = amb;
@@ -1899,7 +1880,7 @@ namespace DotRas.Internal
                 case NativeMethods.RASPROJECTION.Ccp:
                     size = Marshal.SizeOf(typeof(NativeMethods.RASPPPCCP));
 
-                    NativeMethods.RASPPPCCP ccp = new NativeMethods.RASPPPCCP();
+                    var ccp = new NativeMethods.RASPPPCCP();
                     ccp.size = size;
 
                     structure = ccp;
@@ -1908,7 +1889,7 @@ namespace DotRas.Internal
                 case NativeMethods.RASPROJECTION.IP:
                     size = Marshal.SizeOf(typeof(NativeMethods.RASPPPIP));
 
-                    NativeMethods.RASPPPIP ip = new NativeMethods.RASPPPIP();
+                    var ip = new NativeMethods.RASPPPIP();
                     ip.size = size;
 
                     structure = ip;
@@ -1917,7 +1898,7 @@ namespace DotRas.Internal
                 case NativeMethods.RASPROJECTION.Ipx:
                     size = Marshal.SizeOf(typeof(NativeMethods.RASPPPIPX));
 
-                    NativeMethods.RASPPPIPX ipx = new NativeMethods.RASPPPIPX();
+                    var ipx = new NativeMethods.RASPPPIPX();
                     ipx.size = size;
 
                     structure = ipx;
@@ -1926,7 +1907,7 @@ namespace DotRas.Internal
                 case NativeMethods.RASPROJECTION.Lcp:
                     size = Marshal.SizeOf(typeof(NativeMethods.RASPPPLCP));
 
-                    NativeMethods.RASPPPLCP lcp = new NativeMethods.RASPPPLCP();
+                    var lcp = new NativeMethods.RASPPPLCP();
                     lcp.size = size;
 
                     structure = lcp;
@@ -1935,7 +1916,7 @@ namespace DotRas.Internal
                 case NativeMethods.RASPROJECTION.Nbf:
                     size = Marshal.SizeOf(typeof(NativeMethods.RASPPPNBF));
 
-                    NativeMethods.RASPPPNBF nbf = new NativeMethods.RASPPPNBF();
+                    var nbf = new NativeMethods.RASPPPNBF();
                     nbf.size = size;
 
                     structure = nbf;
@@ -1946,7 +1927,7 @@ namespace DotRas.Internal
                 case NativeMethods.RASPROJECTION.IPv6:
                     size = Marshal.SizeOf(typeof(NativeMethods.RASPPPIPV6));
 
-                    NativeMethods.RASPPPIPV6 ipv6 = new NativeMethods.RASPPPIPV6();
+                    var ipv6 = new NativeMethods.RASPPPIPV6();
                     ipv6.size = size;
 
                     structure = ipv6;
@@ -1956,30 +1937,30 @@ namespace DotRas.Internal
                 case NativeMethods.RASPROJECTION.Slip:
                     size = Marshal.SizeOf(typeof(NativeMethods.RASSLIP));
 
-                    NativeMethods.RASSLIP slip = new NativeMethods.RASSLIP();
+                    var slip = new NativeMethods.RASSLIP();
                     slip.size = size;
 
                     structure = slip;
                     break;
             }
 
-            IntPtr lpCb = new IntPtr(size);
+            var lpCb = new IntPtr(size);
 
-            IntPtr lpProjection = IntPtr.Zero;
+            var lpProjection = IntPtr.Zero;
             try
             {
                 lpProjection = Marshal.AllocHGlobal(lpCb);
                 Marshal.StructureToPtr(structure, lpProjection, true);
 
-                int ret = SafeNativeMethods.Instance.GetProjectionInfo(handle, projection, lpProjection, ref lpCb);
+                var ret = SafeNativeMethods.Instance.GetProjectionInfo(handle, projection, lpProjection, ref lpCb);
                 if (ret == NativeMethods.SUCCESS)
                 {
-                    IPAddressConverter converter = new IPAddressConverter();
+                    var converter = new IPAddressConverter();
 
                     switch (projection)
                     {
                         case NativeMethods.RASPROJECTION.Amb:
-                            NativeMethods.RASAMB amb = Utilities.PtrToStructure<NativeMethods.RASAMB>(lpProjection);
+                            var amb = Utilities.PtrToStructure<NativeMethods.RASAMB>(lpProjection);
 
                             retval = new RasAmbInfo(
                                 amb.errorCode,
@@ -1989,7 +1970,7 @@ namespace DotRas.Internal
                             break;
 
                         case NativeMethods.RASPROJECTION.Ccp:
-                            NativeMethods.RASPPPCCP ccp = Utilities.PtrToStructure<NativeMethods.RASPPPCCP>(lpProjection);
+                            var ccp = Utilities.PtrToStructure<NativeMethods.RASPPPCCP>(lpProjection);
 
                             retval = new RasCcpInfo(
                                 ccp.errorCode,
@@ -2001,7 +1982,7 @@ namespace DotRas.Internal
                             break;
 
                         case NativeMethods.RASPROJECTION.IP:
-                            NativeMethods.RASPPPIP ip = Utilities.PtrToStructure<NativeMethods.RASPPPIP>(lpProjection);
+                            var ip = Utilities.PtrToStructure<NativeMethods.RASPPPIP>(lpProjection);
 
                             retval = new RasIPInfo(
                                 ip.errorCode,
@@ -2013,7 +1994,7 @@ namespace DotRas.Internal
                             break;
 
                         case NativeMethods.RASPROJECTION.Ipx:
-                            NativeMethods.RASPPPIPX ipx = Utilities.PtrToStructure<NativeMethods.RASPPPIPX>(lpProjection);
+                            var ipx = Utilities.PtrToStructure<NativeMethods.RASPPPIPX>(lpProjection);
 
                             retval = new RasIpxInfo(
                                 ipx.errorCode,
@@ -2022,7 +2003,7 @@ namespace DotRas.Internal
                             break;
 
                         case NativeMethods.RASPROJECTION.Lcp:
-                            NativeMethods.RASPPPLCP lcp = Utilities.PtrToStructure<NativeMethods.RASPPPLCP>(lpProjection);
+                            var lcp = Utilities.PtrToStructure<NativeMethods.RASPPPLCP>(lpProjection);
 
                             retval = new RasLcpInfo(
                                 lcp.bundled,
@@ -2043,7 +2024,7 @@ namespace DotRas.Internal
                             break;
 
                         case NativeMethods.RASPROJECTION.Nbf:
-                            NativeMethods.RASPPPNBF nbf = Utilities.PtrToStructure<NativeMethods.RASPPPNBF>(lpProjection);
+                            var nbf = Utilities.PtrToStructure<NativeMethods.RASPPPNBF>(lpProjection);
 
                             retval = new RasNbfInfo(
                                 nbf.errorCode,
@@ -2055,7 +2036,7 @@ namespace DotRas.Internal
                             break;
 
                         case NativeMethods.RASPROJECTION.Slip:
-                            NativeMethods.RASSLIP slip = Utilities.PtrToStructure<NativeMethods.RASSLIP>(lpProjection);
+                            var slip = Utilities.PtrToStructure<NativeMethods.RASSLIP>(lpProjection);
 
                             retval = new RasSlipInfo(
                                 slip.errorCode,
@@ -2065,7 +2046,7 @@ namespace DotRas.Internal
 
 #if (WIN2K8 || WIN7 || WIN8)
                         case NativeMethods.RASPROJECTION.IPv6:
-                            NativeMethods.RASPPPIPV6 ipv6 = Utilities.PtrToStructure<NativeMethods.RASPPPIPV6>(lpProjection);
+                            var ipv6 = Utilities.PtrToStructure<NativeMethods.RASPPPIPV6>(lpProjection);
 
                             retval = new RasIPv6Info(
                                 ipv6.errorCode,
@@ -2109,23 +2090,22 @@ namespace DotRas.Internal
         {
             object retval = null;
 
-            int size = Marshal.SizeOf(typeof(NativeMethods.RAS_PROJECTION_INFO));
+            var size = Marshal.SizeOf(typeof(NativeMethods.RAS_PROJECTION_INFO));
 
-            IntPtr lpdwSize = new IntPtr(size);
-            bool retry = false;
+            var lpdwSize = new IntPtr(size);
+            var retry = false;
 
             do
             {
-                NativeMethods.RAS_PROJECTION_INFO projectionInfo = new NativeMethods.RAS_PROJECTION_INFO();
-                projectionInfo.version = GetCurrentApiVersion();
+                var projectionInfo = new NativeMethods.RAS_PROJECTION_INFO {version = GetCurrentApiVersion()};
 
-                IntPtr pRasProjection = IntPtr.Zero;
+                var pRasProjection = IntPtr.Zero;
                 try
                 {
                     pRasProjection = Marshal.AllocHGlobal(lpdwSize);
                     Marshal.StructureToPtr(projectionInfo, pRasProjection, true);
 
-                    int ret = SafeNativeMethods.Instance.GetProjectionInfoEx(handle, pRasProjection, ref lpdwSize);
+                    var ret = SafeNativeMethods.Instance.GetProjectionInfoEx(handle, pRasProjection, ref lpdwSize);
                     if (ret == NativeMethods.ERROR_BUFFER_TOO_SMALL)
                     {
                         retry = true;
@@ -2135,12 +2115,12 @@ namespace DotRas.Internal
                         projectionInfo = Utilities.PtrToStructure<NativeMethods.RAS_PROJECTION_INFO>(pRasProjection);
 
                         // Use the object located at the end of the structure since the union will cause portability issues on 64-bit platforms.
-                        IntPtr pInfo = new IntPtr(pRasProjection.ToInt64() + size);
+                        var pInfo = new IntPtr(pRasProjection.ToInt64() + size);
 
                         switch (projectionInfo.type)
                         {
                             case NativeMethods.RASPROJECTION_INFO_TYPE.Ppp:
-                                NativeMethods.RASPPP_PROJECTION_INFO ppp = Utilities.PtrToStructure<NativeMethods.RASPPP_PROJECTION_INFO>(pInfo);
+                                var ppp = Utilities.PtrToStructure<NativeMethods.RASPPP_PROJECTION_INFO>(pInfo);
 
                                 ReadOnlyCollection<byte> interfaceIdentifier = null;
                                 if (ppp.interfaceIdentifier != null && ppp.interfaceIdentifier.Length > 0)
@@ -2181,9 +2161,9 @@ namespace DotRas.Internal
                                 break;
 
                             case NativeMethods.RASPROJECTION_INFO_TYPE.IkeV2:
-                                NativeMethods.RASIKEV2_PROJECTION_INFO ikev2 = Utilities.PtrToStructure<NativeMethods.RASIKEV2_PROJECTION_INFO>(pInfo);
+                                var ikev2 = Utilities.PtrToStructure<NativeMethods.RASIKEV2_PROJECTION_INFO>(pInfo);
 
-                                RasIkeV2Options ikev2Options = new RasIkeV2Options();
+                                var ikev2Options = new RasIkeV2Options();
                                 Utilities.SetRasIkeV2Options(ikev2Options, ikev2.options);
 
                                 retval = new RasIkeV2Info(
@@ -2242,9 +2222,9 @@ namespace DotRas.Internal
             {
                 try
                 {
-                    string buffer = new string('\x00', 512);
+                    var buffer = new string('\x00', 512);
 
-                    int ret = SafeNativeMethods.Instance.GetErrorString(errorCode, buffer, buffer.Length);
+                    var ret = SafeNativeMethods.Instance.GetErrorString(errorCode, buffer, buffer.Length);
                     if (ret == NativeMethods.SUCCESS)
                     {
                         retval = buffer.Substring(0, buffer.IndexOf('\x00'));
@@ -2292,11 +2272,11 @@ namespace DotRas.Internal
                 ThrowHelper.ThrowArgumentException("entryName", Resources.Argument_StringCannotBeNullOrEmpty);
             }
 
-            bool retval = false;
+            var retval = false;
 
             try
             {
-                int ret = SafeNativeMethods.Instance.ValidateEntryName(phoneBook.Path, entryName);
+                var ret = SafeNativeMethods.Instance.ValidateEntryName(phoneBook.Path, entryName);
 
                 if (ret == NativeMethods.SUCCESS)
                 {
@@ -2304,7 +2284,7 @@ namespace DotRas.Internal
                 }
                 else if (acceptableResults != null && acceptableResults.Length > 0)
                 {
-                    for (int index = 0; index < acceptableResults.Length; index++)
+                    for (var index = 0; index < acceptableResults.Length; index++)
                     {
                         if (acceptableResults[index] == ret)
                         {
@@ -2347,11 +2327,11 @@ namespace DotRas.Internal
                 ThrowHelper.ThrowArgumentException("newEntryName", Resources.Argument_StringCannotBeNullOrEmpty);
             }
 
-            bool retval = false;
+            var retval = false;
 
             try
             {                
-                int ret = UnsafeNativeMethods.Instance.RenameEntry(phoneBook.Path, entryName, newEntryName);
+                var ret = UnsafeNativeMethods.Instance.RenameEntry(phoneBook.Path, entryName, newEntryName);
                 if (ret == NativeMethods.SUCCESS)
                 {
                     retval = true;
@@ -2389,13 +2369,13 @@ namespace DotRas.Internal
         /// <returns><b>true</b> if the update was successful, otherwise <b>false</b>.</returns>
         public bool SetAutoDialAddress(string address, Collection<RasAutoDialEntry> entries)
         {
-            bool retval = false;
+            var retval = false;
 
-            IntPtr pEntries = IntPtr.Zero;
+            var pEntries = IntPtr.Zero;
             try
             {
-                int count = 0;
-                int totalSize = 0;
+                var count = 0;
+                var totalSize = 0;
 
                 if (entries != null && entries.Count > 0)
                 {
@@ -2403,19 +2383,21 @@ namespace DotRas.Internal
                     Instance.SetAutoDialAddress(address, null);
 
                     count = entries.Count;
-                    int size = Marshal.SizeOf(typeof(NativeMethods.RASAUTODIALENTRY));
+                    var size = Marshal.SizeOf(typeof(NativeMethods.RASAUTODIALENTRY));
 
                     // Copy the entries into the struct array that will be used.
-                    NativeMethods.RASAUTODIALENTRY[] autoDialEntries = new NativeMethods.RASAUTODIALENTRY[entries.Count];
-                    for (int index = 0; index < autoDialEntries.Length; index++)
+                    var autoDialEntries = new NativeMethods.RASAUTODIALENTRY[entries.Count];
+                    for (var index = 0; index < autoDialEntries.Length; index++)
                     {
-                        RasAutoDialEntry current = entries[index];
+                        var current = entries[index];
                         if (current != null)
                         {
-                            NativeMethods.RASAUTODIALENTRY item = new NativeMethods.RASAUTODIALENTRY();
-                            item.size = size;
-                            item.dialingLocation = current.DialingLocation;
-                            item.entryName = current.EntryName;
+                            var item = new NativeMethods.RASAUTODIALENTRY
+                            {
+                                size = size,
+                                dialingLocation = current.DialingLocation,
+                                entryName = current.EntryName
+                            };
 
                             autoDialEntries[index] = item;
                         }
@@ -2424,7 +2406,7 @@ namespace DotRas.Internal
                     pEntries = Utilities.CopyObjectsToNewPtr<NativeMethods.RASAUTODIALENTRY>(autoDialEntries, ref size, out totalSize);
                 }
 
-                int ret = UnsafeNativeMethods.Instance.SetAutodialAddress(address, 0, pEntries, totalSize, count);
+                var ret = UnsafeNativeMethods.Instance.SetAutodialAddress(address, 0, pEntries, totalSize, count);
                 if (ret == NativeMethods.SUCCESS)
                 {
                     retval = true;
@@ -2461,11 +2443,11 @@ namespace DotRas.Internal
         /// <returns><b>true</b> if the operation was successful, otherwise <b>false</b>.</returns>
         public bool SetAutoDialEnable(int dialingLocation, bool enabled)
         {
-            bool retval = false;
+            var retval = false;
 
             try
             {
-                int ret = UnsafeNativeMethods.Instance.SetAutodialEnable(dialingLocation, enabled);
+                var ret = UnsafeNativeMethods.Instance.SetAutodialEnable(dialingLocation, enabled);
                 if (ret == NativeMethods.SUCCESS)
                 {
                     retval = true;
@@ -2490,15 +2472,15 @@ namespace DotRas.Internal
         /// <param name="value">The new value of the parameter.</param>
         public void SetAutoDialParameter(NativeMethods.RASADP parameter, int value)
         {
-            int size = Marshal.SizeOf(typeof(int));
+            var size = Marshal.SizeOf(typeof(int));
 
-            IntPtr pValue = IntPtr.Zero;
+            var pValue = IntPtr.Zero;
             try
             {
                 pValue = Marshal.AllocHGlobal(size);
                 Marshal.WriteInt32(pValue, value);
 
-                int ret = UnsafeNativeMethods.Instance.SetAutodialParam(parameter, pValue, size);
+                var ret = UnsafeNativeMethods.Instance.SetAutodialParam(parameter, pValue, size);
                 if (ret != NativeMethods.SUCCESS)
                 {
                     ThrowHelper.ThrowRasException(ret);
@@ -2535,13 +2517,13 @@ namespace DotRas.Internal
                 ThrowHelper.ThrowArgumentException("entryName", Resources.Argument_StringCannotBeNullOrEmpty);
             }
 
-            bool result = false;
+            var result = false;
 
-            IntPtr lpCustomAuthData = IntPtr.Zero;
+            var lpCustomAuthData = IntPtr.Zero;
 
             try
             {
-                int size = 0;
+                var size = 0;
                 if (data != null)
                 {
                     size = data.Length;
@@ -2551,7 +2533,7 @@ namespace DotRas.Internal
                     Marshal.Copy(data, 0, lpCustomAuthData, size);
                 }
 
-                int ret = UnsafeNativeMethods.Instance.SetCustomAuthData(phoneBookPath, entryName, lpCustomAuthData, size);
+                var ret = UnsafeNativeMethods.Instance.SetCustomAuthData(phoneBookPath, entryName, lpCustomAuthData, size);
                 if (ret == NativeMethods.SUCCESS)
                 {
                     result = true;
@@ -2586,13 +2568,13 @@ namespace DotRas.Internal
         /// <returns><b>true</b> if the operation was successful, otherwise <b>false</b>.</returns>
         public bool SetEapUserData(IntPtr handle, string phoneBookPath, string entryName, byte[] data)
         {
-            bool result = false;
+            var result = false;
 
-            IntPtr lpEapData = IntPtr.Zero;
+            var lpEapData = IntPtr.Zero;
 
             try
             {
-                int size = 0;
+                var size = 0;
                 if (data != null)
                 {
                     size = data.Length;
@@ -2602,7 +2584,7 @@ namespace DotRas.Internal
                     Marshal.Copy(data, 0, lpEapData, size);
                 }
 
-                int ret = UnsafeNativeMethods.Instance.SetEapUserData(handle, phoneBookPath, entryName, lpEapData, size);
+                var ret = UnsafeNativeMethods.Instance.SetEapUserData(handle, phoneBookPath, entryName, lpEapData, size);
                 if (ret == NativeMethods.SUCCESS)
                 {
                     result = true;
@@ -2659,15 +2641,15 @@ namespace DotRas.Internal
                 ThrowHelper.ThrowArgumentException("entry", Resources.Argument_MissingRequiredInfo);
             }
 
-            bool retval = false;
-            int size = Marshal.SizeOf(typeof(NativeMethods.RASENTRY));
+            var retval = false;
+            var size = Marshal.SizeOf(typeof(NativeMethods.RASENTRY));
             CorrectRASENTRYSize(ref size);
-            int lpCb = size;
+            var lpCb = size;
 
-            IntPtr lpRasEntry = IntPtr.Zero;
+            var lpRasEntry = IntPtr.Zero;
             try
             {
-                NativeMethods.RASENTRY entry = new NativeMethods.RASENTRY();
+                var entry = new NativeMethods.RASENTRY();
                 entry.size = size;
 
 #pragma warning disable 0618
@@ -2684,7 +2666,7 @@ namespace DotRas.Internal
 
                 if (value.Device != null)
                 {
-                    TypeConverter converter = TypeDescriptor.GetConverter(typeof(RasDeviceType));
+                    var converter = TypeDescriptor.GetConverter(typeof(RasDeviceType));
                     if (converter == null)
                     {
                         ThrowHelper.ThrowInvalidOperationException(Resources.Exception_TypeConverterNotFound, "RasDeviceType");
@@ -2694,7 +2676,7 @@ namespace DotRas.Internal
                     entry.deviceType = converter.ConvertToString(value.Device.DeviceType);
                 }
 
-                IPAddressConverter ipAddrConverter = new IPAddressConverter();
+                var ipAddrConverter = new IPAddressConverter();
 
                 entry.dialExtraPercent = value.DialExtraPercent;
                 entry.dialExtraSampleSeconds = value.DialExtraSampleSeconds;
@@ -2748,8 +2730,8 @@ namespace DotRas.Internal
                 entry.networkOutageTime = value.NetworkOutageTime;
 #endif
 
-                int alternatesLength = 0;
-                string alternatesList = Utilities.BuildStringList(value.AlternatePhoneNumbers, '\x00', out alternatesLength);
+                var alternatesLength = 0;
+                var alternatesList = Utilities.BuildStringList(value.AlternatePhoneNumbers, '\x00', out alternatesLength);
                 if (alternatesLength > 0)
                 {
                     lpCb = size + alternatesLength;
@@ -2767,7 +2749,7 @@ namespace DotRas.Internal
 
                 try
                 {
-                    int ret = UnsafeNativeMethods.Instance.SetEntryProperties(phoneBook.Path, value.Name, lpRasEntry, lpCb, IntPtr.Zero, 0);
+                    var ret = UnsafeNativeMethods.Instance.SetEntryProperties(phoneBook.Path, value.Name, lpRasEntry, lpCb, IntPtr.Zero, 0);
                     if (ret == NativeMethods.ERROR_ACCESS_DENIED)
                     {
                         ThrowHelper.ThrowUnauthorizedAccessException(Resources.Exception_AccessDeniedBySecurity);
@@ -2783,9 +2765,9 @@ namespace DotRas.Internal
                         if (value.SubEntries.Count > 0)
                         {
                             // The entry has subentries associated with it, add them to the phone book.
-                            for (int index = 0; index < value.SubEntries.Count; index++)
+                            for (var index = 0; index < value.SubEntries.Count; index++)
                             {
-                                RasSubEntry subEntry = value.SubEntries[index];
+                                var subEntry = value.SubEntries[index];
                                 if (subEntry != null)
                                 {
                                     Instance.SetSubEntryProperties(value.Owner, value, index, subEntry);
@@ -2855,20 +2837,18 @@ namespace DotRas.Internal
                 ThrowHelper.ThrowArgumentNullException("entry");
             }
 
-            bool retval = false;
-            int size = Marshal.SizeOf(typeof(NativeMethods.RASSUBENTRY));
-            int lpCb = size;
+            var retval = false;
+            var size = Marshal.SizeOf(typeof(NativeMethods.RASSUBENTRY));
+            var lpCb = size;
 
-            IntPtr lpRasSubEntry = IntPtr.Zero;
+            var lpRasSubEntry = IntPtr.Zero;
             try
             {
-                NativeMethods.RASSUBENTRY subentry = new NativeMethods.RASSUBENTRY();
-                subentry.size = size;
-                subentry.phoneNumber = value.PhoneNumber;
+                var subentry = new NativeMethods.RASSUBENTRY {size = size, phoneNumber = value.PhoneNumber};
 
                 if (value.Device != null)
                 {
-                    TypeConverter converter = TypeDescriptor.GetConverter(typeof(RasDeviceType));
+                    var converter = TypeDescriptor.GetConverter(typeof(RasDeviceType));
                     if (converter == null)
                     {
                         ThrowHelper.ThrowInvalidOperationException(Resources.Exception_TypeConverterNotFound, "RasDeviceType");
@@ -2878,8 +2858,8 @@ namespace DotRas.Internal
                     subentry.deviceType = converter.ConvertToString(value.Device.DeviceType);
                 }
 
-                int alternatesLength = 0;
-                string alternatesList = Utilities.BuildStringList(value.AlternatePhoneNumbers, '\x00', out alternatesLength);
+                var alternatesLength = 0;
+                var alternatesList = Utilities.BuildStringList(value.AlternatePhoneNumbers, '\x00', out alternatesLength);
                 if (alternatesLength > 0)
                 {
                     lpCb = size + alternatesLength;
@@ -2896,7 +2876,7 @@ namespace DotRas.Internal
 
                 try
                 {
-                    int ret = UnsafeNativeMethods.Instance.SetSubEntryProperties(phoneBook.Path, entry.Name, subEntryId + 2, lpRasSubEntry, lpCb, IntPtr.Zero, 0);
+                    var ret = UnsafeNativeMethods.Instance.SetSubEntryProperties(phoneBook.Path, entry.Name, subEntryId + 2, lpRasSubEntry, lpCb, IntPtr.Zero, 0);
                     if (ret == NativeMethods.SUCCESS)
                     {
                         retval = true;
@@ -2943,10 +2923,10 @@ namespace DotRas.Internal
                 ThrowHelper.ThrowArgumentException("entryName", Resources.Argument_StringCannotBeNullOrEmpty);
             }
 
-            int size = Marshal.SizeOf(typeof(NativeMethods.RASCREDENTIALS));
-            bool retval = false;
+            var size = Marshal.SizeOf(typeof(NativeMethods.RASCREDENTIALS));
+            var retval = false;
 
-            IntPtr pCredentials = IntPtr.Zero;
+            var pCredentials = IntPtr.Zero;
             try
             {
                 credentials.size = size;
@@ -2956,7 +2936,7 @@ namespace DotRas.Internal
 
                 try
                 {
-                    int ret = UnsafeNativeMethods.Instance.SetCredentials(phoneBookPath, entryName, pCredentials, clearCredentials);
+                    var ret = UnsafeNativeMethods.Instance.SetCredentials(phoneBookPath, entryName, pCredentials, clearCredentials);
                     if (ret == NativeMethods.SUCCESS)
                     {
                         retval = true;
@@ -2996,24 +2976,30 @@ namespace DotRas.Internal
         /// <param name="remoteEndPoint">The new remote server endpoint of the connection.</param>
         public void UpdateConnection(RasHandle handle, int interfaceIndex, IPAddress localEndPoint, IPAddress remoteEndPoint)
         {
-            int size = Marshal.SizeOf(typeof(NativeMethods.RASUPDATECONN));
+            var size = Marshal.SizeOf(typeof(NativeMethods.RASUPDATECONN));
 
-            IntPtr pRasUpdateConn = IntPtr.Zero;
+            var pRasUpdateConn = IntPtr.Zero;
             try
             {
-                IPAddressConverter converter = new IPAddressConverter();
+                var converter = new IPAddressConverter();
 
-                NativeMethods.RASUPDATECONN updateConn = new NativeMethods.RASUPDATECONN();
-                updateConn.version = GetCurrentApiVersion();
-                updateConn.size = size;
-                updateConn.interfaceIndex = interfaceIndex;
-                updateConn.localEndPoint = (NativeMethods.RASTUNNELENDPOINT)converter.ConvertTo(localEndPoint, typeof(NativeMethods.RASTUNNELENDPOINT));
-                updateConn.remoteEndPoint = (NativeMethods.RASTUNNELENDPOINT)converter.ConvertTo(remoteEndPoint, typeof(NativeMethods.RASTUNNELENDPOINT));
+                var updateConn = new NativeMethods.RASUPDATECONN
+                {
+                    version = GetCurrentApiVersion(),
+                    size = size,
+                    interfaceIndex = interfaceIndex,
+                    localEndPoint =
+                        (NativeMethods.RASTUNNELENDPOINT) converter.ConvertTo(localEndPoint,
+                            typeof(NativeMethods.RASTUNNELENDPOINT)),
+                    remoteEndPoint =
+                        (NativeMethods.RASTUNNELENDPOINT) converter.ConvertTo(remoteEndPoint,
+                            typeof(NativeMethods.RASTUNNELENDPOINT))
+                };
 
                 pRasUpdateConn = Marshal.AllocHGlobal(size);
                 Marshal.StructureToPtr(updateConn, pRasUpdateConn, true);
 
-                int ret = UnsafeNativeMethods.Instance.UpdateConnection(handle, pRasUpdateConn);
+                var ret = UnsafeNativeMethods.Instance.UpdateConnection(handle, pRasUpdateConn);
                 if (ret == NativeMethods.ERROR_INVALID_PARAMETER)
                 {
                     ThrowHelper.ThrowInvalidOperationException(Resources.Exception_InvalidIkeV2Handle);

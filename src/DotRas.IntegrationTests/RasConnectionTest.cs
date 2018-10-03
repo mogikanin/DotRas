@@ -62,12 +62,12 @@ namespace DotRas.IntegrationTests
             entryName = Guid.NewGuid().ToString();
             phonebookPath = Path.GetTempFileName();
 
-            RasPhoneBook pbk = new RasPhoneBook();
+            var pbk = new RasPhoneBook();
             pbk.Open(phonebookPath);
 
             entryId = TestUtilities.CreateValidVpnEntry(pbk, entryName);
 
-            using (RasDialer dialer = new RasDialer())
+            using (var dialer = new RasDialer())
             {
                 dialer.EntryName = entryName;
                 dialer.PhoneBookPath = phonebookPath;
@@ -85,7 +85,7 @@ namespace DotRas.IntegrationTests
         [ClassCleanup]
         public static void ClassCleanUp()
         {
-            RasConnection connection = RasConnection.GetActiveConnections().Where(o => o.Handle == handle).FirstOrDefault();
+            var connection = RasConnection.GetActiveConnections().Where(o => o.Handle == handle).FirstOrDefault();
             if (connection != null)
             {
                 connection.HangUp();
@@ -121,8 +121,8 @@ namespace DotRas.IntegrationTests
         [TestCategory("ServerIntegration")]
         public void ClearConnectionStatisticsTest()
         {
-            bool expected = true;
-            bool actual = target.ClearConnectionStatistics();
+            var expected = true;
+            var actual = target.ClearConnectionStatistics();
 
             Assert.AreEqual(expected, actual);
         }
@@ -138,8 +138,8 @@ namespace DotRas.IntegrationTests
         [TestCategory("ServerIntegration")]
         public void ClearLinkStatisticsTest()
         {
-            bool expected = true;
-            bool actual = target.ClearLinkStatistics();
+            var expected = true;
+            var actual = target.ClearLinkStatistics();
 
             Assert.AreEqual(expected, actual);
         }
@@ -155,7 +155,7 @@ namespace DotRas.IntegrationTests
         [TestCategory("ServerIntegration")]
         public void GetActiveConnectionsTest()
         {
-            ReadOnlyCollection<RasConnection> connections = RasConnection.GetActiveConnections();
+            var connections = RasConnection.GetActiveConnections();
 
             var s = (from c in connections
                     where c.Handle == handle
@@ -175,7 +175,7 @@ namespace DotRas.IntegrationTests
         [TestCategory("ServerIntegration")]
         public void GetConnectionStatisticsTest()
         {
-            RasLinkStatistics actual = target.GetConnectionStatistics();
+            var actual = target.GetConnectionStatistics();
 
             Assert.IsNotNull(actual);
         }
@@ -191,7 +191,7 @@ namespace DotRas.IntegrationTests
         [TestCategory("ServerIntegration")]
         public void GetConnectionStatusTest()
         {
-            RasConnectionStatus actual = target.GetConnectionStatus();
+            var actual = target.GetConnectionStatus();
             
             Assert.IsNotNull(actual);
         }
@@ -207,7 +207,7 @@ namespace DotRas.IntegrationTests
         [TestCategory("ServerIntegration")]
         public void GetLinkStatisticsTest()
         {
-            RasLinkStatistics actual = target.GetLinkStatistics();
+            var actual = target.GetLinkStatistics();
 
             Assert.IsNotNull(actual);
         }

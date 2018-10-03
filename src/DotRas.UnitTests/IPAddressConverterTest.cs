@@ -39,10 +39,10 @@ namespace DotRas.UnitTests
         [TestMethod]
         public void CanConvertFromUnsupportedType()
         {
-            bool expected = false;
+            var expected = false;
 
-            IPAddressConverter target = new IPAddressConverter();
-            bool actual = target.CanConvertFrom(typeof(bool));
+            var target = new IPAddressConverter();
+            var actual = target.CanConvertFrom(typeof(bool));
 
             Assert.AreEqual(expected, actual);
         }
@@ -50,10 +50,10 @@ namespace DotRas.UnitTests
         [TestMethod]
         public void CanConvertFromRASIPADDRTest()
         {
-            bool expected = true;
+            var expected = true;
 
-            IPAddressConverter target = new IPAddressConverter();
-            bool actual = target.CanConvertFrom(typeof(NativeMethods.RASIPADDR));
+            var target = new IPAddressConverter();
+            var actual = target.CanConvertFrom(typeof(NativeMethods.RASIPADDR));
 
             Assert.AreEqual(expected, actual);
         }
@@ -61,10 +61,10 @@ namespace DotRas.UnitTests
         [TestMethod]
         public void CanConvertFromStringTest()
         {
-            bool expected = true;
+            var expected = true;
 
-            IPAddressConverter target = new IPAddressConverter();
-            bool actual = target.CanConvertFrom(typeof(string));
+            var target = new IPAddressConverter();
+            var actual = target.CanConvertFrom(typeof(string));
 
             Assert.AreEqual(expected, actual);
         }
@@ -72,10 +72,10 @@ namespace DotRas.UnitTests
         [TestMethod]
         public void CanConvertToUnsupportedTypeTest()
         {
-            bool expected = false;
+            var expected = false;
 
-            IPAddressConverter target = new IPAddressConverter();
-            bool actual = target.CanConvertTo(typeof(bool));
+            var target = new IPAddressConverter();
+            var actual = target.CanConvertTo(typeof(bool));
 
             Assert.AreEqual(expected, actual);
         }
@@ -83,10 +83,10 @@ namespace DotRas.UnitTests
         [TestMethod]
         public void CanConvertToRASIPADDRTest()
         {
-            bool expected = true;
+            var expected = true;
 
-            IPAddressConverter target = new IPAddressConverter();
-            bool actual = target.CanConvertTo(typeof(NativeMethods.RASIPADDR));
+            var target = new IPAddressConverter();
+            var actual = target.CanConvertTo(typeof(NativeMethods.RASIPADDR));
 
             Assert.AreEqual(expected, actual);
         }
@@ -94,15 +94,15 @@ namespace DotRas.UnitTests
         [TestMethod]
         public void ConvertFromRASIPADDRTest()
         {
-            byte[] expected = IPAddress.Loopback.GetAddressBytes();
+            var expected = IPAddress.Loopback.GetAddressBytes();
 
-            NativeMethods.RASIPADDR value = new NativeMethods.RASIPADDR();
+            var value = new NativeMethods.RASIPADDR();
             value.addr = expected;
 
-            IPAddressConverter target = new IPAddressConverter();
-            IPAddress result = (IPAddress)target.ConvertFrom(value);
+            var target = new IPAddressConverter();
+            var result = (IPAddress)target.ConvertFrom(value);
 
-            byte[] actual = result.GetAddressBytes();
+            var actual = result.GetAddressBytes();
 
             Assert.AreEqual<System.Net.Sockets.AddressFamily>(System.Net.Sockets.AddressFamily.InterNetwork, result.AddressFamily);
             CollectionAssert.AreEqual(expected, actual);
@@ -111,14 +111,14 @@ namespace DotRas.UnitTests
         [TestMethod]
         public void ConvertFromStringTest()
         {
-            string expected = IPAddress.Loopback.ToString();
+            var expected = IPAddress.Loopback.ToString();
 
-            IPAddressConverter target = new IPAddressConverter();
-            IPAddress result = (IPAddress)target.ConvertFrom(expected);
+            var target = new IPAddressConverter();
+            var result = (IPAddress)target.ConvertFrom(expected);
 
             Assert.IsNotNull(result);
 
-            string actual = result.ToString();
+            var actual = result.ToString();
 
             Assert.AreEqual(expected, actual, true);
         }
@@ -127,19 +127,19 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(NotSupportedException))]
         public void ConvertFromUnsupportedTypeTest()
         {
-            IPAddressConverter target = new IPAddressConverter();
+            var target = new IPAddressConverter();
             target.ConvertFrom(true);
         }
 
         [TestMethod]
         public void ConvertToRASIPADDRTest()
         {
-            byte[] expected = IPAddress.Loopback.GetAddressBytes();
+            var expected = IPAddress.Loopback.GetAddressBytes();
 
-            IPAddressConverter target = new IPAddressConverter();
-            NativeMethods.RASIPADDR result = (NativeMethods.RASIPADDR)target.ConvertTo(IPAddress.Loopback, typeof(NativeMethods.RASIPADDR));
+            var target = new IPAddressConverter();
+            var result = (NativeMethods.RASIPADDR)target.ConvertTo(IPAddress.Loopback, typeof(NativeMethods.RASIPADDR));
 
-            byte[] actual = result.addr;
+            var actual = result.addr;
 
             CollectionAssert.AreEqual(expected, actual);
         }
@@ -148,19 +148,19 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(NotSupportedException))]
         public void ConvertToRASIPADDRFromIPv6Test()
         {
-            IPAddressConverter target = new IPAddressConverter();
+            var target = new IPAddressConverter();
             target.ConvertTo(IPAddress.IPv6Loopback, typeof(NativeMethods.RASIPADDR));
         }
 
         [TestMethod]
         public void ConvertToRASIPADDRFromNullTest()
         {
-            byte[] expected = IPAddress.Any.GetAddressBytes();
+            var expected = IPAddress.Any.GetAddressBytes();
 
-            IPAddressConverter target = new IPAddressConverter();
-            NativeMethods.RASIPADDR result = (NativeMethods.RASIPADDR)target.ConvertTo(null, typeof(NativeMethods.RASIPADDR));
+            var target = new IPAddressConverter();
+            var result = (NativeMethods.RASIPADDR)target.ConvertTo(null, typeof(NativeMethods.RASIPADDR));
 
-            byte[] actual = result.addr;
+            var actual = result.addr;
 
             CollectionAssert.AreEqual(expected, actual);
         }
@@ -169,7 +169,7 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(NotSupportedException))]
         public void ConvertToUnsupportedTypeTest()
         {
-            IPAddressConverter target = new IPAddressConverter();
+            var target = new IPAddressConverter();
             target.ConvertTo(null, typeof(bool));
         }
 
@@ -178,10 +178,10 @@ namespace DotRas.UnitTests
         [TestMethod]
         public void CanConvertFromRASIPV6ADDRTest()
         {
-            bool expected = true;
+            var expected = true;
 
-            IPAddressConverter target = new IPAddressConverter();
-            bool actual = target.CanConvertFrom(typeof(NativeMethods.RASIPV6ADDR));
+            var target = new IPAddressConverter();
+            var actual = target.CanConvertFrom(typeof(NativeMethods.RASIPV6ADDR));
 
             Assert.AreEqual(expected, actual);
         }
@@ -189,10 +189,10 @@ namespace DotRas.UnitTests
         [TestMethod]
         public void CanConvertToRASIPV6ADDRTest()
         {
-            bool expected = true;
+            var expected = true;
 
-            IPAddressConverter target = new IPAddressConverter();
-            bool actual = target.CanConvertTo(typeof(NativeMethods.RASIPV6ADDR));
+            var target = new IPAddressConverter();
+            var actual = target.CanConvertTo(typeof(NativeMethods.RASIPV6ADDR));
 
             Assert.AreEqual(expected, actual);
         }
@@ -200,15 +200,15 @@ namespace DotRas.UnitTests
         [TestMethod]
         public void ConvertFromRASIPV6ADDRTest()
         {
-            byte[] expected = IPAddress.IPv6Loopback.GetAddressBytes();
+            var expected = IPAddress.IPv6Loopback.GetAddressBytes();
 
-            NativeMethods.RASIPV6ADDR value = new NativeMethods.RASIPV6ADDR();
+            var value = new NativeMethods.RASIPV6ADDR();
             value.addr = expected;
 
-            IPAddressConverter target = new IPAddressConverter();
-            IPAddress result = (IPAddress)target.ConvertFrom(value);
+            var target = new IPAddressConverter();
+            var result = (IPAddress)target.ConvertFrom(value);
 
-            byte[] actual = result.GetAddressBytes();
+            var actual = result.GetAddressBytes();
 
             Assert.AreEqual<System.Net.Sockets.AddressFamily>(System.Net.Sockets.AddressFamily.InterNetworkV6, result.AddressFamily);
             CollectionAssert.AreEqual(expected, actual);
@@ -217,12 +217,12 @@ namespace DotRas.UnitTests
         [TestMethod]
         public void ConvertToRASIPV6ADDRTest()
         {
-            byte[] expected = IPAddress.IPv6Loopback.GetAddressBytes();
+            var expected = IPAddress.IPv6Loopback.GetAddressBytes();
 
-            IPAddressConverter target = new IPAddressConverter();
-            NativeMethods.RASIPV6ADDR result = (NativeMethods.RASIPV6ADDR)target.ConvertTo(IPAddress.IPv6Loopback, typeof(NativeMethods.RASIPV6ADDR));
+            var target = new IPAddressConverter();
+            var result = (NativeMethods.RASIPV6ADDR)target.ConvertTo(IPAddress.IPv6Loopback, typeof(NativeMethods.RASIPV6ADDR));
 
-            byte[] actual = result.addr;
+            var actual = result.addr;
 
             CollectionAssert.AreEqual(expected, actual);
         }
@@ -230,12 +230,12 @@ namespace DotRas.UnitTests
         [TestMethod]
         public void ConvertToRASIPV6ADDRFromNullTest()
         {
-            byte[] expected = IPAddress.IPv6Any.GetAddressBytes();
+            var expected = IPAddress.IPv6Any.GetAddressBytes();
 
-            IPAddressConverter target = new IPAddressConverter();
-            NativeMethods.RASIPV6ADDR result = (NativeMethods.RASIPV6ADDR)target.ConvertTo(null, typeof(NativeMethods.RASIPV6ADDR));
+            var target = new IPAddressConverter();
+            var result = (NativeMethods.RASIPV6ADDR)target.ConvertTo(null, typeof(NativeMethods.RASIPV6ADDR));
 
-            byte[] actual = result.addr;
+            var actual = result.addr;
 
             CollectionAssert.AreEqual(expected, actual);
         }
@@ -247,10 +247,10 @@ namespace DotRas.UnitTests
         [TestMethod]
         public void CanConvertFromRASTUNNELENDPOINTTest()
         {
-            bool expected = true;
+            var expected = true;
 
-            IPAddressConverter target = new IPAddressConverter();
-            bool actual = target.CanConvertFrom(typeof(NativeMethods.RASTUNNELENDPOINT));
+            var target = new IPAddressConverter();
+            var actual = target.CanConvertFrom(typeof(NativeMethods.RASTUNNELENDPOINT));
 
             Assert.AreEqual(expected, actual);
         }
@@ -258,16 +258,16 @@ namespace DotRas.UnitTests
         [TestMethod]
         public void ConvertFromIPv4RASTUNNELENDPOINTTest()
         {
-            byte[] expected = IPAddress.Loopback.GetAddressBytes();
+            var expected = IPAddress.Loopback.GetAddressBytes();
 
-            NativeMethods.RASTUNNELENDPOINT value = new NativeMethods.RASTUNNELENDPOINT();
+            var value = new NativeMethods.RASTUNNELENDPOINT();
             value.type = NativeMethods.RASTUNNELENDPOINTTYPE.IPv4;
             value.addr = expected;
 
-            IPAddressConverter target = new IPAddressConverter();
-            IPAddress result = (IPAddress)target.ConvertFrom(value);
+            var target = new IPAddressConverter();
+            var result = (IPAddress)target.ConvertFrom(value);
 
-            byte[] actual = result.GetAddressBytes();
+            var actual = result.GetAddressBytes();
 
             Assert.AreEqual<System.Net.Sockets.AddressFamily>(System.Net.Sockets.AddressFamily.InterNetwork, result.AddressFamily);
             CollectionAssert.AreEqual(expected, actual);
@@ -276,16 +276,16 @@ namespace DotRas.UnitTests
         [TestMethod]
         public void ConvertFromIPv6RASTUNNELENDPOINTTest()
         {
-            byte[] expected = IPAddress.IPv6Loopback.GetAddressBytes();
+            var expected = IPAddress.IPv6Loopback.GetAddressBytes();
 
-            NativeMethods.RASTUNNELENDPOINT value = new NativeMethods.RASTUNNELENDPOINT();
+            var value = new NativeMethods.RASTUNNELENDPOINT();
             value.type = NativeMethods.RASTUNNELENDPOINTTYPE.IPv6;
             value.addr = expected;
 
-            IPAddressConverter target = new IPAddressConverter();
-            IPAddress result = (IPAddress)target.ConvertFrom(value);
+            var target = new IPAddressConverter();
+            var result = (IPAddress)target.ConvertFrom(value);
 
-            byte[] actual = result.GetAddressBytes();
+            var actual = result.GetAddressBytes();
 
             Assert.AreEqual<System.Net.Sockets.AddressFamily>(System.Net.Sockets.AddressFamily.InterNetworkV6, result.AddressFamily);
             CollectionAssert.AreEqual(expected, actual);
@@ -294,11 +294,11 @@ namespace DotRas.UnitTests
         [TestMethod]
         public void ConvertFromUnknownRASTUNNELENDPOINTTest()
         {
-            NativeMethods.RASTUNNELENDPOINT value = new NativeMethods.RASTUNNELENDPOINT();
+            var value = new NativeMethods.RASTUNNELENDPOINT();
             value.type = NativeMethods.RASTUNNELENDPOINTTYPE.Unknown;
 
-            IPAddressConverter target = new IPAddressConverter();
-            IPAddress result = (IPAddress)target.ConvertFrom(value);
+            var target = new IPAddressConverter();
+            var result = (IPAddress)target.ConvertFrom(value);
 
             Assert.IsNull(result);
         }
@@ -306,12 +306,12 @@ namespace DotRas.UnitTests
         [TestMethod]
         public void ConvertToIPv4RASTUNNELENDPOINTTest()
         {
-            byte[] expected = IPAddress.Loopback.GetAddressBytes();
+            var expected = IPAddress.Loopback.GetAddressBytes();
 
-            IPAddressConverter target = new IPAddressConverter();
-            NativeMethods.RASTUNNELENDPOINT result = (NativeMethods.RASTUNNELENDPOINT)target.ConvertTo(IPAddress.Loopback, typeof(NativeMethods.RASTUNNELENDPOINT));
+            var target = new IPAddressConverter();
+            var result = (NativeMethods.RASTUNNELENDPOINT)target.ConvertTo(IPAddress.Loopback, typeof(NativeMethods.RASTUNNELENDPOINT));
 
-            byte[] actual = result.addr;
+            var actual = result.addr;
 
             Assert.AreEqual<NativeMethods.RASTUNNELENDPOINTTYPE>(NativeMethods.RASTUNNELENDPOINTTYPE.IPv4, result.type);
             CollectionAssert.IsSubsetOf(expected, actual);
@@ -320,12 +320,12 @@ namespace DotRas.UnitTests
         [TestMethod]
         public void ConvertToIPv6RASTUNNELENDPOINTTest()
         {
-            byte[] expected = IPAddress.IPv6Loopback.GetAddressBytes();
+            var expected = IPAddress.IPv6Loopback.GetAddressBytes();
 
-            IPAddressConverter target = new IPAddressConverter();
-            NativeMethods.RASTUNNELENDPOINT result = (NativeMethods.RASTUNNELENDPOINT)target.ConvertTo(IPAddress.IPv6Loopback, typeof(NativeMethods.RASTUNNELENDPOINT));
+            var target = new IPAddressConverter();
+            var result = (NativeMethods.RASTUNNELENDPOINT)target.ConvertTo(IPAddress.IPv6Loopback, typeof(NativeMethods.RASTUNNELENDPOINT));
 
-            byte[] actual = result.addr;
+            var actual = result.addr;
 
             Assert.AreEqual<NativeMethods.RASTUNNELENDPOINTTYPE>(NativeMethods.RASTUNNELENDPOINTTYPE.IPv6, result.type);
             CollectionAssert.AreEqual(expected, actual);

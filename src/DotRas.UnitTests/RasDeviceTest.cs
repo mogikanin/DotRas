@@ -64,7 +64,7 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void CreateDeviceWithEmptyNameTest()
         {
-            RasDevice target = RasDevice.Create(string.Empty, RasDeviceType.Modem);
+            var target = RasDevice.Create(string.Empty, RasDeviceType.Modem);
 
             Assert.AreEqual(string.Empty, target.Name);
             Assert.AreEqual(RasDeviceType.Modem, target.DeviceType);
@@ -78,7 +78,7 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(ArgumentException))]
         public void CreateDeviceWithNullDeviceTypeTest()
         {
-            RasDevice target = RasDevice.Create(string.Empty, null);
+            var target = RasDevice.Create(string.Empty, null);
         }
 
         /// <summary>
@@ -89,7 +89,7 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(ArgumentException))]
         public void CreateDeviceWithEmptyDeviceTypeTest()
         {
-            RasDevice target = RasDevice.Create(string.Empty, string.Empty);
+            var target = RasDevice.Create(string.Empty, string.Empty);
         }
 
         /// <summary>
@@ -99,9 +99,9 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void NameTest()
         {
-            string expected = "Test Device";
+            var expected = "Test Device";
 
-            RasDevice target = RasDevice.Create(expected, RasDeviceType.Generic);
+            var target = RasDevice.Create(expected, RasDeviceType.Generic);
 
             string actual;
             actual = target.Name;
@@ -116,10 +116,10 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void DeviceTypeTest()
         {
-            string name = "Test Device";
-            RasDeviceType expected = RasDeviceType.Generic;
+            var name = "Test Device";
+            var expected = RasDeviceType.Generic;
 
-            RasDevice target = RasDevice.Create(name, expected);
+            var target = RasDevice.Create(name, expected);
 
             RasDeviceType actual;
             actual = target.DeviceType;
@@ -134,7 +134,7 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void GetDevicesTest()
         {
-            ReadOnlyCollection<RasDevice> expected = RasHelper.Instance.GetDevices();
+            var expected = RasHelper.Instance.GetDevices();
 
             ReadOnlyCollection<RasDevice> actual;
             actual = RasDevice.GetDevices();
@@ -191,10 +191,10 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void CreateDeviceTest()
         {
-            string name = "Test Device";
-            RasDeviceType deviceType = RasDeviceType.Modem;
+            var name = "Test Device";
+            var deviceType = RasDeviceType.Modem;
 
-            RasDevice target = RasDevice.Create(name, deviceType);
+            var target = RasDevice.Create(name, deviceType);
 
             Assert.AreEqual(name, target.Name);
             Assert.AreEqual<RasDeviceType>(deviceType, target.DeviceType);
@@ -268,8 +268,8 @@ namespace DotRas.UnitTests
             /// <returns>The relative value when comparing <paramref name="objA"/> to <paramref name="objB"/>.</returns>
             public int Compare(object objA, object objB)
             {
-                RasDevice deviceA = (RasDevice)objA;
-                RasDevice deviceB = (RasDevice)objB;
+                var deviceA = (RasDevice)objA;
+                var deviceB = (RasDevice)objB;
 
                 if (deviceA == null && deviceB == null)
                 {
@@ -284,7 +284,7 @@ namespace DotRas.UnitTests
                     return 1;
                 }
 
-                int retval = string.Compare(deviceA.Name, deviceB.Name, false);
+                var retval = string.Compare(deviceA.Name, deviceB.Name, false);
                 if (retval == 0)
                 {
                     if ((int)deviceA.DeviceType < (int)deviceB.DeviceType)

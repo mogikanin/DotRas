@@ -103,8 +103,8 @@ namespace DotRas.IntegrationTests
         [TestCategory("Integration")]
         public void ClearCredentialsTest()
         {
-            bool expected = true;
-            bool actual = this._entry.ClearCredentials();
+            var expected = true;
+            var actual = this._entry.ClearCredentials();
 
             Assert.AreEqual(expected, actual);
         }
@@ -120,7 +120,7 @@ namespace DotRas.IntegrationTests
         [TestCategory("Integration")]
         public void GetCredentialsTest()
         {
-            NetworkCredential expected = new NetworkCredential("User", "Password", "Domain");
+            var expected = new NetworkCredential("User", "Password", "Domain");
 
             // Update the credentials so they can be retrieved correctly.
             this._entry.UpdateCredentials(expected);
@@ -142,7 +142,7 @@ namespace DotRas.IntegrationTests
         [TestCategory("Integration")]
         public void IPv6RemoteDefaultGatewayAfterReloadTest()
         {
-            bool expected = true;
+            var expected = true;
 
             this._entry.Options.IPv6RemoteDefaultGateway = expected;
             this._entry.Update();
@@ -156,7 +156,7 @@ namespace DotRas.IntegrationTests
 
             this._entry = this._phoneBook.Entries[this._entryName];
 
-            bool actual = this._entry.Options.IPv6RemoteDefaultGateway;
+            var actual = this._entry.Options.IPv6RemoteDefaultGateway;
 
             Assert.AreEqual(expected, actual);
         }
@@ -172,8 +172,8 @@ namespace DotRas.IntegrationTests
         [TestCategory("Integration")]
         public void RemoveTest()
         {
-            bool expected = true;
-            bool actual = this._entry.Remove();
+            var expected = true;
+            var actual = this._entry.Remove();
 
             Assert.AreEqual(expected, actual);
         }
@@ -189,11 +189,11 @@ namespace DotRas.IntegrationTests
         [TestCategory("Integration")]
         public void RenameTest()
         {
-            string name = this._entry.Name;
-            string newEntryName = Guid.NewGuid().ToString();
+            var name = this._entry.Name;
+            var newEntryName = Guid.NewGuid().ToString();
 
-            bool expected = true;
-            bool actual = this._entry.Rename(newEntryName);
+            var expected = true;
+            var actual = this._entry.Rename(newEntryName);
 
             Assert.AreEqual(expected, actual);
             Assert.AreEqual(this._entry.Name, newEntryName);
@@ -210,8 +210,8 @@ namespace DotRas.IntegrationTests
         [TestCategory("Integration")]
         public void UpdateTest()
         {
-            bool expected = true;
-            bool actual = this._entry.Update();
+            var expected = true;
+            var actual = this._entry.Update();
 
             Assert.AreEqual(expected, actual);
         }
@@ -227,10 +227,10 @@ namespace DotRas.IntegrationTests
         [TestCategory("Integration")]
         public void UpdateCredentialsTest()
         {
-            NetworkCredential credentials = new NetworkCredential("Test", "User", "Domain");
-            bool expected = true;
+            var credentials = new NetworkCredential("Test", "User", "Domain");
+            var expected = true;
 
-            bool actual = this._entry.UpdateCredentials(credentials);
+            var actual = this._entry.UpdateCredentials(credentials);
 
             Assert.AreEqual(expected, actual);
         }

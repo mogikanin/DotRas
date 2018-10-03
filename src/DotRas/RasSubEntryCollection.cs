@@ -62,9 +62,9 @@ namespace DotRas
                 BeginLock();
                 IsInitializing = true;
 
-                for (int index = 0; index < count; index++)
+                for (var index = 0; index < count; index++)
                 {
-                    RasSubEntry subEntry = RasHelper.Instance.GetSubEntryProperties(phoneBook, Owner, index);
+                    var subEntry = RasHelper.Instance.GetSubEntryProperties(phoneBook, Owner, index);
                     if (subEntry != null)
                     {
                         Add(subEntry);

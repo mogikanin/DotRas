@@ -56,7 +56,7 @@ namespace DotRas.UnitTests.Mocking.Interop
         /// <param name="value">The memory address at which to copy the result.</param>
         public void Execute(IntPtr value)
         {
-            T structure = this.Result;
+            var structure = this.Result;
 
             Marshal.StructureToPtr(structure, value, true);
         }

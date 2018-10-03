@@ -57,7 +57,7 @@ namespace DotRas.IntegrationTests
         [TestCategory("Integration")]
         public void NewLuid()
         {
-            Luid actual = Luid.NewLuid();
+            var actual = Luid.NewLuid();
 
             Assert.AreNotEqual(Luid.Empty, actual);
         }

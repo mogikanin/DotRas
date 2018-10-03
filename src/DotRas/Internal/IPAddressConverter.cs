@@ -113,13 +113,13 @@ namespace DotRas.Internal
 #if (WIN7 || WIN8)
             else if (value is NativeMethods.RASTUNNELENDPOINT)
             {
-                NativeMethods.RASTUNNELENDPOINT endpoint = (NativeMethods.RASTUNNELENDPOINT)value;
+                var endpoint = (NativeMethods.RASTUNNELENDPOINT)value;
                 if (endpoint.type != NativeMethods.RASTUNNELENDPOINTTYPE.Unknown)
                 {
                     switch (endpoint.type)
                     {
                         case NativeMethods.RASTUNNELENDPOINTTYPE.IPv4:
-                            byte[] addr = new byte[4];
+                            var addr = new byte[4];
                             Array.Copy(endpoint.addr, 0, addr, 0, 4);
 
                             return new IPAddress(addr);
@@ -146,11 +146,11 @@ namespace DotRas.Internal
         /// <returns>The converted object.</returns>
         public override object ConvertTo(ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value, Type destinationType)
         {
-            IPAddress addr = (IPAddress)value;
+            var addr = (IPAddress)value;
 
             if (destinationType == typeof(NativeMethods.RASIPADDR) && (addr == null || (addr != null && addr.AddressFamily == AddressFamily.InterNetwork)))
             {
-                NativeMethods.RASIPADDR ipv4 = new NativeMethods.RASIPADDR();
+                var ipv4 = new NativeMethods.RASIPADDR();
 
                 ipv4.addr = value == null ? IPAddress.Any.GetAddressBytes() : addr.GetAddressBytes();
 
@@ -159,8 +159,10 @@ namespace DotRas.Internal
 #if (WIN2K8 || WIN7 || WIN8)
             else if (destinationType == typeof(NativeMethods.RASIPV6ADDR) && (addr == null || (addr != null && addr.AddressFamily == AddressFamily.InterNetworkV6)))
             {
-                NativeMethods.RASIPV6ADDR ipv6 = new NativeMethods.RASIPV6ADDR();
-                ipv6.addr = addr == null ? IPAddress.IPv6Any.GetAddressBytes() : addr.GetAddressBytes();
+                var ipv6 = new NativeMethods.RASIPV6ADDR
+                {
+                    addr = addr == null ? IPAddress.IPv6Any.GetAddressBytes() : addr.GetAddressBytes()
+                };
                 return ipv6;
             }
 #endif
@@ -168,12 +170,12 @@ namespace DotRas.Internal
 #if (WIN7 || WIN8)
             else if (destinationType == typeof(NativeMethods.RASTUNNELENDPOINT))
             {
-                NativeMethods.RASTUNNELENDPOINT endpoint = new NativeMethods.RASTUNNELENDPOINT();
+                var endpoint = new NativeMethods.RASTUNNELENDPOINT();
 
                 if (addr != null)
                 {
-                    byte[] bytes = new byte[16];
-                    byte[] actual = addr.GetAddressBytes();
+                    var bytes = new byte[16];
+                    var actual = addr.GetAddressBytes();
 
                     // Transfer the bytes to the 
                     Array.Copy(actual, bytes, actual.Length);

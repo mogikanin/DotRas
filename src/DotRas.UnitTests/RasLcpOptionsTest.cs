@@ -58,10 +58,10 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void PfcTest()
         {
-            bool expected = true;
+            var expected = true;
 
-            RasLcpOptions target = new RasLcpOptions(Internal.NativeMethods.RASLCPO.Pfc);
-            bool actual = target.Pfc;
+            var target = new RasLcpOptions(Internal.NativeMethods.RASLCPO.Pfc);
+            var actual = target.Pfc;
 
             Assert.AreEqual(expected, actual);
         }
@@ -73,10 +73,10 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void AcfcTest()
         {
-            bool expected = true;
+            var expected = true;
 
-            RasLcpOptions target = new RasLcpOptions(Internal.NativeMethods.RASLCPO.Acfc);
-            bool actual = target.Acfc;
+            var target = new RasLcpOptions(Internal.NativeMethods.RASLCPO.Acfc);
+            var actual = target.Acfc;
 
             Assert.AreEqual(expected, actual);
         }
@@ -88,10 +88,10 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void SshfTest()
         {
-            bool expected = true;
+            var expected = true;
 
-            RasLcpOptions target = new RasLcpOptions(Internal.NativeMethods.RASLCPO.Sshf);
-            bool actual = target.Sshf;
+            var target = new RasLcpOptions(Internal.NativeMethods.RASLCPO.Sshf);
+            var actual = target.Sshf;
 
             Assert.AreEqual(expected, actual);
         }
@@ -103,10 +103,10 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void Des56Test()
         {
-            bool expected = true;
+            var expected = true;
 
-            RasLcpOptions target = new RasLcpOptions(Internal.NativeMethods.RASLCPO.Des56);
-            bool actual = target.Des56;
+            var target = new RasLcpOptions(Internal.NativeMethods.RASLCPO.Des56);
+            var actual = target.Des56;
 
             Assert.AreEqual(expected, actual);
         }
@@ -118,10 +118,10 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void TripleDesTest()
         {
-            bool expected = true;
+            var expected = true;
 
-            RasLcpOptions target = new RasLcpOptions(Internal.NativeMethods.RASLCPO.TripleDes);
-            bool actual = target.TripleDes;
+            var target = new RasLcpOptions(Internal.NativeMethods.RASLCPO.TripleDes);
+            var actual = target.TripleDes;
 
             Assert.AreEqual(expected, actual);
         }
@@ -135,10 +135,10 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void Aes128Test()
         {
-            bool expected = true;
+            var expected = true;
 
-            RasLcpOptions target = new RasLcpOptions(Internal.NativeMethods.RASLCPO.Aes128);
-            bool actual = target.Aes128;
+            var target = new RasLcpOptions(Internal.NativeMethods.RASLCPO.Aes128);
+            var actual = target.Aes128;
 
             Assert.AreEqual(expected, actual);
         }
@@ -150,10 +150,10 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void Aes256Test()
         {
-            bool expected = true;
+            var expected = true;
 
-            RasLcpOptions target = new RasLcpOptions(Internal.NativeMethods.RASLCPO.Aes256);
-            bool actual = target.Aes256;
+            var target = new RasLcpOptions(Internal.NativeMethods.RASLCPO.Aes256);
+            var actual = target.Aes256;
 
             Assert.AreEqual(expected, actual);
         }

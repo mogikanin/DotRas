@@ -97,9 +97,9 @@ namespace DotRas.IntegrationTests
 
             if (value != null)
             {
-                StringBuilder sb = new StringBuilder();
+                var sb = new StringBuilder();
 
-                foreach (char c in value)
+                foreach (var c in value)
                 {
                     if (char.IsLetterOrDigit(c))
                     {
@@ -122,11 +122,11 @@ namespace DotRas.IntegrationTests
         /// <returns>The entry id.</returns>
         private static Guid CreateVpnEntry(RasPhoneBook phonebook, string entryName, string serverAddress)
         {
-            Guid entryId = Guid.Empty;
+            var entryId = Guid.Empty;
 
-            RasDevice device = RasDevice.GetDevices().Where(o => o.Name.Contains("(PPTP)") && o.DeviceType == RasDeviceType.Vpn).FirstOrDefault();
+            var device = RasDevice.GetDevices().Where(o => o.Name.Contains("(PPTP)") && o.DeviceType == RasDeviceType.Vpn).FirstOrDefault();
 
-            RasEntry entry = RasEntry.CreateVpnEntry(entryName, serverAddress, RasVpnStrategy.PptpOnly, device);
+            var entry = RasEntry.CreateVpnEntry(entryName, serverAddress, RasVpnStrategy.PptpOnly, device);
             if (entry != null)
             {
                 phonebook.Entries.Add(entry);

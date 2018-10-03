@@ -52,12 +52,12 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void UseCountryAndAreaCodesTest()
         {
-            bool expected = true;
+            var expected = true;
 
-            RasEntryOptions target = new RasEntryOptions();
+            var target = new RasEntryOptions();
             target.UseCountryAndAreaCodes = expected;
 
-            bool actual = target.UseCountryAndAreaCodes;
+            var actual = target.UseCountryAndAreaCodes;
 
             Assert.AreEqual<bool>(expected, actual);
         }
@@ -69,12 +69,12 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void IPHeaderCompressionTest()
         {
-            bool expected = true;
+            var expected = true;
 
-            RasEntryOptions target = new RasEntryOptions();
+            var target = new RasEntryOptions();
             target.IPHeaderCompression = expected;
 
-            bool actual = target.IPHeaderCompression;
+            var actual = target.IPHeaderCompression;
 
             Assert.AreEqual<bool>(expected, actual);
         }
@@ -86,12 +86,12 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void RemoteDefaultGatewayTest()
         {
-            bool expected = true;
+            var expected = true;
 
-            RasEntryOptions target = new RasEntryOptions();
+            var target = new RasEntryOptions();
             target.RemoteDefaultGateway = expected;
 
-            bool actual = target.RemoteDefaultGateway;
+            var actual = target.RemoteDefaultGateway;
 
             Assert.AreEqual<bool>(expected, actual);
         }
@@ -103,12 +103,12 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void DisableLcpExtensionsTest()
         {
-            bool expected = true;
+            var expected = true;
 
-            RasEntryOptions target = new RasEntryOptions();
+            var target = new RasEntryOptions();
             target.DisableLcpExtensions = expected;
 
-            bool actual = target.DisableLcpExtensions;
+            var actual = target.DisableLcpExtensions;
 
             Assert.AreEqual<bool>(expected, actual);
         }
@@ -120,12 +120,12 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void TerminalBeforeDialTest()
         {
-            bool expected = true;
+            var expected = true;
 
-            RasEntryOptions target = new RasEntryOptions();
+            var target = new RasEntryOptions();
             target.TerminalBeforeDial = expected;
 
-            bool actual = target.TerminalBeforeDial;
+            var actual = target.TerminalBeforeDial;
 
             Assert.AreEqual<bool>(expected, actual);
         }
@@ -137,12 +137,12 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void TerminalAfterDialTest()
         {
-            bool expected = true;
+            var expected = true;
 
-            RasEntryOptions target = new RasEntryOptions();
+            var target = new RasEntryOptions();
             target.TerminalAfterDial = expected;
 
-            bool actual = target.TerminalAfterDial;
+            var actual = target.TerminalAfterDial;
 
             Assert.AreEqual<bool>(expected, actual);
         }
@@ -154,12 +154,12 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void ModemLightsTest()
         {
-            bool expected = true;
+            var expected = true;
 
-            RasEntryOptions target = new RasEntryOptions();
+            var target = new RasEntryOptions();
             target.ModemLights = expected;
 
-            bool actual = target.ModemLights;
+            var actual = target.ModemLights;
 
             Assert.AreEqual<bool>(expected, actual);
         }
@@ -171,12 +171,12 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void SoftwareCompressionTest()
         {
-            bool expected = true;
+            var expected = true;
 
-            RasEntryOptions target = new RasEntryOptions();
+            var target = new RasEntryOptions();
             target.SoftwareCompression = expected;
 
-            bool actual = target.SoftwareCompression;
+            var actual = target.SoftwareCompression;
 
             Assert.AreEqual<bool>(expected, actual);
         }
@@ -188,12 +188,12 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void RequireEncryptedPasswordTest()
         {
-            bool expected = true;
+            var expected = true;
 
-            RasEntryOptions target = new RasEntryOptions();
+            var target = new RasEntryOptions();
             target.RequireEncryptedPassword = expected;
 
-            bool actual = target.RequireEncryptedPassword;
+            var actual = target.RequireEncryptedPassword;
 
             Assert.AreEqual<bool>(expected, actual);
         }
@@ -205,12 +205,12 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void RequireMSEncryptedPasswordTest()
         {
-            bool expected = true;
+            var expected = true;
 
-            RasEntryOptions target = new RasEntryOptions();
+            var target = new RasEntryOptions();
             target.RequireMSEncryptedPassword = expected;
 
-            bool actual = target.RequireMSEncryptedPassword;
+            var actual = target.RequireMSEncryptedPassword;
 
             Assert.AreEqual<bool>(expected, actual);
         }
@@ -222,12 +222,12 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void RequireDataEncryptionTest()
         {
-            bool expected = true;
+            var expected = true;
 
-            RasEntryOptions target = new RasEntryOptions();
+            var target = new RasEntryOptions();
             target.RequireDataEncryption = expected;
 
-            bool actual = target.RequireDataEncryption;
+            var actual = target.RequireDataEncryption;
 
             Assert.AreEqual<bool>(expected, actual);
         }
@@ -239,12 +239,12 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void NetworkLogOnTest()
         {
-            bool expected = true;
+            var expected = true;
 
-            RasEntryOptions target = new RasEntryOptions();
+            var target = new RasEntryOptions();
             target.NetworkLogOn = expected;
 
-            bool actual = target.NetworkLogOn;
+            var actual = target.NetworkLogOn;
 
             Assert.AreEqual<bool>(expected, actual);
         }
@@ -256,12 +256,12 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void UseLogOnCredentialsTest()
         {
-            bool expected = true;
+            var expected = true;
 
-            RasEntryOptions target = new RasEntryOptions();
+            var target = new RasEntryOptions();
             target.UseLogOnCredentials = expected;
 
-            bool actual = target.UseLogOnCredentials;
+            var actual = target.UseLogOnCredentials;
 
             Assert.AreEqual<bool>(expected, actual);
         }
@@ -273,12 +273,12 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void PromoteAlternatesTest()
         {
-            bool expected = true;
+            var expected = true;
 
-            RasEntryOptions target = new RasEntryOptions();
+            var target = new RasEntryOptions();
             target.PromoteAlternates = expected;
 
-            bool actual = target.PromoteAlternates;
+            var actual = target.PromoteAlternates;
 
             Assert.AreEqual<bool>(expected, actual);
         }
@@ -290,12 +290,12 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void SecureLocalFilesTest()
         {
-            bool expected = true;
+            var expected = true;
 
-            RasEntryOptions target = new RasEntryOptions();
+            var target = new RasEntryOptions();
             target.SecureLocalFiles = expected;
 
-            bool actual = target.SecureLocalFiles;
+            var actual = target.SecureLocalFiles;
 
             Assert.AreEqual<bool>(expected, actual);
         }
@@ -307,12 +307,12 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void RequireEapTest()
         {
-            bool expected = true;
+            var expected = true;
 
-            RasEntryOptions target = new RasEntryOptions();
+            var target = new RasEntryOptions();
             target.RequireEap = expected;
 
-            bool actual = target.RequireEap;
+            var actual = target.RequireEap;
 
             Assert.AreEqual<bool>(expected, actual);
         }
@@ -324,12 +324,12 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void RequirePapTest()
         {
-            bool expected = true;
+            var expected = true;
 
-            RasEntryOptions target = new RasEntryOptions();
+            var target = new RasEntryOptions();
             target.RequirePap = expected;
 
-            bool actual = target.RequirePap;
+            var actual = target.RequirePap;
 
             Assert.AreEqual<bool>(expected, actual);
         }
@@ -341,12 +341,12 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void RequireSpapTest()
         {
-            bool expected = true;
+            var expected = true;
 
-            RasEntryOptions target = new RasEntryOptions();
+            var target = new RasEntryOptions();
             target.RequireSpap = expected;
 
-            bool actual = target.RequireSpap;
+            var actual = target.RequireSpap;
 
             Assert.AreEqual<bool>(expected, actual);
         }
@@ -358,12 +358,12 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void CustomEncryptionTest()
         {
-            bool expected = true;
+            var expected = true;
 
-            RasEntryOptions target = new RasEntryOptions();
+            var target = new RasEntryOptions();
             target.CustomEncryption = expected;
 
-            bool actual = target.CustomEncryption;
+            var actual = target.CustomEncryption;
 
             Assert.AreEqual<bool>(expected, actual);
         }
@@ -375,12 +375,12 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void PreviewPhoneNumberTest()
         {
-            bool expected = true;
+            var expected = true;
 
-            RasEntryOptions target = new RasEntryOptions();
+            var target = new RasEntryOptions();
             target.PreviewPhoneNumber = expected;
 
-            bool actual = target.PreviewPhoneNumber;
+            var actual = target.PreviewPhoneNumber;
 
             Assert.AreEqual<bool>(expected, actual);
         }
@@ -392,12 +392,12 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void SharedPhoneNumbersTest()
         {
-            bool expected = true;
+            var expected = true;
 
-            RasEntryOptions target = new RasEntryOptions();
+            var target = new RasEntryOptions();
             target.SharedPhoneNumbers = expected;
 
-            bool actual = target.SharedPhoneNumbers;
+            var actual = target.SharedPhoneNumbers;
 
             Assert.AreEqual<bool>(expected, actual);
         }
@@ -409,12 +409,12 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void PreviewUserPasswordTest()
         {
-            bool expected = true;
+            var expected = true;
 
-            RasEntryOptions target = new RasEntryOptions();
+            var target = new RasEntryOptions();
             target.PreviewUserPassword = expected;
 
-            bool actual = target.PreviewUserPassword;
+            var actual = target.PreviewUserPassword;
 
             Assert.AreEqual<bool>(expected, actual);
         }
@@ -426,12 +426,12 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void PreviewDomainTest()
         {
-            bool expected = true;
+            var expected = true;
 
-            RasEntryOptions target = new RasEntryOptions();
+            var target = new RasEntryOptions();
             target.PreviewDomain = expected;
 
-            bool actual = target.PreviewDomain;
+            var actual = target.PreviewDomain;
 
             Assert.AreEqual<bool>(expected, actual);
         }
@@ -443,12 +443,12 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void ShowDialingProgressTest()
         {
-            bool expected = true;
+            var expected = true;
 
-            RasEntryOptions target = new RasEntryOptions();
+            var target = new RasEntryOptions();
             target.ShowDialingProgress = expected;
 
-            bool actual = target.ShowDialingProgress;
+            var actual = target.ShowDialingProgress;
 
             Assert.AreEqual<bool>(expected, actual);
         }
@@ -460,12 +460,12 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void RequireChapTest()
         {
-            bool expected = true;
+            var expected = true;
 
-            RasEntryOptions target = new RasEntryOptions();
+            var target = new RasEntryOptions();
             target.RequireChap = expected;
 
-            bool actual = target.RequireChap;
+            var actual = target.RequireChap;
 
             Assert.AreEqual<bool>(expected, actual);
         }
@@ -477,12 +477,12 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void RequireMSChapTest()
         {
-            bool expected = true;
+            var expected = true;
 
-            RasEntryOptions target = new RasEntryOptions();
+            var target = new RasEntryOptions();
             target.RequireMSChap = expected;
 
-            bool actual = target.RequireMSChap;
+            var actual = target.RequireMSChap;
 
             Assert.AreEqual<bool>(expected, actual);
         }
@@ -494,12 +494,12 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void RequireMSChap2Test()
         {
-            bool expected = true;
+            var expected = true;
 
-            RasEntryOptions target = new RasEntryOptions();
+            var target = new RasEntryOptions();
             target.RequireMSChap2 = expected;
 
-            bool actual = target.RequireMSChap2;
+            var actual = target.RequireMSChap2;
 
             Assert.AreEqual<bool>(expected, actual);
         }
@@ -511,12 +511,12 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void RequireWin95MSChapTest()
         {
-            bool expected = true;
+            var expected = true;
 
-            RasEntryOptions target = new RasEntryOptions();
+            var target = new RasEntryOptions();
             target.RequireWin95MSChap = expected;
 
-            bool actual = target.RequireWin95MSChap;
+            var actual = target.RequireWin95MSChap;
 
             Assert.AreEqual<bool>(expected, actual);
         }
@@ -528,12 +528,12 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void CustomScriptTest()
         {
-            bool expected = true;
+            var expected = true;
 
-            RasEntryOptions target = new RasEntryOptions();
+            var target = new RasEntryOptions();
             target.CustomScript = expected;
 
-            bool actual = target.CustomScript;
+            var actual = target.CustomScript;
 
             Assert.AreEqual<bool>(expected, actual);
         }
@@ -547,12 +547,12 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void SecureFileAndPrintTest()
         {
-            bool expected = true;
+            var expected = true;
 
-            RasEntryOptions target = new RasEntryOptions();
+            var target = new RasEntryOptions();
             target.SecureFileAndPrint = expected;
 
-            bool actual = target.SecureFileAndPrint;
+            var actual = target.SecureFileAndPrint;
 
             Assert.AreEqual<bool>(expected, actual);
         }
@@ -564,12 +564,12 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void SecureClientForMSNetTest()
         {
-            bool expected = true;
+            var expected = true;
 
-            RasEntryOptions target = new RasEntryOptions();
+            var target = new RasEntryOptions();
             target.SecureClientForMSNet = expected;
 
-            bool actual = target.SecureClientForMSNet;
+            var actual = target.SecureClientForMSNet;
 
             Assert.AreEqual<bool>(expected, actual);
         }
@@ -581,12 +581,12 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void DoNotNegotiateMultilinkTest()
         {
-            bool expected = true;
+            var expected = true;
 
-            RasEntryOptions target = new RasEntryOptions();
+            var target = new RasEntryOptions();
             target.DoNotNegotiateMultilink = expected;
 
-            bool actual = target.DoNotNegotiateMultilink;
+            var actual = target.DoNotNegotiateMultilink;
 
             Assert.AreEqual<bool>(expected, actual);
         }
@@ -598,12 +598,12 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void DoNotUseRasCredentialsTest()
         {
-            bool expected = true;
+            var expected = true;
 
-            RasEntryOptions target = new RasEntryOptions();
+            var target = new RasEntryOptions();
             target.DoNotUseRasCredentials = expected;
 
-            bool actual = target.DoNotUseRasCredentials;
+            var actual = target.DoNotUseRasCredentials;
 
             Assert.AreEqual<bool>(expected, actual);
         }
@@ -615,12 +615,12 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void UsePreSharedKeyTest()
         {
-            bool expected = true;
+            var expected = true;
 
-            RasEntryOptions target = new RasEntryOptions();
+            var target = new RasEntryOptions();
             target.UsePreSharedKey = expected;
 
-            bool actual = target.UsePreSharedKey;
+            var actual = target.UsePreSharedKey;
 
             Assert.AreEqual<bool>(expected, actual);
         }
@@ -632,12 +632,12 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void InternetTest()
         {
-            bool expected = true;
+            var expected = true;
 
-            RasEntryOptions target = new RasEntryOptions();
+            var target = new RasEntryOptions();
             target.Internet = expected;
 
-            bool actual = target.Internet;
+            var actual = target.Internet;
 
             Assert.AreEqual<bool>(expected, actual);
         }
@@ -649,12 +649,12 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void DisableNbtOverIPTest()
         {
-            bool expected = true;
+            var expected = true;
 
-            RasEntryOptions target = new RasEntryOptions();
+            var target = new RasEntryOptions();
             target.DisableNbtOverIP = expected;
 
-            bool actual = target.DisableNbtOverIP;
+            var actual = target.DisableNbtOverIP;
 
             Assert.AreEqual<bool>(expected, actual);
         }
@@ -666,12 +666,12 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void UseGlobalDeviceSettingsTest()
         {
-            bool expected = true;
+            var expected = true;
 
-            RasEntryOptions target = new RasEntryOptions();
+            var target = new RasEntryOptions();
             target.UseGlobalDeviceSettings = expected;
 
-            bool actual = target.UseGlobalDeviceSettings;
+            var actual = target.UseGlobalDeviceSettings;
 
             Assert.AreEqual<bool>(expected, actual);
         }
@@ -683,12 +683,12 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void ReconnectIfDroppedTest()
         {
-            bool expected = true;
+            var expected = true;
 
-            RasEntryOptions target = new RasEntryOptions();
+            var target = new RasEntryOptions();
             target.ReconnectIfDropped = expected;
 
-            bool actual = target.ReconnectIfDropped;
+            var actual = target.ReconnectIfDropped;
 
             Assert.AreEqual<bool>(expected, actual);
         }
@@ -700,12 +700,12 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void SharePhoneNumbersTest()
         {
-            bool expected = true;
+            var expected = true;
 
-            RasEntryOptions target = new RasEntryOptions();
+            var target = new RasEntryOptions();
             target.SharePhoneNumbers = expected;
 
-            bool actual = target.SharePhoneNumbers;
+            var actual = target.SharePhoneNumbers;
 
             Assert.AreEqual<bool>(expected, actual);
         }
@@ -721,12 +721,12 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void SecureRoutingCompartmentTest()
         {
-            bool expected = true;
+            var expected = true;
 
-            RasEntryOptions target = new RasEntryOptions();
+            var target = new RasEntryOptions();
             target.SecureRoutingCompartment = expected;
 
-            bool actual = target.SecureRoutingCompartment;
+            var actual = target.SecureRoutingCompartment;
 
             Assert.AreEqual<bool>(expected, actual);
         }
@@ -738,12 +738,12 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void UseTypicalSettingsTest()
         {
-            bool expected = true;
+            var expected = true;
 
-            RasEntryOptions target = new RasEntryOptions();
+            var target = new RasEntryOptions();
             target.UseTypicalSettings = expected;
 
-            bool actual = target.UseTypicalSettings;
+            var actual = target.UseTypicalSettings;
 
             Assert.AreEqual<bool>(expected, actual);
         }
@@ -755,12 +755,12 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void IPv6RemoteDefaultGatewayTest()
         {
-            bool expected = true;
+            var expected = true;
 
-            RasEntryOptions target = new RasEntryOptions();
+            var target = new RasEntryOptions();
             target.IPv6RemoteDefaultGateway = expected;
 
-            bool actual = target.IPv6RemoteDefaultGateway;
+            var actual = target.IPv6RemoteDefaultGateway;
 
             Assert.AreEqual<bool>(expected, actual);
         }
@@ -772,12 +772,12 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void RegisterIPWithDnsTest()
         {
-            bool expected = true;
+            var expected = true;
 
-            RasEntryOptions target = new RasEntryOptions();
+            var target = new RasEntryOptions();
             target.RegisterIPWithDns = expected;
 
-            bool actual = target.RegisterIPWithDns;
+            var actual = target.RegisterIPWithDns;
 
             Assert.AreEqual<bool>(expected, actual);
         }
@@ -789,12 +789,12 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void UseDnsSuffixForRegistrationTest()
         {
-            bool expected = true;
+            var expected = true;
 
-            RasEntryOptions target = new RasEntryOptions();
+            var target = new RasEntryOptions();
             target.UseDnsSuffixForRegistration = expected;
 
-            bool actual = target.UseDnsSuffixForRegistration;
+            var actual = target.UseDnsSuffixForRegistration;
 
             Assert.AreEqual<bool>(expected, actual);
         }
@@ -806,12 +806,12 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void DisableIkeNameEkuCheckTest()
         {
-            bool expected = true;
+            var expected = true;
 
-            RasEntryOptions target = new RasEntryOptions();
+            var target = new RasEntryOptions();
             target.DisableIkeNameEkuCheck = expected;
 
-            bool actual = target.DisableIkeNameEkuCheck;
+            var actual = target.DisableIkeNameEkuCheck;
 
             Assert.AreEqual<bool>(expected, actual);
         }
@@ -827,12 +827,12 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void DisableClassBasedStaticRouteTest()
         {
-            bool expected = true;
+            var expected = true;
 
-            RasEntryOptions target = new RasEntryOptions();
+            var target = new RasEntryOptions();
             target.DisableClassBasedStaticRoute = expected;
 
-            bool actual = target.DisableClassBasedStaticRoute;
+            var actual = target.DisableClassBasedStaticRoute;
 
             Assert.AreEqual<bool>(expected, actual);
         }
@@ -844,12 +844,12 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void DisableMobilityTest()
         {
-            bool expected = true;
+            var expected = true;
 
-            RasEntryOptions target = new RasEntryOptions();
+            var target = new RasEntryOptions();
             target.DisableMobility = expected;
 
-            bool actual = target.DisableMobility;
+            var actual = target.DisableMobility;
 
             Assert.AreEqual<bool>(expected, actual);
         }
@@ -861,12 +861,12 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void RequireMachineCertificatesTest()
         {
-            bool expected = true;
+            var expected = true;
 
-            RasEntryOptions target = new RasEntryOptions();
+            var target = new RasEntryOptions();
             target.RequireMachineCertificates = expected;
 
-            bool actual = target.RequireMachineCertificates;
+            var actual = target.RequireMachineCertificates;
 
             Assert.AreEqual<bool>(expected, actual);
         }
@@ -935,7 +935,7 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void CloneTest()
         {
-            RasEntryOptions expected = new RasEntryOptions()
+            var expected = new RasEntryOptions()
             {
                 UseCountryAndAreaCodes = true,
                 IPHeaderCompression = true,
@@ -998,7 +998,7 @@ namespace DotRas.UnitTests
 #endif
             };
 
-            RasEntryOptions actual = (RasEntryOptions)expected.Clone();
+            var actual = (RasEntryOptions)expected.Clone();
 
             Assert.IsNotNull(actual);
             Assert.AreNotSame(expected, actual);

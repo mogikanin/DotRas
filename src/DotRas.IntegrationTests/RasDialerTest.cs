@@ -80,7 +80,7 @@ namespace DotRas.IntegrationTests
             invalidEntryName = Guid.NewGuid().ToString();
             phonebookPath = Path.GetTempFileName();
 
-            RasPhoneBook pbk = new RasPhoneBook();
+            var pbk = new RasPhoneBook();
             pbk.Open(phonebookPath);
 
             entryId = TestUtilities.CreateValidVpnEntry(pbk, entryName);
@@ -275,7 +275,7 @@ namespace DotRas.IntegrationTests
         /// <param name="entryId">The entry id to disconnect.</param>
         private static void HangUpConnectionById(Guid entryId)
         {
-            RasConnection connection = RasConnection.GetActiveConnections().Where(o => o.EntryId == entryId).FirstOrDefault();
+            var connection = RasConnection.GetActiveConnections().Where(o => o.EntryId == entryId).FirstOrDefault();
             if (connection != null)
             {
                 connection.HangUp();

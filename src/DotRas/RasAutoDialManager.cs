@@ -88,7 +88,7 @@ namespace DotRas
 
             set
             {
-                int actual = 0;
+                var actual = 0;
 
                 if (value)
                 {
@@ -113,7 +113,7 @@ namespace DotRas
 
             set
             {
-                int actual = 0;
+                var actual = 0;
 
                 if (value)
                 {

@@ -45,7 +45,7 @@ namespace DotRas.UnitTests.Mocking.Interop
         /// <param name="value">An <typeparamref name="TInput"/> object containing call information.</param>
         public override void Execute(TInput value)
         {
-            int size = Marshal.SizeOf(typeof(TResult));
+            var size = Marshal.SizeOf(typeof(TResult));
             long expectedSize = size * this.Result.Length;
 
             if (value.BufferSize.ToInt64() != expectedSize && expectedSize > 0)

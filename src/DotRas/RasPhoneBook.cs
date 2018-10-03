@@ -210,7 +210,7 @@ namespace DotRas
 
             if (phoneBookType != RasPhoneBookType.Custom)
             {
-                Environment.SpecialFolder folder = Environment.SpecialFolder.CommonApplicationData;
+                var folder = Environment.SpecialFolder.CommonApplicationData;
                 if (phoneBookType == RasPhoneBookType.User)
                 {
                     folder = Environment.SpecialFolder.ApplicationData;
@@ -266,13 +266,13 @@ namespace DotRas
                 ThrowHelper.ThrowArgumentException("phoneBookPath", Resources.Argument_StringCannotBeNullOrEmpty);
             }
 
-            FileInfo file = new FileInfo(phoneBookPath);
+            var file = new FileInfo(phoneBookPath);
             if (string.IsNullOrEmpty(file.Name))
             {
                 ThrowHelper.ThrowArgumentException("phoneBookPath", Resources.Argument_InvalidFileName);
             }
 
-            RasPhoneBookType phoneBookType = RasPhoneBookType.Custom;
+            var phoneBookType = RasPhoneBookType.Custom;
             if (string.Equals(phoneBookPath, GetPhoneBookPath(RasPhoneBookType.AllUsers), StringComparison.CurrentCultureIgnoreCase))
             {
                 phoneBookType = RasPhoneBookType.AllUsers;

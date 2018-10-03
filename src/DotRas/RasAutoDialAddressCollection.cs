@@ -66,12 +66,12 @@ namespace DotRas
 
                 Clear();
 
-                Collection<string> addresses = RasHelper.Instance.GetAutoDialAddresses();
+                var addresses = RasHelper.Instance.GetAutoDialAddresses();
                 if (addresses != null && addresses.Count > 0)
                 {
-                    for (int index = 0; index < addresses.Count; index++)
+                    for (var index = 0; index < addresses.Count; index++)
                     {
-                        RasAutoDialAddress item = RasHelper.Instance.GetAutoDialAddress(addresses[index]);
+                        var item = RasHelper.Instance.GetAutoDialAddress(addresses[index]);
                         if (item != null)
                         {
                             Add(item);
@@ -137,7 +137,7 @@ namespace DotRas
         {
             if (!IsInitializing)
             {
-                RasAutoDialAddress item = this[index];
+                var item = this[index];
                 if (item != null)
                 {
                     if (RasHelper.Instance.SetAutoDialAddress(item.Address, null))

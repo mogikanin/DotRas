@@ -71,7 +71,7 @@ namespace DotRas
         /// <returns>An <see cref="System.Object"/> that represents the converted value.</returns>
         public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
         {
-            string data = (string)value;
+            var data = (string)value;
             if (data == null)
             {
                 return base.ConvertFrom(context, culture, value);
@@ -88,10 +88,10 @@ namespace DotRas
                 culture = CultureInfo.CurrentCulture;
             }
 
-            string[] items = data.Split(culture.TextInfo.ListSeparator.ToCharArray());
-            TypeConverter converter = TypeDescriptor.GetConverter(typeof(bool));
+            var items = data.Split(culture.TextInfo.ListSeparator.ToCharArray());
+            var converter = TypeDescriptor.GetConverter(typeof(bool));
 
-            RasDialOptions retval = new RasDialOptions();
+            var retval = new RasDialOptions();
             retval.UsePrefixSuffix = (bool)converter.ConvertFromString(context, culture, items[0]);
             retval.PausedStates = (bool)converter.ConvertFromString(context, culture, items[1]);
             retval.SetModemSpeaker = (bool)converter.ConvertFromString(context, culture, items[2]);
@@ -127,7 +127,7 @@ namespace DotRas
                 ThrowHelper.ThrowArgumentNullException("destinationType");
             }
 
-            RasDialOptions options = value as RasDialOptions;
+            var options = value as RasDialOptions;
             if (options != null)
             {
                 if (culture == null)
@@ -137,8 +137,8 @@ namespace DotRas
 
                 if (destinationType == typeof(InstanceDescriptor))
                 {
-                    List<Type> types = new List<Type>(new Type[] { typeof(bool), typeof(bool), typeof(bool), typeof(bool), typeof(bool), typeof(bool), typeof(bool), typeof(bool), typeof(bool), typeof(bool) });
-                    List<object> values = new List<object>(new object[] { options.UsePrefixSuffix, options.PausedStates, options.SetModemSpeaker, options.SetSoftwareCompression, options.DisableConnectedUI, options.DisableReconnectUI, options.DisableReconnect, options.NoUser, options.Router, options.CustomDial });
+                    var types = new List<Type>(new Type[] { typeof(bool), typeof(bool), typeof(bool), typeof(bool), typeof(bool), typeof(bool), typeof(bool), typeof(bool), typeof(bool), typeof(bool) });
+                    var values = new List<object>(new object[] { options.UsePrefixSuffix, options.PausedStates, options.SetModemSpeaker, options.SetSoftwareCompression, options.DisableConnectedUI, options.DisableReconnectUI, options.DisableReconnect, options.NoUser, options.Router, options.CustomDial });
 
 #if (WINXP || WIN2K8 || WIN7 || WIN8)
 
@@ -147,7 +147,7 @@ namespace DotRas
 
 #endif
 
-                    ConstructorInfo constructor = typeof(RasDialOptions).GetConstructor(types.ToArray());
+                    var constructor = typeof(RasDialOptions).GetConstructor(types.ToArray());
                     if (constructor != null)
                     {
                         return new InstanceDescriptor(constructor, values);

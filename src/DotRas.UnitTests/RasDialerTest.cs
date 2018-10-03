@@ -57,12 +57,12 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void AutoUpdateCredentialsTest()
         {
-            RasUpdateCredential expected = RasUpdateCredential.User;
+            var expected = RasUpdateCredential.User;
 
-            RasDialer dialer = new RasDialer();
+            var dialer = new RasDialer();
             dialer.AutoUpdateCredentials = expected;
 
-            RasUpdateCredential actual = dialer.AutoUpdateCredentials;
+            var actual = dialer.AutoUpdateCredentials;
 
             Assert.AreEqual(expected, actual);
         }
@@ -74,12 +74,12 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void CredentialsTest()
         {
-            NetworkCredential expected = new NetworkCredential("Test", "User");
+            var expected = new NetworkCredential("Test", "User");
 
-            RasDialer target = new RasDialer();
+            var target = new RasDialer();
             target.Credentials = expected;
 
-            NetworkCredential actual = target.Credentials;
+            var actual = target.Credentials;
 
             Assert.AreEqual(expected, actual);
         }
@@ -91,12 +91,12 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void PhoneBookPathTest()
         {
-            string expected = "C:\\Test.pbk";
+            var expected = "C:\\Test.pbk";
 
-            RasDialer target = new RasDialer();
+            var target = new RasDialer();
             target.PhoneBookPath = expected;
 
-            string actual = target.PhoneBookPath;
+            var actual = target.PhoneBookPath;
 
             Assert.AreEqual(expected, actual);
         }
@@ -108,12 +108,12 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void EntryNameTest()
         {
-            string expected = "Test Entry";
+            var expected = "Test Entry";
 
-            RasDialer target = new RasDialer();
+            var target = new RasDialer();
             target.EntryName = expected;
 
-            string actual = target.EntryName;
+            var actual = target.EntryName;
 
             Assert.AreEqual(expected, actual);
         }
@@ -125,12 +125,12 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void PhoneNumberTest()
         {
-            string expected = "555-555-1234";
+            var expected = "555-555-1234";
 
-            RasDialer target = new RasDialer();
+            var target = new RasDialer();
             target.PhoneNumber = expected;
 
-            string actual = target.PhoneNumber;
+            var actual = target.PhoneNumber;
 
             Assert.AreEqual(expected, actual);
         }
@@ -142,12 +142,12 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void CallbackNumberTest()
         {
-            string expected = "555-555-1234";
+            var expected = "555-555-1234";
 
-            RasDialer target = new RasDialer();
+            var target = new RasDialer();
             target.CallbackNumber = expected;
 
-            string actual = target.CallbackNumber;
+            var actual = target.CallbackNumber;
 
             Assert.AreEqual(expected, actual);
         }
@@ -159,12 +159,12 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void SubEntryIdTest()
         {
-            int expected = 1;
+            var expected = 1;
 
-            RasDialer target = new RasDialer();
+            var target = new RasDialer();
             target.SubEntryId = expected;
 
-            int actual = target.SubEntryId;
+            var actual = target.SubEntryId;
 
             Assert.AreEqual(expected, actual);
         }
@@ -176,12 +176,12 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void OptionsTest()
         {
-            RasDialOptions expected = new RasDialOptions();
+            var expected = new RasDialOptions();
 
-            RasDialer target = new RasDialer();
+            var target = new RasDialer();
             target.Options = expected;
 
-            RasDialOptions actual = target.Options;
+            var actual = target.Options;
 
             Assert.AreSame(expected, actual);
         }
@@ -193,10 +193,10 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void OptionsNullTest()
         {
-            RasDialer target = new RasDialer();
+            var target = new RasDialer();
             target.Options = null;
 
-            RasDialOptions actual = target.Options;
+            var actual = target.Options;
 
             Assert.IsNotNull(actual);
         }
@@ -208,12 +208,12 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void EapOptionsTest()
         {
-            RasEapOptions expected = new RasEapOptions(true, false, true);
+            var expected = new RasEapOptions(true, false, true);
 
-            RasDialer target = new RasDialer();
+            var target = new RasDialer();
             target.EapOptions = expected;
 
-            RasEapOptions actual = target.EapOptions;
+            var actual = target.EapOptions;
 
             Assert.AreSame(expected, actual);
         }
@@ -225,10 +225,10 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void EapOptionsNullTest()
         {
-            RasDialer target = new RasDialer();
+            var target = new RasDialer();
             target.EapOptions = null;
 
-            RasEapOptions actual = target.EapOptions;
+            var actual = target.EapOptions;
 
             Assert.IsNotNull(actual);
         }
@@ -242,10 +242,10 @@ namespace DotRas.UnitTests
         {
             IWin32Window expected = null;
 
-            RasDialer target = new RasDialer();
+            var target = new RasDialer();
             target.Owner = expected;
 
-            IWin32Window actual = target.Owner;
+            var actual = target.Owner;
 
             Assert.AreEqual(expected, actual);
         }
@@ -257,12 +257,12 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void TimeoutTest()
         {
-            int expected = 1000;
+            var expected = 1000;
 
-            RasDialer target = new RasDialer();
+            var target = new RasDialer();
             target.Timeout = expected;
 
-            int actual = target.Timeout;
+            var actual = target.Timeout;
 
             Assert.AreEqual(expected, actual);
         }
@@ -281,7 +281,7 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(System.InvalidOperationException))]
         public void DialInvalidOperationExceptionTest()
         {
-            RasDialer dialer = new RasDialer();
+            var dialer = new RasDialer();
             dialer.EntryName = "Test Entry";
             dialer.PhoneBookPath = null;
             dialer.PhoneNumber = null;
@@ -297,7 +297,7 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(System.InvalidOperationException))]
         public void DialInvalidOperationException1Test()
         {
-            RasDialer dialer = new RasDialer();
+            var dialer = new RasDialer();
             dialer.EntryName = null;
             dialer.PhoneBookPath = "C:\\Test.pbk";
             dialer.PhoneNumber = null;
@@ -313,7 +313,7 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(System.InvalidOperationException))]
         public void DialInvalidOperationException2Test()
         {
-            RasDialer dialer = new RasDialer();
+            var dialer = new RasDialer();
             dialer.EntryName = null;
             dialer.PhoneBookPath = null;
             dialer.PhoneNumber = null;
@@ -333,7 +333,7 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(System.InvalidOperationException))]
         public void DialAsyncInvalidOperationExceptionTest()
         {
-            RasDialer dialer = new RasDialer();
+            var dialer = new RasDialer();
             dialer.EntryName = "Test Entry";
             dialer.PhoneBookPath = null;
             dialer.PhoneNumber = null;
@@ -349,7 +349,7 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(System.InvalidOperationException))]
         public void DialAsyncInvalidOperationException1Test()
         {
-            RasDialer dialer = new RasDialer();
+            var dialer = new RasDialer();
             dialer.EntryName = null;
             dialer.PhoneBookPath = "C:\\Test.pbk";
             dialer.PhoneNumber = null;
@@ -365,7 +365,7 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(System.InvalidOperationException))]
         public void DialAsyncInvalidOperationException2Test()
         {
-            RasDialer dialer = new RasDialer();
+            var dialer = new RasDialer();
             dialer.EntryName = null;
             dialer.PhoneBookPath = null;
             dialer.PhoneNumber = null;

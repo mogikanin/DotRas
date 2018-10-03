@@ -58,13 +58,13 @@ namespace DotRas.UnitTests.Mocking.Interop
         /// <param name="value">An <typeparamref name="TInput"/> object containing call information.</param>
         public override void Execute(TInput value)
         {
-            StringBuilder sb = new StringBuilder();
-            foreach (string item in this.Result)
+            var sb = new StringBuilder();
+            foreach (var item in this.Result)
             {
                 sb.Append(item).Append('\x00');
             }
 
-            int expectedSize = (sb.Length * 2) + this.Offset;
+            var expectedSize = (sb.Length * 2) + this.Offset;
 
             if (value.BufferSize.ToInt64() < expectedSize)
             {
@@ -72,7 +72,7 @@ namespace DotRas.UnitTests.Mocking.Interop
             }
             else if (this.Result.Length > 0)
             {
-                IntPtr lpAddresses = IntPtr.Zero;
+                var lpAddresses = IntPtr.Zero;
                 try
                 {
                     lpAddresses = Marshal.StringToHGlobalUni(sb.ToString());

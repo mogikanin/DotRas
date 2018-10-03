@@ -152,9 +152,10 @@ namespace DotRas
                 ThrowHelper.ThrowArgumentException("PhoneBookPath", Resources.Argument_StringCannotBeNullOrEmpty);
             }
 
-            NativeMethods.RASENTRYDLG dlg = new NativeMethods.RASENTRYDLG();
-            dlg.size = Marshal.SizeOf(typeof(NativeMethods.RASENTRYDLG));
-            dlg.hwndOwner = hwndOwner;
+            var dlg = new NativeMethods.RASENTRYDLG
+            {
+                size = Marshal.SizeOf(typeof(NativeMethods.RASENTRYDLG)), hwndOwner = hwndOwner
+            };
 
             switch (Style)
             {
@@ -179,7 +180,7 @@ namespace DotRas
                 dlg.flags |= NativeMethods.RASEDFLAG.PositionDlg;
             }
 
-            bool retval = false;
+            var retval = false;
 
             try
             {

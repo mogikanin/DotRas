@@ -669,7 +669,7 @@ namespace DotRas
         /// <returns>A new <see cref="DotRas.RasEntryOptions"/> object.</returns>
         public object Clone()
         {
-            RasEntryOptions retval = new RasEntryOptions();
+            var retval = new RasEntryOptions();
 
             retval.UseCountryAndAreaCodes = UseCountryAndAreaCodes;
             retval.IPHeaderCompression = IPHeaderCompression;

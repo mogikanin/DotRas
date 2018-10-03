@@ -67,7 +67,7 @@ namespace DotRas.Internal
         /// <param name="length">The size of the memory block to move, in bytes.</param>
         public void CopyMemoryImpl(IntPtr destination, IntPtr source, IntPtr length)
         {
-            PInvokeCallTraceEvent evt = new PInvokeCallTraceEvent("kernel32.dll", "CopyMemory");
+            var evt = new PInvokeCallTraceEvent("kernel32.dll", "CopyMemory");
             evt.Data.Add("destination", destination);
             evt.Data.Add("source", source);
             evt.Data.Add("length", length);
@@ -90,11 +90,11 @@ namespace DotRas.Internal
         /// <returns>If the function succeeds, the return value is zero.</returns>
         public int DeleteEntry(string phoneBookPath, string entryName)
         {
-            PInvokeCallTraceEvent evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasDeleteEntry");
+            var evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasDeleteEntry");
             evt.Data.Add("phoneBookPath", phoneBookPath);
             evt.Data.Add("entryName", entryName);
 
-            int result = 0;
+            var result = 0;
 
             try
             {
@@ -119,13 +119,13 @@ namespace DotRas.Internal
         /// <returns><b>true</b> if the function establishes a remote access connection, otherwise <b>false</b>.</returns>
         public bool DialDlg(string phoneBookPath, string entryName, string phoneNumber, ref NativeMethods.RASDIALDLG info)
         {
-            PInvokeCallTraceEvent evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasDialDlg");
+            var evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasDialDlg");
             evt.Data.Add("phoneBookPath", phoneBookPath);
             evt.Data.Add("entryName", entryName);
             evt.Data.Add("phoneNumber", phoneNumber);
             evt.Data.Add("info", info);
 
-            bool result = false;
+            var result = false;
 
             try
             {
@@ -150,12 +150,12 @@ namespace DotRas.Internal
         /// <returns>If the function succeeds, the return value is zero.</returns>
         public int DeleteSubEntry(string phoneBookPath, string entryName, int subEntryId)
         {
-            PInvokeCallTraceEvent evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasDeleteSubEntry");
+            var evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasDeleteSubEntry");
             evt.Data.Add("phoneBookPath", phoneBookPath);
             evt.Data.Add("entryName", entryName);
             evt.Data.Add("subEntryId", subEntryId);
 
-            int result = 0;
+            var result = 0;
 
             try
             {
@@ -180,12 +180,12 @@ namespace DotRas.Internal
         /// <returns><b>true</b> if the user creates, copies, or edits an entry, otherwise <b>false</b>.</returns>
         public bool EntryDlg(string phoneBookPath, string entryName, ref NativeMethods.RASENTRYDLG info)
         {
-            PInvokeCallTraceEvent evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasEntryDlg");
+            var evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasEntryDlg");
             evt.Data.Add("phoneBookPath", phoneBookPath);
             evt.Data.Add("entryName", entryName);
             evt.Data.Add("info", info);
 
-            bool result = false;
+            var result = false;
 
             try
             {
@@ -207,10 +207,10 @@ namespace DotRas.Internal
         /// <returns>If the function succeeds, the return value is zero.</returns>        
         public int EnumAutodialAddresses(StructBufferedPInvokeParams value)
         {
-            IntPtr bufferSize = value.BufferSize;
-            IntPtr count = value.Count;
+            var bufferSize = value.BufferSize;
+            var count = value.Count;
 
-            int ret = RasEnumAutodialAddresses(value.Address, ref bufferSize, ref count);
+            var ret = RasEnumAutodialAddresses(value.Address, ref bufferSize, ref count);
             value.BufferSize = bufferSize;
             value.Count = count;
 
@@ -228,14 +228,14 @@ namespace DotRas.Internal
         /// <returns>If the function succeeds, the return value is zero.</returns>
         public int EnumEntries(IntPtr reserved, string phoneBookPath, IntPtr entryName, ref IntPtr bufferSize, ref IntPtr count)
         {
-            PInvokeCallTraceEvent evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasEnumEntries");
+            var evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasEnumEntries");
             evt.Data.Add("reserved", reserved);
             evt.Data.Add("phoneBookPath", phoneBookPath);
             evt.Data.Add("entryName", entryName);
             evt.Data.Add("bufferSize-IN", bufferSize);
             evt.Data.Add("count-IN", count);
 
-            int result = 0;
+            var result = 0;
 
             try
             {
@@ -261,12 +261,12 @@ namespace DotRas.Internal
         /// <returns>If the function succeeds, the return value is zero.</returns>
         public int GetCredentials(string phoneBookPath, string entryName, IntPtr credentials)
         {
-            PInvokeCallTraceEvent evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasGetCredentials");
+            var evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasGetCredentials");
             evt.Data.Add("phoneBookPath", phoneBookPath);
             evt.Data.Add("entryName", entryName);
             evt.Data.Add("credentials", credentials);
 
-            int result = 0;
+            var result = 0;
 
             try
             {
@@ -293,17 +293,17 @@ namespace DotRas.Internal
                 ThrowHelper.ThrowArgumentNullException("value");
             }
 
-            IntPtr bufferSize = value.BufferSize;
-            IntPtr count = value.Count;
+            var bufferSize = value.BufferSize;
+            var count = value.Count;
 
-            PInvokeCallTraceEvent evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasGetAutodialAddress");
+            var evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasGetAutodialAddress");
             evt.Data.Add("autodialAddress", value.AutodialAddress);
             evt.Data.Add("reserved", value.Reserved);
             evt.Data.Add("address", value.Address);
             evt.Data.Add("bufferSize-IN", bufferSize);
             evt.Data.Add("count-IN", count);
 
-            int result = 0;
+            var result = 0;
 
             try
             {
@@ -335,12 +335,12 @@ namespace DotRas.Internal
                 ThrowHelper.ThrowArgumentNullException("value");
             }
 
-            bool enabled = value.Enabled;
+            var enabled = value.Enabled;
 
-            PInvokeCallTraceEvent evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasGetAutodialEnable");
+            var evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasGetAutodialEnable");
             evt.Data.Add("enabled-IN", enabled);
 
-            int result = 0;
+            var result = 0;
 
             try
             {
@@ -370,14 +370,14 @@ namespace DotRas.Internal
                 ThrowHelper.ThrowArgumentNullException("value");
             }
 
-            int bufferSize = value.BufferSize;
+            var bufferSize = value.BufferSize;
 
-            PInvokeCallTraceEvent evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasGetAutodialParam");
+            var evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasGetAutodialParam");
             evt.Data.Add("key", value.Key);
             evt.Data.Add("address", value.Address);
             evt.Data.Add("bufferSize-IN", bufferSize);
 
-            int result = 0;
+            var result = 0;
 
             try
             {
@@ -407,7 +407,7 @@ namespace DotRas.Internal
         /// <returns>If the function succeeds, the return value is zero.</returns>
         public int GetEntryProperties(string phoneBookPath, string entryName, IntPtr entry, ref IntPtr bufferSize, IntPtr deviceInfo, IntPtr deviceInfoSize)
         {
-            PInvokeCallTraceEvent evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasGetEntryProperties");
+            var evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasGetEntryProperties");
             evt.Data.Add("phoneBookPath", phoneBookPath);
             evt.Data.Add("entryName", entryName);
             evt.Data.Add("entry", entry);
@@ -415,7 +415,7 @@ namespace DotRas.Internal
             evt.Data.Add("deviceInfo", deviceInfo);
             evt.Data.Add("deviceInfoSize", deviceInfoSize);
 
-            int result = 0;
+            var result = 0;
 
             try
             {
@@ -444,7 +444,7 @@ namespace DotRas.Internal
         /// <returns>If the function succeeds, the return value is zero.</returns>
         public int GetSubEntryProperties(string phoneBookPath, string entryName, int index, IntPtr subentry, ref IntPtr bufferSize, IntPtr deviceConfig, IntPtr deviceBufferSize)
         {
-            PInvokeCallTraceEvent evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasGetSubEntryProperties");
+            var evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasGetSubEntryProperties");
             evt.Data.Add("phoneBookPath", phoneBookPath);
             evt.Data.Add("entryName", entryName);
             evt.Data.Add("index", index);
@@ -453,7 +453,7 @@ namespace DotRas.Internal
             evt.Data.Add("deviceConfig", deviceConfig);
             evt.Data.Add("deviceBufferSize", deviceBufferSize);
 
-            int result = 0;
+            var result = 0;
 
             try
             {
@@ -478,12 +478,12 @@ namespace DotRas.Internal
         /// <returns><b>true</b> if the user dials an entry successfully, otherwise <b>false</b>.</returns>
         public bool PhonebookDlg(string phoneBookPath, string entryName, ref NativeMethods.RASPBDLG info)
         {
-            PInvokeCallTraceEvent evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasPhonebookDlg");
+            var evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasPhonebookDlg");
             evt.Data.Add("phoneBookPath", phoneBookPath);
             evt.Data.Add("entryName", entryName);
             evt.Data.Add("info", info);
 
-            bool result = false;
+            var result = false;
 
             try
             {
@@ -507,12 +507,12 @@ namespace DotRas.Internal
         /// <returns>If the function succeeds, the return value is zero.</returns>
         public int RenameEntry(string phoneBookPath, string oldEntryName, string newEntryName)
         {
-            PInvokeCallTraceEvent evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasRenameEntry");
+            var evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasRenameEntry");
             evt.Data.Add("phoneBookPath", phoneBookPath);
             evt.Data.Add("oldEntryName", oldEntryName);
             evt.Data.Add("newEntryName", newEntryName);
 
-            int result = 0;
+            var result = 0;
 
             try
             {
@@ -538,14 +538,14 @@ namespace DotRas.Internal
         /// <returns>If the function succeeds, the return value is zero.</returns>
         public int SetAutodialAddress(string address, int reserved, IntPtr addresses, int bufferSize, int count)
         {
-            PInvokeCallTraceEvent evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasSetAutodialAddress");
+            var evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasSetAutodialAddress");
             evt.Data.Add("address", address);
             evt.Data.Add("reserved", reserved);
             evt.Data.Add("addresses", addresses);
             evt.Data.Add("bufferSize", bufferSize);
             evt.Data.Add("count", count);
 
-            int result = 0;
+            var result = 0;
 
             try
             {
@@ -568,11 +568,11 @@ namespace DotRas.Internal
         /// <returns>If the function succeeds, the return value is zero.</returns>
         public int SetAutodialEnable(int dialingLocation, bool enabled)
         {
-            PInvokeCallTraceEvent evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasSetAutodialEnable");
+            var evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasSetAutodialEnable");
             evt.Data.Add("dialingLocation", dialingLocation);
             evt.Data.Add("enabled", enabled);
 
-            int result = 0;
+            var result = 0;
 
             try
             {
@@ -596,12 +596,12 @@ namespace DotRas.Internal
         /// <returns>If the function succeeds, the return value is zero.</returns>
         public int SetAutodialParam(NativeMethods.RASADP key, IntPtr value, int bufferSize)
         {
-            PInvokeCallTraceEvent evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasSetAutodialParam");
+            var evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasSetAutodialParam");
             evt.Data.Add("key", key);
             evt.Data.Add("value", value);
             evt.Data.Add("bufferSize", bufferSize);
 
-            int result = 0;
+            var result = 0;
 
             try
             {
@@ -626,13 +626,13 @@ namespace DotRas.Internal
         /// <returns>If the function succeeds, the return value is zero.</returns>
         public int SetCredentials(string phoneBookPath, string entryName, IntPtr credentials, bool clearCredentials)
         {
-            PInvokeCallTraceEvent evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasSetCredentials");
+            var evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasSetCredentials");
             evt.Data.Add("phoneBookPath", phoneBookPath);
             evt.Data.Add("entryName", entryName);
             evt.Data.Add("credentials", credentials);
             evt.Data.Add("clearCredentials", clearCredentials);
 
-            int result = 0;
+            var result = 0;
 
             try
             {
@@ -657,13 +657,13 @@ namespace DotRas.Internal
         /// <returns>If the function succeeds, the return value is zero.</returns>
         public int SetCustomAuthData(string phoneBookPath, string entryName, IntPtr customAuthData, int sizeOfCustomAuthData)
         {
-            PInvokeCallTraceEvent evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasSetCustomAuthData");
+            var evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasSetCustomAuthData");
             evt.Data.Add("phoneBookPath", phoneBookPath);
             evt.Data.Add("entryName", entryName);
             evt.Data.Add("customAuthData", customAuthData);
             evt.Data.Add("sizeOfCustomAuthData", sizeOfCustomAuthData);
 
-            int result = 0;
+            var result = 0;
 
             try
             {
@@ -689,14 +689,14 @@ namespace DotRas.Internal
         /// <returns>If the function succeeds, the return value is zero.</returns>
         public int SetEapUserData(IntPtr handle, string phoneBookPath, string entryName, IntPtr eapData, int sizeOfEapData)
         {
-            PInvokeCallTraceEvent evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasSetEapUserData");
+            var evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasSetEapUserData");
             evt.Data.Add("handle", handle);
             evt.Data.Add("phoneBookPath", phoneBookPath);
             evt.Data.Add("entryName", entryName);
             evt.Data.Add("eapData", eapData);
             evt.Data.Add("sizeOfEapData", sizeOfEapData);
 
-            int result = 0;
+            var result = 0;
 
             try
             {
@@ -723,7 +723,7 @@ namespace DotRas.Internal
         /// <returns>If the function succeeds, the return value is zero.</returns>
         public int SetEntryProperties(string phoneBookPath, string entryName, IntPtr entry, int bufferSize, IntPtr device, int deviceBufferSize)
         {
-            PInvokeCallTraceEvent evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasSetEntryProperties");
+            var evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasSetEntryProperties");
             evt.Data.Add("phoneBookPath", phoneBookPath);
             evt.Data.Add("entryName", entryName);
             evt.Data.Add("entry", entry);
@@ -731,7 +731,7 @@ namespace DotRas.Internal
             evt.Data.Add("device", device);
             evt.Data.Add("deviceBufferSize", deviceBufferSize);
 
-            int result = 0;
+            var result = 0;
 
             try
             {
@@ -759,7 +759,7 @@ namespace DotRas.Internal
         /// <returns>If the function succeeds, the return value is zero.</returns>
         public int SetSubEntryProperties(string phoneBookPath, string entryName, int index, IntPtr subentry, int bufferSize, IntPtr deviceConfig, int deviceConfigSize)
         {
-            PInvokeCallTraceEvent evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasSetSubEntryProperties");
+            var evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasSetSubEntryProperties");
             evt.Data.Add("phoneBookPath", phoneBookPath);
             evt.Data.Add("entryName", entryName);
             evt.Data.Add("index", index);
@@ -768,7 +768,7 @@ namespace DotRas.Internal
             evt.Data.Add("deviceConfig", deviceConfig);
             evt.Data.Add("deviceConfigSize", deviceConfigSize);
 
-            int result = 0;
+            var result = 0;
 
             try
             {
@@ -792,11 +792,11 @@ namespace DotRas.Internal
         /// <returns>If the function succeeds, the return value is zero.</returns>
         public int UpdateConnection(RasHandle handle, IntPtr updateData)
         {
-            PInvokeCallTraceEvent evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasUpdateConnection");
+            var evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasUpdateConnection");
             evt.Data.Add("handle", handle);
             evt.Data.Add("updateData", updateData);
 
-            int result = 0;
+            var result = 0;
 
             try
             {

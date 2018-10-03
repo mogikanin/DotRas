@@ -95,7 +95,7 @@ namespace DotRas
         /// <returns>A new <see cref="DotRas.RasCountry"/> object.</returns>
         public static RasCountry GetCountryById(int countryId)
         {
-            int nextCountryId = 0;
+            var nextCountryId = 0;
             return RasHelper.Instance.GetCountry(countryId, out nextCountryId);
         }
 
@@ -106,14 +106,14 @@ namespace DotRas
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate", Justification = "This should not be a property.")]
         public static ReadOnlyCollection<RasCountry> GetCountries()
         {
-            Collection<RasCountry> tempCollection = new Collection<RasCountry>();
+            var tempCollection = new Collection<RasCountry>();
 
             // The country id must be set to 1 to initiate retrieval of all countries in the list.
-            int countryId = 1;
+            var countryId = 1;
 
             do
             {
-                RasCountry country = RasHelper.Instance.GetCountry(countryId, out countryId);
+                var country = RasHelper.Instance.GetCountry(countryId, out countryId);
                 if (country != null)
                 {
                     tempCollection.Add(country);

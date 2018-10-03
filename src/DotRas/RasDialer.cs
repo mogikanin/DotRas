@@ -148,7 +148,7 @@ namespace DotRas
         {
             get
             {
-                bool retval = false;
+                var retval = false;
 
                 lock (syncRoot)
                 {
@@ -472,7 +472,7 @@ namespace DotRas
         /// <returns>The <see cref="NativeMethods.RDEOPT"/> flags.</returns>
         private NativeMethods.RDEOPT GetRasDialOptions()
         {
-            NativeMethods.RDEOPT value = NativeMethods.RDEOPT.None;
+            var value = NativeMethods.RDEOPT.None;
 
             if (Options != null)
             {
@@ -504,7 +504,7 @@ namespace DotRas
         /// <returns>The <see cref="NativeMethods.RASEAPF"/> flags.</returns>
         private NativeMethods.RASEAPF GetRasEapOptions()
         {
-            NativeMethods.RASEAPF value = NativeMethods.RASEAPF.None;
+            var value = NativeMethods.RASEAPF.None;
 
             if (EapOptions != null)
             {
@@ -540,8 +540,8 @@ namespace DotRas
 
                     try
                     {
-                        NativeMethods.RASDIALPARAMS parameters = BuildDialParams();
-                        NativeMethods.RASDIALEXTENSIONS extensions = BuildDialExtensions();
+                        var parameters = BuildDialParams();
+                        var extensions = BuildDialExtensions();
 
                         if (!string.IsNullOrEmpty(EntryName))
                         {
@@ -611,7 +611,7 @@ namespace DotRas
         /// <returns>A new <see cref="NativeMethods.RASDIALEXTENSIONS"/> structure.</returns>
         private NativeMethods.RASDIALEXTENSIONS BuildDialExtensions()
         {
-            NativeMethods.RASDIALEXTENSIONS result = new NativeMethods.RASDIALEXTENSIONS();
+            var result = new NativeMethods.RASDIALEXTENSIONS();
             result.options = GetRasDialOptions();
 
 #if (WIN7 || WIN8)
@@ -619,8 +619,7 @@ namespace DotRas
 
             if (AuthenticationCookie != IntPtr.Zero)
             {
-                result.devSpecificInfo = new NativeMethods.RASDEVSPECIFICINFO();
-                result.devSpecificInfo.cookie = AuthenticationCookie;
+                result.devSpecificInfo = new NativeMethods.RASDEVSPECIFICINFO {cookie = AuthenticationCookie};
             }
 #endif
 
@@ -635,7 +634,7 @@ namespace DotRas
         /// <returns>A new <see cref="NativeMethods.RASDIALPARAMS"/> structure.</returns>
         private NativeMethods.RASDIALPARAMS BuildDialParams()
         {
-            NativeMethods.RASDIALPARAMS result = new NativeMethods.RASDIALPARAMS();
+            var result = new NativeMethods.RASDIALPARAMS();
 
             result.callbackId = CallbackId;
             result.subEntryId = SubEntryId;
@@ -662,7 +661,7 @@ namespace DotRas
             if (Credentials == null && AllowUseStoredCredentials)
             {
                 // Attempt to use any credentials stored for the entry since the caller didn't explicitly specify anything.
-                NetworkCredential storedCredentials = RasHelper.Instance.GetCredentials(PhoneBookPath, EntryName, NativeMethods.RASCM.UserName | NativeMethods.RASCM.Password | NativeMethods.RASCM.Domain);
+                var storedCredentials = RasHelper.Instance.GetCredentials(PhoneBookPath, EntryName, NativeMethods.RASCM.UserName | NativeMethods.RASCM.Password | NativeMethods.RASCM.Domain);
 
                 if (storedCredentials != null)
                 {
@@ -767,7 +766,7 @@ namespace DotRas
         /// <param name="state">The object passed to the delegate.</param>
         private void DialCompletedCallback(object state)
         {
-            DialCompletedEventArgs e = (DialCompletedEventArgs)state;
+            var e = (DialCompletedEventArgs)state;
             OnDialCompleted(e);
         }
 
@@ -824,7 +823,7 @@ namespace DotRas
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "The exception is passed to an error event to prevent an uncatchable exception from crashing the host application.")]
         private bool RasDialCallback(IntPtr callbackId, int subEntryId, IntPtr dangerousHandle, int message, RasConnectionState state, int errorCode, int extendedErrorCode)
         {
-            bool retval = true;
+            var retval = true;
 
             lock (syncRoot)
             {
@@ -847,7 +846,7 @@ namespace DotRas
                             errorMessage = RasHelper.Instance.GetRasErrorString(errorCode);
                         }
 
-                        StateChangedEventArgs e = new StateChangedEventArgs(callbackId, subEntryId, connectionHandle, state, errorCode, errorMessage, extendedErrorCode);
+                        var e = new StateChangedEventArgs(callbackId, subEntryId, connectionHandle, state, errorCode, errorMessage, extendedErrorCode);
                         OnStateChanged(e);
 
                         if (errorCode != NativeMethods.SUCCESS)

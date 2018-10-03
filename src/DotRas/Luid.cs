@@ -107,7 +107,7 @@ namespace DotRas
         /// <returns><b>true</b> if the objects are equal, otherwise <b>false</b>.</returns>
         public override bool Equals(object obj)
         {
-            bool retval = false;
+            var retval = false;
 
             if (obj is Luid)
             {
@@ -133,9 +133,9 @@ namespace DotRas
         /// <returns>The hash code for the instance.</returns>
         public override int GetHashCode()
         {
-            long hashCode = (long)highPart + (long)lowPart;
+            var hashCode = (long)highPart + (long)lowPart;
 
-            int retval = 0;
+            var retval = 0;
             if (hashCode < int.MinValue)
             {
                 retval = int.MinValue;
@@ -183,7 +183,7 @@ namespace DotRas
         /// <returns>A <see cref="System.String"/> representation of this locally unique identifier.</returns>
         public string ToString(string format, IFormatProvider formatProvider)
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             sb.Append(lowPart.ToString(format, formatProvider)).Append("-").Append(highPart.ToString(format, formatProvider));
 
             return sb.ToString();

@@ -87,11 +87,11 @@ namespace DotRas
                 ThrowHelper.ThrowArgumentException("name", Resources.Argument_StringCannotBeNullOrEmpty);
             }
 
-            bool retval = false;
+            var retval = false;
 
             if (Contains(name))
             {
-                RasEntry item = this[name];
+                var item = this[name];
                 if (item != null)
                 {
                     retval = Remove(item);
@@ -120,14 +120,14 @@ namespace DotRas
 
                 Clear();
 
-                NativeMethods.RASENTRYNAME[] entries = RasHelper.Instance.GetEntryNames(Owner);
+                var entries = RasHelper.Instance.GetEntryNames(Owner);
                 if (entries != null && entries.Length > 0)
                 {
-                    for (int index = 0; index < entries.Length; index++)
+                    for (var index = 0; index < entries.Length; index++)
                     {
-                        NativeMethods.RASENTRYNAME entry = entries[index];
+                        var entry = entries[index];
 
-                        RasEntry item = RasHelper.Instance.GetEntryProperties(Owner, entry.name);
+                        var item = RasHelper.Instance.GetEntryProperties(Owner, entry.name);
                         if (item != null)
                         {
                             Add(item);
@@ -159,7 +159,7 @@ namespace DotRas
         /// </summary>
         protected override void ClearItems()
         {
-            bool isFileWatcherEnabled = false;
+            var isFileWatcherEnabled = false;
 
             try
             {
@@ -236,7 +236,7 @@ namespace DotRas
 
             if (!IsInitializing)
             {
-                RasEntry entry = this[index];
+                var entry = this[index];
                 if (entry != null)
                 {
                     RasHelper.Instance.DeleteEntry(entry.Owner.Path, entry.Name);

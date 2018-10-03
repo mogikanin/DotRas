@@ -87,7 +87,7 @@ namespace DotRas
         /// <returns>A new <see cref="DotRas.RasNetworkProtocols"/> object.</returns>
         public object Clone()
         {
-            RasNetworkProtocols retval = new RasNetworkProtocols();
+            var retval = new RasNetworkProtocols();
 
 #pragma warning disable 0618
             retval.NetBeui = NetBeui;

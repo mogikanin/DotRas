@@ -125,11 +125,11 @@ namespace DotRas
         /// <returns>A new <see cref="DotRas.RasSubEntry"/> object.</returns>
         public object Clone()
         {
-            RasSubEntry retval = new RasSubEntry();
+            var retval = new RasSubEntry();
 
             if (AlternatePhoneNumbers.Count > 0)
             {
-                foreach (string value in AlternatePhoneNumbers)
+                foreach (var value in AlternatePhoneNumbers)
                 {
                     retval.AlternatePhoneNumbers.Add(value);
                 }
@@ -147,7 +147,7 @@ namespace DotRas
         /// <returns><b>true</b> if the operation was successful, otherwise <b>false</b>.</returns>
         public bool Remove()
         {
-            bool retval = false;
+            var retval = false;
 
             if (Owner != null)
             {
@@ -169,9 +169,9 @@ namespace DotRas
                 ThrowHelper.ThrowInvalidOperationException(Resources.Exception_EntryNotInPhoneBook);
             }
 
-            bool retval = false;
+            var retval = false;
 
-            int index = Owner.SubEntries.IndexOf(this);
+            var index = Owner.SubEntries.IndexOf(this);
             if (index != -1)
             {
                 retval = RasHelper.Instance.SetSubEntryProperties(Owner.Owner, Owner, index, this);

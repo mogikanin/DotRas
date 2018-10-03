@@ -133,7 +133,7 @@ namespace DotRas.Diagnostics
         /// <returns>The serialized event data.</returns>
         public override string Serialize()
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
 
             sb.Append("EventType: RasDialCallback").AppendLine();
             sb.AppendFormat("Result: {0}", Result).AppendLine();

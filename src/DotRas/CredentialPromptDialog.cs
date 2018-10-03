@@ -311,31 +311,29 @@ namespace DotRas
                 ThrowHelper.ThrowInvalidOperationException(Resources.Exception_TargetNameCannotBeNullReference);
             }
 
-            bool retval = false;
+            var retval = false;
 
-            int size = Marshal.SizeOf(typeof(NativeMethods.CREDUI_INFO));
+            var size = Marshal.SizeOf(typeof(NativeMethods.CREDUI_INFO));
 
-            IntPtr pUiCred = IntPtr.Zero;
+            var pUiCred = IntPtr.Zero;
             try
             {
-                NativeMethods.CREDUI_INFO dlg = new NativeMethods.CREDUI_INFO();
-                dlg.size = size;                
-
-                dlg.caption = Caption;
-                dlg.message = Message;
-                dlg.hwndOwner = hwndOwner;
+                var dlg = new NativeMethods.CREDUI_INFO
+                {
+                    size = size, caption = Caption, message = Message, hwndOwner = hwndOwner
+                };
 
                 pUiCred = Marshal.AllocHGlobal(size);
                 Marshal.StructureToPtr(dlg, pUiCred, true);
 
-                bool saveChecked = SaveChecked;
+                var saveChecked = SaveChecked;
 
                 // Use the default maximum lengths if the caller did not provide a different value.
-                int userNameLength = MaxUserNameLength == 0 ? NativeMethods.CREDUI_MAX_USERNAME_LENGTH : MaxUserNameLength;
-                int passwordLength = MaxPasswordLength == 0 ? NativeMethods.CREDUI_MAX_PASSWORD_LENGTH : MaxPasswordLength;
+                var userNameLength = MaxUserNameLength == 0 ? NativeMethods.CREDUI_MAX_USERNAME_LENGTH : MaxUserNameLength;
+                var passwordLength = MaxPasswordLength == 0 ? NativeMethods.CREDUI_MAX_PASSWORD_LENGTH : MaxPasswordLength;
 
-                StringBuilder userNameBuffer = new StringBuilder(userNameLength);
-                StringBuilder passwordBuffer = new StringBuilder(passwordLength);
+                var userNameBuffer = new StringBuilder(userNameLength);
+                var passwordBuffer = new StringBuilder(passwordLength);
 
                 if (!string.IsNullOrEmpty(UserName))
                 {
@@ -347,9 +345,9 @@ namespace DotRas
                     passwordBuffer.Append(Password);
                 }
 
-                NativeMethods.CREDUI_FLAGS flags = BuildDialogOptions();
+                var flags = BuildDialogOptions();
 
-                int ret = SafeNativeMethods.Instance.PromptForCredentials(pUiCred, TargetName, IntPtr.Zero, NativeMethods.SUCCESS, userNameBuffer, userNameLength, passwordBuffer, passwordLength, ref saveChecked, flags);
+                var ret = SafeNativeMethods.Instance.PromptForCredentials(pUiCred, TargetName, IntPtr.Zero, NativeMethods.SUCCESS, userNameBuffer, userNameLength, passwordBuffer, passwordLength, ref saveChecked, flags);
                 if (ret == NativeMethods.ERROR_CANCELLED)
                 {
                     retval = false;
@@ -386,7 +384,7 @@ namespace DotRas
         /// <returns><b>true</b> if the policy setting is enabled, otherwise <b>false</b>.</returns>
         private static bool IsPolicyEnabled()
         {
-            RegistryKey key = Registry.LocalMachine.OpenSubKey(DisableDomainCredentialsPath);
+            var key = Registry.LocalMachine.OpenSubKey(DisableDomainCredentialsPath);
             if (key != null)
             {
                 return (int)key.GetValue("disabledomaincreds", 0) != 0;
@@ -401,7 +399,7 @@ namespace DotRas
         /// <returns>The dialog options.</returns>
         private NativeMethods.CREDUI_FLAGS BuildDialogOptions()
         {
-            NativeMethods.CREDUI_FLAGS result = NativeMethods.CREDUI_FLAGS.GenericCredentials | NativeMethods.CREDUI_FLAGS.AlwaysShowUI;
+            var result = NativeMethods.CREDUI_FLAGS.GenericCredentials | NativeMethods.CREDUI_FLAGS.AlwaysShowUI;
 
             if (IsPolicyEnabled())
             {

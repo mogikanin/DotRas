@@ -214,7 +214,7 @@ namespace DotRas
                 ThrowHelper.ThrowArgumentException("deviceType", Resources.Argument_StringCannotBeNullOrEmpty);
             }
 
-            TypeConverter converter = TypeDescriptor.GetConverter(typeof(RasDeviceType));
+            var converter = TypeDescriptor.GetConverter(typeof(RasDeviceType));
             if (converter == null)
             {
                 ThrowHelper.ThrowInvalidOperationException(Resources.Exception_TypeConverterNotFound, "RasDeviceType");

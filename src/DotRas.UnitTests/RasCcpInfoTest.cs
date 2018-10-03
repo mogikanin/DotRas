@@ -54,13 +54,13 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void ServerOptionsTest()
         {
-            int errorCode = int.MaxValue;
-            RasCompressionType compressionAlgorithm = RasCompressionType.Mppc;
-            RasCompressionOptions options = new RasCompressionOptions(NativeMethods.RASCCPO.Encryption128Bit);
-            RasCompressionType serverCompressionAlgorithm = RasCompressionType.Stac;
-            RasCompressionOptions expected = new RasCompressionOptions(NativeMethods.RASCCPO.Encryption40Bit);
+            var errorCode = int.MaxValue;
+            var compressionAlgorithm = RasCompressionType.Mppc;
+            var options = new RasCompressionOptions(NativeMethods.RASCCPO.Encryption128Bit);
+            var serverCompressionAlgorithm = RasCompressionType.Stac;
+            var expected = new RasCompressionOptions(NativeMethods.RASCCPO.Encryption40Bit);
 
-            RasCcpInfo target = new RasCcpInfo(errorCode, compressionAlgorithm, options, serverCompressionAlgorithm, expected);
+            var target = new RasCcpInfo(errorCode, compressionAlgorithm, options, serverCompressionAlgorithm, expected);
 
             RasCompressionOptions actual;
             actual = target.ServerOptions;
@@ -75,13 +75,13 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void ServerCompressionAlgorithmTest()
         {
-            int errorCode = int.MaxValue;
-            RasCompressionType compressionAlgorithm = RasCompressionType.Mppc;
-            RasCompressionOptions options = new RasCompressionOptions(NativeMethods.RASCCPO.Encryption128Bit);
-            RasCompressionType expected = RasCompressionType.Stac;
-            RasCompressionOptions serverOptions = new RasCompressionOptions(NativeMethods.RASCCPO.Encryption40Bit);
+            var errorCode = int.MaxValue;
+            var compressionAlgorithm = RasCompressionType.Mppc;
+            var options = new RasCompressionOptions(NativeMethods.RASCCPO.Encryption128Bit);
+            var expected = RasCompressionType.Stac;
+            var serverOptions = new RasCompressionOptions(NativeMethods.RASCCPO.Encryption40Bit);
 
-            RasCcpInfo target = new RasCcpInfo(errorCode, compressionAlgorithm, options, expected, serverOptions);
+            var target = new RasCcpInfo(errorCode, compressionAlgorithm, options, expected, serverOptions);
 
             RasCompressionType actual;
             actual = target.ServerCompressionAlgorithm;
@@ -96,13 +96,13 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void OptionsTest()
         {
-            int errorCode = int.MaxValue;
-            RasCompressionType compressionAlgorithm = RasCompressionType.Mppc;
-            RasCompressionOptions expected = new RasCompressionOptions(NativeMethods.RASCCPO.Encryption128Bit);
-            RasCompressionType serverCompressionAlgorithm = RasCompressionType.Stac;
-            RasCompressionOptions serverOptions = new RasCompressionOptions(NativeMethods.RASCCPO.Encryption40Bit);
+            var errorCode = int.MaxValue;
+            var compressionAlgorithm = RasCompressionType.Mppc;
+            var expected = new RasCompressionOptions(NativeMethods.RASCCPO.Encryption128Bit);
+            var serverCompressionAlgorithm = RasCompressionType.Stac;
+            var serverOptions = new RasCompressionOptions(NativeMethods.RASCCPO.Encryption40Bit);
 
-            RasCcpInfo target = new RasCcpInfo(errorCode, compressionAlgorithm, expected, serverCompressionAlgorithm, serverOptions);
+            var target = new RasCcpInfo(errorCode, compressionAlgorithm, expected, serverCompressionAlgorithm, serverOptions);
 
             RasCompressionOptions actual;
             actual = target.Options;
@@ -117,13 +117,13 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void ErrorCodeTest()
         {
-            int errorCode = int.MaxValue;
-            RasCompressionType compressionAlgorithm = RasCompressionType.Mppc;
-            RasCompressionOptions options = new RasCompressionOptions(NativeMethods.RASCCPO.Encryption128Bit);
-            RasCompressionType serverCompressionAlgorithm = RasCompressionType.Stac;
-            RasCompressionOptions serverOptions = new RasCompressionOptions(NativeMethods.RASCCPO.Encryption40Bit);
+            var errorCode = int.MaxValue;
+            var compressionAlgorithm = RasCompressionType.Mppc;
+            var options = new RasCompressionOptions(NativeMethods.RASCCPO.Encryption128Bit);
+            var serverCompressionAlgorithm = RasCompressionType.Stac;
+            var serverOptions = new RasCompressionOptions(NativeMethods.RASCCPO.Encryption40Bit);
 
-            RasCcpInfo target = new RasCcpInfo(errorCode, compressionAlgorithm, options, serverCompressionAlgorithm, serverOptions);
+            var target = new RasCcpInfo(errorCode, compressionAlgorithm, options, serverCompressionAlgorithm, serverOptions);
 
             int actual;
             actual = target.ErrorCode;
@@ -138,13 +138,13 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void CompressionAlgorithmTest()
         {
-            int errorCode = int.MaxValue;
-            RasCompressionType expected = RasCompressionType.Mppc;
-            RasCompressionOptions options = new RasCompressionOptions(NativeMethods.RASCCPO.Encryption128Bit);
-            RasCompressionType serverCompressionAlgorithm = RasCompressionType.Stac;
-            RasCompressionOptions serverOptions = new RasCompressionOptions(NativeMethods.RASCCPO.Encryption40Bit);
+            var errorCode = int.MaxValue;
+            var expected = RasCompressionType.Mppc;
+            var options = new RasCompressionOptions(NativeMethods.RASCCPO.Encryption128Bit);
+            var serverCompressionAlgorithm = RasCompressionType.Stac;
+            var serverOptions = new RasCompressionOptions(NativeMethods.RASCCPO.Encryption40Bit);
 
-            RasCcpInfo target = new RasCcpInfo(errorCode, expected, options, serverCompressionAlgorithm, serverOptions);
+            var target = new RasCcpInfo(errorCode, expected, options, serverCompressionAlgorithm, serverOptions);
 
             RasCompressionType actual;
             actual = target.CompressionAlgorithm;
@@ -159,13 +159,13 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void RasCcpInfoConstructorTest()
         {
-            int errorCode = int.MaxValue;
-            RasCompressionType compressionAlgorithm = RasCompressionType.Mppc;
-            RasCompressionOptions options = new RasCompressionOptions(NativeMethods.RASCCPO.Encryption128Bit);
-            RasCompressionType serverCompressionAlgorithm = RasCompressionType.Stac;
-            RasCompressionOptions serverOptions = new RasCompressionOptions(NativeMethods.RASCCPO.Encryption40Bit);
+            var errorCode = int.MaxValue;
+            var compressionAlgorithm = RasCompressionType.Mppc;
+            var options = new RasCompressionOptions(NativeMethods.RASCCPO.Encryption128Bit);
+            var serverCompressionAlgorithm = RasCompressionType.Stac;
+            var serverOptions = new RasCompressionOptions(NativeMethods.RASCCPO.Encryption40Bit);
 
-            RasCcpInfo target = new RasCcpInfo(errorCode, compressionAlgorithm, options, serverCompressionAlgorithm, serverOptions);
+            var target = new RasCcpInfo(errorCode, compressionAlgorithm, options, serverCompressionAlgorithm, serverOptions);
 
             Assert.IsNotNull(target);
         }

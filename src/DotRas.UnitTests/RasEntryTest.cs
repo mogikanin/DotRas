@@ -61,9 +61,9 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void RasEntryConstructorTest()
         {
-            string name = "Test Entry";
+            var name = "Test Entry";
 
-            RasEntry target = new RasEntry(name);
+            var target = new RasEntry(name);
 
             Assert.AreEqual(name, target.Name);
         }
@@ -76,9 +76,9 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(ArgumentException))]
         public void RasEntryConstructorArgumentExceptionTest()
         {
-            string name = string.Empty;
+            var name = string.Empty;
 
-            RasEntry target = new RasEntry(name);
+            var target = new RasEntry(name);
         }
 
         /// <summary>
@@ -91,7 +91,7 @@ namespace DotRas.UnitTests
         {
             string name = null;
 
-            RasEntry target = new RasEntry(name);
+            var target = new RasEntry(name);
         }
 
         #endregion
@@ -105,13 +105,13 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void X25UserDataTest()
         {
-            string name = "Test Entry";
-            string expected = "12345";
+            var name = "Test Entry";
+            var expected = "12345";
 
-            RasEntry target = new RasEntry(name);
+            var target = new RasEntry(name);
             target.X25UserData = expected;
 
-            string actual = target.X25UserData;
+            var actual = target.X25UserData;
 
             Assert.AreEqual(expected, actual);
         }
@@ -123,13 +123,13 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void X25PadTypeTest()
         {
-            string name = "Test Entry";
-            string expected = "12345";
+            var name = "Test Entry";
+            var expected = "12345";
 
-            RasEntry target = new RasEntry(name);
+            var target = new RasEntry(name);
             target.X25PadType = expected;
 
-            string actual = target.X25PadType;
+            var actual = target.X25PadType;
 
             Assert.AreEqual(expected, actual);
         }
@@ -141,13 +141,13 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void X25FacilitiesTest()
         {
-            string name = "Test Entry";
-            string expected = "12345";
+            var name = "Test Entry";
+            var expected = "12345";
 
-            RasEntry target = new RasEntry(name);
+            var target = new RasEntry(name);
             target.X25Facilities = expected;
 
-            string actual = target.X25Facilities;
+            var actual = target.X25Facilities;
 
             Assert.AreEqual(expected, actual);
         }
@@ -159,13 +159,13 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void X25AddressTest()
         {
-            string name = "Test Entry";
-            string expected = "12345";
+            var name = "Test Entry";
+            var expected = "12345";
 
-            RasEntry target = new RasEntry(name);
+            var target = new RasEntry(name);
             target.X25Address = expected;
 
-            string actual = target.X25Address;
+            var actual = target.X25Address;
 
             Assert.AreEqual(expected, actual);
         }
@@ -177,11 +177,11 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void OptionsAlwaysDefaultTest()
         {
-            string name = "Test Entry";
+            var name = "Test Entry";
 
-            RasEntry target = new RasEntry(name);
+            var target = new RasEntry(name);
 
-            RasEntryOptions actual = target.Options;
+            var actual = target.Options;
 
             Assert.IsNotNull(actual);
         }
@@ -193,12 +193,12 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void OptionsDefaultTest()
         {
-            string name = "Test Entry";
+            var name = "Test Entry";
 
-            RasEntryOptions expected = new RasEntryOptions();
+            var expected = new RasEntryOptions();
 
-            RasEntry target = new RasEntry(name);
-            RasEntryOptions actual = target.Options;
+            var target = new RasEntry(name);
+            var actual = target.Options;
 
             TestUtilities.AssertRasEntryOptions(expected, actual);
         }
@@ -210,13 +210,13 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void WinsAddressAltTest()
         {
-            string name = "Test Entry";
-            IPAddress expected = IPAddress.Loopback;
+            var name = "Test Entry";
+            var expected = IPAddress.Loopback;
 
-            RasEntry target = new RasEntry(name);
+            var target = new RasEntry(name);
             target.WinsAddressAlt = expected;
 
-            IPAddress actual = target.WinsAddressAlt;
+            var actual = target.WinsAddressAlt;
 
             Assert.AreEqual(expected, actual);
         }
@@ -228,13 +228,13 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void WinsAddressTest()
         {
-            string name = "Test Entry";
-            IPAddress expected = IPAddress.Loopback;
+            var name = "Test Entry";
+            var expected = IPAddress.Loopback;
 
-            RasEntry target = new RasEntry(name);
+            var target = new RasEntry(name);
             target.WinsAddress = expected;
 
-            IPAddress actual = target.WinsAddress;
+            var actual = target.WinsAddress;
 
             Assert.AreEqual(expected, actual);
         }
@@ -246,13 +246,13 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void VpnStrategyTest()
         {
-            string name = "Test Entry";
-            RasVpnStrategy expected = RasVpnStrategy.L2tpFirst;
+            var name = "Test Entry";
+            var expected = RasVpnStrategy.L2tpFirst;
 
-            RasEntry target = new RasEntry(name);
+            var target = new RasEntry(name);
             target.VpnStrategy = expected;
 
-            RasVpnStrategy actual = target.VpnStrategy;
+            var actual = target.VpnStrategy;
 
             Assert.AreEqual(expected, actual);
         }
@@ -264,11 +264,11 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void SubEntriesTest()
         {
-            string name = "Test Entry";
-            int expected = 0;
+            var name = "Test Entry";
+            var expected = 0;
 
-            RasEntry target = new RasEntry(name);
-            int actual = target.SubEntries.Count;
+            var target = new RasEntry(name);
+            var actual = target.SubEntries.Count;
 
             Assert.AreEqual(expected, actual);
         }
@@ -280,13 +280,13 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void ScriptTest()
         {
-            string name = "Test Entry";
-            string expected = string.Empty;
+            var name = "Test Entry";
+            var expected = string.Empty;
 
-            RasEntry target = new RasEntry(name);
+            var target = new RasEntry(name);
             target.Script = expected;
 
-            string actual = target.Script;
+            var actual = target.Script;
 
             Assert.AreEqual(expected, actual);
         }
@@ -298,13 +298,13 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void PhoneNumberTest()
         {
-            string name = "Test Entry";
-            string expected = "127.0.0.1";
+            var name = "Test Entry";
+            var expected = "127.0.0.1";
 
-            RasEntry target = new RasEntry(name);
+            var target = new RasEntry(name);
             target.PhoneNumber = expected;
 
-            string actual = expected;
+            var actual = expected;
 
             Assert.AreEqual(expected, actual);
         }
@@ -316,13 +316,13 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void OwnerTest()
         {
-            string name = "Test Entry";
-            RasPhoneBook expected = new RasPhoneBook();
+            var name = "Test Entry";
+            var expected = new RasPhoneBook();
 
-            RasEntry target = new RasEntry(name);
+            var target = new RasEntry(name);
             target.Owner = expected;
 
-            RasPhoneBook actual = target.Owner;
+            var actual = target.Owner;
 
             Assert.AreEqual(expected, actual);
         }
@@ -334,16 +334,16 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void NetworkProtocolsTest()
         {
-            string name = "Test Entry";
-            RasNetworkProtocols expected = new RasNetworkProtocols()
+            var name = "Test Entry";
+            var expected = new RasNetworkProtocols()
             {
                 IP = true
             };
 
-            RasEntry target = new RasEntry(name);
+            var target = new RasEntry(name);
             target.NetworkProtocols = expected;
 
-            RasNetworkProtocols actual = target.NetworkProtocols;
+            var actual = target.NetworkProtocols;
 
             Assert.AreSame(expected, actual);
         }
@@ -355,11 +355,11 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void NameTest()
         {
-            string expected = "Test Entry";
+            var expected = "Test Entry";
 
-            RasEntry target = new RasEntry(expected);
+            var target = new RasEntry(expected);
 
-            string actual = target.Name;
+            var actual = target.Name;
 
             Assert.AreEqual(expected, actual);
         }
@@ -371,13 +371,13 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void IPAddressTest()
         {
-            string name = "Test Entry";
-            IPAddress expected = IPAddress.Loopback;
+            var name = "Test Entry";
+            var expected = IPAddress.Loopback;
 
-            RasEntry target = new RasEntry(name);
+            var target = new RasEntry(name);
             target.IPAddress = expected;
 
-            IPAddress actual = target.IPAddress;
+            var actual = target.IPAddress;
 
             Assert.AreEqual(expected, actual);
         }
@@ -389,13 +389,13 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void IdleDisconnectSecondsTest()
         {
-            string name = "Test Entry";
-            int expected = RasIdleDisconnectTimeout.Disabled;
+            var name = "Test Entry";
+            var expected = RasIdleDisconnectTimeout.Disabled;
 
-            RasEntry target = new RasEntry(name);
+            var target = new RasEntry(name);
             target.IdleDisconnectSeconds = expected;
 
-            int actual = target.IdleDisconnectSeconds;
+            var actual = target.IdleDisconnectSeconds;
 
             Assert.AreEqual(expected, actual);
         }
@@ -407,13 +407,13 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void IdTest()
         {
-            string name = "Test Entry";
-            Guid expected = Guid.NewGuid();
+            var name = "Test Entry";
+            var expected = Guid.NewGuid();
 
-            RasEntry target = new RasEntry(name);
+            var target = new RasEntry(name);
             target.Id = expected;
 
-            Guid actual = target.Id;
+            var actual = target.Id;
 
             Assert.AreEqual(expected, actual);
         }
@@ -425,13 +425,13 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void HangUpExtraSampleSecondsTest()
         {
-            string name = "Test Entry";
-            int expected = int.MaxValue;
+            var name = "Test Entry";
+            var expected = int.MaxValue;
 
-            RasEntry target = new RasEntry(name);
+            var target = new RasEntry(name);
             target.HangUpExtraSampleSeconds = expected;
 
-            int actual = target.HangUpExtraSampleSeconds;
+            var actual = target.HangUpExtraSampleSeconds;
 
             Assert.AreEqual(expected, actual);
         }
@@ -443,13 +443,13 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void HangUpExtraPercentTest()
         {
-            string name = "Test Entry";
-            int expected = int.MaxValue;
+            var name = "Test Entry";
+            var expected = int.MaxValue;
 
-            RasEntry target = new RasEntry(name);
+            var target = new RasEntry(name);
             target.HangUpExtraPercent = expected;
 
-            int actual = target.HangUpExtraPercent;
+            var actual = target.HangUpExtraPercent;
 
             Assert.AreEqual(expected, actual);
         }
@@ -461,13 +461,13 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void FramingProtocolTest()
         {
-            string name = "Test Entry";
-            RasFramingProtocol expected = RasFramingProtocol.Ppp;
+            var name = "Test Entry";
+            var expected = RasFramingProtocol.Ppp;
 
-            RasEntry target = new RasEntry(name);
+            var target = new RasEntry(name);
             target.FramingProtocol = expected;
 
-            RasFramingProtocol actual = target.FramingProtocol;
+            var actual = target.FramingProtocol;
 
             Assert.AreEqual(expected, actual);
         }
@@ -479,13 +479,13 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void FrameSizeTest()
         {
-            string name = "Test Entry";
-            int expected = int.MaxValue;
+            var name = "Test Entry";
+            var expected = int.MaxValue;
 
-            RasEntry target = new RasEntry(name);
+            var target = new RasEntry(name);
             target.FrameSize = expected;
 
-            int actual = target.FrameSize;
+            var actual = target.FrameSize;
 
             Assert.AreEqual(expected, actual);
         }
@@ -497,13 +497,13 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void EntryTypeTest()
         {
-            string name = "Test Entry";
-            RasEntryType expected = RasEntryType.Vpn;
+            var name = "Test Entry";
+            var expected = RasEntryType.Vpn;
 
-            RasEntry target = new RasEntry(name);
+            var target = new RasEntry(name);
             target.EntryType = expected;
 
-            RasEntryType actual = target.EntryType;
+            var actual = target.EntryType;
 
             Assert.AreEqual(expected, actual);
         }
@@ -515,13 +515,13 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void EncryptionTypeTest()
         {
-            string name = "Test Entry";
-            RasEncryptionType expected = RasEncryptionType.Require;
+            var name = "Test Entry";
+            var expected = RasEncryptionType.Require;
 
-            RasEntry target = new RasEntry(name);
+            var target = new RasEntry(name);
             target.EncryptionType = expected;
 
-            RasEncryptionType actual = target.EncryptionType;
+            var actual = target.EncryptionType;
 
             Assert.AreEqual(expected, actual);
         }
@@ -533,13 +533,13 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void DnsAddressAltTest()
         {
-            string name = "Test Entry";
-            IPAddress expected = IPAddress.Loopback;
+            var name = "Test Entry";
+            var expected = IPAddress.Loopback;
 
-            RasEntry target = new RasEntry(name);
+            var target = new RasEntry(name);
             target.DnsAddressAlt = expected;
 
-            IPAddress actual = target.DnsAddressAlt;
+            var actual = target.DnsAddressAlt;
 
             Assert.AreEqual(expected, actual);
         }
@@ -551,13 +551,13 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void DnsAddressTest()
         {
-            string name = "Test Entry";
-            IPAddress expected = IPAddress.Loopback;
+            var name = "Test Entry";
+            var expected = IPAddress.Loopback;
 
-            RasEntry target = new RasEntry(name);
+            var target = new RasEntry(name);
             target.DnsAddress = expected;
 
-            IPAddress actual = target.DnsAddress;
+            var actual = target.DnsAddress;
 
             Assert.AreEqual(expected, actual);
         }
@@ -569,13 +569,13 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void DialModeTest()
         {
-            string name = "Test Entry";
-            RasDialMode expected = RasDialMode.DialAsNeeded;
+            var name = "Test Entry";
+            var expected = RasDialMode.DialAsNeeded;
 
-            RasEntry target = new RasEntry(name);
+            var target = new RasEntry(name);
             target.DialMode = expected;
 
-            RasDialMode actual = target.DialMode;
+            var actual = target.DialMode;
 
             Assert.AreEqual(expected, actual);
         }
@@ -587,13 +587,13 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void DialExtraSampleSecondsTest()
         {
-            string name = "Test Entry";
-            int expected = int.MaxValue;
+            var name = "Test Entry";
+            var expected = int.MaxValue;
 
-            RasEntry target = new RasEntry(name);
+            var target = new RasEntry(name);
             target.DialExtraSampleSeconds = expected;
 
-            int actual = target.DialExtraSampleSeconds;
+            var actual = target.DialExtraSampleSeconds;
 
             Assert.AreEqual(expected, actual);
         }
@@ -605,13 +605,13 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void DialExtraPercentTest()
         {
-            string name = "Test Entry";
-            int expected = int.MaxValue;
+            var name = "Test Entry";
+            var expected = int.MaxValue;
 
-            RasEntry target = new RasEntry(name);
+            var target = new RasEntry(name);
             target.DialExtraPercent = expected;
 
-            int actual = target.DialExtraPercent;
+            var actual = target.DialExtraPercent;
 
             Assert.AreEqual(expected, actual);
         }
@@ -623,13 +623,13 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void DeviceTest()
         {
-            string name = "Test Entry";
-            RasDevice expected = RasDevice.Create(name, RasDeviceType.Vpn);
+            var name = "Test Entry";
+            var expected = RasDevice.Create(name, RasDeviceType.Vpn);
 
-            RasEntry target = new RasEntry(name);
+            var target = new RasEntry(name);
             target.Device = expected;
 
-            RasDevice actual = target.Device;
+            var actual = target.Device;
 
             Assert.AreEqual(expected, actual);
         }
@@ -641,13 +641,13 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void CustomDialDllTest()
         {
-            string name = "Test Entry";
-            string expected = "Test.dll";
+            var name = "Test Entry";
+            var expected = "Test.dll";
 
-            RasEntry target = new RasEntry(name);
+            var target = new RasEntry(name);
             target.CustomDialDll = expected;
 
-            string actual = target.CustomDialDll;
+            var actual = target.CustomDialDll;
 
             Assert.AreEqual(expected, actual);
         }
@@ -659,13 +659,13 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void CustomAuthKeyTest()
         {
-            string name = "Test Entry";
-            int expected = int.MaxValue;
+            var name = "Test Entry";
+            var expected = int.MaxValue;
 
-            RasEntry target = new RasEntry(name);
+            var target = new RasEntry(name);
             target.CustomAuthKey = expected;
 
-            int actual = target.CustomAuthKey;
+            var actual = target.CustomAuthKey;
 
             Assert.AreEqual(expected, actual);
         }
@@ -677,13 +677,13 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void CountryIdTest()
         {
-            string name = "Test Entry";
-            int expected = int.MaxValue;
+            var name = "Test Entry";
+            var expected = int.MaxValue;
 
-            RasEntry target = new RasEntry(name);
+            var target = new RasEntry(name);
             target.CountryId = expected;
 
-            int actual = target.CountryId;
+            var actual = target.CountryId;
 
             Assert.AreEqual(expected, actual);
         }
@@ -695,13 +695,13 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void CountryCodeTest()
         {
-            string name = "Test Entry";
-            int expected = int.MaxValue;
+            var name = "Test Entry";
+            var expected = int.MaxValue;
 
-            RasEntry target = new RasEntry(name);
+            var target = new RasEntry(name);
             target.CountryCode = expected;
 
-            int actual = target.CountryCode;
+            var actual = target.CountryCode;
 
             Assert.AreEqual(expected, actual);
         }
@@ -713,13 +713,13 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void ChannelsTest()
         {
-            string name = "Test Entry";
-            int expected = int.MaxValue;
+            var name = "Test Entry";
+            var expected = int.MaxValue;
 
-            RasEntry target = new RasEntry(name);
+            var target = new RasEntry(name);
             target.Channels = expected;
 
-            int actual = target.Channels;
+            var actual = target.Channels;
 
             Assert.AreEqual(expected, actual);
         }
@@ -731,14 +731,14 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void AutoDialFuncTest()
         {
-            string name = "Test Entry";
-            string expected = "TestFunc";
+            var name = "Test Entry";
+            var expected = "TestFunc";
 
 #pragma warning disable 0618
-            RasEntry target = new RasEntry(name);
+            var target = new RasEntry(name);
             target.AutoDialFunc = expected;
 
-            string actual = target.AutoDialFunc;
+            var actual = target.AutoDialFunc;
 #pragma warning restore 0618
 
             Assert.AreEqual(expected, actual);
@@ -751,14 +751,14 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void AutoDialDllTest()
         {
-            string name = "Test Entry";
-            string expected = "Test.dll";
+            var name = "Test Entry";
+            var expected = "Test.dll";
 
 #pragma warning disable 0618
-            RasEntry target = new RasEntry(name);
+            var target = new RasEntry(name);
             target.AutoDialDll = expected;
 
-            string actual = target.AutoDialDll;
+            var actual = target.AutoDialDll;
 #pragma warning restore 0618
 
             Assert.AreEqual(expected, actual);
@@ -771,13 +771,13 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void AreaCodeTest()
         {
-            string name = "Test Entry";
-            string expected = "123";
+            var name = "Test Entry";
+            var expected = "123";
 
-            RasEntry target = new RasEntry(name);
+            var target = new RasEntry(name);
             target.AreaCode = expected;
 
-            string actual = target.AreaCode;
+            var actual = target.AreaCode;
 
             Assert.AreEqual(expected, actual);
         }
@@ -789,15 +789,15 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void AlternatePhoneNumbersTest()
         {
-            string name = "Test Entry";
-            Collection<string> expected = new Collection<string>();
+            var name = "Test Entry";
+            var expected = new Collection<string>();
             expected.Add("555-555-1234");
             expected.Add("555-555-2345");
 
-            RasEntry target = new RasEntry(name);
+            var target = new RasEntry(name);
             target.AlternatePhoneNumbers = expected;
 
-            Collection<string> actual = target.AlternatePhoneNumbers;
+            var actual = target.AlternatePhoneNumbers;
 
             CollectionAssert.AreEqual(expected, actual);
         }
@@ -811,13 +811,13 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void IPv6AddressTest()
         {
-            string name = "Test Entry";
-            IPAddress expected = IPAddress.IPv6Loopback;
+            var name = "Test Entry";
+            var expected = IPAddress.IPv6Loopback;
 
-            RasEntry target = new RasEntry(name);
+            var target = new RasEntry(name);
             target.IPv6Address = expected;
 
-            IPAddress actual = target.IPv6Address;
+            var actual = target.IPv6Address;
 
             Assert.AreEqual(expected, actual);
         }
@@ -829,13 +829,13 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void IPv6PrefixLengthTest()
         {
-            string name = "Test Entry";
-            int expected = 10;
+            var name = "Test Entry";
+            var expected = 10;
 
-            RasEntry target = new RasEntry(name);
+            var target = new RasEntry(name);
             target.IPv6PrefixLength = expected;
 
-            int actual = target.IPv6PrefixLength;
+            var actual = target.IPv6PrefixLength;
 
             Assert.AreEqual(expected, actual);
         }
@@ -847,13 +847,13 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void NetworkOutageTimeTest()
         {
-            string name = "Test Entry";
-            int expected = 1000;
+            var name = "Test Entry";
+            var expected = 1000;
 
-            RasEntry target = new RasEntry(name);
+            var target = new RasEntry(name);
             target.NetworkOutageTime = expected;
 
-            int actual = target.NetworkOutageTime;
+            var actual = target.NetworkOutageTime;
 
             Assert.AreEqual(expected, actual);
         }
@@ -871,16 +871,16 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void EntryExistsTest()
         {
-            Mock<ISafeNativeMethods> mock = new Mock<ISafeNativeMethods>();
+            var mock = new Mock<ISafeNativeMethods>();
             SafeNativeMethods.Instance = mock.Object;
 
             mock.Setup(o => o.ValidateEntryName(It.IsAny<string>(), It.IsAny<string>())).Returns(NativeMethods.ERROR_ALREADY_EXISTS);
 
-            string entryName = "Test Entry";
-            string phoneBookPath = RasPhoneBook.GetPhoneBookPath(RasPhoneBookType.AllUsers);
+            var entryName = "Test Entry";
+            var phoneBookPath = RasPhoneBook.GetPhoneBookPath(RasPhoneBookType.AllUsers);
 
-            bool expected = true;
-            bool actual = RasEntry.Exists(entryName, phoneBookPath);
+            var expected = true;
+            var actual = RasEntry.Exists(entryName, phoneBookPath);
 
             Assert.AreEqual(expected, actual);
         }
@@ -894,7 +894,7 @@ namespace DotRas.UnitTests
         public void EntryExistsNullEntryNameTest()
         {
             string entryName = null;
-            string phoneBookPath = RasPhoneBook.GetPhoneBookPath(RasPhoneBookType.AllUsers);
+            var phoneBookPath = RasPhoneBook.GetPhoneBookPath(RasPhoneBookType.AllUsers);
 
             RasEntry.Exists(entryName, phoneBookPath);
         }
@@ -907,8 +907,8 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(ArgumentException))]
         public void EntryExistsEmptyEntryNameTest()
         {
-            string entryName = string.Empty;
-            string phoneBookPath = RasPhoneBook.GetPhoneBookPath(RasPhoneBookType.AllUsers);
+            var entryName = string.Empty;
+            var phoneBookPath = RasPhoneBook.GetPhoneBookPath(RasPhoneBookType.AllUsers);
 
             RasEntry.Exists(entryName, phoneBookPath);
         }
@@ -921,7 +921,7 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(ArgumentException))]
         public void EntryExistsNullPhoneBookPathTest()
         {
-            string entryName = "Test Entry";
+            var entryName = "Test Entry";
             string phoneBookPath = null;
 
             RasEntry.Exists(entryName, phoneBookPath);
@@ -935,8 +935,8 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(ArgumentException))]
         public void EntryExistsEmptyPhoneBookPathTest()
         {
-            string entryName = "Test Entry";
-            string phoneBookPath = string.Empty;
+            var entryName = "Test Entry";
+            var phoneBookPath = string.Empty;
 
             RasEntry.Exists(entryName, phoneBookPath);
         }
@@ -949,8 +949,8 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(FileNotFoundException))]
         public void EntryExistsInvalidFileNameTest()
         {
-            string entryName = "Test Entry";
-            string phoneBookPath = string.Format("C:\\{0}\\{1}.pbk", Guid.NewGuid(), Guid.NewGuid());
+            var entryName = "Test Entry";
+            var phoneBookPath = string.Format("C:\\{0}\\{1}.pbk", Guid.NewGuid(), Guid.NewGuid());
 
             RasEntry.Exists(entryName, phoneBookPath);
         }
@@ -963,9 +963,9 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(InvalidOperationException))]
         public void UpdateCredentialsInvalidOperationExceptionTest()
         {
-            string name = "Test Entry";
+            var name = "Test Entry";
 
-            RasEntry target = new RasEntry(name);
+            var target = new RasEntry(name);
             target.UpdateCredentials(new NetworkCredential("Test", "User"));
         }
 
@@ -976,20 +976,20 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void UpdateCredentialsTest()
         {
-            string name = "Test Entry";
-            NetworkCredential credentials = new NetworkCredential("Test", "User");
+            var name = "Test Entry";
+            var credentials = new NetworkCredential("Test", "User");
 
-            RasPhoneBook pbk = new RasPhoneBook();
+            var pbk = new RasPhoneBook();
 
-            RasEntry target = new RasEntry(name);
+            var target = new RasEntry(name);
             target.Owner = pbk;
 
-            Mock<IRasHelper> mock = new Mock<IRasHelper>();
+            var mock = new Mock<IRasHelper>();
             RasHelper.Instance = mock.Object;
 
             mock.Setup(o => o.SetCredentials(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<NativeMethods.RASCREDENTIALS>(), false)).Returns(true);
 
-            bool result = target.UpdateCredentials(credentials);
+            var result = target.UpdateCredentials(credentials);
 
             Assert.IsTrue(result);
         }
@@ -1003,19 +1003,19 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void UpdateCredentials2ClientPreSharedKeyTest()
         {
-            string name = "Test Entry";
+            var name = "Test Entry";
 
-            RasPhoneBook pbk = new RasPhoneBook();
+            var pbk = new RasPhoneBook();
 
-            RasEntry target = new RasEntry(name);
+            var target = new RasEntry(name);
             target.Owner = pbk;
 
-            Mock<IRasHelper> mock = new Mock<IRasHelper>();
+            var mock = new Mock<IRasHelper>();
             RasHelper.Instance = mock.Object;
 
             mock.Setup(o => o.SetCredentials(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<NativeMethods.RASCREDENTIALS>(), false)).Returns(true);
 
-            bool result = target.UpdateCredentials(RasPreSharedKey.Client, "value");
+            var result = target.UpdateCredentials(RasPreSharedKey.Client, "value");
 
             Assert.IsTrue(result);
         }
@@ -1027,17 +1027,17 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void UpdateCredentials2DdmPreSharedKeyTest()
         {
-            RasPhoneBook pbk = new RasPhoneBook();
+            var pbk = new RasPhoneBook();
 
-            RasEntry target = new RasEntry("Test Entry");
+            var target = new RasEntry("Test Entry");
             target.Owner = pbk;
 
-            Mock<IRasHelper> mock = new Mock<IRasHelper>();
+            var mock = new Mock<IRasHelper>();
             RasHelper.Instance = mock.Object;
 
             mock.Setup(o => o.SetCredentials(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<NativeMethods.RASCREDENTIALS>(), false)).Returns(true);
 
-            bool result = target.UpdateCredentials(RasPreSharedKey.Ddm, "value");
+            var result = target.UpdateCredentials(RasPreSharedKey.Ddm, "value");
 
             Assert.IsTrue(result);
         }
@@ -1049,17 +1049,17 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void UpdateCredentials2ServerPreSharedKeyTest()
         {
-            RasPhoneBook pbk = new RasPhoneBook();
+            var pbk = new RasPhoneBook();
 
-            RasEntry target = new RasEntry("Test Entry");
+            var target = new RasEntry("Test Entry");
             target.Owner = pbk;
 
-            Mock<IRasHelper> mock = new Mock<IRasHelper>();
+            var mock = new Mock<IRasHelper>();
             RasHelper.Instance = mock.Object;
 
             mock.Setup(o => o.SetCredentials(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<NativeMethods.RASCREDENTIALS>(), false)).Returns(true);
 
-            bool result = target.UpdateCredentials(RasPreSharedKey.Server, "value");
+            var result = target.UpdateCredentials(RasPreSharedKey.Server, "value");
 
             Assert.IsTrue(result);
         }
@@ -1071,17 +1071,17 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void UpdateCredentials1Test()
         {
-            RasPhoneBook pbk = new RasPhoneBook();
+            var pbk = new RasPhoneBook();
 
-            RasEntry target = new RasEntry("Test Entry");
+            var target = new RasEntry("Test Entry");
             target.Owner = pbk;
 
-            Mock<IRasHelper> mock = new Mock<IRasHelper>();
+            var mock = new Mock<IRasHelper>();
             RasHelper.Instance = mock.Object;
 
             mock.Setup(o => o.SetCredentials(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<NativeMethods.RASCREDENTIALS>(), false)).Returns(true);
 
-            bool result = target.UpdateCredentials(new NetworkCredential("Test", "User"), true);
+            var result = target.UpdateCredentials(new NetworkCredential("Test", "User"), true);
 
             Assert.IsTrue(result);
         }
@@ -1094,10 +1094,10 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(InvalidOperationException))]
         public void UpdateCredentials1NullOwnerTest()
         {
-            string name = "Test Entry";
-            NetworkCredential credentials = new NetworkCredential("Test", "User");
+            var name = "Test Entry";
+            var credentials = new NetworkCredential("Test", "User");
 
-            RasEntry target = new RasEntry(name);
+            var target = new RasEntry(name);
             target.UpdateCredentials(credentials, true);
         }
 
@@ -1109,10 +1109,10 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(ArgumentNullException))]
         public void UpdateCredentials1NullCredentialsTest()
         {
-            string name = "Test Entry";
+            var name = "Test Entry";
             NetworkCredential credentials = null;
 
-            RasEntry target = new RasEntry(name);
+            var target = new RasEntry(name);
             target.Owner = new RasPhoneBook();
 
             target.UpdateCredentials(credentials, true);
@@ -1125,17 +1125,17 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void InternalSetCredentialsTest()
         {
-            Mock<IRasHelper> mock = new Mock<IRasHelper>();
+            var mock = new Mock<IRasHelper>();
             RasHelper.Instance = mock.Object;
 
             mock.Setup(o => o.SetCredentials(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<NativeMethods.RASCREDENTIALS>(), false)).Returns(true);
 
-            RasPhoneBook pbk = new RasPhoneBook();
+            var pbk = new RasPhoneBook();
 
-            RasEntry target = new RasEntry("Test Entry");
+            var target = new RasEntry("Test Entry");
             target.Owner = pbk;
 
-            bool result = target.UpdateCredentials(new NetworkCredential("Test", "User"), false);
+            var result = target.UpdateCredentials(new NetworkCredential("Test", "User"), false);
 
             Assert.IsTrue(result);
         }
@@ -1147,17 +1147,17 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void InternalSetCredentialsForAllUsersTest()
         {
-            Mock<IRasHelper> mock = new Mock<IRasHelper>();
+            var mock = new Mock<IRasHelper>();
             RasHelper.Instance = mock.Object;
 
             mock.Setup(o => o.SetCredentials(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<NativeMethods.RASCREDENTIALS>(), false)).Returns(true);
 
-            RasPhoneBook pbk = new RasPhoneBook();
+            var pbk = new RasPhoneBook();
 
-            RasEntry target = new RasEntry("Test Entry");
+            var target = new RasEntry("Test Entry");
             target.Owner = pbk;
 
-            bool result = target.UpdateCredentials(new NetworkCredential("Test", "User"), true);
+            var result = target.UpdateCredentials(new NetworkCredential("Test", "User"), true);
 
             Assert.IsTrue(result);
         }
@@ -1172,9 +1172,9 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(ArgumentNullException))]
         public void UpdateCredentialsWithNullCredentialsArgumentNullExceptionTest()
         {
-            string name = "Test Entry";
+            var name = "Test Entry";
 
-            RasEntry target = new RasEntry(name);
+            var target = new RasEntry(name);
             target.Owner = new RasPhoneBook();
 
             target.UpdateCredentials(null);
@@ -1187,17 +1187,17 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void UpdateTest()
         {
-            RasPhoneBook pbk = new RasPhoneBook();
+            var pbk = new RasPhoneBook();
 
-            RasEntry target = new RasEntry("Test Entry");
+            var target = new RasEntry("Test Entry");
             target.Owner = pbk;
             
-            Mock<IRasHelper> mock = new Mock<IRasHelper>();
+            var mock = new Mock<IRasHelper>();
             RasHelper.Instance = mock.Object;
 
             mock.Setup(o => o.SetEntryProperties(pbk, target)).Returns(true);
 
-            bool result = target.Update();
+            var result = target.Update();
 
             Assert.IsTrue(result);
         }
@@ -1210,9 +1210,9 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(InvalidOperationException))]
         public void UpdateInvalidOperationExceptionTest()
         {
-            string name = "Test Entry";
+            var name = "Test Entry";
 
-            RasEntry target = new RasEntry(name);
+            var target = new RasEntry(name);
             target.Update();
         }
 
@@ -1224,10 +1224,10 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(ArgumentException))]
         public void RenameNullEntryNameExceptionTest()
         {
-            string name = "Test Entry";
+            var name = "Test Entry";
             string newEntryName = null;
 
-            RasEntry target = new RasEntry(name);
+            var target = new RasEntry(name);
             target.Rename(newEntryName);
         }
 
@@ -1239,10 +1239,10 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(ArgumentException))]
         public void RenameEmptyEntryNameExceptionTest()
         {
-            string name = "Test Entry";
-            string newEntryName = string.Empty;
+            var name = "Test Entry";
+            var newEntryName = string.Empty;
 
-            RasEntry target = new RasEntry(name);
+            var target = new RasEntry(name);
             target.Rename(newEntryName);
         }
 
@@ -1253,12 +1253,12 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void RenameEntryNotInPhoneBookTest()
         {
-            string name = "Test Entry";
-            string newEntryName = "New Entry";
-            bool expected = true;
+            var name = "Test Entry";
+            var newEntryName = "New Entry";
+            var expected = true;
 
-            RasEntry target = new RasEntry(name);
-            bool actual = target.Rename(newEntryName);
+            var target = new RasEntry(name);
+            var actual = target.Rename(newEntryName);
 
             Assert.AreEqual(expected, actual);
             Assert.AreEqual(newEntryName, target.Name);
@@ -1297,14 +1297,14 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(ArgumentException))]
         public void RenameInvalidEntryNameTest()
         {
-            string name = "Test Entry";
-            string newEntryName = ".\\Test*!";
-            RasPhoneBook pbk = new RasPhoneBook();
+            var name = "Test Entry";
+            var newEntryName = ".\\Test*!";
+            var pbk = new RasPhoneBook();
 
-            RasEntry target = new RasEntry(name);
+            var target = new RasEntry(name);
             target.Owner = pbk;
 
-            Mock<IRasHelper> mock = new Mock<IRasHelper>();
+            var mock = new Mock<IRasHelper>();
             RasHelper.Instance = mock.Object;
 
             mock.Setup(o => o.IsValidEntryName(pbk, newEntryName)).Returns(false);
@@ -1342,19 +1342,19 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void GetCredentialsTest()
         {
-            RasPhoneBook pbk = new RasPhoneBook();
+            var pbk = new RasPhoneBook();
 
-            RasEntry target = new RasEntry("Test Entry");
+            var target = new RasEntry("Test Entry");
             target.Owner = pbk;
 
-            NetworkCredential expected = new NetworkCredential("Test", "User");
+            var expected = new NetworkCredential("Test", "User");
 
-            Mock<IRasHelper> mock = new Mock<IRasHelper>();
+            var mock = new Mock<IRasHelper>();
             RasHelper.Instance = mock.Object;
 
             mock.Setup(o => o.GetCredentials(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<NativeMethods.RASCM>())).Returns(expected);
 
-            NetworkCredential actual = target.GetCredentials();
+            var actual = target.GetCredentials();
 
             Assert.AreEqual(expected, actual);
         }
@@ -1369,10 +1369,10 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(InvalidOperationException))]
         public void GetCredentials1InvalidOperationExceptionTest()
         {
-            string name = "Test Entry";
+            var name = "Test Entry";
 
-            RasEntry target = new RasEntry(name);
-            NetworkCredential actual = target.GetCredentials(RasPreSharedKey.Client);
+            var target = new RasEntry(name);
+            var actual = target.GetCredentials(RasPreSharedKey.Client);
         }
 
         /// <summary>
@@ -1382,19 +1382,19 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void GetCredentials1ClientPreSharedKeyTest()
         {
-            RasPhoneBook pbk = new RasPhoneBook();
+            var pbk = new RasPhoneBook();
 
-            RasEntry target = new RasEntry("Test Entry");
+            var target = new RasEntry("Test Entry");
             target.Owner = pbk;
 
-            NetworkCredential expected = new NetworkCredential(string.Empty, "********", string.Empty);
+            var expected = new NetworkCredential(string.Empty, "********", string.Empty);
 
-            Mock<IRasHelper> mock = new Mock<IRasHelper>();
+            var mock = new Mock<IRasHelper>();
             RasHelper.Instance = mock.Object;
 
             mock.Setup(o => o.GetCredentials(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<NativeMethods.RASCM>())).Returns(expected);
 
-            NetworkCredential actual = target.GetCredentials(RasPreSharedKey.Client);
+            var actual = target.GetCredentials(RasPreSharedKey.Client);
 
             Assert.AreEqual(expected, actual);
         }
@@ -1406,19 +1406,19 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void GetCredentials1DdmPreSharedKeyTest()
         {
-            RasPhoneBook pbk = new RasPhoneBook();
+            var pbk = new RasPhoneBook();
 
-            RasEntry target = new RasEntry("Test Entry");
+            var target = new RasEntry("Test Entry");
             target.Owner = pbk;
 
-            NetworkCredential expected = new NetworkCredential(string.Empty, "********", string.Empty);
+            var expected = new NetworkCredential(string.Empty, "********", string.Empty);
 
-            Mock<IRasHelper> mock = new Mock<IRasHelper>();
+            var mock = new Mock<IRasHelper>();
             RasHelper.Instance = mock.Object;
 
             mock.Setup(o => o.GetCredentials(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<NativeMethods.RASCM>())).Returns(expected);
 
-            NetworkCredential actual = target.GetCredentials(RasPreSharedKey.Ddm);
+            var actual = target.GetCredentials(RasPreSharedKey.Ddm);
 
             Assert.AreEqual(expected, actual);
         }
@@ -1430,19 +1430,19 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void GetCredentials1ServerPreSharedKeyTest()
         {
-            RasPhoneBook pbk = new RasPhoneBook();
+            var pbk = new RasPhoneBook();
 
-            RasEntry target = new RasEntry("Test Entry");
+            var target = new RasEntry("Test Entry");
             target.Owner = pbk;
 
-            NetworkCredential expected = new NetworkCredential(string.Empty, "********", string.Empty);
+            var expected = new NetworkCredential(string.Empty, "********", string.Empty);
 
-            Mock<IRasHelper> mock = new Mock<IRasHelper>();
+            var mock = new Mock<IRasHelper>();
             RasHelper.Instance = mock.Object;
 
             mock.Setup(o => o.GetCredentials(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<NativeMethods.RASCM>())).Returns(expected);
 
-            NetworkCredential actual = target.GetCredentials(RasPreSharedKey.Server);
+            var actual = target.GetCredentials(RasPreSharedKey.Server);
 
             Assert.AreEqual(expected, actual);
         }
@@ -1457,9 +1457,9 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(InvalidOperationException))]
         public void GetCredentialsInvalidOperationExceptionTest()
         {
-            string name = "Test Entry";
+            var name = "Test Entry";
 
-            RasEntry target = new RasEntry(name);
+            var target = new RasEntry(name);
             target.GetCredentials();
         }
 
@@ -1472,10 +1472,10 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void CreateBroadbandEntryTest()
         {
-            string name = "Test Entry";
-            RasDevice device = RasDevice.Create("WAN Miniport (PPPOE)", RasDeviceType.PPPoE);
+            var name = "Test Entry";
+            var device = RasDevice.Create("WAN Miniport (PPPOE)", RasDeviceType.PPPoE);
 
-            RasEntry expected = new RasEntry(name)
+            var expected = new RasEntry(name)
             {
                 Device = device,
                 EncryptionType = RasEncryptionType.Optional,
@@ -1520,7 +1520,7 @@ namespace DotRas.UnitTests
 
 #endif
 
-            RasEntry actual = RasEntry.CreateBroadbandEntry(name, device);
+            var actual = RasEntry.CreateBroadbandEntry(name, device);
 
             TestUtilities.AssertEntry(expected, actual);
         }
@@ -1534,7 +1534,7 @@ namespace DotRas.UnitTests
         public void CreateBroadbandEntryWithNullEntryNameArgumentExceptionTest()
         {
             string name = null;
-            RasDevice device = RasDevice.Create("WAN Miniport (PPPOE)", RasDeviceType.PPPoE);
+            var device = RasDevice.Create("WAN Miniport (PPPOE)", RasDeviceType.PPPoE);
 
             RasEntry.CreateBroadbandEntry(name, device);
         }
@@ -1547,8 +1547,8 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(ArgumentException))]
         public void CreateBroadbandEntryWithEmptyEntryNameArgumentExceptionTest()
         {
-            string name = string.Empty;
-            RasDevice device = RasDevice.Create("WAN Miniport (PPPOE)", RasDeviceType.PPPoE);
+            var name = string.Empty;
+            var device = RasDevice.Create("WAN Miniport (PPPOE)", RasDeviceType.PPPoE);
 
             RasEntry.CreateBroadbandEntry(name, device);
         }
@@ -1561,7 +1561,7 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(ArgumentNullException))]
         public void CreateBroadbandEntryWithNullDeviceArgumentNullExceptionTest()
         {
-            string name = "Test Entry";
+            var name = "Test Entry";
             RasDevice device = null;
 
             RasEntry.CreateBroadbandEntry(name, device);
@@ -1577,10 +1577,10 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(ArgumentException))]
         public void CreateVpnEntryWithEmptyNameArgumentExceptionTest()
         {
-            string name = string.Empty;
-            string serverAddress = "127.0.0.1";
-            RasVpnStrategy strategy = RasVpnStrategy.Default;
-            RasDevice device = RasDevice.Create("WAN Miniport (PPTP)", RasDeviceType.Vpn);
+            var name = string.Empty;
+            var serverAddress = "127.0.0.1";
+            var strategy = RasVpnStrategy.Default;
+            var device = RasDevice.Create("WAN Miniport (PPTP)", RasDeviceType.Vpn);
 
             RasEntry.CreateVpnEntry(name, serverAddress, strategy, device);
         }
@@ -1593,10 +1593,10 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(ArgumentException))]
         public void CreateVpnEntryWithEmptyServerAddressArgumentExceptionTest()
         {
-            string name = "Test Entry";
-            string serverAddress = string.Empty;
-            RasVpnStrategy strategy = RasVpnStrategy.Default;
-            RasDevice device = RasDevice.Create("WAN Miniport (PPTP)", RasDeviceType.Vpn);
+            var name = "Test Entry";
+            var serverAddress = string.Empty;
+            var strategy = RasVpnStrategy.Default;
+            var device = RasDevice.Create("WAN Miniport (PPTP)", RasDeviceType.Vpn);
 
             RasEntry.CreateVpnEntry(name, serverAddress, strategy, device);
         }
@@ -1609,9 +1609,9 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(ArgumentNullException))]
         public void CreateVpnEntryWithNullDeviceArgumentExceptionTest()
         {
-            string name = "Test Entry";
-            string serverAddress = "127.0.0.1";
-            RasVpnStrategy strategy = RasVpnStrategy.Default;
+            var name = "Test Entry";
+            var serverAddress = "127.0.0.1";
+            var strategy = RasVpnStrategy.Default;
             RasDevice device = null;
 
             RasEntry.CreateVpnEntry(name, serverAddress, strategy, device);
@@ -1624,12 +1624,12 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void CreateVpnEntryTest()
         {
-            string name = "Test Entry";
-            string serverAddress = "127.0.0.1";
-            RasVpnStrategy strategy = RasVpnStrategy.L2tpFirst;
-            RasDevice device = RasDevice.Create("WAN Miniport (PPTP)", RasDeviceType.Vpn);
+            var name = "Test Entry";
+            var serverAddress = "127.0.0.1";
+            var strategy = RasVpnStrategy.L2tpFirst;
+            var device = RasDevice.Create("WAN Miniport (PPTP)", RasDeviceType.Vpn);
 
-            RasEntry expected = new RasEntry(name);
+            var expected = new RasEntry(name);
             expected.Device = device;
             expected.EncryptionType = RasEncryptionType.Require;
             expected.EntryType = RasEntryType.Vpn;
@@ -1662,7 +1662,7 @@ namespace DotRas.UnitTests
             expected.PhoneNumber = serverAddress;
             expected.VpnStrategy = strategy;
 
-            RasEntry actual = RasEntry.CreateVpnEntry(name, serverAddress, strategy, device);
+            var actual = RasEntry.CreateVpnEntry(name, serverAddress, strategy, device);
 
             TestUtilities.AssertEntry(expected, actual);
         }
@@ -1674,11 +1674,11 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void CreateDialUpEntryTest()
         {
-            string name = "Test Entry";
-            string phoneNumber = "555-555-1234";
-            RasDevice device = RasDevice.Create("My Modem", RasDeviceType.Modem);
+            var name = "Test Entry";
+            var phoneNumber = "555-555-1234";
+            var device = RasDevice.Create("My Modem", RasDeviceType.Modem);
 
-            RasEntry expected = new RasEntry(name);
+            var expected = new RasEntry(name);
             expected.Device = device;
             expected.DialMode = RasDialMode.None;
             expected.EntryType = RasEntryType.Phone;
@@ -1695,7 +1695,7 @@ namespace DotRas.UnitTests
             expected.PhoneNumber = phoneNumber;
             expected.VpnStrategy = RasVpnStrategy.Default;
 
-            RasEntry actual = RasEntry.CreateDialUpEntry(name, phoneNumber, device);
+            var actual = RasEntry.CreateDialUpEntry(name, phoneNumber, device);
 
             TestUtilities.AssertEntry(expected, actual);
         }
@@ -1708,9 +1708,9 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(ArgumentException))]
         public void CreateDialUpEntryWithEmptyNameTest()
         {
-            string name = string.Empty;
-            string phoneNumber = "555-555-1234";
-            RasDevice device = RasDevice.Create("My Modem", RasDeviceType.Modem);
+            var name = string.Empty;
+            var phoneNumber = "555-555-1234";
+            var device = RasDevice.Create("My Modem", RasDeviceType.Modem);
 
             RasEntry.CreateDialUpEntry(name, phoneNumber, device);
         }
@@ -1723,9 +1723,9 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(ArgumentException))]
         public void CreateDialUpEntryWithEmptyPhoneNumberTest()
         {
-            string name = "Test Entry";
-            string phoneNumber = string.Empty;
-            RasDevice device = RasDevice.Create("My Modem", RasDeviceType.Modem);
+            var name = "Test Entry";
+            var phoneNumber = string.Empty;
+            var device = RasDevice.Create("My Modem", RasDeviceType.Modem);
 
             RasEntry.CreateDialUpEntry(name, phoneNumber, device);
         }
@@ -1738,8 +1738,8 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(ArgumentNullException))]
         public void CreateDialUpEntryWithNullDeviceTest()
         {
-            string name = "Test Entry";
-            string phoneNumber = "555-555-1234";
+            var name = "Test Entry";
+            var phoneNumber = "555-555-1234";
             RasDevice device = null;
 
             RasEntry.CreateDialUpEntry(name, phoneNumber, device);
@@ -1752,17 +1752,17 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void ClearCredentialsTest()
         {
-            RasPhoneBook pbk = new RasPhoneBook();
+            var pbk = new RasPhoneBook();
 
-            RasEntry target = new RasEntry("Test Entry");
+            var target = new RasEntry("Test Entry");
             target.Owner = pbk;
 
-            Mock<IRasHelper> mock = new Mock<IRasHelper>();
+            var mock = new Mock<IRasHelper>();
             RasHelper.Instance = mock.Object;
 
             mock.Setup(o => o.SetCredentials(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<NativeMethods.RASCREDENTIALS>(), true)).Returns(true);
 
-            bool actual = target.ClearCredentials();
+            var actual = target.ClearCredentials();
 
             Assert.IsTrue(actual);
         }
@@ -1775,9 +1775,9 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(InvalidOperationException))]
         public void ClearCredentialsInvalidOperationExceptionTest()
         {
-            string name = "Test Entry";
+            var name = "Test Entry";
 
-            RasEntry target = new RasEntry(name);
+            var target = new RasEntry(name);
             target.ClearCredentials();
         }
 
@@ -1791,9 +1791,9 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(InvalidOperationException))]
         public void ClearCredentialsInvalidOperationException()
         {
-            string name = "Test Entry";
+            var name = "Test Entry";
 
-            RasEntry target = new RasEntry(name);
+            var target = new RasEntry(name);
             target.ClearCredentials(RasPreSharedKey.Client);
         }
 
@@ -1804,17 +1804,17 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void ClearCredentials1ClientPreSharedKeyTest()
         {
-            RasPhoneBook pbk = new RasPhoneBook();
+            var pbk = new RasPhoneBook();
 
-            RasEntry target = new RasEntry("Test Entry");
+            var target = new RasEntry("Test Entry");
             target.Owner = pbk;
 
-            Mock<IRasHelper> mock = new Mock<IRasHelper>();
+            var mock = new Mock<IRasHelper>();
             RasHelper.Instance = mock.Object;
 
             mock.Setup(o => o.SetCredentials(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<NativeMethods.RASCREDENTIALS>(), true)).Returns(true);
 
-            bool result = target.ClearCredentials(RasPreSharedKey.Client);
+            var result = target.ClearCredentials(RasPreSharedKey.Client);
 
             Assert.IsTrue(result);
         }
@@ -1826,17 +1826,17 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void ClearCredentials1DdmPreSharedKeyTest()
         {
-            RasPhoneBook pbk = new RasPhoneBook();
+            var pbk = new RasPhoneBook();
 
-            RasEntry target = new RasEntry("Test Entry");
+            var target = new RasEntry("Test Entry");
             target.Owner = pbk;
 
-            Mock<IRasHelper> mock = new Mock<IRasHelper>();
+            var mock = new Mock<IRasHelper>();
             RasHelper.Instance = mock.Object;
 
             mock.Setup(o => o.SetCredentials(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<NativeMethods.RASCREDENTIALS>(), true)).Returns(true);
 
-            bool result = target.ClearCredentials(RasPreSharedKey.Ddm);
+            var result = target.ClearCredentials(RasPreSharedKey.Ddm);
 
             Assert.IsTrue(result);
         }
@@ -1848,17 +1848,17 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void ClearCredentials1ServerPreSharedKeyTest()
         {
-            RasPhoneBook pbk = new RasPhoneBook();
+            var pbk = new RasPhoneBook();
 
-            RasEntry target = new RasEntry("Test Entry");
+            var target = new RasEntry("Test Entry");
             target.Owner = pbk;
 
-            Mock<IRasHelper> mock = new Mock<IRasHelper>();
+            var mock = new Mock<IRasHelper>();
             RasHelper.Instance = mock.Object;
 
             mock.Setup(o => o.SetCredentials(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<NativeMethods.RASCREDENTIALS>(), true)).Returns(true);
 
-            bool result = target.ClearCredentials(RasPreSharedKey.Server);
+            var result = target.ClearCredentials(RasPreSharedKey.Server);
 
             Assert.IsTrue(result);
         }
@@ -1872,9 +1872,9 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void CloneTest()
         {
-            RasEntry target = new RasEntry("Test");
+            var target = new RasEntry("Test");
 
-            RasEntry actual = (RasEntry)target.Clone();
+            var actual = (RasEntry)target.Clone();
 
             Assert.AreEqual(target.Name, actual.Name);
         }
@@ -1886,17 +1886,17 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void GetCustomAuthDataTest()
         {
-            byte[] expected = new byte[] { 0, 1 };
+            var expected = new byte[] { 0, 1 };
 
-            Mock<IRasHelper> mock = new Mock<IRasHelper>();
+            var mock = new Mock<IRasHelper>();
             RasHelper.Instance = mock.Object;
 
             mock.Setup(o => o.GetCustomAuthData(It.IsAny<string>(), It.IsAny<string>())).Returns(expected);
 
-            RasEntry target = new RasEntry("Test Entry");
+            var target = new RasEntry("Test Entry");
             target.Owner = new RasPhoneBook();
 
-            byte[] actual = target.GetCustomAuthData();
+            var actual = target.GetCustomAuthData();
 
             Assert.AreSame(expected, actual);
         }
@@ -1908,17 +1908,17 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void GetEapUserDataTest()
         {
-            byte[] expected = new byte[] { 0, 1 };
+            var expected = new byte[] { 0, 1 };
 
-            Mock<IRasHelper> mock = new Mock<IRasHelper>();
+            var mock = new Mock<IRasHelper>();
             RasHelper.Instance = mock.Object;
 
             mock.Setup(o => o.GetEapUserData(It.IsAny<IntPtr>(), It.IsAny<string>(), It.IsAny<string>())).Returns(expected);
 
-            RasEntry target = new RasEntry("Test Entry");
+            var target = new RasEntry("Test Entry");
             target.Owner = new RasPhoneBook();
 
-            byte[] actual = target.GetEapUserData();
+            var actual = target.GetEapUserData();
 
             Assert.AreSame(expected, actual);
         }
@@ -1931,7 +1931,7 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(InvalidOperationException))]
         public void GetEapUserDataNullPhoneBookTest()
         {
-            RasEntry target = new RasEntry("Test Entry");
+            var target = new RasEntry("Test Entry");
 
             target.GetEapUserData();
         }
@@ -1943,17 +1943,17 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void UpdateCustomAuthDataTest()
         {
-            bool expected = true;
+            var expected = true;
 
-            Mock<IRasHelper> mock = new Mock<IRasHelper>();
+            var mock = new Mock<IRasHelper>();
             RasHelper.Instance = mock.Object;
 
             mock.Setup(o => o.SetCustomAuthData(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<byte[]>())).Returns(expected);
 
-            RasEntry target = new RasEntry("Test Entry");
+            var target = new RasEntry("Test Entry");
             target.Owner = new RasPhoneBook();
 
-            bool actual = target.UpdateCustomAuthData(new byte[] { 0, 1, 2, 3, 4, 5 });
+            var actual = target.UpdateCustomAuthData(new byte[] { 0, 1, 2, 3, 4, 5 });
 
             Assert.AreEqual(expected, actual);
         }
@@ -1966,7 +1966,7 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(InvalidOperationException))]
         public void UpdateCustomAuthDataNullPhoneBookTest()
         {
-            RasEntry target = new RasEntry("Test Entry");
+            var target = new RasEntry("Test Entry");
             target.UpdateCustomAuthData(new byte[] { 0 });
         }
 
@@ -1977,17 +1977,17 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void UpdateEapUserDataTest()
         {
-            bool expected = true;
+            var expected = true;
 
-            Mock<IRasHelper> mock = new Mock<IRasHelper>();
+            var mock = new Mock<IRasHelper>();
             RasHelper.Instance = mock.Object;
 
             mock.Setup(o => o.SetEapUserData(It.IsAny<IntPtr>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<byte[]>())).Returns(expected);
 
-            RasEntry target = new RasEntry("Test Entry");
+            var target = new RasEntry("Test Entry");
             target.Owner = new RasPhoneBook();
 
-            bool actual = target.UpdateEapUserData(new byte[] { 0 });
+            var actual = target.UpdateEapUserData(new byte[] { 0 });
 
             Assert.AreEqual(expected, actual);
         }
@@ -2000,7 +2000,7 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(InvalidOperationException))]
         public void UpdateEapUserDataNullPhoneBookTest()
         {
-            RasEntry target = new RasEntry("Test Entry");
+            var target = new RasEntry("Test Entry");
             target.UpdateEapUserData(new byte[] { 0 });
         }
 
@@ -2012,7 +2012,7 @@ namespace DotRas.UnitTests
         [ExpectedException(typeof(ArgumentNullException))]
         public void UpdateEapUserDataNullDataTest()
         {
-            RasEntry target = new RasEntry("Test Entry");
+            var target = new RasEntry("Test Entry");
             target.Owner = new RasPhoneBook();
 
             target.UpdateEapUserData(null);

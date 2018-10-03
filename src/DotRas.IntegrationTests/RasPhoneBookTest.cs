@@ -59,19 +59,19 @@ namespace DotRas.IntegrationTests
         [TestCategory("Integration")]
         public void CreateCustomPhoneBookTest()
         {
-            DirectoryInfo tempFolder = TestUtilities.GetTempPath(true);
+            var tempFolder = TestUtilities.GetTempPath(true);
             string path = null;
 
             try
             {
                 path = Path.Combine(tempFolder.FullName, string.Format("{0}.pbk", TestUtilities.StripNonAlphaNumericChars(Guid.NewGuid().ToString())));
 
-                RasPhoneBook target = new RasPhoneBook();
+                var target = new RasPhoneBook();
                 target.Open(path);
 
-                RasDevice device = RasDevice.GetDevices().Where(o => o.Name.Contains("(PPTP)") && o.DeviceType == RasDeviceType.Vpn).FirstOrDefault();
+                var device = RasDevice.GetDevices().Where(o => o.Name.Contains("(PPTP)") && o.DeviceType == RasDeviceType.Vpn).FirstOrDefault();
 
-                RasEntry entry = RasEntry.CreateVpnEntry("Test Entry", IPAddress.Loopback.ToString(), RasVpnStrategy.Default, device);
+                var entry = RasEntry.CreateVpnEntry("Test Entry", IPAddress.Loopback.ToString(), RasVpnStrategy.Default, device);
                 if (entry != null)
                 {
                     target.Entries.Add(entry);
@@ -96,14 +96,14 @@ namespace DotRas.IntegrationTests
         [TestCategory("Integration")]
         public void OpenPhoneBookInCustomFolderThatDoesNotAlreadyExistTest()
         {
-            DirectoryInfo tempFolder = TestUtilities.GetTempPath(false);
+            var tempFolder = TestUtilities.GetTempPath(false);
             string path = null;
 
             try
             {
                 path = Path.Combine(tempFolder.FullName, string.Format("{0}.pbk", TestUtilities.StripNonAlphaNumericChars(Guid.NewGuid().ToString())));
 
-                RasPhoneBook target = new RasPhoneBook();
+                var target = new RasPhoneBook();
                 target.EnableFileWatcher = true;
                 target.Open(path);
             }

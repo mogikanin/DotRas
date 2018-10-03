@@ -67,14 +67,14 @@ namespace DotRas.Internal
         /// <returns>If the function succeeds, the return value is zero.</returns>
         public int AllocateLocallyUniqueIdImpl(IntPtr pLuid)
         {
-            PInvokeCallTraceEvent evt = new PInvokeCallTraceEvent(NativeMethods.AdvApi32Dll, "AllocateLocallyUniqueId");
+            var evt = new PInvokeCallTraceEvent(NativeMethods.AdvApi32Dll, "AllocateLocallyUniqueId");
             evt.Data.Add("pLuid", pLuid);
 
-            int retval = 0;
+            var retval = 0;
 
             try
             {
-                bool ret = AllocateLocallyUniqueId(pLuid);
+                var ret = AllocateLocallyUniqueId(pLuid);
                 if (!ret)
                 {
                     retval = Marshal.GetLastWin32Error();
@@ -96,10 +96,10 @@ namespace DotRas.Internal
         /// <returns>If the function succeeds, the return value is zero.</returns>
         public int ClearConnectionStatistics(RasHandle handle)
         {
-            PInvokeCallTraceEvent evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasClearConnectionStatistics");
+            var evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasClearConnectionStatistics");
             evt.Data.Add("handle", handle);
 
-            int result = 0;
+            var result = 0;
 
             try
             {
@@ -122,11 +122,11 @@ namespace DotRas.Internal
         /// <returns>If the function succeeds, the return value is zero.</returns>
         public int ClearLinkStatistics(RasHandle handle, int subEntryId)
         {
-            PInvokeCallTraceEvent evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasClearLinkStatistics");
+            var evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasClearLinkStatistics");
             evt.Data.Add("handle", handle);
             evt.Data.Add("subEntryId", subEntryId);
 
-            int result = 0;
+            var result = 0;
 
             try
             {
@@ -155,7 +155,7 @@ namespace DotRas.Internal
         {
             handle = null;
 
-            PInvokeCallTraceEvent evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasDial");
+            var evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasDial");
             evt.Data.Add("extensions", extensions);
             evt.Data.Add("phoneBookPath", phoneBookPath);
             evt.Data.Add("dialParameters", dialParameters);
@@ -163,7 +163,7 @@ namespace DotRas.Internal
             evt.Data.Add("notifier", notifier);
             evt.Data.Add("handle-IN", handle);
 
-            int result = 0;
+            var result = 0;
 
             try
             {
@@ -187,10 +187,10 @@ namespace DotRas.Internal
         /// <returns><b>true</b> if the function succeeds, otherwise <b>false</b>.</returns>
         public bool FreeObject(IntPtr handle)
         {
-            PInvokeCallTraceEvent evt = new PInvokeCallTraceEvent(NativeMethods.Gdi32Dll, "DeleteObject");
+            var evt = new PInvokeCallTraceEvent(NativeMethods.Gdi32Dll, "DeleteObject");
             evt.Data.Add("handle", handle);
 
-            bool result = false;
+            var result = false;
 
             try
             {
@@ -218,15 +218,15 @@ namespace DotRas.Internal
                 ThrowHelper.ThrowArgumentNullException("value");
             }
 
-            IntPtr bufferSize = value.BufferSize;
-            IntPtr count = value.Count;
+            var bufferSize = value.BufferSize;
+            var count = value.Count;
 
-            PInvokeCallTraceEvent evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasEnumConnections");
+            var evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasEnumConnections");
             evt.Data.Add("address", value.Address);
             evt.Data.Add("bufferSize-IN", bufferSize);
             evt.Data.Add("count-IN", count);
 
-            int result = 0;
+            var result = 0;
 
             try
             {
@@ -259,15 +259,15 @@ namespace DotRas.Internal
                 ThrowHelper.ThrowArgumentNullException("value");
             }
 
-            IntPtr bufferSize = value.BufferSize;
-            IntPtr count = value.Count;
+            var bufferSize = value.BufferSize;
+            var count = value.Count;
 
-            PInvokeCallTraceEvent evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasEnumDevices");
+            var evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasEnumDevices");
             evt.Data.Add("address", value.Address);
             evt.Data.Add("bufferSize-IN", bufferSize);
             evt.Data.Add("count-IN", count);
 
-            int result = 0;
+            var result = 0;
 
             try
             {
@@ -293,7 +293,7 @@ namespace DotRas.Internal
         /// <param name="identity">Pointer to the <see cref="NativeMethods.RASEAPUSERIDENTITY"/> structure.</param>
         public void FreeEapUserIdentity(IntPtr identity)
         {
-            PInvokeCallTraceEvent evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasFreeEapUserIdentity");
+            var evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasFreeEapUserIdentity");
             evt.Data.Add("identity", identity);
 
             try
@@ -314,11 +314,11 @@ namespace DotRas.Internal
         /// <returns>If the function succeeds, the return value is zero.</returns>
         public int GetConnectionStatistics(RasHandle handle, IntPtr statistics)
         {
-            PInvokeCallTraceEvent evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasGetConnectionStatistics");
+            var evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasGetConnectionStatistics");
             evt.Data.Add("handle", handle);
             evt.Data.Add("statistics", statistics);
 
-            int result = 0;
+            var result = 0;
 
             try
             {
@@ -341,11 +341,11 @@ namespace DotRas.Internal
         /// <returns>If the function succeeds, the return value is zero.</returns>
         public int GetConnectStatus(RasHandle handle, IntPtr connectionStatus)
         {
-            PInvokeCallTraceEvent evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasGetConnectStatus");
+            var evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasGetConnectStatus");
             evt.Data.Add("handle", handle);
             evt.Data.Add("connectionStatus", connectionStatus);
 
-            int result = 0;
+            var result = 0;
 
             try
             {
@@ -368,11 +368,11 @@ namespace DotRas.Internal
         /// <returns>If the function succeeds, the return value is zero.</returns>
         public int GetCountryInfo(IntPtr countries, ref IntPtr bufferSize)
         {
-            PInvokeCallTraceEvent evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasGetCountryInfo");
+            var evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasGetCountryInfo");
             evt.Data.Add("countries", countries);
             evt.Data.Add("bufferSize-IN", bufferSize);
 
-            int result = 0;
+            var result = 0;
 
             try
             {
@@ -401,15 +401,15 @@ namespace DotRas.Internal
                 ThrowHelper.ThrowArgumentNullException("value");
             }
 
-            IntPtr bufferSize = value.BufferSize;
+            var bufferSize = value.BufferSize;
 
-            PInvokeCallTraceEvent evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasGetCustomAuthData");
+            var evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasGetCustomAuthData");
             evt.Data.Add("phoneBookPath", value.PhoneBookPath);
             evt.Data.Add("entryName", value.EntryName);
             evt.Data.Add("address", value.Address);
             evt.Data.Add("bufferSize-IN", bufferSize);
 
-            int result = 0;
+            var result = 0;
 
             try
             {
@@ -440,16 +440,16 @@ namespace DotRas.Internal
                 ThrowHelper.ThrowArgumentNullException("value");
             }
 
-            IntPtr bufferSize = value.BufferSize;
+            var bufferSize = value.BufferSize;
 
-            PInvokeCallTraceEvent evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasGetEapUserData");
+            var evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasGetEapUserData");
             evt.Data.Add("userToken", value.UserToken);
             evt.Data.Add("phoneBookPath", value.PhoneBookPath);
             evt.Data.Add("entryName", value.EntryName);
             evt.Data.Add("address", value.Address);
             evt.Data.Add("bufferSize-IN", bufferSize);
 
-            int result = 0;
+            var result = 0;
 
             try
             {
@@ -478,14 +478,14 @@ namespace DotRas.Internal
         /// <returns>If the function succeeds, the return value is zero.</returns>
         public int GetEapUserIdentity(string phoneBookPath, string entryName, NativeMethods.RASEAPF flags, IntPtr hwnd, ref IntPtr identity)
         {
-            PInvokeCallTraceEvent evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasGetEapUserIdentity");
+            var evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasGetEapUserIdentity");
             evt.Data.Add("phoneBookPath", phoneBookPath);
             evt.Data.Add("entryName", entryName);
             evt.Data.Add("flags", flags);
             evt.Data.Add("hwnd", hwnd);
             evt.Data.Add("identity-IN", identity);
 
-            int result = 0;
+            var result = 0;
 
             try
             {
@@ -510,12 +510,12 @@ namespace DotRas.Internal
         /// <returns>If the function succeeds, the return value is zero.</returns>
         public int GetErrorString(int errorCode, string result, int bufferSize)
         {
-            PInvokeCallTraceEvent evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasGetErrorString");
+            var evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasGetErrorString");
             evt.Data.Add("errorCode", errorCode);
             evt.Data.Add("result", result);
             evt.Data.Add("bufferSize", bufferSize);
 
-            int ret = 0;
+            var ret = 0;
 
             try
             {
@@ -539,12 +539,12 @@ namespace DotRas.Internal
         /// <returns>If the function succeeds, the return value is zero.</returns>
         public int GetLinkStatistics(RasHandle handle, int subEntryId, IntPtr statistics)
         {
-            PInvokeCallTraceEvent evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasGetLinkStatistics");
+            var evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasGetLinkStatistics");
             evt.Data.Add("handle", handle);
             evt.Data.Add("subEntryId", subEntryId);
             evt.Data.Add("statistics", statistics);
 
-            int result = 0;
+            var result = 0;
 
             try
             {
@@ -569,11 +569,11 @@ namespace DotRas.Internal
         /// <returns>If the function succeeds, the return value is zero.</returns>
         public int GetNapStatus(RasHandle handle, IntPtr state)
         {
-            PInvokeCallTraceEvent evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasGetNapStatus");
+            var evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasGetNapStatus");
             evt.Data.Add("handle", handle);
             evt.Data.Add("state", state);
 
-            int result = 0;
+            var result = 0;
 
             try
             {
@@ -600,13 +600,13 @@ namespace DotRas.Internal
         /// <returns>If the function succeeds, the return value is zero.</returns>
         public int GetProjectionInfo(RasHandle handle, NativeMethods.RASPROJECTION projectionType, IntPtr projection, ref IntPtr bufferSize)
         {
-            PInvokeCallTraceEvent evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasGetProjectionInfo");
+            var evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasGetProjectionInfo");
             evt.Data.Add("handle", handle);
             evt.Data.Add("projectionType", projectionType);
             evt.Data.Add("projection", projection);
             evt.Data.Add("bufferSize-IN", bufferSize);
 
-            int result = 0;
+            var result = 0;
 
             try
             {
@@ -633,12 +633,12 @@ namespace DotRas.Internal
         /// <returns>If the function succeeds, the return value is zero.</returns>
         public int GetProjectionInfoEx(RasHandle handle, IntPtr projection, ref IntPtr bufferSize)
         {
-            PInvokeCallTraceEvent evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasGetProjectionInfoEx");
+            var evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasGetProjectionInfoEx");
             evt.Data.Add("handle", handle);
             evt.Data.Add("projection", projection);
             evt.Data.Add("bufferSize-IN", bufferSize);
 
-            int result = 0;
+            var result = 0;
 
             try
             {
@@ -667,12 +667,12 @@ namespace DotRas.Internal
         {
             result = IntPtr.Zero;
 
-            PInvokeCallTraceEvent evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasGetSubEntryHandle");
+            var evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasGetSubEntryHandle");
             evt.Data.Add("handle", handle);
             evt.Data.Add("subEntryId", subEntryId);
             evt.Data.Add("result-IN", result);
 
-            int ret = 0;
+            var ret = 0;
 
             try
             {
@@ -695,10 +695,10 @@ namespace DotRas.Internal
         /// <returns>If the function succeeds, the return value is zero.</returns>
         public int HangUp(RasHandle handle)
         {
-            PInvokeCallTraceEvent evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasHangUp");
+            var evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasHangUp");
             evt.Data.Add("handle", handle);
 
-            int result = 0;
+            var result = 0;
 
             try
             {
@@ -731,7 +731,7 @@ namespace DotRas.Internal
         /// <returns>If the function succeeds, the return value is zero.</returns>
         public int PromptForCredentials(IntPtr uiInfo, string targetName, IntPtr reserved, int authError, StringBuilder userName, int userNameMaxChars, StringBuilder password, int passwordMaxChars, ref bool saveChecked, NativeMethods.CREDUI_FLAGS flags)
         {
-            PInvokeCallTraceEvent evt = new PInvokeCallTraceEvent(NativeMethods.CredUIDll, "CredUIPromptForCredentials");
+            var evt = new PInvokeCallTraceEvent(NativeMethods.CredUIDll, "CredUIPromptForCredentials");
             evt.Data.Add("uiInfo", uiInfo);
             evt.Data.Add("targetName", targetName);
             evt.Data.Add("reserved", reserved);
@@ -743,7 +743,7 @@ namespace DotRas.Internal
             evt.Data.Add("saveChecked-IN", saveChecked);
             evt.Data.Add("flags", flags);
 
-            int result = 0;
+            var result = 0;
 
             try
             {
@@ -770,12 +770,12 @@ namespace DotRas.Internal
         /// <returns>If the function succeeds, the return value is zero.</returns>
         public int RegisterConnectionNotification(RasHandle handle, SafeHandle eventHandle, NativeMethods.RASCN flags)
         {
-            PInvokeCallTraceEvent evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasConnectionNotification");
+            var evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasConnectionNotification");
             evt.Data.Add("handle", handle);
             evt.Data.Add("eventHandle", eventHandle);
             evt.Data.Add("flags", flags);
 
-            int result = 0;
+            var result = 0;
 
             try
             {
@@ -798,11 +798,11 @@ namespace DotRas.Internal
         /// <returns>If the function succeeds, the return value is zero.</returns>
         public int ValidateEntryName(string phoneBookPath, string entryName)
         {
-            PInvokeCallTraceEvent evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasValidateEntryName");
+            var evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasValidateEntryName");
             evt.Data.Add("phoneBookPath", phoneBookPath);
             evt.Data.Add("entryName", entryName);
 
-            int result = 0;
+            var result = 0;
 
             try
             {

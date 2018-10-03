@@ -46,7 +46,7 @@ namespace DotRas.Internal
         /// <returns>The category name.</returns>
         protected override string GetLocalizedString(string value)
         {
-            string retval = Resources.ResourceManager.GetString(value);
+            var retval = Resources.ResourceManager.GetString(value);
             if (string.IsNullOrEmpty(retval))
             {
                 retval = value;

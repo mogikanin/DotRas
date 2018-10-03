@@ -58,10 +58,10 @@ namespace DotRas.UnitTests
         [TestCategory(CategoryConstants.Unit)]
         public void VJTest()
         {
-            bool expected = true;
+            var expected = true;
 
-            RasIPOptions target = new RasIPOptions(Internal.NativeMethods.RASIPO.VJ);
-            bool actual = target.VJ;
+            var target = new RasIPOptions(Internal.NativeMethods.RASIPO.VJ);
+            var actual = target.VJ;
 
             Assert.AreEqual(expected, actual);
         }

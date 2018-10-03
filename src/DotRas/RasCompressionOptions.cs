@@ -104,14 +104,14 @@ namespace DotRas
         /// <returns>A new <see cref="DotRas.RasCompressionOptions"/> object.</returns>
         public object Clone()
         {
-            RasCompressionOptions retval = new RasCompressionOptions();
-
-            retval.CompressionOnly = CompressionOnly;
-            retval.HistoryLess = HistoryLess;
-            retval.Encryption56Bit = Encryption56Bit;
-            retval.Encryption40Bit = Encryption40Bit;
-            retval.Encryption128Bit = Encryption128Bit;
-
+            var retval = new RasCompressionOptions
+            {
+                CompressionOnly = CompressionOnly,
+                HistoryLess = HistoryLess,
+                Encryption56Bit = Encryption56Bit,
+                Encryption40Bit = Encryption40Bit,
+                Encryption128Bit = Encryption128Bit
+            };
             return retval;
         }
 
