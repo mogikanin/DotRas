@@ -49,7 +49,6 @@ namespace DotRas.Diagnostics
         private TraceSource InnerSource
         {
             get;
-            set;
         }
 
         #endregion

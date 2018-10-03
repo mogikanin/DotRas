@@ -45,7 +45,6 @@ namespace DotRas
         public int ErrorCode
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -54,7 +53,6 @@ namespace DotRas
         public string ErrorMessage
         {
             get;
-            private set;
         }
 
         #endregion

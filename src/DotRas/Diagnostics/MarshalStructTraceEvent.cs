@@ -44,7 +44,6 @@ namespace DotRas.Diagnostics
         public object Result
         {
             get;
-            private set;
         }
 
         #endregion

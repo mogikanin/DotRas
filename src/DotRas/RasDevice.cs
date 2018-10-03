@@ -87,7 +87,6 @@ namespace DotRas
         public string Name
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -97,7 +96,6 @@ namespace DotRas
         public RasDeviceType DeviceType
         {
             get;
-            private set;
         }
 
         #endregion

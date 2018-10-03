@@ -82,7 +82,6 @@ namespace DotRas.Diagnostics
         public string DllName
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -91,7 +90,6 @@ namespace DotRas.Diagnostics
         public string EntryPoint
         {
             get;
-            private set;
         }
 
         /// <summary>

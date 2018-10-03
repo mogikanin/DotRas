@@ -81,7 +81,6 @@ namespace DotRas
         public int ErrorCode
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -90,7 +89,6 @@ namespace DotRas
         public IPAddress IPAddress
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -99,7 +97,6 @@ namespace DotRas
         public IPAddress ServerIPAddress
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -108,7 +105,6 @@ namespace DotRas
         public RasIPOptions Options
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -117,7 +113,6 @@ namespace DotRas
         public RasIPOptions ServerOptions
         {
             get;
-            private set;
         }
 
         #endregion

@@ -80,7 +80,6 @@ namespace DotRas
         public int ErrorCode
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -89,7 +88,6 @@ namespace DotRas
         public RasCompressionType CompressionAlgorithm
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -98,7 +96,6 @@ namespace DotRas
         public RasCompressionOptions Options
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -107,7 +104,6 @@ namespace DotRas
         public RasCompressionType ServerCompressionAlgorithm
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -116,7 +112,6 @@ namespace DotRas
         public RasCompressionOptions ServerOptions
         {
             get;
-            private set;
         }
 
         #endregion

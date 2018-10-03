@@ -80,7 +80,6 @@ namespace DotRas
         public int ErrorCode
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -89,7 +88,6 @@ namespace DotRas
         public int NetBiosErrorCode
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -98,7 +96,6 @@ namespace DotRas
         public string NetBiosErrorMessage
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -107,7 +104,6 @@ namespace DotRas
         public string WorkstationName
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -117,7 +113,6 @@ namespace DotRas
         public byte Lana
         {
             get;
-            private set;
         }
 
         #endregion

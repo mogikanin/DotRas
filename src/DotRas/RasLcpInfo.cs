@@ -97,7 +97,6 @@ namespace DotRas
         public bool Bundled
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -106,7 +105,6 @@ namespace DotRas
         public int ErrorCode
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -115,7 +113,6 @@ namespace DotRas
         public RasLcpAuthenticationType AuthenticationProtocol
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -124,7 +121,6 @@ namespace DotRas
         public RasLcpAuthenticationDataType AuthenticationData
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -134,7 +130,6 @@ namespace DotRas
         public int EapTypeId
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -143,7 +138,6 @@ namespace DotRas
         public RasLcpAuthenticationType ServerAuthenticationProtocol
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -152,7 +146,6 @@ namespace DotRas
         public RasLcpAuthenticationDataType ServerAuthenticationData
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -162,7 +155,6 @@ namespace DotRas
         public int ServerEapTypeId
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -171,7 +163,6 @@ namespace DotRas
         public bool Multilink
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -181,7 +172,6 @@ namespace DotRas
         public int TerminateReason
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -191,7 +181,6 @@ namespace DotRas
         public int ServerTerminateReason
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -200,7 +189,6 @@ namespace DotRas
         public string ReplyMessage
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -209,7 +197,6 @@ namespace DotRas
         public RasLcpOptions Options
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -218,7 +205,6 @@ namespace DotRas
         public RasLcpOptions ServerOptions
         {
             get;
-            private set;
         }
 
         #endregion

@@ -46,7 +46,6 @@ namespace DotRas
         public IntPtr CallbackId
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -55,7 +54,6 @@ namespace DotRas
         public string Text
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -64,7 +62,6 @@ namespace DotRas
         public IntPtr Data
         {
             get;
-            private set;
         }
 
         #endregion

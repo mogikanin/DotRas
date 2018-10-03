@@ -127,7 +127,6 @@ namespace DotRas
         public int IPv4NegotiationErrorCode
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -136,7 +135,6 @@ namespace DotRas
         public IPAddress IPAddress
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -145,7 +143,6 @@ namespace DotRas
         public IPAddress ServerIPAddress
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -154,7 +151,6 @@ namespace DotRas
         public RasIPOptions Options
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -163,7 +159,6 @@ namespace DotRas
         public RasIPOptions ServerOptions
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -172,7 +167,6 @@ namespace DotRas
         public int IPv6NegotiationErrorCode
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -181,7 +175,6 @@ namespace DotRas
         public ReadOnlyCollection<byte> InterfaceIdentifier
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -190,7 +183,6 @@ namespace DotRas
         public ReadOnlyCollection<byte> ServerInterfaceIdentifier
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -199,7 +191,6 @@ namespace DotRas
         public bool IsBundled
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -208,7 +199,6 @@ namespace DotRas
         public bool IsMultilink
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -217,7 +207,6 @@ namespace DotRas
         public RasLcpAuthenticationType AuthenticationProtocol
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -226,7 +215,6 @@ namespace DotRas
         public RasLcpAuthenticationDataType AuthenticationData
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -235,7 +223,6 @@ namespace DotRas
         public RasLcpAuthenticationType ServerAuthenticationProtocol
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -244,7 +231,6 @@ namespace DotRas
         public RasLcpAuthenticationDataType ServerAuthenticationData
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -253,7 +239,6 @@ namespace DotRas
         public int EapTypeId
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -262,7 +247,6 @@ namespace DotRas
         public int ServerEapTypeId
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -271,7 +255,6 @@ namespace DotRas
         public RasLcpOptions LcpOptions
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -280,7 +263,6 @@ namespace DotRas
         public RasLcpOptions ServerLcpOptions
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -289,7 +271,6 @@ namespace DotRas
         public RasCompressionType CcpCompressionAlgorithm
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -298,7 +279,6 @@ namespace DotRas
         public RasCompressionType ServerCcpCompressionAlgorithm
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -307,7 +287,6 @@ namespace DotRas
         public RasCompressionOptions CcpOptions
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -316,7 +295,6 @@ namespace DotRas
         public RasCompressionOptions ServerCcpOptions
         {
             get;
-            private set;
         }
 
         #endregion

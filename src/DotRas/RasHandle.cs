@@ -55,7 +55,6 @@ namespace DotRas
         public bool IsMultilink
         {
             get;
-            private set;
         }
 
         #endregion

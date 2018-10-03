@@ -69,7 +69,6 @@ namespace DotRas
         public long BytesTransmitted
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -78,7 +77,6 @@ namespace DotRas
         public long BytesReceived
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -87,7 +85,6 @@ namespace DotRas
         public long FramesTransmitted
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -96,7 +93,6 @@ namespace DotRas
         public long FramesReceived
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -105,7 +101,6 @@ namespace DotRas
         public long CrcError
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -114,7 +109,6 @@ namespace DotRas
         public long TimeoutError
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -123,7 +117,6 @@ namespace DotRas
         public long AlignmentError
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -132,7 +125,6 @@ namespace DotRas
         public long HardwareOverrunError
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -141,7 +133,6 @@ namespace DotRas
         public long FramingError
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -150,7 +141,6 @@ namespace DotRas
         public long BufferOverrunError
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -160,7 +150,6 @@ namespace DotRas
         public long CompressionRatioIn
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -170,7 +159,6 @@ namespace DotRas
         public long CompressionRatioOut
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -179,7 +167,6 @@ namespace DotRas
         public long LinkSpeed
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -188,7 +175,6 @@ namespace DotRas
         public TimeSpan ConnectionDuration
         {
             get;
-            private set;
         }
 
         #endregion

@@ -55,7 +55,6 @@ namespace DotRas
         public IntPtr CallbackId
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -64,7 +63,6 @@ namespace DotRas
         public int SubEntryId
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -73,7 +71,6 @@ namespace DotRas
         public RasHandle Handle
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -82,7 +79,6 @@ namespace DotRas
         public RasConnectionState State
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -91,7 +87,6 @@ namespace DotRas
         public int ErrorCode
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -100,7 +95,6 @@ namespace DotRas
         public string ErrorMessage
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -109,7 +103,6 @@ namespace DotRas
         public int ExtendedErrorCode
         {
             get;
-            private set;
         }
 
         #endregion

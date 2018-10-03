@@ -109,7 +109,6 @@ namespace DotRas
         public int IPv4NegotiationErrorCode
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -118,7 +117,6 @@ namespace DotRas
         public IPAddress IPv4Address
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -127,7 +125,6 @@ namespace DotRas
         public IPAddress ServerIPv4Address
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -136,7 +133,6 @@ namespace DotRas
         public int IPv6NegotiationErrorCode
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -145,7 +141,6 @@ namespace DotRas
         public IPAddress IPv6Address
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -154,7 +149,6 @@ namespace DotRas
         public IPAddress ServerIPv6Address
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -163,7 +157,6 @@ namespace DotRas
         public int PrefixLength
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -172,7 +165,6 @@ namespace DotRas
         public RasIkeV2AuthenticationType AuthenticationProtocol
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -182,7 +174,6 @@ namespace DotRas
         public int EapTypeId
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -191,7 +182,6 @@ namespace DotRas
         public RasIkeV2Options Options
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -200,7 +190,6 @@ namespace DotRas
         public RasIPSecEncryptionType EncryptionMethod
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -209,7 +198,6 @@ namespace DotRas
         public Collection<IPAddress> ServerIPv4Addresses
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -218,7 +206,6 @@ namespace DotRas
         public Collection<IPAddress> ServerIPv6Addresses
         {
             get;
-            private set;
         }
 
         #endregion

@@ -73,7 +73,6 @@ namespace DotRas.Diagnostics
         private DiagnosticSource Source
         {
             get;
-            set;
         }
 
         #endregion

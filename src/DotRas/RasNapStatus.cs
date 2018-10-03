@@ -82,7 +82,6 @@ namespace DotRas
         public RasIsolationState IsolationState
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -92,7 +91,6 @@ namespace DotRas
         public DateTime ProbationTime
         {
             get;
-            private set;
         }
 
         #endregion

@@ -52,7 +52,6 @@ namespace DotRas
         public RasHandle Handle
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -61,7 +60,6 @@ namespace DotRas
         public bool TimedOut
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -70,7 +68,6 @@ namespace DotRas
         public bool Connected
         {
             get;
-            private set;
         }
 
         #endregion

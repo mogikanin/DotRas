@@ -74,7 +74,6 @@ namespace DotRas
         public int ErrorCode
         {
             get;
-            private set;
         }
         
         /// <summary>
@@ -83,7 +82,6 @@ namespace DotRas
         public IPAddress IPAddress
         {
             get;
-            private set;
         }
 
         #endregion

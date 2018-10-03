@@ -93,7 +93,6 @@ namespace DotRas
         public int ErrorCode
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -102,7 +101,6 @@ namespace DotRas
         public long LocalInterfaceIdentifier
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -111,7 +109,6 @@ namespace DotRas
         public long PeerInterfaceIdentifier
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -121,7 +118,6 @@ namespace DotRas
         public short LocalCompressionProtocol
         {
             get;
-            private set;
         }
 
         /// <summary>
@@ -131,7 +127,6 @@ namespace DotRas
         public short PeerCompressionProtocol
         {
             get;
-            private set;
         }
 
         #endregion

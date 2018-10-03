@@ -43,7 +43,6 @@ namespace DotRas
         public RasConnection Connection
         {
             get;
-            private set;
         }
 
         #endregion
