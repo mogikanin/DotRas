@@ -1734,7 +1734,7 @@ namespace DotRas.Internal
             var lpRasEapUserIdentity = IntPtr.Zero;
             try
             {
-                var ret = SafeNativeMethods.Instance.GetEapUserIdentity(phoneBookPath, entryName, eapOptions, owner != null ? owner.Handle : IntPtr.Zero, ref lpRasEapUserIdentity);
+                var ret = SafeNativeMethods.Instance.GetEapUserIdentity(phoneBookPath, entryName, eapOptions, owner?.Handle ?? IntPtr.Zero, ref lpRasEapUserIdentity);
                 if (ret == NativeMethods.ERROR_INTERACTIVE_MODE)
                 {
                     ThrowHelper.ThrowArgumentException("options", Resources.Argument_EapOptionsRequireInteractiveMode);
@@ -2723,8 +2723,7 @@ namespace DotRas.Internal
                 entry.networkOutageTime = value.NetworkOutageTime;
 #endif
 
-                var alternatesLength = 0;
-                var alternatesList = Utilities.BuildStringList(value.AlternatePhoneNumbers, '\x00', out alternatesLength);
+                var alternatesList = Utilities.BuildStringList(value.AlternatePhoneNumbers, '\x00', out var alternatesLength);
                 if (alternatesLength > 0)
                 {
                     lpCb = size + alternatesLength;
@@ -2842,17 +2841,11 @@ namespace DotRas.Internal
                 if (value.Device != null)
                 {
                     var converter = TypeDescriptor.GetConverter(typeof(RasDeviceType));
-                    if (converter == null)
-                    {
-                        ThrowHelper.ThrowInvalidOperationException(Resources.Exception_TypeConverterNotFound, "RasDeviceType");
-                    }
-
                     subentry.deviceName = value.Device.Name;
                     subentry.deviceType = converter.ConvertToString(value.Device.DeviceType);
                 }
 
-                var alternatesLength = 0;
-                var alternatesList = Utilities.BuildStringList(value.AlternatePhoneNumbers, '\x00', out alternatesLength);
+                var alternatesList = Utilities.BuildStringList(value.AlternatePhoneNumbers, '\x00', out var alternatesLength);
                 if (alternatesLength > 0)
                 {
                     lpCb = size + alternatesLength;

@@ -69,9 +69,9 @@ namespace DotRas
                 var addresses = RasHelper.Instance.GetAutoDialAddresses();
                 if (addresses != null && addresses.Count > 0)
                 {
-                    for (var index = 0; index < addresses.Count; index++)
+                    foreach (var t in addresses)
                     {
-                        var item = RasHelper.Instance.GetAutoDialAddress(addresses[index]);
+                        var item = RasHelper.Instance.GetAutoDialAddress(t);
                         if (item != null)
                         {
                             Add(item);

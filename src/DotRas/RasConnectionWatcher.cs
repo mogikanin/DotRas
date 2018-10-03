@@ -348,7 +348,7 @@ namespace DotRas
             {
                 var stateObject = new RasConnectionWatcherStateObject(changeType) {WaitObject = waitObject};
 
-                stateObject.WaitHandle = ThreadPool.RegisterWaitForSingleObject(waitObject, new WaitOrTimerCallback(ConnectionStateChanged), stateObject, Timeout.Infinite, false);
+                stateObject.WaitHandle = ThreadPool.RegisterWaitForSingleObject(waitObject, ConnectionStateChanged, stateObject, Timeout.Infinite, false);
 
                 _stateObjects.Add(stateObject);
             }

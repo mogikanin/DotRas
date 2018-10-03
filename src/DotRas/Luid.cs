@@ -135,7 +135,7 @@ namespace DotRas
         {
             var hashCode = (long)highPart + (long)lowPart;
 
-            var retval = 0;
+            int retval;
             if (hashCode < int.MinValue)
             {
                 retval = int.MinValue;

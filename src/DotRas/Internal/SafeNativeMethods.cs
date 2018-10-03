@@ -92,7 +92,7 @@ namespace DotRas.Internal
             var evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasClearConnectionStatistics");
             evt.Data.Add("handle", handle);
 
-            var result = 0;
+            int result;
 
             try
             {
@@ -156,7 +156,7 @@ namespace DotRas.Internal
             evt.Data.Add("notifier", notifier);
             evt.Data.Add("handle-IN", handle);
 
-            var result = 0;
+            int result;
 
             try
             {
@@ -219,7 +219,7 @@ namespace DotRas.Internal
             evt.Data.Add("bufferSize-IN", bufferSize);
             evt.Data.Add("count-IN", count);
 
-            var result = 0;
+            int result;
 
             try
             {

@@ -256,7 +256,7 @@ namespace DotRas
         /// </summary>
         private void InitializeComponent()
         {
-            rasPhonebookDlgCallback = new NativeMethods.RasPBDlgFunc(RasPhonebookDlgCallback);
+            rasPhonebookDlgCallback = RasPhonebookDlgCallback;
         }
 
         /// <summary>

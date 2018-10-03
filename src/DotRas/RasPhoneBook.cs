@@ -300,9 +300,9 @@ namespace DotRas
             watcher = new FileSystemWatcher();
             watcher.BeginInit();
 
-            watcher.Renamed += new RenamedEventHandler(WatcherRenamed);
-            watcher.Deleted += new FileSystemEventHandler(WatcherDeleted);
-            watcher.Changed += new FileSystemEventHandler(WatcherChanged);
+            watcher.Renamed += WatcherRenamed;
+            watcher.Deleted += WatcherDeleted;
+            watcher.Changed += WatcherChanged;
 
             watcher.EndInit();
 

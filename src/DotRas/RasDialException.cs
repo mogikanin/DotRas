@@ -99,8 +99,7 @@ namespace DotRas
         [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.SerializationFormatter)]
         public override void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            info?.AddValue("ExtendedErrorCode", ExtendedErrorCode, typeof(int));
-
+            info.AddValue("ExtendedErrorCode", ExtendedErrorCode, typeof(int));
             base.GetObjectData(info, context);
         }
 

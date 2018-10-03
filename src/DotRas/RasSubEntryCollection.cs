@@ -120,7 +120,7 @@ namespace DotRas
         /// <exception cref="System.InvalidOperationException">The phone book of the entry collection has not been opened.</exception>
         protected sealed override void RemoveItem(int index)
         {
-            if (!IsInitializing && (Owner == null || Owner.Owner == null))
+            if (!IsInitializing && (Owner?.Owner == null))
             {
                 ThrowHelper.ThrowInvalidOperationException(Resources.Exception_PhoneBookNotOpened);
             }

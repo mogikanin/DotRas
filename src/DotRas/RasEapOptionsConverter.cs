@@ -97,11 +97,6 @@ namespace DotRas
         /// <returns>An <see cref="System.Object"/> that represents the converted value.</returns>
         public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
         {
-            if (destinationType == null)
-            {
-                ThrowHelper.ThrowArgumentNullException("destinationType");
-            }
-
             var options = value as RasEapOptions;
             if (options != null)
             {

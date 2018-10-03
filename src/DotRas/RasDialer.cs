@@ -148,7 +148,7 @@ namespace DotRas
         {
             get
             {
-                var retval = false;
+                bool retval;
 
                 lock (syncRoot)
                 {
@@ -459,9 +459,9 @@ namespace DotRas
             Timeout = System.Threading.Timeout.Infinite;
             HangUpPollingInterval = NativeMethods.HangUpPollingInterval;
 
-            dialCompletedCallback = new SendOrPostCallback(DialCompletedCallback);
-            timeoutCallback = new TimerCallback(TimeoutCallback);
-            rasDialCallback = new NativeMethods.RasDialFunc2(RasDialCallback);
+            dialCompletedCallback = DialCompletedCallback;
+            timeoutCallback = TimeoutCallback;
+            rasDialCallback = RasDialCallback;
 
             base.InitializeComponent();
         }

@@ -87,7 +87,7 @@ namespace DotRas.Internal
             evt.Data.Add("phoneBookPath", phoneBookPath);
             evt.Data.Add("entryName", entryName);
 
-            var result = 0;
+            int result;
 
             try
             {
@@ -148,7 +148,7 @@ namespace DotRas.Internal
             evt.Data.Add("entryName", entryName);
             evt.Data.Add("subEntryId", subEntryId);
 
-            var result = 0;
+            int result;
 
             try
             {
@@ -178,7 +178,7 @@ namespace DotRas.Internal
             evt.Data.Add("entryName", entryName);
             evt.Data.Add("info", info);
 
-            var result = false;
+            bool result;
 
             try
             {
@@ -333,7 +333,7 @@ namespace DotRas.Internal
             var evt = new PInvokeCallTraceEvent(NativeMethods.RasApi32Dll, "RasGetAutodialEnable");
             evt.Data.Add("enabled-IN", enabled);
 
-            var result = 0;
+            int result;
 
             try
             {
@@ -505,19 +505,7 @@ namespace DotRas.Internal
             evt.Data.Add("oldEntryName", oldEntryName);
             evt.Data.Add("newEntryName", newEntryName);
 
-            var result = 0;
-
-            try
-            {
-                result = RasRenameEntry(phoneBookPath, oldEntryName, newEntryName);
-                evt.ResultCode = result;
-            }
-            finally
-            {
-                DiagnosticTrace.Default.TraceEvent(TraceEventType.Verbose, evt);
-            }
-
-            return result;
+            return InvokeAndTrace(() => RasRenameEntry(phoneBookPath, oldEntryName, newEntryName), evt);
         }
 
         /// <summary>
@@ -538,19 +526,7 @@ namespace DotRas.Internal
             evt.Data.Add("bufferSize", bufferSize);
             evt.Data.Add("count", count);
 
-            var result = 0;
-
-            try
-            {
-                result = RasSetAutodialAddress(address, reserved, addresses, bufferSize, count);
-                evt.ResultCode = result;
-            }
-            finally
-            {
-                DiagnosticTrace.Default.TraceEvent(TraceEventType.Verbose, evt);
-            }
-
-            return result;
+            return InvokeAndTrace(() => RasSetAutodialAddress(address, reserved, addresses, bufferSize, count), evt);
         }
 
         /// <summary>
@@ -565,19 +541,7 @@ namespace DotRas.Internal
             evt.Data.Add("dialingLocation", dialingLocation);
             evt.Data.Add("enabled", enabled);
 
-            var result = 0;
-
-            try
-            {
-                result = RasSetAutodialEnable(dialingLocation, enabled);
-                evt.ResultCode = result;
-            }
-            finally
-            {
-                DiagnosticTrace.Default.TraceEvent(TraceEventType.Verbose, evt);
-            }
-
-            return result;
+            return InvokeAndTrace(() => RasSetAutodialEnable(dialingLocation, enabled), evt);
         }
 
         /// <summary>
@@ -594,19 +558,7 @@ namespace DotRas.Internal
             evt.Data.Add("value", value);
             evt.Data.Add("bufferSize", bufferSize);
 
-            var result = 0;
-
-            try
-            {
-                result = RasSetAutodialParam(key, value, bufferSize);
-                evt.ResultCode = result;
-            }
-            finally
-            {
-                DiagnosticTrace.Default.TraceEvent(TraceEventType.Verbose, evt);
-            }
-
-            return result;
+            return InvokeAndTrace(() => RasSetAutodialParam(key, value, bufferSize), evt);
         }
 
         /// <summary>
@@ -625,19 +577,7 @@ namespace DotRas.Internal
             evt.Data.Add("credentials", credentials);
             evt.Data.Add("clearCredentials", clearCredentials);
 
-            var result = 0;
-
-            try
-            {
-                result = RasSetCredentials(phoneBookPath, entryName, credentials, clearCredentials);
-                evt.ResultCode = result;
-            }
-            finally
-            {
-                DiagnosticTrace.Default.TraceEvent(TraceEventType.Verbose, evt);
-            }
-
-            return result;
+            return InvokeAndTrace(() => RasSetCredentials(phoneBookPath, entryName, credentials, clearCredentials), evt);
         }
 
         /// <summary>
@@ -656,19 +596,7 @@ namespace DotRas.Internal
             evt.Data.Add("customAuthData", customAuthData);
             evt.Data.Add("sizeOfCustomAuthData", sizeOfCustomAuthData);
 
-            var result = 0;
-
-            try
-            {
-                result = RasSetCustomAuthData(phoneBookPath, entryName, customAuthData, sizeOfCustomAuthData);
-                evt.ResultCode = result;
-            }
-            finally
-            {
-                DiagnosticTrace.Default.TraceEvent(TraceEventType.Verbose, evt);
-            }
-
-            return result;
+            return InvokeAndTrace(() => RasSetCustomAuthData(phoneBookPath, entryName, customAuthData, sizeOfCustomAuthData), evt);
         }
 
         /// <summary>
@@ -689,19 +617,7 @@ namespace DotRas.Internal
             evt.Data.Add("eapData", eapData);
             evt.Data.Add("sizeOfEapData", sizeOfEapData);
 
-            var result = 0;
-
-            try
-            {
-                result = RasSetEapUserData(handle, phoneBookPath, entryName, eapData, sizeOfEapData);
-                evt.ResultCode = result;
-            }
-            finally
-            {
-                DiagnosticTrace.Default.TraceEvent(TraceEventType.Verbose, evt);
-            }
-
-            return result;
+            return InvokeAndTrace(() => RasSetEapUserData(handle, phoneBookPath, entryName, eapData, sizeOfEapData), evt);
         }
 
         /// <summary>
@@ -724,19 +640,7 @@ namespace DotRas.Internal
             evt.Data.Add("device", device);
             evt.Data.Add("deviceBufferSize", deviceBufferSize);
 
-            var result = 0;
-
-            try
-            {
-                result = RasSetEntryProperties(phoneBookPath, entryName, entry, bufferSize, device, deviceBufferSize);
-                evt.ResultCode = result;
-            }
-            finally
-            {
-                DiagnosticTrace.Default.TraceEvent(TraceEventType.Verbose, evt);
-            }
-
-            return result;
+            return InvokeAndTrace(() => RasSetEntryProperties(phoneBookPath, entryName, entry, bufferSize, device, deviceBufferSize), evt);
         }
 
         /// <summary>
@@ -761,19 +665,7 @@ namespace DotRas.Internal
             evt.Data.Add("deviceConfig", deviceConfig);
             evt.Data.Add("deviceConfigSize", deviceConfigSize);
 
-            var result = 0;
-
-            try
-            {
-                result = RasSetSubEntryProperties(phoneBookPath, entryName, index, subentry, bufferSize, deviceConfig, deviceConfigSize);
-                evt.ResultCode = result;
-            }
-            finally
-            {
-                DiagnosticTrace.Default.TraceEvent(TraceEventType.Verbose, evt);
-            }
-
-            return result;
+            return InvokeAndTrace(() => RasSetSubEntryProperties(phoneBookPath, entryName, index, subentry, bufferSize, deviceConfig, deviceConfigSize), evt);
         }
 
 #if (WIN7 || WIN8)
@@ -789,21 +681,23 @@ namespace DotRas.Internal
             evt.Data.Add("handle", handle);
             evt.Data.Add("updateData", updateData);
 
-            var result = 0;
+            return InvokeAndTrace(() => RasUpdateConnection(handle, updateData), evt);
+        }
+#endif
 
+        private static int InvokeAndTrace(Func<int> func, PInvokeCallTraceEvent evt)
+        {
             try
             {
-                result = RasUpdateConnection(handle, updateData);
+                var result = func();
                 evt.ResultCode = result;
+                return result;
             }
             finally
             {
                 DiagnosticTrace.Default.TraceEvent(TraceEventType.Verbose, evt);
             }
-
-            return result;
         }
-#endif
 
         /// <summary>
         /// Copies a memory block from one location to another.

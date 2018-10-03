@@ -111,9 +111,9 @@ namespace DotRas.IntegrationTests
 
             this.target = new RasDialer();
             this.target.PhoneBookPath = phonebookPath;
-            this.target.DialCompleted += new EventHandler<DialCompletedEventArgs>(this.Target_DialCompleted);
-            this.target.Error += new EventHandler<System.IO.ErrorEventArgs>(this.Target_Error);
-            this.target.StateChanged += new EventHandler<StateChangedEventArgs>(this.Target_StateChanged);
+            this.target.DialCompleted += this.Target_DialCompleted;
+            this.target.Error += this.Target_Error;
+            this.target.StateChanged += this.Target_StateChanged;
 
             this.stateWaitHandle = new EventWaitHandle(false, EventResetMode.AutoReset);
             this.waitHandle = new System.Threading.EventWaitHandle(false, System.Threading.EventResetMode.AutoReset);
