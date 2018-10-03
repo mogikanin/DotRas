@@ -82,15 +82,29 @@ namespace DotRas.Internal
 
         private void CorrectRASENTRYSize(ref int size)
         {
-            //
             // todo: Temporary
             var osv = Environment.OSVersion.Version;
             if (osv.Major == 10 && osv.Build >= 17134)
             {
-                var oldSize = size;
-                if (size != 6720)
+                // Current size of RASENTRY structure
+                var expectedSize = 5680;
+
+                // Version 1803(April 2018 Update)
+                if (osv.Build >= 17134)
                 {
-                    size = 6720;
+                    expectedSize += 1040;
+                }
+
+                // Version 1809 (October 2018 Update)
+                if (osv.Build >= 17604)
+                {
+                    expectedSize += 4;
+                }
+
+                var oldSize = size;
+                if (size != expectedSize)
+                {
+                    size = expectedSize;
                     Trace.WriteLine(string.Format("Corrected RASENTRY size -> Prev: {0}. New: {1}", oldSize, size));
                 }
             }
