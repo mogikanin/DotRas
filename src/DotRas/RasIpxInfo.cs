@@ -60,8 +60,8 @@ namespace DotRas
         /// <param name="ipxAddress">The client IP address on the connection.</param>
         internal RasIpxInfo(int errorCode, IPAddress ipxAddress)
         {
-            this.ErrorCode = errorCode;
-            this.IpxAddress = ipxAddress;
+            ErrorCode = errorCode;
+            IpxAddress = ipxAddress;
         }
 
         #endregion

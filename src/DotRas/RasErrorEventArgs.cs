@@ -31,8 +31,8 @@ namespace DotRas
         /// <param name="errorMessage">The error message associated with the error code.</param>
         public RasErrorEventArgs(int errorCode, string errorMessage)
         {
-            this.ErrorCode = errorCode;
-            this.ErrorMessage = errorMessage;
+            ErrorCode = errorCode;
+            ErrorMessage = errorMessage;
         }
 
         #endregion

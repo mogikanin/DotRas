@@ -25,7 +25,7 @@ namespace DotRas.Internal
     using System.Text;
     using System.Threading;
     using System.Windows.Forms;
-    using DotRas.Properties;
+    using Properties;
 
     /// <summary>
     /// Provides methods to interact with the remote access service (RAS) application programming interface.
@@ -205,7 +205,7 @@ namespace DotRas.Internal
                     if (handle != null && !handle.IsInvalid)
                     {
                         // There was an error during the connection attempt, the handle must be released.
-                        RasHelper.Instance.HangUp(handle, NativeMethods.HangUpPollingInterval, false);
+                        Instance.HangUp(handle, NativeMethods.HangUpPollingInterval, false);
                     }
 
                     throw;
@@ -736,7 +736,7 @@ namespace DotRas.Internal
                     string errorMessage = null;
                     if (status.errorCode != NativeMethods.SUCCESS)
                     {
-                        errorMessage = RasHelper.Instance.GetRasErrorString(status.errorCode);
+                        errorMessage = Instance.GetRasErrorString(status.errorCode);
                     }
 
                     retval = new RasConnectionStatus();
@@ -1702,7 +1702,7 @@ namespace DotRas.Internal
                 }
                 else if (ret == NativeMethods.SUCCESS || ret == NativeMethods.ERROR_NO_CONNECTION)
                 {
-                    while (RasHelper.Instance.IsConnectionActive(handle))
+                    while (Instance.IsConnectionActive(handle))
                     {
                         if (pollingInterval > 0)
                         {
@@ -2283,7 +2283,7 @@ namespace DotRas.Internal
         /// <exception cref="System.ArgumentNullException"><paramref name="phoneBook"/> is a null reference (<b>Nothing</b> in Visual Basic).</exception>
         public bool IsValidEntryName(RasPhoneBook phoneBook, string entryName)
         {
-            return RasHelper.Instance.IsValidEntryName(phoneBook, entryName, null);
+            return Instance.IsValidEntryName(phoneBook, entryName, null);
         }
 
         /// <summary>
@@ -2414,7 +2414,7 @@ namespace DotRas.Internal
                 if (entries != null && entries.Count > 0)
                 {
                     // Reset the existing item so the new object being passed in isn't simply appended to any existing entries.
-                    RasHelper.Instance.SetAutoDialAddress(address, null);
+                    Instance.SetAutoDialAddress(address, null);
 
                     count = entries.Count;
                     int size = Marshal.SizeOf(typeof(NativeMethods.RASAUTODIALENTRY));
@@ -2663,7 +2663,7 @@ namespace DotRas.Internal
             {
                 ThrowHelper.ThrowArgumentException("Entry name", Resources.Argument_StringCannotBeNullOrEmpty);
             }
-            else if (!RasHelper.Instance.IsValidEntryName(phoneBook, value.Name, NativeMethods.ERROR_ALREADY_EXISTS, NativeMethods.ERROR_CANNOT_OPEN_PHONEBOOK))
+            else if (!Instance.IsValidEntryName(phoneBook, value.Name, NativeMethods.ERROR_ALREADY_EXISTS, NativeMethods.ERROR_CANNOT_OPEN_PHONEBOOK))
             {
                 ThrowHelper.ThrowArgumentException("entry name", Resources.Argument_InvalidEntryName, "entry name", value.Name);
             }
@@ -2802,7 +2802,7 @@ namespace DotRas.Internal
                                 RasSubEntry subEntry = value.SubEntries[index];
                                 if (subEntry != null)
                                 {
-                                    RasHelper.Instance.SetSubEntryProperties(value.Owner, value, index, subEntry);
+                                    Instance.SetSubEntryProperties(value.Owner, value, index, subEntry);
                                 }
                             }
                         }
@@ -2814,7 +2814,7 @@ namespace DotRas.Internal
                             try
                             {
                                 // Grab the entry from the phone book.
-                                newEntry = RasHelper.Instance.GetEntryProperties(phoneBook, value.Name);
+                                newEntry = Instance.GetEntryProperties(phoneBook, value.Name);
                                 value.Id = newEntry.Id;
                             }
                             finally

@@ -16,7 +16,7 @@ namespace DotRas.Internal
 {
     using System;
     using System.ComponentModel;
-    using DotRas.Properties;
+    using Properties;
 
     /// <summary>
     /// Specifies a description for a property event based on the string resource specified. This class cannot be inherited.
@@ -52,10 +52,10 @@ namespace DotRas.Internal
         {
             get
             {
-                if (!this.replaced)
+                if (!replaced)
                 {
-                    this.replaced = true;
-                    this.DescriptionValue = Resources.ResourceManager.GetString(base.Description);
+                    replaced = true;
+                    DescriptionValue = Resources.ResourceManager.GetString(base.Description);
                 }
 
                 return base.Description;

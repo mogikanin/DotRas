@@ -671,65 +671,65 @@ namespace DotRas
         {
             RasEntryOptions retval = new RasEntryOptions();
 
-            retval.UseCountryAndAreaCodes = this.UseCountryAndAreaCodes;
-            retval.IPHeaderCompression = this.IPHeaderCompression;
-            retval.RemoteDefaultGateway = this.RemoteDefaultGateway;
-            retval.DisableLcpExtensions = this.DisableLcpExtensions;
-            retval.TerminalBeforeDial = this.TerminalBeforeDial;
-            retval.TerminalAfterDial = this.TerminalAfterDial;
-            retval.ModemLights = this.ModemLights;
-            retval.SoftwareCompression = this.SoftwareCompression;
-            retval.RequireEncryptedPassword = this.RequireEncryptedPassword;
-            retval.RequireMSEncryptedPassword = this.RequireMSEncryptedPassword;
-            retval.RequireDataEncryption = this.RequireDataEncryption;
-            retval.NetworkLogOn = this.NetworkLogOn;
-            retval.UseLogOnCredentials = this.UseLogOnCredentials;
-            retval.PromoteAlternates = this.PromoteAlternates;
-            retval.SecureLocalFiles = this.SecureLocalFiles;
-            retval.RequireEap = this.RequireEap;
-            retval.RequirePap = this.RequirePap;
-            retval.RequireSpap = this.RequireSpap;
-            retval.CustomEncryption = this.CustomEncryption;
-            retval.PreviewPhoneNumber = this.PreviewPhoneNumber;
-            retval.SharedPhoneNumbers = this.SharedPhoneNumbers;
-            retval.PreviewUserPassword = this.PreviewUserPassword;
-            retval.PreviewDomain = this.PreviewDomain;
-            retval.ShowDialingProgress = this.ShowDialingProgress;
-            retval.RequireChap = this.RequireChap;
-            retval.RequireMSChap = this.RequireMSChap;
-            retval.RequireMSChap2 = this.RequireMSChap2;
-            retval.RequireWin95MSChap = this.RequireWin95MSChap;
-            retval.CustomScript = this.CustomScript;
+            retval.UseCountryAndAreaCodes = UseCountryAndAreaCodes;
+            retval.IPHeaderCompression = IPHeaderCompression;
+            retval.RemoteDefaultGateway = RemoteDefaultGateway;
+            retval.DisableLcpExtensions = DisableLcpExtensions;
+            retval.TerminalBeforeDial = TerminalBeforeDial;
+            retval.TerminalAfterDial = TerminalAfterDial;
+            retval.ModemLights = ModemLights;
+            retval.SoftwareCompression = SoftwareCompression;
+            retval.RequireEncryptedPassword = RequireEncryptedPassword;
+            retval.RequireMSEncryptedPassword = RequireMSEncryptedPassword;
+            retval.RequireDataEncryption = RequireDataEncryption;
+            retval.NetworkLogOn = NetworkLogOn;
+            retval.UseLogOnCredentials = UseLogOnCredentials;
+            retval.PromoteAlternates = PromoteAlternates;
+            retval.SecureLocalFiles = SecureLocalFiles;
+            retval.RequireEap = RequireEap;
+            retval.RequirePap = RequirePap;
+            retval.RequireSpap = RequireSpap;
+            retval.CustomEncryption = CustomEncryption;
+            retval.PreviewPhoneNumber = PreviewPhoneNumber;
+            retval.SharedPhoneNumbers = SharedPhoneNumbers;
+            retval.PreviewUserPassword = PreviewUserPassword;
+            retval.PreviewDomain = PreviewDomain;
+            retval.ShowDialingProgress = ShowDialingProgress;
+            retval.RequireChap = RequireChap;
+            retval.RequireMSChap = RequireMSChap;
+            retval.RequireMSChap2 = RequireMSChap2;
+            retval.RequireWin95MSChap = RequireWin95MSChap;
+            retval.CustomScript = CustomScript;
 
 #if (WINXP || WIN2K8 || WIN7 || WIN8)
 
-            retval.SecureFileAndPrint = this.SecureFileAndPrint;
-            retval.SecureClientForMSNet = this.SecureClientForMSNet;
-            retval.DoNotNegotiateMultilink = this.DoNotNegotiateMultilink;
-            retval.DoNotUseRasCredentials = this.DoNotUseRasCredentials;
-            retval.UsePreSharedKey = this.UsePreSharedKey;
-            retval.Internet = this.Internet;
-            retval.DisableNbtOverIP = this.DisableNbtOverIP;
-            retval.UseGlobalDeviceSettings = this.UseGlobalDeviceSettings;
-            retval.ReconnectIfDropped = this.ReconnectIfDropped;
-            retval.SharePhoneNumbers = this.SharePhoneNumbers;
+            retval.SecureFileAndPrint = SecureFileAndPrint;
+            retval.SecureClientForMSNet = SecureClientForMSNet;
+            retval.DoNotNegotiateMultilink = DoNotNegotiateMultilink;
+            retval.DoNotUseRasCredentials = DoNotUseRasCredentials;
+            retval.UsePreSharedKey = UsePreSharedKey;
+            retval.Internet = Internet;
+            retval.DisableNbtOverIP = DisableNbtOverIP;
+            retval.UseGlobalDeviceSettings = UseGlobalDeviceSettings;
+            retval.ReconnectIfDropped = ReconnectIfDropped;
+            retval.SharePhoneNumbers = SharePhoneNumbers;
 
 #endif
 #if (WIN2K8 || WIN7 || WIN8)
 
-            retval.SecureRoutingCompartment = this.SecureRoutingCompartment;
-            retval.UseTypicalSettings = this.UseTypicalSettings;
-            retval.IPv6RemoteDefaultGateway = this.IPv6RemoteDefaultGateway;
-            retval.RegisterIPWithDns = this.RegisterIPWithDns;
-            retval.UseDnsSuffixForRegistration = this.UseDnsSuffixForRegistration;
-            retval.DisableIkeNameEkuCheck = this.DisableIkeNameEkuCheck;
+            retval.SecureRoutingCompartment = SecureRoutingCompartment;
+            retval.UseTypicalSettings = UseTypicalSettings;
+            retval.IPv6RemoteDefaultGateway = IPv6RemoteDefaultGateway;
+            retval.RegisterIPWithDns = RegisterIPWithDns;
+            retval.UseDnsSuffixForRegistration = UseDnsSuffixForRegistration;
+            retval.DisableIkeNameEkuCheck = DisableIkeNameEkuCheck;
 
 #endif
 #if (WIN7 || WIN8)
 
-            retval.DisableClassBasedStaticRoute = this.DisableClassBasedStaticRoute;
-            retval.DisableMobility = this.DisableMobility;
-            retval.RequireMachineCertificates = this.RequireMachineCertificates;
+            retval.DisableClassBasedStaticRoute = DisableClassBasedStaticRoute;
+            retval.DisableMobility = DisableMobility;
+            retval.RequireMachineCertificates = RequireMachineCertificates;
 
 #endif
 #if (WIN8)

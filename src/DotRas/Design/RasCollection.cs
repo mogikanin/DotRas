@@ -19,8 +19,8 @@ namespace DotRas.Design
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Threading;
-    using DotRas.Internal;
-    using DotRas.Properties;
+    using Internal;
+    using Properties;
 
     /// <summary>
     /// Provides the abstract base class for a remote-capable generic collection. This class must be inherited.
@@ -49,7 +49,7 @@ namespace DotRas.Design
         /// </summary>
         protected RasCollection()
         {
-            this._items = new List<TObject>();
+            _items = new List<TObject>();
         }
 
         #endregion
@@ -61,7 +61,7 @@ namespace DotRas.Design
         /// </summary>
         public int Count
         {
-            get { return this._items.Count; }
+            get { return _items.Count; }
         }
 
         /// <summary>
@@ -77,8 +77,8 @@ namespace DotRas.Design
         /// </summary>
         protected bool IsInitializing
         {
-            get { return this._initializing; }
-            set { this._initializing = value; }
+            get { return _initializing; }
+            set { _initializing = value; }
         }
 
         /// <summary>
@@ -88,7 +88,7 @@ namespace DotRas.Design
         /// <returns>An <typeparamref name="TObject"/> object.</returns>
         public TObject this[int index]
         {
-            get { return this._items[index]; }
+            get { return _items[index]; }
         }
 
         #endregion
@@ -107,7 +107,7 @@ namespace DotRas.Design
                 ThrowHelper.ThrowArgumentNullException("item");
             }
 
-            this.InsertItem(this._items.Count, item);
+            InsertItem(_items.Count, item);
         }
 
         /// <summary>
@@ -115,7 +115,7 @@ namespace DotRas.Design
         /// </summary>
         public void Clear()
         {
-            this.ClearItems();
+            ClearItems();
         }        
 
         /// <summary>
@@ -131,7 +131,7 @@ namespace DotRas.Design
                 ThrowHelper.ThrowArgumentNullException("item");
             }
 
-            return this._items.Contains(item);
+            return _items.Contains(item);
         }
 
         /// <summary>
@@ -147,7 +147,7 @@ namespace DotRas.Design
                 ThrowHelper.ThrowArgumentNullException("item");
             }
 
-            return this._items.IndexOf(item);
+            return _items.IndexOf(item);
         }
 
         /// <summary>
@@ -169,7 +169,7 @@ namespace DotRas.Design
                 ThrowHelper.ThrowArgumentOutOfRangeException("arrayIndex", arrayIndex, Resources.Argument_ValueCannotBeLessThanZero);
             }
 
-            this._items.CopyTo(array, arrayIndex);
+            _items.CopyTo(array, arrayIndex);
         }
 
         /// <summary>
@@ -187,10 +187,10 @@ namespace DotRas.Design
 
             bool retval = false;
 
-            int index = this.IndexOf(item);
+            int index = IndexOf(item);
             if (index != -1)
             {
-                this.RemoveAt(index);
+                RemoveAt(index);
                 retval = true;
             }
 
@@ -205,7 +205,7 @@ namespace DotRas.Design
         /// <exception cref="System.UnauthorizedAccessException">The caller does not have the required permission to perform the action requested.</exception>
         public void RemoveAt(int index)
         {
-            this.RemoveItem(index);
+            RemoveItem(index);
         }
 
         /// <summary>
@@ -221,7 +221,7 @@ namespace DotRas.Design
         /// Returns an enumerator that iterates through the collection.
         /// </summary>
         /// <returns>An <see cref="System.Collections.IEnumerator"/> to iterate through the collection.</returns>
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+        IEnumerator IEnumerable.GetEnumerator()
         {
             return new RasCollectionEnumerator(this);
         }
@@ -231,7 +231,7 @@ namespace DotRas.Design
         /// </summary>
         internal void BeginLock()
         {
-            Monitor.Enter(this._syncRoot);
+            Monitor.Enter(_syncRoot);
         }
 
         /// <summary>
@@ -239,7 +239,7 @@ namespace DotRas.Design
         /// </summary>
         internal void EndLock()
         {
-            Monitor.Exit(this._syncRoot);
+            Monitor.Exit(_syncRoot);
         }
 
         /// <summary>
@@ -247,7 +247,7 @@ namespace DotRas.Design
         /// </summary>
         protected virtual void ClearItems()
         {            
-            this._items.Clear();
+            _items.Clear();
         }
 
         /// <summary>
@@ -257,7 +257,7 @@ namespace DotRas.Design
         /// <param name="item">An <typeparamref name="TObject"/> to insert.</param>
         protected virtual void InsertItem(int index, TObject item)
         {
-            this._items.Insert(index, item);
+            _items.Insert(index, item);
         }
 
         /// <summary>
@@ -266,7 +266,7 @@ namespace DotRas.Design
         /// <param name="index">The zero-based index of the item to remove.</param>
         protected virtual void RemoveItem(int index)
         {
-            this._items.RemoveAt(index);
+            _items.RemoveAt(index);
         }
 
         #endregion
@@ -299,8 +299,8 @@ namespace DotRas.Design
                     ThrowHelper.ThrowArgumentNullException("c");
                 }
 
-                this._c = c;
-                this._c.BeginLock();
+                _c = c;
+                _c.BeginLock();
             }
 
             /// <summary>
@@ -308,7 +308,7 @@ namespace DotRas.Design
             /// </summary>
             ~RasCollectionEnumerator()
             {
-                this.Dispose(false);
+                Dispose(false);
             }
 
             #endregion
@@ -320,7 +320,7 @@ namespace DotRas.Design
             /// </summary>
             public TObject Current
             {
-                get { return this._current; }
+                get { return _current; }
             }
 
             /// <summary>
@@ -328,7 +328,7 @@ namespace DotRas.Design
             /// </summary>
             object IEnumerator.Current
             {
-                get { return this._current; }
+                get { return _current; }
             }
 
             #endregion
@@ -340,7 +340,7 @@ namespace DotRas.Design
             /// </summary>
             public void Dispose()
             {
-                this.Dispose(true);
+                Dispose(true);
                 GC.SuppressFinalize(this);
             }
 
@@ -350,16 +350,16 @@ namespace DotRas.Design
             /// <returns><b>true</b> if the enumerator was successfully advanced to the next element; <b>false</b> if the enumerator has passed the end of the collection.</returns>
             public bool MoveNext()
             {
-                this._index++;
-                if (this._index == this._c.Count)
+                _index++;
+                if (_index == _c.Count)
                 {
-                    this._index = -1;
-                    this._current = null;
+                    _index = -1;
+                    _current = null;
 
                     return false;
                 }
 
-                this._current = this._c[this._index];
+                _current = _c[_index];
                 return true;
             }
 
@@ -368,8 +368,8 @@ namespace DotRas.Design
             /// </summary>
             public void Reset()
             {
-                this._index = -1;
-                this._current = null;
+                _index = -1;
+                _current = null;
             }
 
             /// <summary>
@@ -380,10 +380,10 @@ namespace DotRas.Design
             {
                 if (disposing)
                 {
-                    this._c.EndLock();
+                    _c.EndLock();
 
-                    this._index = -1;
-                    this._current = null;
+                    _index = -1;
+                    _current = null;
                 }
             }
 

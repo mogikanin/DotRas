@@ -40,7 +40,7 @@ namespace DotRas
         /// <param name="address">The network address.</param>
         public RasAutoDialAddress(string address)
         {
-            this._address = address;
+            _address = address;
         }
 
         #endregion
@@ -52,7 +52,7 @@ namespace DotRas
         /// </summary>
         public string Address
         {
-            get { return this._address; }
+            get { return _address; }
         }
 
         /// <summary>
@@ -62,12 +62,12 @@ namespace DotRas
         {
             get
             {
-                if (this._entries == null)
+                if (_entries == null)
                 {
-                    this._entries = new Collection<RasAutoDialEntry>();
+                    _entries = new Collection<RasAutoDialEntry>();
                 }
 
-                return this._entries;
+                return _entries;
             }
         }
 

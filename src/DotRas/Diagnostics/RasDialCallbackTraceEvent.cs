@@ -38,14 +38,14 @@ namespace DotRas.Diagnostics
         /// <param name="extendedErrorCode">The extended error code.</param>
         public RasDialCallbackTraceEvent(bool result, IntPtr callbackId, int subEntryId, IntPtr dangerousHandle, int message, RasConnectionState state, int errorCode, int extendedErrorCode)
         {
-            this.Result = result;
-            this.CallbackId = callbackId;
-            this.SubEntryId = subEntryId;
-            this.DangerousHandle = dangerousHandle;
-            this.Message = message;
-            this.State = state;
-            this.ErrorCode = errorCode;
-            this.ExtendedErrorCode = extendedErrorCode;
+            Result = result;
+            CallbackId = callbackId;
+            SubEntryId = subEntryId;
+            DangerousHandle = dangerousHandle;
+            Message = message;
+            State = state;
+            ErrorCode = errorCode;
+            ExtendedErrorCode = extendedErrorCode;
         }
 
         #endregion
@@ -137,14 +137,14 @@ namespace DotRas.Diagnostics
             StringBuilder sb = new StringBuilder();
 
             sb.Append("EventType: RasDialCallback").AppendLine();
-            sb.AppendFormat("Result: {0}", this.Result).AppendLine();
-            sb.AppendFormat("CallbackId: {0}", this.CallbackId).AppendLine();
-            sb.AppendFormat("SubEntryId: {0}", this.SubEntryId).AppendLine();
-            sb.AppendFormat("DangerousHandle: {0}", this.DangerousHandle).AppendLine();
-            sb.AppendFormat("Message: {0}", this.Message).AppendLine();
-            sb.AppendFormat("State: {0}", this.State).AppendLine();
-            sb.AppendFormat("ErrorCode: {0}", this.ErrorCode).AppendLine();
-            sb.AppendFormat("ExtendedErrorCode: {0}", this.ExtendedErrorCode).AppendLine();
+            sb.AppendFormat("Result: {0}", Result).AppendLine();
+            sb.AppendFormat("CallbackId: {0}", CallbackId).AppendLine();
+            sb.AppendFormat("SubEntryId: {0}", SubEntryId).AppendLine();
+            sb.AppendFormat("DangerousHandle: {0}", DangerousHandle).AppendLine();
+            sb.AppendFormat("Message: {0}", Message).AppendLine();
+            sb.AppendFormat("State: {0}", State).AppendLine();
+            sb.AppendFormat("ErrorCode: {0}", ErrorCode).AppendLine();
+            sb.AppendFormat("ExtendedErrorCode: {0}", ExtendedErrorCode).AppendLine();
 
             return sb.ToString();
         }

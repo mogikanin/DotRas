@@ -16,7 +16,7 @@ namespace DotRas
 {
     using System;
     using System.ComponentModel;
-    using DotRas.Internal;
+    using Internal;
 
     /// <summary>
     /// Provides methods to interact with the remote access service (RAS) AutoDial mapping database. This class cannot be inherited.
@@ -36,7 +36,7 @@ namespace DotRas
         /// </summary>
         public RasAutoDialManager()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace DotRas
                 container.Add(this);
             }
 
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         #endregion
@@ -65,13 +65,13 @@ namespace DotRas
         {
             get
             {
-                if (this._addresses == null)
+                if (_addresses == null)
                 {
-                    this._addresses = new RasAutoDialAddressCollection();
-                    this._addresses.Load();
+                    _addresses = new RasAutoDialAddressCollection();
+                    _addresses.Load();
                 }
 
-                return this._addresses;
+                return _addresses;
             }
         }
 

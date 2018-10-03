@@ -90,14 +90,14 @@ namespace DotRas
             RasNetworkProtocols retval = new RasNetworkProtocols();
 
 #pragma warning disable 0618
-            retval.NetBeui = this.NetBeui;
+            retval.NetBeui = NetBeui;
 #pragma warning restore 0618
-            retval.Ipx = this.Ipx;
-            retval.IP = this.IP;
+            retval.Ipx = Ipx;
+            retval.IP = IP;
 
 #if (WIN2K8 || WIN7 || WIN8)
 
-            retval.IPv6 = this.IPv6;
+            retval.IPv6 = IPv6;
 
 #endif
 

@@ -15,7 +15,7 @@
 namespace DotRas
 {
     using System;
-    using DotRas.Internal;
+    using Internal;
 
     /// <summary>
     /// Defines the remote access service (RAS) IPCP options.
@@ -38,7 +38,7 @@ namespace DotRas
         /// <param name="value">The flags value to set.</param>
         internal RasIPOptions(NativeMethods.RASIPO value)
         {
-            this.VJ = Utilities.HasFlag(value, NativeMethods.RASIPO.VJ);
+            VJ = Utilities.HasFlag(value, NativeMethods.RASIPO.VJ);
         }
 
         #endregion
@@ -66,7 +66,7 @@ namespace DotRas
         {
             RasIPOptions retval = new RasIPOptions();
 
-            retval.VJ = this.VJ;
+            retval.VJ = VJ;
 
             return retval;
         }

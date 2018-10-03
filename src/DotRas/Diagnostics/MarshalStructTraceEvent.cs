@@ -31,7 +31,7 @@ namespace DotRas.Diagnostics
         /// <param name="result">The result of the marshaling call.</param>
         public MarshalStructTraceEvent(object result)
         {
-            this.Result = result;
+            Result = result;
         }
 
         #endregion
@@ -57,12 +57,12 @@ namespace DotRas.Diagnostics
         /// <returns>The serialized event data.</returns>
         public override string Serialize()
         {
-            if (this.Result == null)
+            if (Result == null)
             {
                 return "Result is [NULL].";
             }
 
-            object result = SerializeObject(this.Result);
+            object result = SerializeObject(Result);
             if (result == null)
             {
                 return "Result could not be serialized.";

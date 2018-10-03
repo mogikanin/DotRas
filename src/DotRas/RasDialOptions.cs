@@ -16,7 +16,7 @@ namespace DotRas
 {
     using System;
     using System.ComponentModel;
-    using DotRas.Internal;
+    using Internal;
 
     /// <summary>
     /// Represents options for dialing a remote access service (RAS) entry. This class cannot be inherited.
@@ -49,16 +49,16 @@ namespace DotRas
         /// <param name="customDial"><b>true</b> if the connection should be dialed normally rather than calling the custom dial entry point of the custom dialer, otherwise <b>false</b>.</param>
         public RasDialOptions(bool usePrefixSuffix, bool pausedStates, bool setModemSpeaker, bool setSoftwareCompression, bool disableConnectedUI, bool disableReconnectUI, bool disableReconnect, bool noUser, bool router, bool customDial)
         {
-            this.UsePrefixSuffix = usePrefixSuffix;
-            this.PausedStates = pausedStates;
-            this.SetModemSpeaker = setModemSpeaker;
-            this.SetSoftwareCompression = setSoftwareCompression;
-            this.DisableConnectedUI = disableConnectedUI;
-            this.DisableReconnectUI = disableReconnectUI;
-            this.DisableReconnect = disableReconnect;
-            this.NoUser = noUser;
-            this.Router = router;
-            this.CustomDial = customDial;
+            UsePrefixSuffix = usePrefixSuffix;
+            PausedStates = pausedStates;
+            SetModemSpeaker = setModemSpeaker;
+            SetSoftwareCompression = setSoftwareCompression;
+            DisableConnectedUI = disableConnectedUI;
+            DisableReconnectUI = disableReconnectUI;
+            DisableReconnect = disableReconnect;
+            NoUser = noUser;
+            Router = router;
+            CustomDial = customDial;
         }
 
 #if (WINXP || WIN2K8 || WIN7 || WIN8)
@@ -79,17 +79,17 @@ namespace DotRas
         /// <param name="useCustomScripting"><b>true</b> if the dialer should invoke a custom-scripting DLL after establishing the connection to the server, otherwise <b>false</b>.</param>
         public RasDialOptions(bool usePrefixSuffix, bool pausedStates, bool setModemSpeaker, bool setSoftwareCompression, bool disableConnectedUI, bool disableReconnectUI, bool disableReconnect, bool noUser, bool router, bool customDial, bool useCustomScripting)
         {
-            this.UsePrefixSuffix = usePrefixSuffix;
-            this.PausedStates = pausedStates;
-            this.SetModemSpeaker = setModemSpeaker;
-            this.SetSoftwareCompression = setSoftwareCompression;
-            this.DisableConnectedUI = disableConnectedUI;
-            this.DisableReconnectUI = disableReconnectUI;
-            this.DisableReconnect = disableReconnect;
-            this.NoUser = noUser;
-            this.Router = router;
-            this.CustomDial = customDial;
-            this.UseCustomScripting = useCustomScripting;
+            UsePrefixSuffix = usePrefixSuffix;
+            PausedStates = pausedStates;
+            SetModemSpeaker = setModemSpeaker;
+            SetSoftwareCompression = setSoftwareCompression;
+            DisableConnectedUI = disableConnectedUI;
+            DisableReconnectUI = disableReconnectUI;
+            DisableReconnect = disableReconnect;
+            NoUser = noUser;
+            Router = router;
+            CustomDial = customDial;
+            UseCustomScripting = useCustomScripting;
         }
 
 #endif

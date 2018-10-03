@@ -20,8 +20,8 @@ namespace DotRas
     using System.ComponentModel;
     using System.Diagnostics;
     using System.Globalization;
-    using DotRas.Internal;
-    using DotRas.Properties;
+    using Internal;
+    using Properties;
 
     /// <summary>
     /// Represents a TAPI device capable of establishing a remote access connection. This class cannot be inherited.
@@ -70,8 +70,8 @@ namespace DotRas
         /// <param name="deviceType">The type of the device.</param>
         private RasDevice(string name, RasDeviceType deviceType)
         {
-            this.Name = name;
-            this.DeviceType = deviceType;
+            Name = name;
+            DeviceType = deviceType;
         }
 
         #endregion

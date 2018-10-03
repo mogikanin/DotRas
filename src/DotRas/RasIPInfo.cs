@@ -63,11 +63,11 @@ namespace DotRas
         /// <param name="serverOptions">The IPCP options for the remote computer.</param>
         internal RasIPInfo(int errorCode, IPAddress ipAddress, IPAddress serverIPAddress, RasIPOptions options, RasIPOptions serverOptions)
         {
-            this.ErrorCode = errorCode;
-            this.IPAddress = ipAddress;
-            this.ServerIPAddress = serverIPAddress;
-            this.Options = options;
-            this.ServerOptions = serverOptions;
+            ErrorCode = errorCode;
+            IPAddress = ipAddress;
+            ServerIPAddress = serverIPAddress;
+            Options = options;
+            ServerOptions = serverOptions;
         }
 
         #endregion

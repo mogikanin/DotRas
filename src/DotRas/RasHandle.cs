@@ -40,9 +40,9 @@ namespace DotRas
         internal RasHandle(IntPtr handle, bool isMultilink)
             : base(false)
         {
-            this.IsMultilink = isMultilink;
+            IsMultilink = isMultilink;
 
-            this.SetHandle(handle);
+            SetHandle(handle);
         }
 
         #endregion
@@ -70,7 +70,7 @@ namespace DotRas
         /// <returns><b>true</b> if <paramref name="objA"/> equals <paramref name="objB"/>, otherwise <b>false</b>.</returns>
         public static bool operator ==(RasHandle objA, RasHandle objB)
         {
-            return object.Equals(objA, objB);
+            return Equals(objA, objB);
         }
 
         /// <summary>
@@ -93,9 +93,9 @@ namespace DotRas
         {
             RasHandle handle = obj as RasHandle;
 
-            if (!object.ReferenceEquals(handle, null))
+            if (!ReferenceEquals(handle, null))
             {
-                return this.Equals(handle);
+                return Equals(handle);
             }
 
             return false;
@@ -108,17 +108,17 @@ namespace DotRas
         /// <returns><b>true</b> if <paramref name="other"/> is equal to the current object, otherwise <b>false</b>.</returns>
         public bool Equals(RasHandle other)
         {
-            if (object.ReferenceEquals(other, null))
+            if (ReferenceEquals(other, null))
             {
                 return false;
             }
 
-            if (object.ReferenceEquals(other, this))
+            if (ReferenceEquals(other, this))
             {
                 return true;
             }
 
-            return this.handle == other.handle;
+            return handle == other.handle;
         }
 
         /// <summary>
@@ -127,7 +127,7 @@ namespace DotRas
         /// <returns>The hash code for the instance.</returns>
         public override int GetHashCode()
         {
-            return this.handle.GetHashCode();
+            return handle.GetHashCode();
         }
 
         /// <summary>

@@ -68,8 +68,8 @@ namespace DotRas
         /// <param name="probationTime">The time required for the connection to come out of quarantine.</param>
         internal RasNapStatus(RasIsolationState isolationState, DateTime probationTime)
         {
-            this.IsolationState = isolationState;
-            this.ProbationTime = probationTime;
+            IsolationState = isolationState;
+            ProbationTime = probationTime;
         }
 
         #endregion

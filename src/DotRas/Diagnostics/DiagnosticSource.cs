@@ -16,7 +16,7 @@ namespace DotRas.Diagnostics
 {
     using System;
     using System.Diagnostics;
-    using DotRas.Internal;
+    using Internal;
 
     /// <summary>
     /// Represents a diagnostic source. This class cannot be inherited.
@@ -36,7 +36,7 @@ namespace DotRas.Diagnostics
                 ThrowHelper.ThrowArgumentNullException("source");
             }
 
-            this.InnerSource = source;
+            InnerSource = source;
         }
 
         #endregion
@@ -70,12 +70,12 @@ namespace DotRas.Diagnostics
                 ThrowHelper.ThrowArgumentNullException("evt");
             }
 
-            if (!this.InnerSource.Switch.ShouldTrace(eventType))
+            if (!InnerSource.Switch.ShouldTrace(eventType))
             {
                 return;
             }
 
-            this.InnerSource.TraceEvent(eventType, eventId, evt.Serialize());
+            InnerSource.TraceEvent(eventType, eventId, evt.Serialize());
         }
 
         #endregion

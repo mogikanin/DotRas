@@ -17,8 +17,8 @@ namespace DotRas
     using System;
     using System.Collections.ObjectModel;
     using System.Diagnostics;
-    using DotRas.Internal;
-    using DotRas.Properties;
+    using Internal;
+    using Properties;
 
     /// <summary>
     /// Represents a subentry of a remote access service (RAS) entry. This class cannot be inherited.
@@ -113,17 +113,17 @@ namespace DotRas
         {
             get
             {
-                if (this.alternatePhoneNumbers == null)
+                if (alternatePhoneNumbers == null)
                 {
-                    this.alternatePhoneNumbers = new Collection<string>();
+                    alternatePhoneNumbers = new Collection<string>();
                 }
 
-                return this.alternatePhoneNumbers;
+                return alternatePhoneNumbers;
             }
 
             internal set
             {
-                this.alternatePhoneNumbers = value;
+                alternatePhoneNumbers = value;
             }
         }
 
@@ -139,16 +139,16 @@ namespace DotRas
         {
             RasSubEntry retval = new RasSubEntry();
 
-            if (this.AlternatePhoneNumbers.Count > 0)
+            if (AlternatePhoneNumbers.Count > 0)
             {
-                foreach (string value in this.AlternatePhoneNumbers)
+                foreach (string value in AlternatePhoneNumbers)
                 {
                     retval.AlternatePhoneNumbers.Add(value);
                 }
             }
 
-            retval.Device = this.Device;
-            retval.PhoneNumber = this.PhoneNumber;
+            retval.Device = Device;
+            retval.PhoneNumber = PhoneNumber;
 
             return retval;
         }
@@ -161,9 +161,9 @@ namespace DotRas
         {
             bool retval = false;
 
-            if (this.Owner != null)
+            if (Owner != null)
             {
-                retval = this.Owner.SubEntries.Remove(this);
+                retval = Owner.SubEntries.Remove(this);
             }
 
             return retval;
@@ -176,17 +176,17 @@ namespace DotRas
         /// <exception cref="System.InvalidOperationException">The collection is not associated with a phone book.</exception>
         public bool Update()
         {
-            if (this.Owner == null || this.Owner.Owner == null)
+            if (Owner == null || Owner.Owner == null)
             {
                 ThrowHelper.ThrowInvalidOperationException(Resources.Exception_EntryNotInPhoneBook);
             }
 
             bool retval = false;
 
-            int index = this.Owner.SubEntries.IndexOf(this);
+            int index = Owner.SubEntries.IndexOf(this);
             if (index != -1)
             {
-                retval = RasHelper.Instance.SetSubEntryProperties(this.Owner.Owner, this.Owner, index, this);
+                retval = RasHelper.Instance.SetSubEntryProperties(Owner.Owner, Owner, index, this);
             }
 
             return retval;

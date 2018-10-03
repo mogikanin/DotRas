@@ -14,7 +14,7 @@
 
 namespace DotRas.Design
 {
-    using DotRas.Internal;
+    using Internal;
     using System;
     using System.ComponentModel;
     using System.Drawing;
@@ -62,8 +62,8 @@ namespace DotRas.Design
         [SRDescription("RCDLocationDesc")]
         public Point Location
         {
-            get { return this._location; }
-            set { this._location = value; }
+            get { return _location; }
+            set { _location = value; }
         }
 
         #endregion
@@ -75,7 +75,7 @@ namespace DotRas.Design
         /// </summary>
         public override void Reset()
         {
-            this.Location = Point.Empty;
+            Location = Point.Empty;
         }
 
         /// <summary>
@@ -84,9 +84,9 @@ namespace DotRas.Design
         /// <param name="e">An <see cref="DotRas.RasErrorEventArgs"/> containing event data.</param>
         protected void OnError(RasErrorEventArgs e)
         {
-            if (this.Error != null)
+            if (Error != null)
             {
-                this.Error(this, e);
+                Error(this, e);
             }
         }
 

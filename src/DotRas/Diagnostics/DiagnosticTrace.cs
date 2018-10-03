@@ -16,7 +16,7 @@ namespace DotRas.Diagnostics
 {
     using System;
     using System.Diagnostics;
-    using DotRas.Internal;
+    using Internal;
 
     /// <summary>
     /// Provides diagnostic trace logging capabilities. This class cannot be inherited.
@@ -44,7 +44,7 @@ namespace DotRas.Diagnostics
                 ThrowHelper.ThrowArgumentNullException("source");
             }
 
-            this.Source = source;
+            Source = source;
         }
 
         #endregion
@@ -88,7 +88,7 @@ namespace DotRas.Diagnostics
         /// <exception cref="System.ArgumentNullException"><paramref name="evt"/> is a null reference (<b>Nothing</b> in Visual Basic).</exception>
         public void TraceEvent(TraceEventType eventType, TraceEvent evt)
         {
-            this.TraceEvent(eventType, evt, 0);
+            TraceEvent(eventType, evt, 0);
         }
 
         /// <summary>
@@ -105,7 +105,7 @@ namespace DotRas.Diagnostics
                 ThrowHelper.ThrowArgumentNullException("evt");
             }
 
-            this.Source.TraceEvent(eventType, eventId, evt);
+            Source.TraceEvent(eventType, eventId, evt);
         }
 
         #endregion

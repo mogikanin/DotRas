@@ -33,7 +33,7 @@ namespace DotRas.Internal
         /// <param name="resource">An <see cref="System.String"/> to include with the exception message.</param>
         public static void ThrowArgumentOutOfRangeException(string argumentName, object actualValue, string resource)
         {
-            throw new ArgumentOutOfRangeException(argumentName, actualValue, ThrowHelper.FormatResourceString(resource, argumentName));
+            throw new ArgumentOutOfRangeException(argumentName, actualValue, FormatResourceString(resource, argumentName));
         }
 
         /// <summary>
@@ -43,7 +43,7 @@ namespace DotRas.Internal
         /// <param name="message">A message that describes the error.</param>
         public static void ThrowFileNotFoundException(string fileName, string message)
         {
-            throw new FileNotFoundException(message, ThrowHelper.FormatResourceString(message, fileName));
+            throw new FileNotFoundException(message, FormatResourceString(message, fileName));
         }
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace DotRas.Internal
         {
             object[] args = { argumentName };
 
-            ThrowHelper.ThrowArgumentException(argumentName, resource, args);
+            ThrowArgumentException(argumentName, resource, args);
         }
 
         /// <summary>
@@ -75,7 +75,7 @@ namespace DotRas.Internal
         /// <param name="args">A <see cref="System.Object"/> array containing zero or more items to format.</param>
         public static void ThrowArgumentException(string argumentName, string resource, params object[] args)
         {
-            throw new ArgumentException(ThrowHelper.FormatResourceString(resource, args), argumentName);
+            throw new ArgumentException(FormatResourceString(resource, args), argumentName);
         }
 
         /// <summary>
@@ -96,7 +96,7 @@ namespace DotRas.Internal
         /// <param name="resource">An <see cref="System.String"/> to include with the exception message.</param>
         public static void ThrowInvalidHandleException(RasHandle handle, string argumentName, string resource)
         {
-            throw new InvalidHandleException(handle, ThrowHelper.FormatResourceString(resource, new object[] { argumentName }));
+            throw new InvalidHandleException(handle, FormatResourceString(resource, new object[] { argumentName }));
         }
 
         /// <summary>
@@ -115,7 +115,7 @@ namespace DotRas.Internal
         /// <param name="args">An <see cref="System.Object"/> array containing zero or more items to format.</param>
         public static void ThrowInvalidOperationException(string resource, params object[] args)
         {
-            throw new InvalidOperationException(ThrowHelper.FormatResourceString(resource, args));
+            throw new InvalidOperationException(FormatResourceString(resource, args));
         }
 
         /// <summary>
@@ -134,7 +134,7 @@ namespace DotRas.Internal
         /// <param name="args">An <see cref="System.Object"/> array containing zero or more items to format.</param>
         public static void ThrowNotSupportedException(string message, params object[] args)
         {
-            throw new NotSupportedException(ThrowHelper.FormatResourceString(message, args));
+            throw new NotSupportedException(FormatResourceString(message, args));
         }
 
         /// <summary>

@@ -21,10 +21,10 @@ namespace DotRas
     using System.Runtime.InteropServices;
     using System.Threading;
     using System.Windows.Forms;
-    using DotRas.Design;
-    using DotRas.Diagnostics;
-    using DotRas.Internal;
-    using DotRas.Properties;
+    using Design;
+    using Diagnostics;
+    using Internal;
+    using Properties;
     using Timer = System.Threading.Timer;
 
     /// <summary>
@@ -105,7 +105,7 @@ namespace DotRas
         /// </summary>
         public RasDialer()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         /// <summary>
@@ -115,7 +115,7 @@ namespace DotRas
         public RasDialer(IContainer container)
             : base(container)
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         #endregion
@@ -150,9 +150,9 @@ namespace DotRas
             {
                 bool retval = false;
 
-                lock (this.syncRoot)
+                lock (syncRoot)
                 {
-                    retval = this._isBusy;
+                    retval = _isBusy;
                 }
 
                 return retval;
@@ -160,7 +160,7 @@ namespace DotRas
 
             private set
             {
-                this._isBusy = value;
+                _isBusy = value;
             }
         }
 
@@ -281,17 +281,17 @@ namespace DotRas
         {
             get
             {
-                if (this._options == null)
+                if (_options == null)
                 {
-                    this._options = new RasDialOptions();
+                    _options = new RasDialOptions();
                 }
 
-                return this._options;
+                return _options;
             }
 
             set
             {
-                this._options = value;
+                _options = value;
             }
         }        
 
@@ -304,17 +304,17 @@ namespace DotRas
         {
             get
             {
-                if (this._eapOptions == null)
+                if (_eapOptions == null)
                 {
-                    this._eapOptions = new RasEapOptions();
+                    _eapOptions = new RasEapOptions();
                 }
 
-                return this._eapOptions;
+                return _eapOptions;
             }
 
             set
             {
-                this._eapOptions = value;
+                _eapOptions = value;
             }
         }
 
@@ -407,7 +407,7 @@ namespace DotRas
         /// <exception cref="System.InvalidOperationException">A phone number or an entry name with phone book path is required to dial.</exception>
         public RasHandle Dial()
         {
-            return this.InternalDial(false);
+            return InternalDial(false);
         }
 
         /// <summary>
@@ -417,7 +417,7 @@ namespace DotRas
         /// <exception cref="System.InvalidOperationException">A phone number or an entry name with phone book path is required to dial.</exception>
         public RasHandle DialAsync()
         {
-            return this.InternalDial(true);
+            return InternalDial(true);
         }
 
         /// <summary>
@@ -425,12 +425,12 @@ namespace DotRas
         /// </summary>
         public void DialAsyncCancel()
         {
-            lock (this.syncRoot)
+            lock (syncRoot)
             {
-                if (this.IsBusy)
+                if (IsBusy)
                 {
-                    this.Abort();
-                    this.PostCompleted(null, true, false, false);
+                    Abort();
+                    PostCompleted(null, true, false, false);
                 }
             }
         }
@@ -441,7 +441,7 @@ namespace DotRas
         /// <param name="data">A byte array containing EAP data.</param>
         public void SetEapUserData(byte[] data)
         {
-            this.eapUserData = data;
+            eapUserData = data;
         }
 
         /// <summary>
@@ -452,27 +452,27 @@ namespace DotRas
         {
             if (disposing)
             {
-                if (this.IsBusy)
+                if (IsBusy)
                 {
                     // The component is currently dialing a connection, abort the connection attempt.
-                    this.Abort();
+                    Abort();
 
-                    this.handle = null;
-                    this.asyncOp = null;
+                    handle = null;
+                    asyncOp = null;
                 }
 
-                if (this.timer != null)
+                if (timer != null)
                 {
-                    this.timer.Dispose();
-                    this.timer = null;
+                    timer.Dispose();
+                    timer = null;
                 }
 
-                this.ReleaseEapIdentity();
-                this.Credentials = null;
+                ReleaseEapIdentity();
+                Credentials = null;
 
-                this.dialCompletedCallback = null;
-                this.rasDialCallback = null;
-                this.timeoutCallback = null;
+                dialCompletedCallback = null;
+                rasDialCallback = null;
+                timeoutCallback = null;
             }          
 
             base.Dispose(disposing);
@@ -483,12 +483,12 @@ namespace DotRas
         /// </summary>
         protected override void InitializeComponent()
         {
-            this.Timeout = System.Threading.Timeout.Infinite;
-            this.HangUpPollingInterval = NativeMethods.HangUpPollingInterval;
+            Timeout = System.Threading.Timeout.Infinite;
+            HangUpPollingInterval = NativeMethods.HangUpPollingInterval;
 
-            this.dialCompletedCallback = new SendOrPostCallback(this.DialCompletedCallback);
-            this.timeoutCallback = new TimerCallback(this.TimeoutCallback);
-            this.rasDialCallback = new NativeMethods.RasDialFunc2(this.RasDialCallback);
+            dialCompletedCallback = new SendOrPostCallback(DialCompletedCallback);
+            timeoutCallback = new TimerCallback(TimeoutCallback);
+            rasDialCallback = new NativeMethods.RasDialFunc2(RasDialCallback);
 
             base.InitializeComponent();
         }
@@ -501,23 +501,23 @@ namespace DotRas
         {
             NativeMethods.RDEOPT value = NativeMethods.RDEOPT.None;
 
-            if (this.Options != null)
+            if (Options != null)
             {
-                value |= (NativeMethods.RDEOPT)Utilities.SetFlag(this.Options.UsePrefixSuffix, NativeMethods.RDEOPT.UsePrefixSuffix);
-                value |= (NativeMethods.RDEOPT)Utilities.SetFlag(this.Options.PausedStates, NativeMethods.RDEOPT.PausedStates);
-                value |= (NativeMethods.RDEOPT)Utilities.SetFlag(!string.IsNullOrEmpty(this.EntryName) && this.Options.SetModemSpeaker, NativeMethods.RDEOPT.IgnoreModemSpeaker);
-                value |= (NativeMethods.RDEOPT)Utilities.SetFlag(this.Options.SetModemSpeaker, NativeMethods.RDEOPT.SetModemSpeaker);
-                value |= (NativeMethods.RDEOPT)Utilities.SetFlag(!string.IsNullOrEmpty(this.EntryName) && this.Options.SetSoftwareCompression, NativeMethods.RDEOPT.IgnoreSoftwareCompression);
-                value |= (NativeMethods.RDEOPT)Utilities.SetFlag(this.Options.SetSoftwareCompression, NativeMethods.RDEOPT.SetSoftwareCompression);
-                value |= (NativeMethods.RDEOPT)Utilities.SetFlag(this.Options.DisableConnectedUI, NativeMethods.RDEOPT.DisableConnectedUI);
-                value |= (NativeMethods.RDEOPT)Utilities.SetFlag(this.Options.DisableReconnectUI, NativeMethods.RDEOPT.DisableReconnectUI);
-                value |= (NativeMethods.RDEOPT)Utilities.SetFlag(this.Options.NoUser, NativeMethods.RDEOPT.NoUser);
-                value |= (NativeMethods.RDEOPT)Utilities.SetFlag(this.Options.Router, NativeMethods.RDEOPT.Router);
-                value |= (NativeMethods.RDEOPT)Utilities.SetFlag(this.Options.CustomDial, NativeMethods.RDEOPT.CustomDial);
+                value |= (NativeMethods.RDEOPT)Utilities.SetFlag(Options.UsePrefixSuffix, NativeMethods.RDEOPT.UsePrefixSuffix);
+                value |= (NativeMethods.RDEOPT)Utilities.SetFlag(Options.PausedStates, NativeMethods.RDEOPT.PausedStates);
+                value |= (NativeMethods.RDEOPT)Utilities.SetFlag(!string.IsNullOrEmpty(EntryName) && Options.SetModemSpeaker, NativeMethods.RDEOPT.IgnoreModemSpeaker);
+                value |= (NativeMethods.RDEOPT)Utilities.SetFlag(Options.SetModemSpeaker, NativeMethods.RDEOPT.SetModemSpeaker);
+                value |= (NativeMethods.RDEOPT)Utilities.SetFlag(!string.IsNullOrEmpty(EntryName) && Options.SetSoftwareCompression, NativeMethods.RDEOPT.IgnoreSoftwareCompression);
+                value |= (NativeMethods.RDEOPT)Utilities.SetFlag(Options.SetSoftwareCompression, NativeMethods.RDEOPT.SetSoftwareCompression);
+                value |= (NativeMethods.RDEOPT)Utilities.SetFlag(Options.DisableConnectedUI, NativeMethods.RDEOPT.DisableConnectedUI);
+                value |= (NativeMethods.RDEOPT)Utilities.SetFlag(Options.DisableReconnectUI, NativeMethods.RDEOPT.DisableReconnectUI);
+                value |= (NativeMethods.RDEOPT)Utilities.SetFlag(Options.NoUser, NativeMethods.RDEOPT.NoUser);
+                value |= (NativeMethods.RDEOPT)Utilities.SetFlag(Options.Router, NativeMethods.RDEOPT.Router);
+                value |= (NativeMethods.RDEOPT)Utilities.SetFlag(Options.CustomDial, NativeMethods.RDEOPT.CustomDial);
 
 #if (WINXP || WIN2K8 || WIN7 || WIN8)
 
-                value |= (NativeMethods.RDEOPT)Utilities.SetFlag(this.Options.UseCustomScripting, NativeMethods.RDEOPT.UseCustomScripting);
+                value |= (NativeMethods.RDEOPT)Utilities.SetFlag(Options.UseCustomScripting, NativeMethods.RDEOPT.UseCustomScripting);
 
 #endif
             }
@@ -533,11 +533,11 @@ namespace DotRas
         {
             NativeMethods.RASEAPF value = NativeMethods.RASEAPF.None;
 
-            if (this.EapOptions != null)
+            if (EapOptions != null)
             {
-                value |= (NativeMethods.RASEAPF)Utilities.SetFlag(this.EapOptions.NonInteractive, NativeMethods.RASEAPF.NonInteractive);
-                value |= (NativeMethods.RASEAPF)Utilities.SetFlag(this.EapOptions.LogOn, NativeMethods.RASEAPF.LogOn);
-                value |= (NativeMethods.RASEAPF)Utilities.SetFlag(this.EapOptions.Preview, NativeMethods.RASEAPF.Preview);
+                value |= (NativeMethods.RASEAPF)Utilities.SetFlag(EapOptions.NonInteractive, NativeMethods.RASEAPF.NonInteractive);
+                value |= (NativeMethods.RASEAPF)Utilities.SetFlag(EapOptions.LogOn, NativeMethods.RASEAPF.LogOn);
+                value |= (NativeMethods.RASEAPF)Utilities.SetFlag(EapOptions.Preview, NativeMethods.RASEAPF.Preview);
             }
 
             return value;
@@ -551,44 +551,44 @@ namespace DotRas
         /// <exception cref="System.InvalidOperationException">A phone number or an entry name with phone book path is required to dial.</exception>
         private RasHandle InternalDial(bool asynchronous)
         {
-            if (string.IsNullOrEmpty(this.PhoneNumber) && (string.IsNullOrEmpty(this.EntryName) || string.IsNullOrEmpty(this.PhoneBookPath)))
+            if (string.IsNullOrEmpty(PhoneNumber) && (string.IsNullOrEmpty(EntryName) || string.IsNullOrEmpty(PhoneBookPath)))
             {
                 ThrowHelper.ThrowInvalidOperationException(Resources.Exception_PhoneNumberOrEntryNameRequired);
             }
 
-            lock (this.syncRoot)
+            lock (syncRoot)
             {
                 // NOTE: The synchronization object MUST be locked prior to testing of the component is already busy.
                 // WARNING! Ensure no exceptions are thrown because existing dial attempts are already in progress. Doing so leaves the
                 // connection open and cannot be closed if the application is terminated.
-                if (!this.IsBusy)
+                if (!IsBusy)
                 {                    
-                    this.IsBusy = true;
+                    IsBusy = true;
 
                     try
                     {
-                        NativeMethods.RASDIALPARAMS parameters = this.BuildDialParams();
-                        NativeMethods.RASDIALEXTENSIONS extensions = this.BuildDialExtensions();
+                        NativeMethods.RASDIALPARAMS parameters = BuildDialParams();
+                        NativeMethods.RASDIALEXTENSIONS extensions = BuildDialExtensions();
 
-                        if (!string.IsNullOrEmpty(this.EntryName))
+                        if (!string.IsNullOrEmpty(EntryName))
                         {
                             byte[] data = null;
 
-                            if (this.eapUserData != null)
+                            if (eapUserData != null)
                             {
-                                data = this.eapUserData;
+                                data = eapUserData;
                             }
                             else
                             {
-                                data = RasHelper.Instance.GetEapUserData(IntPtr.Zero, this.PhoneBookPath, this.EntryName);
+                                data = RasHelper.Instance.GetEapUserData(IntPtr.Zero, PhoneBookPath, EntryName);
                             }
 
                             if (data != null)
                             {
-                                this.eapDataAddress = Marshal.AllocHGlobal(data.Length);
-                                Marshal.Copy(data, 0, this.eapDataAddress, data.Length);
+                                eapDataAddress = Marshal.AllocHGlobal(data.Length);
+                                Marshal.Copy(data, 0, eapDataAddress, data.Length);
 
-                                extensions.eapInfo.eapData = this.eapDataAddress;
+                                extensions.eapInfo.eapData = eapDataAddress;
                                 extensions.eapInfo.sizeOfEapData = data.Length;
                             }
                         }
@@ -596,47 +596,47 @@ namespace DotRas
                         NativeMethods.RasDialFunc2 callback = null;
                         if (asynchronous)
                         {
-                            callback = this.rasDialCallback;
+                            callback = rasDialCallback;
 
-                            this.asyncOp = AsyncOperationManager.CreateOperation(null);
+                            asyncOp = AsyncOperationManager.CreateOperation(null);
 
-                            if (this.timer != null)
+                            if (timer != null)
                             {
                                 // Dispose of any existing timer if the component is being reused.
-                                this.timer.Dispose();
-                                this.timer = null;
+                                timer.Dispose();
+                                timer = null;
                             }
 
-                            if (this.Timeout != System.Threading.Timeout.Infinite)
+                            if (Timeout != System.Threading.Timeout.Infinite)
                             {
                                 // A timeout has been requested, create the timer used to handle the connection timeout.
-                                this.timer = new Timer(this.timeoutCallback, null, this.Timeout, System.Threading.Timeout.Infinite);
+                                timer = new Timer(timeoutCallback, null, Timeout, System.Threading.Timeout.Infinite);
                             }
                         }
                         
-                        this.handle = RasHelper.Instance.Dial(this.PhoneBookPath, parameters, extensions, callback, this.GetRasEapOptions());
+                        handle = RasHelper.Instance.Dial(PhoneBookPath, parameters, extensions, callback, GetRasEapOptions());
 
                         if (!asynchronous)
                         {
-                            this.SaveCredentialsToPhoneBook();
-                            this.ReleaseEapIdentity();
+                            SaveCredentialsToPhoneBook();
+                            ReleaseEapIdentity();
 
                             // The synchronous dialing operation has completed, reset the dialing flag so the component can be reused.
-                            this.IsBusy = false;
+                            IsBusy = false;
                         }
                     }
                     catch (Exception)
                     {
                         // An exception was thrown when the component was attempting to dial a connection. Release the EAP identity and reset the dialing flag so the component can be reused.
-                        this.ReleaseEapIdentity();
-                        this.IsBusy = false;
+                        ReleaseEapIdentity();
+                        IsBusy = false;
 
                         throw;
                     }
                 }
             }
 
-            return this.handle;
+            return handle;
         }
 
         /// <summary>
@@ -646,19 +646,19 @@ namespace DotRas
         private NativeMethods.RASDIALEXTENSIONS BuildDialExtensions()
         {
             NativeMethods.RASDIALEXTENSIONS result = new NativeMethods.RASDIALEXTENSIONS();
-            result.options = this.GetRasDialOptions();
+            result.options = GetRasDialOptions();
 
 #if (WIN7 || WIN8)
-            result.skipPppAuth = this.SkipPppAuthentication;
+            result.skipPppAuth = SkipPppAuthentication;
 
-            if (this.AuthenticationCookie != IntPtr.Zero)
+            if (AuthenticationCookie != IntPtr.Zero)
             {
                 result.devSpecificInfo = new NativeMethods.RASDEVSPECIFICINFO();
-                result.devSpecificInfo.cookie = this.AuthenticationCookie;
+                result.devSpecificInfo.cookie = AuthenticationCookie;
             }
 #endif
 
-            result.handle = this.Owner != null ? this.Owner.Handle : IntPtr.Zero;
+            result.handle = Owner != null ? Owner.Handle : IntPtr.Zero;
 
             return result;
         }
@@ -671,32 +671,32 @@ namespace DotRas
         {
             NativeMethods.RASDIALPARAMS result = new NativeMethods.RASDIALPARAMS();
 
-            result.callbackId = this.CallbackId;
-            result.subEntryId = this.SubEntryId;
+            result.callbackId = CallbackId;
+            result.subEntryId = SubEntryId;
 
 #if (WIN7 || WIN8)
-            result.interfaceIndex = this.InterfaceIndex;
+            result.interfaceIndex = InterfaceIndex;
 #endif
 
-            if (!string.IsNullOrEmpty(this.CallbackNumber))
+            if (!string.IsNullOrEmpty(CallbackNumber))
             {
-                result.callbackNumber = this.CallbackNumber;
+                result.callbackNumber = CallbackNumber;
             }
 
-            if (!string.IsNullOrEmpty(this.EntryName))
+            if (!string.IsNullOrEmpty(EntryName))
             {
-                result.entryName = this.EntryName;
+                result.entryName = EntryName;
             }
 
-            if (!string.IsNullOrEmpty(this.PhoneNumber))
+            if (!string.IsNullOrEmpty(PhoneNumber))
             {
-                result.phoneNumber = this.PhoneNumber;
+                result.phoneNumber = PhoneNumber;
             }
 
-            if (this.Credentials == null && this.AllowUseStoredCredentials)
+            if (Credentials == null && AllowUseStoredCredentials)
             {
                 // Attempt to use any credentials stored for the entry since the caller didn't explicitly specify anything.
-                NetworkCredential storedCredentials = RasHelper.Instance.GetCredentials(this.PhoneBookPath, this.EntryName, NativeMethods.RASCM.UserName | NativeMethods.RASCM.Password | NativeMethods.RASCM.Domain);
+                NetworkCredential storedCredentials = RasHelper.Instance.GetCredentials(PhoneBookPath, EntryName, NativeMethods.RASCM.UserName | NativeMethods.RASCM.Password | NativeMethods.RASCM.Domain);
 
                 if (storedCredentials != null)
                 {
@@ -707,11 +707,11 @@ namespace DotRas
                     storedCredentials = null;
                 }
             }
-            else if (this.Credentials != null)
+            else if (Credentials != null)
             {
-                result.userName = this.Credentials.UserName;
-                result.password = this.Credentials.Password;
-                result.domain = this.Credentials.Domain;
+                result.userName = Credentials.UserName;
+                result.password = Credentials.Password;
+                result.domain = Credentials.Domain;
             }
 
             return result;
@@ -722,11 +722,11 @@ namespace DotRas
         /// </summary>
         private void ReleaseEapIdentity()
         {
-            if (this.eapDataAddress != IntPtr.Zero)
+            if (eapDataAddress != IntPtr.Zero)
             {
                 // Free the unmanaged resources used for the EAP memory block.
-                Marshal.FreeHGlobal(this.eapDataAddress);
-                this.eapDataAddress = IntPtr.Zero;
+                Marshal.FreeHGlobal(eapDataAddress);
+                eapDataAddress = IntPtr.Zero;
             }
         }
 
@@ -735,13 +735,13 @@ namespace DotRas
         /// </summary>
         private void Abort()
         {
-            lock (this.syncRoot)
+            lock (syncRoot)
             {
-                if (this.handle != null && !this.handle.IsInvalid)
+                if (handle != null && !handle.IsInvalid)
                 {
                     // NOTE: Do NOT check whether the connection is active prior to attempting to disconnect it. If the network connection fails and the handle is not
                     // released, the connection state will become corrupted and require the application to restart.                    
-                    RasHelper.Instance.HangUp(this.handle, this.HangUpPollingInterval, false);
+                    RasHelper.Instance.HangUp(handle, HangUpPollingInterval, false);
                 }
             }
         }
@@ -752,7 +752,7 @@ namespace DotRas
         /// <param name="e">An <see cref="DotRas.DialCompletedEventArgs"/> containing event data.</param>
         private void OnDialCompleted(DialCompletedEventArgs e)
         {
-            this.RaiseEvent<DialCompletedEventArgs>(this.DialCompleted, e);
+            RaiseEvent<DialCompletedEventArgs>(DialCompleted, e);
         }
 
         /// <summary>
@@ -761,7 +761,7 @@ namespace DotRas
         /// <param name="e">An <see cref="DotRas.StateChangedEventArgs"/> containing event data.</param>
         private void OnStateChanged(StateChangedEventArgs e)
         {
-            this.RaiseEvent<StateChangedEventArgs>(this.StateChanged, e);
+            RaiseEvent<StateChangedEventArgs>(StateChanged, e);
         }
 
         /// <summary>
@@ -773,24 +773,24 @@ namespace DotRas
         /// <param name="connected"><b>true</b> if the connection attempt successfully connected, otherwise <b>false</b>.</param>
         private void PostCompleted(Exception error, bool cancelled, bool timedOut, bool connected)
         {
-            lock (this.syncRoot)
+            lock (syncRoot)
             {
                 if (connected)
                 {
                     // The client has connected successfully, attempt to update the credentials.
-                    this.SaveCredentialsToPhoneBook();
+                    SaveCredentialsToPhoneBook();
                 }
 
-                this.ReleaseEapIdentity();
-                this.IsBusy = false;
+                ReleaseEapIdentity();
+                IsBusy = false;
 
-                if (this.asyncOp != null)
+                if (asyncOp != null)
                 {
-                    this.asyncOp.PostOperationCompleted(this.dialCompletedCallback, new DialCompletedEventArgs(this.handle, error, cancelled, timedOut, connected, null));
+                    asyncOp.PostOperationCompleted(dialCompletedCallback, new DialCompletedEventArgs(handle, error, cancelled, timedOut, connected, null));
 
-                    this.asyncOp = null;
-                    this.handle = null;
-                    this.timer = null;
+                    asyncOp = null;
+                    handle = null;
+                    timer = null;
                 }
             }
         }
@@ -802,7 +802,7 @@ namespace DotRas
         private void DialCompletedCallback(object state)
         {
             DialCompletedEventArgs e = (DialCompletedEventArgs)state;
-            this.OnDialCompleted(e);
+            OnDialCompleted(e);
         }
 
         /// <summary>
@@ -814,19 +814,19 @@ namespace DotRas
         {
             // This lock must remain to prevent the timeout occurring before the dialing process has begun if the user
             // sets the timeout at 0 to start immediately.
-            lock (this.syncRoot)
+            lock (syncRoot)
             {
                 try
                 {
-                    if (this.IsBusy)
+                    if (IsBusy)
                     {
-                        this.Abort();
-                        this.PostCompleted(new TimeoutException(Resources.Exception_OperationTimedOut), false, true, false);
+                        Abort();
+                        PostCompleted(new TimeoutException(Resources.Exception_OperationTimedOut), false, true, false);
                     }
                 }
                 catch (Exception ex)
                 {
-                    this.OnError(new System.IO.ErrorEventArgs(ex));
+                    OnError(new System.IO.ErrorEventArgs(ex));
                 }
             }
         }
@@ -836,10 +836,10 @@ namespace DotRas
         /// </summary>
         private void SaveCredentialsToPhoneBook()
         {
-            if (this.AutoUpdateCredentials != RasUpdateCredential.None && this.Credentials != null && !string.IsNullOrEmpty(this.EntryName) && !string.IsNullOrEmpty(this.PhoneBookPath))
+            if (AutoUpdateCredentials != RasUpdateCredential.None && Credentials != null && !string.IsNullOrEmpty(EntryName) && !string.IsNullOrEmpty(PhoneBookPath))
             {
                 // The client has completed negotiation, update the credentials if requested.
-                Utilities.UpdateCredentials(this.PhoneBookPath, this.EntryName, this.Credentials, this.AutoUpdateCredentials);
+                Utilities.UpdateCredentials(PhoneBookPath, EntryName, Credentials, AutoUpdateCredentials);
             }
         }
 
@@ -860,7 +860,7 @@ namespace DotRas
         {
             bool retval = true;
 
-            lock (this.syncRoot)
+            lock (syncRoot)
             {
                 RasHandle connectionHandle = null;
 
@@ -868,7 +868,7 @@ namespace DotRas
                 {
                     connectionHandle = new RasHandle(dangerousHandle, subEntryId > 1);
 
-                    if (!this.IsBusy)
+                    if (!IsBusy)
                     {
                         // The connection is no longer being dialed, stop receiving notifications for this connection attempt.
                         retval = false;
@@ -882,24 +882,24 @@ namespace DotRas
                         }
 
                         StateChangedEventArgs e = new StateChangedEventArgs(callbackId, subEntryId, connectionHandle, state, errorCode, errorMessage, extendedErrorCode);
-                        this.OnStateChanged(e);
+                        OnStateChanged(e);
 
                         if (errorCode != NativeMethods.SUCCESS)
                         {
-                            this.Abort();
-                            this.PostCompleted(new RasDialException(errorCode, extendedErrorCode), false, false, false);
+                            Abort();
+                            PostCompleted(new RasDialException(errorCode, extendedErrorCode), false, false, false);
 
                             retval = false;
                         }
                         else if (state == RasConnectionState.Connected)
                         {
-                            this.PostCompleted(null, false, false, true);
+                            PostCompleted(null, false, false, true);
                         }
                     }
                 }
                 catch (Exception ex)
                 {
-                    this.OnError(new System.IO.ErrorEventArgs(ex));
+                    OnError(new System.IO.ErrorEventArgs(ex));
                 }
                 finally
                 {

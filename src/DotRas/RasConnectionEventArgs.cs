@@ -15,7 +15,7 @@
 namespace DotRas
 {
     using System;
-    using DotRas.Internal;
+    using Internal;
 
     /// <summary>
     /// Provides data for remote access service (RAS) connection events.
@@ -30,7 +30,7 @@ namespace DotRas
         /// <param name="connection">The <see cref="DotRas.RasConnection"/> that caused the event.</param>
         public RasConnectionEventArgs(RasConnection connection)
         {
-            this.Connection = connection;
+            Connection = connection;
         }
 
         #endregion

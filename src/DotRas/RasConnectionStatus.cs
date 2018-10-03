@@ -58,8 +58,8 @@ namespace DotRas
         /// </summary>
         public RasConnectionState ConnectionState
         {
-            get { return this._connectionState; }
-            internal set { this._connectionState = value; }
+            get { return _connectionState; }
+            internal set { _connectionState = value; }
         }
 
         /// <summary>
@@ -67,8 +67,8 @@ namespace DotRas
         /// </summary>
         public int ErrorCode
         {
-            get { return this._errorCode; }
-            internal set { this._errorCode = value; }
+            get { return _errorCode; }
+            internal set { _errorCode = value; }
         }
 
         /// <summary>
@@ -76,8 +76,8 @@ namespace DotRas
         /// </summary>
         public string ErrorMessage
         {
-            get { return this._errorMessage; }
-            internal set { this._errorMessage = value; }
+            get { return _errorMessage; }
+            internal set { _errorMessage = value; }
         }
 
         /// <summary>
@@ -85,8 +85,8 @@ namespace DotRas
         /// </summary>
         public RasDevice Device
         {
-            get { return this._device; }
-            internal set { this._device = value; }
+            get { return _device; }
+            internal set { _device = value; }
         }
 
         /// <summary>
@@ -94,8 +94,8 @@ namespace DotRas
         /// </summary>
         public string PhoneNumber
         {
-            get { return this._phoneNumber; }
-            internal set { this._phoneNumber = value; }
+            get { return _phoneNumber; }
+            internal set { _phoneNumber = value; }
         }
 
 #if (WIN7 || WIN8)
@@ -105,8 +105,8 @@ namespace DotRas
         /// </summary>
         public IPAddress LocalEndPoint
         {
-            get { return this._localEndPoint; }
-            internal set { this._localEndPoint = value; }
+            get { return _localEndPoint; }
+            internal set { _localEndPoint = value; }
         }
 
         /// <summary>
@@ -114,8 +114,8 @@ namespace DotRas
         /// </summary>
         public IPAddress RemoteEndPoint
         {
-            get { return this._remoteEndPoint; }
-            internal set { this._remoteEndPoint = value; }
+            get { return _remoteEndPoint; }
+            internal set { _remoteEndPoint = value; }
         }
 
         /// <summary>
@@ -123,8 +123,8 @@ namespace DotRas
         /// </summary>
         public RasConnectionSubState ConnectionSubState
         {
-            get { return this._connectionSubState; }
-            internal set { this._connectionSubState = value; }
+            get { return _connectionSubState; }
+            internal set { _connectionSubState = value; }
         }
 
 #endif

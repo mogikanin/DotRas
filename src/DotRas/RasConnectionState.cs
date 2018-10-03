@@ -15,7 +15,7 @@
 namespace DotRas
 {
     using System;
-    using DotRas.Internal;
+    using Internal;
 
     /// <summary>
     /// Defines the different states available for a remote access service (RAS) connection.

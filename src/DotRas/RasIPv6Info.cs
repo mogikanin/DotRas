@@ -75,11 +75,11 @@ namespace DotRas
         /// <param name="peerCompressionProtocol">The remote compression protocol.</param>
         internal RasIPv6Info(int errorCode, long localInterfaceIdentifier, long peerInterfaceIdentifier, short localCompressionProtocol, short peerCompressionProtocol)
         {
-            this.ErrorCode = errorCode;
-            this.LocalInterfaceIdentifier = localInterfaceIdentifier;
-            this.PeerInterfaceIdentifier = peerInterfaceIdentifier;
-            this.LocalCompressionProtocol = localCompressionProtocol;
-            this.PeerCompressionProtocol = peerCompressionProtocol;
+            ErrorCode = errorCode;
+            LocalInterfaceIdentifier = localInterfaceIdentifier;
+            PeerInterfaceIdentifier = peerInterfaceIdentifier;
+            LocalCompressionProtocol = localCompressionProtocol;
+            PeerCompressionProtocol = peerCompressionProtocol;
         }
 
         #endregion

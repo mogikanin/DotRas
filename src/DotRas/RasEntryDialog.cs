@@ -14,9 +14,9 @@
 
 namespace DotRas
 {
-    using DotRas.Design;
-    using DotRas.Internal;
-    using DotRas.Properties;
+    using Design;
+    using Internal;
+    using Properties;
     using System;
     using System.ComponentModel;
     using System.Drawing;
@@ -133,10 +133,10 @@ namespace DotRas
         /// </summary>
         public override void Reset()
         {
-            this.EntryName = null;
-            this.NoRename = false;
-            this.Style = RasDialogStyle.Create;
-            this.PhoneBookPath = null;
+            EntryName = null;
+            NoRename = false;
+            Style = RasDialogStyle.Create;
+            PhoneBookPath = null;
 
             base.Reset();
         }
@@ -148,7 +148,7 @@ namespace DotRas
         /// <returns><b>true</b> if the user completed the entry successfully, otherwise <b>false</b>.</returns>
         protected override bool RunDialog(IntPtr hwndOwner)
         {
-            if (string.IsNullOrEmpty(this.PhoneBookPath))
+            if (string.IsNullOrEmpty(PhoneBookPath))
             {
                 ThrowHelper.ThrowArgumentException("PhoneBookPath", Resources.Argument_StringCannotBeNullOrEmpty);
             }
@@ -157,10 +157,10 @@ namespace DotRas
             dlg.size = Marshal.SizeOf(typeof(NativeMethods.RASENTRYDLG));
             dlg.hwndOwner = hwndOwner;
 
-            switch (this.Style)
+            switch (Style)
             {
                 case RasDialogStyle.Edit:
-                    if (this.NoRename)
+                    if (NoRename)
                     {
                         dlg.flags |= NativeMethods.RASEDFLAG.NoRename;
                     }
@@ -172,10 +172,10 @@ namespace DotRas
                     break;
             }
 
-            if (this.Location != Point.Empty)
+            if (Location != Point.Empty)
             {
-                dlg.left = this.Location.X;
-                dlg.top = this.Location.Y;
+                dlg.left = Location.X;
+                dlg.top = Location.Y;
 
                 dlg.flags |= NativeMethods.RASEDFLAG.PositionDlg;
             }
@@ -185,15 +185,15 @@ namespace DotRas
             try
             {
                 string entryName = null;
-                if (!string.IsNullOrEmpty(this.EntryName))
+                if (!string.IsNullOrEmpty(EntryName))
                 {
-                    entryName = this.EntryName;
+                    entryName = EntryName;
                 }
 
-                retval = UnsafeNativeMethods.Instance.EntryDlg(this.PhoneBookPath, entryName, ref dlg);
+                retval = UnsafeNativeMethods.Instance.EntryDlg(PhoneBookPath, entryName, ref dlg);
                 if (retval)
                 {
-                    this.EntryName = dlg.entryName;
+                    EntryName = dlg.entryName;
                 }
             }
             catch (EntryPointNotFoundException)

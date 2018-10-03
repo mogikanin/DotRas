@@ -14,9 +14,9 @@
 
 namespace DotRas
 {
-    using DotRas.Design;
-    using DotRas.Internal;
-    using DotRas.Properties;
+    using Design;
+    using Internal;
+    using Properties;
     using System;
     using System.ComponentModel;
     using System.Drawing;
@@ -102,7 +102,7 @@ namespace DotRas
         /// </summary>
         public RasPhoneBookDialog()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         #endregion
@@ -184,9 +184,9 @@ namespace DotRas
         /// </summary>
         public override void Reset()
         {
-            this.PhoneBookPath = null;
-            this.EntryName = null;
-            this.CallbackId = IntPtr.Zero;
+            PhoneBookPath = null;
+            EntryName = null;
+            CallbackId = IntPtr.Zero;
 
             base.Reset();
         }
@@ -201,15 +201,15 @@ namespace DotRas
             NativeMethods.RASPBDLG dlg = new NativeMethods.RASPBDLG();
             dlg.size = Marshal.SizeOf(typeof(NativeMethods.RASPBDLG));
             dlg.hwndOwner = hwndOwner;
-            dlg.callback = this.rasPhonebookDlgCallback;
-            dlg.callbackId = this.CallbackId;
+            dlg.callback = rasPhonebookDlgCallback;
+            dlg.callbackId = CallbackId;
             dlg.reserved = IntPtr.Zero;
             dlg.reserved2 = IntPtr.Zero;
 
-            if (this.Location != Point.Empty)
+            if (Location != Point.Empty)
             {
-                dlg.left = this.Location.X;
-                dlg.top = this.Location.Y;
+                dlg.left = Location.X;
+                dlg.top = Location.Y;
 
                 dlg.flags |= NativeMethods.RASPBDFLAG.PositionDlg;
             }
@@ -217,10 +217,10 @@ namespace DotRas
             bool retval = false;
             try
             {
-                retval = UnsafeNativeMethods.Instance.PhonebookDlg(this.PhoneBookPath, this.EntryName, ref dlg);
+                retval = UnsafeNativeMethods.Instance.PhonebookDlg(PhoneBookPath, EntryName, ref dlg);
                 if (!retval && dlg.error != NativeMethods.SUCCESS)
                 {
-                    this.OnError(new RasErrorEventArgs(dlg.error, RasHelper.Instance.GetRasErrorString(dlg.error)));
+                    OnError(new RasErrorEventArgs(dlg.error, RasHelper.Instance.GetRasErrorString(dlg.error)));
                 }
             }
             catch (EntryPointNotFoundException)
@@ -243,7 +243,7 @@ namespace DotRas
         {
             if (disposing)
             {
-                this.rasPhonebookDlgCallback = null;
+                rasPhonebookDlgCallback = null;
             }
 
             base.Dispose(disposing);
@@ -254,7 +254,7 @@ namespace DotRas
         /// </summary>
         private void InitializeComponent()
         {
-            this.rasPhonebookDlgCallback = new NativeMethods.RasPBDlgFunc(this.RasPhonebookDlgCallback);
+            rasPhonebookDlgCallback = new NativeMethods.RasPBDlgFunc(RasPhonebookDlgCallback);
         }
 
         /// <summary>
@@ -263,9 +263,9 @@ namespace DotRas
         /// <param name="e">An <see cref="DotRas.RasPhoneBookDialogEventArgs"/> containing event data.</param>
         private void OnAddedEntry(RasPhoneBookDialogEventArgs e)
         {
-            if (this.AddedEntry != null)
+            if (AddedEntry != null)
             {
-                this.AddedEntry(this, e);
+                AddedEntry(this, e);
             }
         }
 
@@ -275,9 +275,9 @@ namespace DotRas
         /// <param name="e">An <see cref="DotRas.RasPhoneBookDialogEventArgs"/> containing event data.</param>
         private void OnDialedEntry(RasPhoneBookDialogEventArgs e)
         {
-            if (this.DialedEntry != null)
+            if (DialedEntry != null)
             {
-                this.DialedEntry(this, e);
+                DialedEntry(this, e);
             }
         }
 
@@ -287,9 +287,9 @@ namespace DotRas
         /// <param name="e">An <see cref="DotRas.RasPhoneBookDialogEventArgs"/> containing event data.</param>
         private void OnChangedEntry(RasPhoneBookDialogEventArgs e)
         {
-            if (this.ChangedEntry != null)
+            if (ChangedEntry != null)
             {
-                this.ChangedEntry(this, e);
+                ChangedEntry(this, e);
             }
         }
 
@@ -299,9 +299,9 @@ namespace DotRas
         /// <param name="e">An <see cref="DotRas.RasPhoneBookDialogEventArgs"/> containing event data.</param>
         private void OnRemovedEntry(RasPhoneBookDialogEventArgs e)
         {
-            if (this.RemovedEntry != null)
+            if (RemovedEntry != null)
             {
-                this.RemovedEntry(this, e);
+                RemovedEntry(this, e);
             }
         }
 
@@ -319,19 +319,19 @@ namespace DotRas
             switch (eventType)
             {
                 case NativeMethods.RASPBDEVENT.AddEntry:
-                    this.OnAddedEntry(e);
+                    OnAddedEntry(e);
                     break;
 
                 case NativeMethods.RASPBDEVENT.DialEntry:
-                    this.OnDialedEntry(e);
+                    OnDialedEntry(e);
                     break;
 
                 case NativeMethods.RASPBDEVENT.EditEntry:
-                    this.OnChangedEntry(e);
+                    OnChangedEntry(e);
                     break;
 
                 case NativeMethods.RASPBDEVENT.RemoveEntry:
-                    this.OnRemovedEntry(e);
+                    OnRemovedEntry(e);
                     break;
             }
         }

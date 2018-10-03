@@ -16,7 +16,7 @@ namespace DotRas
 {
     using System;
     using System.ComponentModel;
-    using DotRas.Internal;
+    using Internal;
 
     /// <summary>
     /// Represents extensible authentication protocol (EAP) options for dialing a remote access service (RAS) entry. This class cannot be inherited.
@@ -42,9 +42,9 @@ namespace DotRas
         /// <param name="preview"><b>true</b> if the user should be prompted for identity information before dialing, otherwise <b>false</b>.</param>
         public RasEapOptions(bool nonInteractive, bool logOn, bool preview)
         {
-            this.NonInteractive = nonInteractive;
-            this.LogOn = logOn;
-            this.Preview = preview;
+            NonInteractive = nonInteractive;
+            LogOn = logOn;
+            Preview = preview;
         }
 
         #endregion

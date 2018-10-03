@@ -20,7 +20,7 @@ namespace DotRas
     using System.ComponentModel.Design.Serialization;
     using System.Globalization;
     using System.Reflection;
-    using DotRas.Internal;
+    using Internal;
 
     /// <summary>
     /// Provides methods to convert a <see cref="RasEapOptions"/> instance from one data type to another. Access this class through the <see cref="System.ComponentModel.TypeDescriptor"/> object.

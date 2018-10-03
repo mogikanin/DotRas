@@ -17,7 +17,7 @@ namespace DotRas
     using System;
     using System.Collections.ObjectModel;
     using System.Diagnostics;
-    using DotRas.Internal;
+    using Internal;
 
     /// <summary>
     /// Represents country or region specific dialing information. This class cannot be inherited.
@@ -64,9 +64,9 @@ namespace DotRas
         /// <param name="name">The name of the country.</param>
         internal RasCountry(int id, int code, string name)
         {
-            this._id = id;
-            this._code = code;
-            this._name = name;
+            _id = id;
+            _code = code;
+            _name = name;
         }
 
         #endregion
@@ -78,7 +78,7 @@ namespace DotRas
         /// </summary>
         public int Id
         {
-            get { return this._id; }
+            get { return _id; }
         }
 
         /// <summary>
@@ -86,7 +86,7 @@ namespace DotRas
         /// </summary>
         public int Code
         {
-            get { return this._code; }
+            get { return _code; }
         }
 
         /// <summary>
@@ -94,7 +94,7 @@ namespace DotRas
         /// </summary>
         public string Name
         {
-            get { return this._name; }
+            get { return _name; }
         }
 
         #endregion
@@ -143,7 +143,7 @@ namespace DotRas
         /// <returns>A <see cref="System.String"/> that represents the current <see cref="DotRas.RasCountry"/>.</returns>
         public override string ToString()
         {
-            return this.Name;
+            return Name;
         }
 
         #endregion

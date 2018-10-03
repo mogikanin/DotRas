@@ -36,13 +36,13 @@ namespace DotRas
         /// <param name="extendedErrorCode">The extended error code (if any) that occurred.</param>
         internal StateChangedEventArgs(IntPtr callbackId, int subEntryId, RasHandle handle, RasConnectionState state, int errorCode, string errorMessage, int extendedErrorCode)
         {
-            this.CallbackId = callbackId;
-            this.SubEntryId = subEntryId;
-            this.Handle = handle;
-            this.State = state;
-            this.ErrorCode = errorCode;
-            this.ErrorMessage = errorMessage;
-            this.ExtendedErrorCode = extendedErrorCode;
+            CallbackId = callbackId;
+            SubEntryId = subEntryId;
+            Handle = handle;
+            State = state;
+            ErrorCode = errorCode;
+            ErrorMessage = errorMessage;
+            ExtendedErrorCode = extendedErrorCode;
         }
 
         #endregion

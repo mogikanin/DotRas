@@ -18,7 +18,7 @@ namespace DotRas.Internal
     using System.Diagnostics;
     using System.Runtime.InteropServices;
     using System.Text;
-    using DotRas.Diagnostics;
+    using Diagnostics;
     using Microsoft.Win32.SafeHandles;
 
     /// <summary>
@@ -87,7 +87,7 @@ namespace DotRas.Internal
 
             try
             {
-                bool ret = SafeNativeMethods.AllocateLocallyUniqueId(pLuid);
+                bool ret = AllocateLocallyUniqueId(pLuid);
                 if (!ret)
                 {
                     retval = Marshal.GetLastWin32Error();
@@ -116,7 +116,7 @@ namespace DotRas.Internal
 
             try
             {
-                result = SafeNativeMethods.RasClearConnectionStatistics(handle);
+                result = RasClearConnectionStatistics(handle);
                 evt.ResultCode = result;
             }
             finally
@@ -143,7 +143,7 @@ namespace DotRas.Internal
 
             try
             {
-                result = SafeNativeMethods.RasClearLinkStatistics(handle, subEntryId);
+                result = RasClearLinkStatistics(handle, subEntryId);
                 evt.ResultCode = result;
             }
             finally
@@ -180,7 +180,7 @@ namespace DotRas.Internal
 
             try
             {
-                result = SafeNativeMethods.RasDial(extensions, phoneBookPath, dialParameters, notifierType, notifier, out handle);
+                result = RasDial(extensions, phoneBookPath, dialParameters, notifierType, notifier, out handle);
 
                 evt.ResultCode = result;
                 evt.Data.Add("handle-OUT", handle);
@@ -207,7 +207,7 @@ namespace DotRas.Internal
 
             try
             {
-                result = SafeNativeMethods.DeleteObject(handle);
+                result = DeleteObject(handle);
                 evt.ResultCode = result ? 1 : 0;
             }
             finally
@@ -243,7 +243,7 @@ namespace DotRas.Internal
 
             try
             {
-                result = SafeNativeMethods.RasEnumConnections(value.Address, ref bufferSize, ref count);
+                result = RasEnumConnections(value.Address, ref bufferSize, ref count);
                 evt.ResultCode = result;
                 evt.Data.Add("bufferSize-OUT", bufferSize);
                 evt.Data.Add("count-OUT", count);
@@ -284,7 +284,7 @@ namespace DotRas.Internal
 
             try
             {
-                result = SafeNativeMethods.RasEnumDevices(value.Address, ref bufferSize, ref count);
+                result = RasEnumDevices(value.Address, ref bufferSize, ref count);
                 evt.ResultCode = result;
                 evt.Data.Add("bufferSize-OUT", bufferSize);
                 evt.Data.Add("count-OUT", count);
@@ -311,7 +311,7 @@ namespace DotRas.Internal
 
             try
             {
-                SafeNativeMethods.RasFreeEapUserIdentity(identity);
+                RasFreeEapUserIdentity(identity);
             }
             finally
             {
@@ -335,7 +335,7 @@ namespace DotRas.Internal
 
             try
             {
-                result = SafeNativeMethods.RasGetConnectionStatistics(handle, statistics);
+                result = RasGetConnectionStatistics(handle, statistics);
                 evt.ResultCode = result;
             }
             finally
@@ -362,7 +362,7 @@ namespace DotRas.Internal
 
             try
             {
-                result = SafeNativeMethods.RasGetConnectStatus(handle, connectionStatus);
+                result = RasGetConnectStatus(handle, connectionStatus);
                 evt.ResultCode = result;
             }
             finally
@@ -389,7 +389,7 @@ namespace DotRas.Internal
 
             try
             {
-                result = SafeNativeMethods.RasGetCountryInfo(countries, ref bufferSize);
+                result = RasGetCountryInfo(countries, ref bufferSize);
                 evt.ResultCode = result;
                 evt.Data.Add("bufferSize-OUT", bufferSize);
             }
@@ -426,7 +426,7 @@ namespace DotRas.Internal
 
             try
             {
-                result = SafeNativeMethods.RasGetCustomAuthData(value.PhoneBookPath, value.EntryName, value.Address, ref bufferSize);
+                result = RasGetCustomAuthData(value.PhoneBookPath, value.EntryName, value.Address, ref bufferSize);
                 evt.ResultCode = result;
                 evt.Data.Add("bufferSize-OUT", bufferSize);
 
@@ -466,7 +466,7 @@ namespace DotRas.Internal
 
             try
             {
-                result = SafeNativeMethods.RasGetEapUserData(value.UserToken, value.PhoneBookPath, value.EntryName, value.Address, ref bufferSize);
+                result = RasGetEapUserData(value.UserToken, value.PhoneBookPath, value.EntryName, value.Address, ref bufferSize);
                 evt.ResultCode = result;
                 evt.Data.Add("bufferSize-OUT", bufferSize);
 
@@ -502,7 +502,7 @@ namespace DotRas.Internal
 
             try
             {
-                result = SafeNativeMethods.RasGetEapUserIdentity(phoneBookPath, entryName, flags, hwnd, ref identity);
+                result = RasGetEapUserIdentity(phoneBookPath, entryName, flags, hwnd, ref identity);
                 evt.ResultCode = result;
                 evt.Data.Add("identity-OUT", identity);
             }
@@ -532,7 +532,7 @@ namespace DotRas.Internal
 
             try
             {
-                ret = SafeNativeMethods.RasGetErrorString(errorCode, result, bufferSize);
+                ret = RasGetErrorString(errorCode, result, bufferSize);
                 evt.ResultCode = ret;
             }
             finally
@@ -561,7 +561,7 @@ namespace DotRas.Internal
 
             try
             {
-                result = SafeNativeMethods.RasGetLinkStatistics(handle, subEntryId, statistics);
+                result = RasGetLinkStatistics(handle, subEntryId, statistics);
                 evt.ResultCode = result;
             }
             finally
@@ -590,7 +590,7 @@ namespace DotRas.Internal
 
             try
             {
-                result = SafeNativeMethods.RasGetNapStatus(handle, state);
+                result = RasGetNapStatus(handle, state);
                 evt.ResultCode = result;
             }
             finally
@@ -623,7 +623,7 @@ namespace DotRas.Internal
 
             try
             {
-                result = SafeNativeMethods.RasGetProjectionInfo(handle, projectionType, projection, ref bufferSize);
+                result = RasGetProjectionInfo(handle, projectionType, projection, ref bufferSize);
                 evt.ResultCode = result;
                 evt.Data.Add("bufferSize-OUT", bufferSize);
             }
@@ -655,7 +655,7 @@ namespace DotRas.Internal
 
             try
             {
-                result = SafeNativeMethods.RasGetProjectionInfoEx(handle, projection, ref bufferSize);
+                result = RasGetProjectionInfoEx(handle, projection, ref bufferSize);
                 evt.ResultCode = result;
                 evt.Data.Add("bufferSize-OUT", bufferSize);
             }
@@ -689,7 +689,7 @@ namespace DotRas.Internal
 
             try
             {
-                ret = SafeNativeMethods.RasGetSubEntryHandle(handle, subEntryId, out result);
+                ret = RasGetSubEntryHandle(handle, subEntryId, out result);
                 evt.ResultCode = ret;
                 evt.Data.Add("result-OUT", result);
             }
@@ -715,7 +715,7 @@ namespace DotRas.Internal
 
             try
             {
-                result = SafeNativeMethods.RasHangUp(handle);
+                result = RasHangUp(handle);
                 evt.ResultCode = result;
             }
             finally
@@ -760,7 +760,7 @@ namespace DotRas.Internal
 
             try
             {
-                result = SafeNativeMethods.CredUIPromptForCredentials(uiInfo, targetName, reserved, authError, userName, userNameMaxChars, password, passwordMaxChars, ref saveChecked, flags);
+                result = CredUIPromptForCredentials(uiInfo, targetName, reserved, authError, userName, userNameMaxChars, password, passwordMaxChars, ref saveChecked, flags);
                 evt.ResultCode = result;
                 evt.Data.Add("saveChecked-OUT", saveChecked);
             }
@@ -792,7 +792,7 @@ namespace DotRas.Internal
 
             try
             {
-                result = SafeNativeMethods.RasConnectionNotification(handle, eventHandle, flags);
+                result = RasConnectionNotification(handle, eventHandle, flags);
                 evt.ResultCode = result;
             }
             finally
@@ -819,7 +819,7 @@ namespace DotRas.Internal
 
             try
             {
-                result = SafeNativeMethods.RasValidateEntryName(phoneBookPath, entryName);
+                result = RasValidateEntryName(phoneBookPath, entryName);
                 evt.ResultCode = result;
             }
             finally

@@ -43,20 +43,20 @@ namespace DotRas
         /// <param name="connectionDuration">The length of time that the connection has been connected.</param>
         internal RasLinkStatistics(long bytesTransmitted, long bytesReceived, long framesTransmitted, long framesReceived, long crcError, long timeoutError, long alignmentError, long hardwareOverrunError, long framingError, long bufferOverrunError, long compressionRatioIn, long compressionRatioOut, long linkSpeed, TimeSpan connectionDuration)
         {
-            this.BytesTransmitted = bytesTransmitted;
-            this.BytesReceived = bytesReceived;
-            this.FramesTransmitted = framesTransmitted;
-            this.FramesReceived = framesReceived;
-            this.CrcError = crcError;
-            this.TimeoutError = timeoutError;
-            this.AlignmentError = alignmentError;
-            this.HardwareOverrunError = hardwareOverrunError;
-            this.FramingError = framingError;
-            this.BufferOverrunError = bufferOverrunError;
-            this.CompressionRatioIn = compressionRatioIn;
-            this.CompressionRatioOut = compressionRatioOut;
-            this.LinkSpeed = linkSpeed;
-            this.ConnectionDuration = connectionDuration;
+            BytesTransmitted = bytesTransmitted;
+            BytesReceived = bytesReceived;
+            FramesTransmitted = framesTransmitted;
+            FramesReceived = framesReceived;
+            CrcError = crcError;
+            TimeoutError = timeoutError;
+            AlignmentError = alignmentError;
+            HardwareOverrunError = hardwareOverrunError;
+            FramingError = framingError;
+            BufferOverrunError = bufferOverrunError;
+            CompressionRatioIn = compressionRatioIn;
+            CompressionRatioOut = compressionRatioOut;
+            LinkSpeed = linkSpeed;
+            ConnectionDuration = connectionDuration;
         }
 
         #endregion

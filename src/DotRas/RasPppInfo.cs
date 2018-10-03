@@ -93,28 +93,28 @@ namespace DotRas
         /// <param name="serverCcpOptions">The compression options on the remote server.</param>
         internal RasPppInfo(int ipv4NegotiationErrorCode, IPAddress ipAddress, IPAddress serverIPAddress, RasIPOptions options, RasIPOptions serverOptions, int ipv6NegotiationErrorCode, ReadOnlyCollection<byte> interfaceIdentifier, ReadOnlyCollection<byte> serverInterfaceIdentifier, bool isBundled, bool isMultilink, RasLcpAuthenticationType authenticationProtocol, RasLcpAuthenticationDataType authenticationData, RasLcpAuthenticationType serverAuthenticationProtocol, RasLcpAuthenticationDataType serverAuthenticationData, int eapTypeId, int serverEapTypeId, RasLcpOptions lcpOptions, RasLcpOptions serverLcpOptions, RasCompressionType ccpCompressionAlgorithm, RasCompressionType serverCcpCompressionAlgorithm, RasCompressionOptions ccpOptions, RasCompressionOptions serverCcpOptions)
         {
-            this.IPv4NegotiationErrorCode = ipv4NegotiationErrorCode;
-            this.IPAddress = ipAddress;
-            this.ServerIPAddress = serverIPAddress;
-            this.Options = options;
-            this.ServerOptions = serverOptions;
-            this.IPv6NegotiationErrorCode = ipv6NegotiationErrorCode;
-            this.InterfaceIdentifier = interfaceIdentifier;
-            this.ServerInterfaceIdentifier = serverInterfaceIdentifier;
-            this.IsBundled = isBundled;
-            this.IsMultilink = isMultilink;
-            this.AuthenticationProtocol = authenticationProtocol;
-            this.AuthenticationData = authenticationData;
-            this.ServerAuthenticationProtocol = serverAuthenticationProtocol;
-            this.ServerAuthenticationData = serverAuthenticationData;
-            this.EapTypeId = eapTypeId;
-            this.ServerEapTypeId = serverEapTypeId;
-            this.LcpOptions = lcpOptions;
-            this.ServerLcpOptions = serverLcpOptions;
-            this.CcpCompressionAlgorithm = ccpCompressionAlgorithm;
-            this.ServerCcpCompressionAlgorithm = serverCcpCompressionAlgorithm;
-            this.CcpOptions = ccpOptions;
-            this.ServerCcpOptions = serverCcpOptions;
+            IPv4NegotiationErrorCode = ipv4NegotiationErrorCode;
+            IPAddress = ipAddress;
+            ServerIPAddress = serverIPAddress;
+            Options = options;
+            ServerOptions = serverOptions;
+            IPv6NegotiationErrorCode = ipv6NegotiationErrorCode;
+            InterfaceIdentifier = interfaceIdentifier;
+            ServerInterfaceIdentifier = serverInterfaceIdentifier;
+            IsBundled = isBundled;
+            IsMultilink = isMultilink;
+            AuthenticationProtocol = authenticationProtocol;
+            AuthenticationData = authenticationData;
+            ServerAuthenticationProtocol = serverAuthenticationProtocol;
+            ServerAuthenticationData = serverAuthenticationData;
+            EapTypeId = eapTypeId;
+            ServerEapTypeId = serverEapTypeId;
+            LcpOptions = lcpOptions;
+            ServerLcpOptions = serverLcpOptions;
+            CcpCompressionAlgorithm = ccpCompressionAlgorithm;
+            ServerCcpCompressionAlgorithm = serverCcpCompressionAlgorithm;
+            CcpOptions = ccpOptions;
+            ServerCcpOptions = serverCcpOptions;
         }
 
         #endregion

@@ -86,7 +86,7 @@ namespace DotRas
         public InvalidHandleException(RasHandle handle, string message, Exception innerException)
             : base(message, innerException)
         {
-            this.Handle = handle;
+            Handle = handle;
         }
 
         /// <summary>
@@ -97,7 +97,7 @@ namespace DotRas
         protected InvalidHandleException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
-            this.Handle = (RasHandle)info.GetValue("Handle", typeof(RasHandle));
+            Handle = (RasHandle)info.GetValue("Handle", typeof(RasHandle));
         }
 
         #endregion
@@ -109,8 +109,8 @@ namespace DotRas
         /// </summary>
         public RasHandle Handle
         {
-            get { return this._handle; }
-            private set { this._handle = value; }
+            get { return _handle; }
+            private set { _handle = value; }
         }
 
         #endregion
@@ -127,7 +127,7 @@ namespace DotRas
         {
             if (info != null)
             {
-                info.AddValue("Handle", this.Handle, typeof(RasHandle));
+                info.AddValue("Handle", Handle, typeof(RasHandle));
             }
 
             base.GetObjectData(info, context);

@@ -24,8 +24,8 @@ namespace DotRas.Internal
     using System.Net.Sockets;
     using System.Runtime.InteropServices;
     using System.Text;
-    using DotRas.Diagnostics;
-    using DotRas.Properties;
+    using Diagnostics;
+    using Properties;
 
     /// <summary>
     /// Contains utility methods for the assembly.
@@ -108,37 +108,37 @@ namespace DotRas.Internal
 
             if (entry != null)
             {
-                options |= (NativeMethods.RASEO)Utilities.SetFlag(entry.Options.UseCountryAndAreaCodes, NativeMethods.RASEO.UseCountryAndAreaCodes);
-                options |= (NativeMethods.RASEO)Utilities.SetFlag(!Utilities.IsIPAddressNullOrAnyAddress(entry.IPAddress), NativeMethods.RASEO.SpecificIPAddress);
-                options |= (NativeMethods.RASEO)Utilities.SetFlag(!Utilities.IsIPAddressNullOrAnyAddress(entry.DnsAddress) || !Utilities.IsIPAddressNullOrAnyAddress(entry.DnsAddressAlt) || !Utilities.IsIPAddressNullOrAnyAddress(entry.WinsAddress) || !Utilities.IsIPAddressNullOrAnyAddress(entry.WinsAddressAlt), NativeMethods.RASEO.SpecificNameServers);
-                options |= (NativeMethods.RASEO)Utilities.SetFlag(entry.Options.IPHeaderCompression, NativeMethods.RASEO.IPHeaderCompression);
-                options |= (NativeMethods.RASEO)Utilities.SetFlag(entry.Options.RemoteDefaultGateway, NativeMethods.RASEO.RemoteDefaultGateway);
-                options |= (NativeMethods.RASEO)Utilities.SetFlag(entry.Options.DisableLcpExtensions, NativeMethods.RASEO.DisableLcpExtensions);
-                options |= (NativeMethods.RASEO)Utilities.SetFlag(entry.Options.TerminalBeforeDial, NativeMethods.RASEO.TerminalBeforeDial);
-                options |= (NativeMethods.RASEO)Utilities.SetFlag(entry.Options.TerminalAfterDial, NativeMethods.RASEO.TerminalAfterDial);
-                options |= (NativeMethods.RASEO)Utilities.SetFlag(entry.Options.ModemLights, NativeMethods.RASEO.ModemLights);
-                options |= (NativeMethods.RASEO)Utilities.SetFlag(entry.Options.SoftwareCompression, NativeMethods.RASEO.SoftwareCompression);
-                options |= (NativeMethods.RASEO)Utilities.SetFlag(entry.Options.RequireEncryptedPassword, NativeMethods.RASEO.RequireEncryptedPassword);
-                options |= (NativeMethods.RASEO)Utilities.SetFlag(entry.Options.RequireMSEncryptedPassword, NativeMethods.RASEO.RequireMSEncryptedPassword);
-                options |= (NativeMethods.RASEO)Utilities.SetFlag(entry.Options.RequireDataEncryption, NativeMethods.RASEO.RequireDataEncryption);
-                options |= (NativeMethods.RASEO)Utilities.SetFlag(entry.Options.NetworkLogOn, NativeMethods.RASEO.NetworkLogOn);
-                options |= (NativeMethods.RASEO)Utilities.SetFlag(entry.Options.UseLogOnCredentials, NativeMethods.RASEO.UseLogOnCredentials);
-                options |= (NativeMethods.RASEO)Utilities.SetFlag(entry.Options.PromoteAlternates, NativeMethods.RASEO.PromoteAlternates);
-                options |= (NativeMethods.RASEO)Utilities.SetFlag(entry.Options.SecureLocalFiles, NativeMethods.RASEO.SecureLocalFiles);
-                options |= (NativeMethods.RASEO)Utilities.SetFlag(entry.Options.RequireEap, NativeMethods.RASEO.RequireEap);
-                options |= (NativeMethods.RASEO)Utilities.SetFlag(entry.Options.RequirePap, NativeMethods.RASEO.RequirePap);
-                options |= (NativeMethods.RASEO)Utilities.SetFlag(entry.Options.RequireSpap, NativeMethods.RASEO.RequireSpap);
-                options |= (NativeMethods.RASEO)Utilities.SetFlag(entry.Options.CustomEncryption, NativeMethods.RASEO.Custom);
-                options |= (NativeMethods.RASEO)Utilities.SetFlag(entry.Options.PreviewPhoneNumber, NativeMethods.RASEO.PreviewPhoneNumber);
-                options |= (NativeMethods.RASEO)Utilities.SetFlag(entry.Options.SharedPhoneNumbers, NativeMethods.RASEO.SharedPhoneNumbers);
-                options |= (NativeMethods.RASEO)Utilities.SetFlag(entry.Options.PreviewUserPassword, NativeMethods.RASEO.PreviewUserPassword);
-                options |= (NativeMethods.RASEO)Utilities.SetFlag(entry.Options.PreviewDomain, NativeMethods.RASEO.PreviewDomain);
-                options |= (NativeMethods.RASEO)Utilities.SetFlag(entry.Options.ShowDialingProgress, NativeMethods.RASEO.ShowDialingProgress);
-                options |= (NativeMethods.RASEO)Utilities.SetFlag(entry.Options.RequireChap, NativeMethods.RASEO.RequireChap);
-                options |= (NativeMethods.RASEO)Utilities.SetFlag(entry.Options.RequireMSChap, NativeMethods.RASEO.RequireMSChap);
-                options |= (NativeMethods.RASEO)Utilities.SetFlag(entry.Options.RequireMSChap2, NativeMethods.RASEO.RequireMSChap2);
-                options |= (NativeMethods.RASEO)Utilities.SetFlag(entry.Options.RequireWin95MSChap, NativeMethods.RASEO.RequireWin95MSChap);
-                options |= (NativeMethods.RASEO)Utilities.SetFlag(entry.Options.CustomScript, NativeMethods.RASEO.CustomScript);
+                options |= (NativeMethods.RASEO)SetFlag(entry.Options.UseCountryAndAreaCodes, NativeMethods.RASEO.UseCountryAndAreaCodes);
+                options |= (NativeMethods.RASEO)SetFlag(!IsIPAddressNullOrAnyAddress(entry.IPAddress), NativeMethods.RASEO.SpecificIPAddress);
+                options |= (NativeMethods.RASEO)SetFlag(!IsIPAddressNullOrAnyAddress(entry.DnsAddress) || !IsIPAddressNullOrAnyAddress(entry.DnsAddressAlt) || !IsIPAddressNullOrAnyAddress(entry.WinsAddress) || !IsIPAddressNullOrAnyAddress(entry.WinsAddressAlt), NativeMethods.RASEO.SpecificNameServers);
+                options |= (NativeMethods.RASEO)SetFlag(entry.Options.IPHeaderCompression, NativeMethods.RASEO.IPHeaderCompression);
+                options |= (NativeMethods.RASEO)SetFlag(entry.Options.RemoteDefaultGateway, NativeMethods.RASEO.RemoteDefaultGateway);
+                options |= (NativeMethods.RASEO)SetFlag(entry.Options.DisableLcpExtensions, NativeMethods.RASEO.DisableLcpExtensions);
+                options |= (NativeMethods.RASEO)SetFlag(entry.Options.TerminalBeforeDial, NativeMethods.RASEO.TerminalBeforeDial);
+                options |= (NativeMethods.RASEO)SetFlag(entry.Options.TerminalAfterDial, NativeMethods.RASEO.TerminalAfterDial);
+                options |= (NativeMethods.RASEO)SetFlag(entry.Options.ModemLights, NativeMethods.RASEO.ModemLights);
+                options |= (NativeMethods.RASEO)SetFlag(entry.Options.SoftwareCompression, NativeMethods.RASEO.SoftwareCompression);
+                options |= (NativeMethods.RASEO)SetFlag(entry.Options.RequireEncryptedPassword, NativeMethods.RASEO.RequireEncryptedPassword);
+                options |= (NativeMethods.RASEO)SetFlag(entry.Options.RequireMSEncryptedPassword, NativeMethods.RASEO.RequireMSEncryptedPassword);
+                options |= (NativeMethods.RASEO)SetFlag(entry.Options.RequireDataEncryption, NativeMethods.RASEO.RequireDataEncryption);
+                options |= (NativeMethods.RASEO)SetFlag(entry.Options.NetworkLogOn, NativeMethods.RASEO.NetworkLogOn);
+                options |= (NativeMethods.RASEO)SetFlag(entry.Options.UseLogOnCredentials, NativeMethods.RASEO.UseLogOnCredentials);
+                options |= (NativeMethods.RASEO)SetFlag(entry.Options.PromoteAlternates, NativeMethods.RASEO.PromoteAlternates);
+                options |= (NativeMethods.RASEO)SetFlag(entry.Options.SecureLocalFiles, NativeMethods.RASEO.SecureLocalFiles);
+                options |= (NativeMethods.RASEO)SetFlag(entry.Options.RequireEap, NativeMethods.RASEO.RequireEap);
+                options |= (NativeMethods.RASEO)SetFlag(entry.Options.RequirePap, NativeMethods.RASEO.RequirePap);
+                options |= (NativeMethods.RASEO)SetFlag(entry.Options.RequireSpap, NativeMethods.RASEO.RequireSpap);
+                options |= (NativeMethods.RASEO)SetFlag(entry.Options.CustomEncryption, NativeMethods.RASEO.Custom);
+                options |= (NativeMethods.RASEO)SetFlag(entry.Options.PreviewPhoneNumber, NativeMethods.RASEO.PreviewPhoneNumber);
+                options |= (NativeMethods.RASEO)SetFlag(entry.Options.SharedPhoneNumbers, NativeMethods.RASEO.SharedPhoneNumbers);
+                options |= (NativeMethods.RASEO)SetFlag(entry.Options.PreviewUserPassword, NativeMethods.RASEO.PreviewUserPassword);
+                options |= (NativeMethods.RASEO)SetFlag(entry.Options.PreviewDomain, NativeMethods.RASEO.PreviewDomain);
+                options |= (NativeMethods.RASEO)SetFlag(entry.Options.ShowDialingProgress, NativeMethods.RASEO.ShowDialingProgress);
+                options |= (NativeMethods.RASEO)SetFlag(entry.Options.RequireChap, NativeMethods.RASEO.RequireChap);
+                options |= (NativeMethods.RASEO)SetFlag(entry.Options.RequireMSChap, NativeMethods.RASEO.RequireMSChap);
+                options |= (NativeMethods.RASEO)SetFlag(entry.Options.RequireMSChap2, NativeMethods.RASEO.RequireMSChap2);
+                options |= (NativeMethods.RASEO)SetFlag(entry.Options.RequireWin95MSChap, NativeMethods.RASEO.RequireWin95MSChap);
+                options |= (NativeMethods.RASEO)SetFlag(entry.Options.CustomScript, NativeMethods.RASEO.CustomScript);
             }
 
             return options;
@@ -155,35 +155,35 @@ namespace DotRas.Internal
             {
                 RasEntryOptions options = entry.Options;
 
-                options.UseCountryAndAreaCodes = Utilities.HasFlag(value, NativeMethods.RASEO.UseCountryAndAreaCodes);
-                options.IPHeaderCompression = Utilities.HasFlag(value, NativeMethods.RASEO.IPHeaderCompression);
-                options.RemoteDefaultGateway = Utilities.HasFlag(value, NativeMethods.RASEO.RemoteDefaultGateway);
-                options.DisableLcpExtensions = Utilities.HasFlag(value, NativeMethods.RASEO.DisableLcpExtensions);
-                options.TerminalBeforeDial = Utilities.HasFlag(value, NativeMethods.RASEO.TerminalBeforeDial);
-                options.TerminalAfterDial = Utilities.HasFlag(value, NativeMethods.RASEO.TerminalAfterDial);
-                options.ModemLights = Utilities.HasFlag(value, NativeMethods.RASEO.ModemLights);
-                options.SoftwareCompression = Utilities.HasFlag(value, NativeMethods.RASEO.SoftwareCompression);
-                options.RequireEncryptedPassword = Utilities.HasFlag(value, NativeMethods.RASEO.RequireEncryptedPassword);
-                options.RequireMSEncryptedPassword = Utilities.HasFlag(value, NativeMethods.RASEO.RequireMSEncryptedPassword);
-                options.RequireDataEncryption = Utilities.HasFlag(value, NativeMethods.RASEO.RequireDataEncryption);
-                options.NetworkLogOn = Utilities.HasFlag(value, NativeMethods.RASEO.NetworkLogOn);
-                options.UseLogOnCredentials = Utilities.HasFlag(value, NativeMethods.RASEO.UseLogOnCredentials);
-                options.PromoteAlternates = Utilities.HasFlag(value, NativeMethods.RASEO.PromoteAlternates);
-                options.SecureLocalFiles = Utilities.HasFlag(value, NativeMethods.RASEO.SecureLocalFiles);
-                options.RequireEap = Utilities.HasFlag(value, NativeMethods.RASEO.RequireEap);
-                options.RequirePap = Utilities.HasFlag(value, NativeMethods.RASEO.RequirePap);
-                options.RequireSpap = Utilities.HasFlag(value, NativeMethods.RASEO.RequireSpap);
-                options.CustomEncryption = Utilities.HasFlag(value, NativeMethods.RASEO.Custom);
-                options.PreviewPhoneNumber = Utilities.HasFlag(value, NativeMethods.RASEO.PreviewPhoneNumber);
-                options.SharedPhoneNumbers = Utilities.HasFlag(value, NativeMethods.RASEO.SharedPhoneNumbers);
-                options.PreviewUserPassword = Utilities.HasFlag(value, NativeMethods.RASEO.PreviewUserPassword);
-                options.PreviewDomain = Utilities.HasFlag(value, NativeMethods.RASEO.PreviewDomain);
-                options.ShowDialingProgress = Utilities.HasFlag(value, NativeMethods.RASEO.ShowDialingProgress);
-                options.RequireChap = Utilities.HasFlag(value, NativeMethods.RASEO.RequireChap);
-                options.RequireMSChap = Utilities.HasFlag(value, NativeMethods.RASEO.RequireMSChap);
-                options.RequireMSChap2 = Utilities.HasFlag(value, NativeMethods.RASEO.RequireMSChap2);
-                options.RequireWin95MSChap = Utilities.HasFlag(value, NativeMethods.RASEO.RequireWin95MSChap);
-                options.CustomScript = Utilities.HasFlag(value, NativeMethods.RASEO.CustomScript);
+                options.UseCountryAndAreaCodes = HasFlag(value, NativeMethods.RASEO.UseCountryAndAreaCodes);
+                options.IPHeaderCompression = HasFlag(value, NativeMethods.RASEO.IPHeaderCompression);
+                options.RemoteDefaultGateway = HasFlag(value, NativeMethods.RASEO.RemoteDefaultGateway);
+                options.DisableLcpExtensions = HasFlag(value, NativeMethods.RASEO.DisableLcpExtensions);
+                options.TerminalBeforeDial = HasFlag(value, NativeMethods.RASEO.TerminalBeforeDial);
+                options.TerminalAfterDial = HasFlag(value, NativeMethods.RASEO.TerminalAfterDial);
+                options.ModemLights = HasFlag(value, NativeMethods.RASEO.ModemLights);
+                options.SoftwareCompression = HasFlag(value, NativeMethods.RASEO.SoftwareCompression);
+                options.RequireEncryptedPassword = HasFlag(value, NativeMethods.RASEO.RequireEncryptedPassword);
+                options.RequireMSEncryptedPassword = HasFlag(value, NativeMethods.RASEO.RequireMSEncryptedPassword);
+                options.RequireDataEncryption = HasFlag(value, NativeMethods.RASEO.RequireDataEncryption);
+                options.NetworkLogOn = HasFlag(value, NativeMethods.RASEO.NetworkLogOn);
+                options.UseLogOnCredentials = HasFlag(value, NativeMethods.RASEO.UseLogOnCredentials);
+                options.PromoteAlternates = HasFlag(value, NativeMethods.RASEO.PromoteAlternates);
+                options.SecureLocalFiles = HasFlag(value, NativeMethods.RASEO.SecureLocalFiles);
+                options.RequireEap = HasFlag(value, NativeMethods.RASEO.RequireEap);
+                options.RequirePap = HasFlag(value, NativeMethods.RASEO.RequirePap);
+                options.RequireSpap = HasFlag(value, NativeMethods.RASEO.RequireSpap);
+                options.CustomEncryption = HasFlag(value, NativeMethods.RASEO.Custom);
+                options.PreviewPhoneNumber = HasFlag(value, NativeMethods.RASEO.PreviewPhoneNumber);
+                options.SharedPhoneNumbers = HasFlag(value, NativeMethods.RASEO.SharedPhoneNumbers);
+                options.PreviewUserPassword = HasFlag(value, NativeMethods.RASEO.PreviewUserPassword);
+                options.PreviewDomain = HasFlag(value, NativeMethods.RASEO.PreviewDomain);
+                options.ShowDialingProgress = HasFlag(value, NativeMethods.RASEO.ShowDialingProgress);
+                options.RequireChap = HasFlag(value, NativeMethods.RASEO.RequireChap);
+                options.RequireMSChap = HasFlag(value, NativeMethods.RASEO.RequireMSChap);
+                options.RequireMSChap2 = HasFlag(value, NativeMethods.RASEO.RequireMSChap2);
+                options.RequireWin95MSChap = HasFlag(value, NativeMethods.RASEO.RequireWin95MSChap);
+                options.CustomScript = HasFlag(value, NativeMethods.RASEO.CustomScript);
             }
         }
 
@@ -200,10 +200,10 @@ namespace DotRas.Internal
             {
                 RasConnectionOptions options = connection.ConnectionOptions;
 
-                options.AllUsers = Utilities.HasFlag(value, NativeMethods.RASCF.AllUsers);
-                options.GlobalCredentials = Utilities.HasFlag(value, NativeMethods.RASCF.GlobalCredentials);
-                options.OwnerKnown = Utilities.HasFlag(value, NativeMethods.RASCF.OwnerKnown);
-                options.OwnerMatch = Utilities.HasFlag(value, NativeMethods.RASCF.OwnerMatch);
+                options.AllUsers = HasFlag(value, NativeMethods.RASCF.AllUsers);
+                options.GlobalCredentials = HasFlag(value, NativeMethods.RASCF.GlobalCredentials);
+                options.OwnerKnown = HasFlag(value, NativeMethods.RASCF.OwnerKnown);
+                options.OwnerMatch = HasFlag(value, NativeMethods.RASCF.OwnerMatch);
             }
         }
 
@@ -221,13 +221,13 @@ namespace DotRas.Internal
                 RasNetworkProtocols protocols = entry.NetworkProtocols;
 
 #pragma warning disable 0618
-                protocols.NetBeui = Utilities.HasFlag(value, NativeMethods.RASNP.NetBeui);
+                protocols.NetBeui = HasFlag(value, NativeMethods.RASNP.NetBeui);
 #pragma warning restore 0618
-                protocols.Ipx = Utilities.HasFlag(value, NativeMethods.RASNP.Ipx);
-                protocols.IP = Utilities.HasFlag(value, NativeMethods.RASNP.IP);
+                protocols.Ipx = HasFlag(value, NativeMethods.RASNP.Ipx);
+                protocols.IP = HasFlag(value, NativeMethods.RASNP.IP);
 #if (WIN2K8 || WIN7 || WIN8)
 
-                protocols.IPv6 = Utilities.HasFlag(value, NativeMethods.RASNP.IPv6);
+                protocols.IPv6 = HasFlag(value, NativeMethods.RASNP.IPv6);
 
 #endif
             }
@@ -245,13 +245,13 @@ namespace DotRas.Internal
             if (value != null)
             {
 #pragma warning disable 0618
-                protocols |= (NativeMethods.RASNP)Utilities.SetFlag(value.NetBeui, NativeMethods.RASNP.NetBeui);
+                protocols |= (NativeMethods.RASNP)SetFlag(value.NetBeui, NativeMethods.RASNP.NetBeui);
 #pragma warning restore 0618
-                protocols |= (NativeMethods.RASNP)Utilities.SetFlag(value.Ipx, NativeMethods.RASNP.Ipx);
-                protocols |= (NativeMethods.RASNP)Utilities.SetFlag(value.IP, NativeMethods.RASNP.IP);
+                protocols |= (NativeMethods.RASNP)SetFlag(value.Ipx, NativeMethods.RASNP.Ipx);
+                protocols |= (NativeMethods.RASNP)SetFlag(value.IP, NativeMethods.RASNP.IP);
 #if (WIN2K8 || WIN7 || WIN8)
 
-                protocols |= (NativeMethods.RASNP)Utilities.SetFlag(value.IPv6, NativeMethods.RASNP.IPv6);
+                protocols |= (NativeMethods.RASNP)SetFlag(value.IPv6, NativeMethods.RASNP.IPv6);
 
 #endif
             }
@@ -276,36 +276,36 @@ namespace DotRas.Internal
 
             NativeMethods.RASEO2 options = NativeMethods.RASEO2.None;
 
-            options |= (NativeMethods.RASEO2)Utilities.SetFlag(entry.Options.SecureFileAndPrint, NativeMethods.RASEO2.SecureFileAndPrint);
-            options |= (NativeMethods.RASEO2)Utilities.SetFlag(entry.Options.SecureClientForMSNet, NativeMethods.RASEO2.SecureClientForMSNet);
-            options |= (NativeMethods.RASEO2)Utilities.SetFlag(entry.Options.DoNotNegotiateMultilink, NativeMethods.RASEO2.DoNotNegotiateMultilink);
-            options |= (NativeMethods.RASEO2)Utilities.SetFlag(entry.Options.DoNotUseRasCredentials, NativeMethods.RASEO2.DoNotUseRasCredentials);
-            options |= (NativeMethods.RASEO2)Utilities.SetFlag(entry.Options.UsePreSharedKey, NativeMethods.RASEO2.UsePreSharedKey);
-            options |= (NativeMethods.RASEO2)Utilities.SetFlag(entry.Options.Internet, NativeMethods.RASEO2.Internet);
-            options |= (NativeMethods.RASEO2)Utilities.SetFlag(entry.Options.DisableNbtOverIP, NativeMethods.RASEO2.DisableNbtOverIP);
-            options |= (NativeMethods.RASEO2)Utilities.SetFlag(entry.Options.UseGlobalDeviceSettings, NativeMethods.RASEO2.UseGlobalDeviceSettings);
-            options |= (NativeMethods.RASEO2)Utilities.SetFlag(entry.Options.ReconnectIfDropped, NativeMethods.RASEO2.ReconnectIfDropped);
-            options |= (NativeMethods.RASEO2)Utilities.SetFlag(entry.Options.SharePhoneNumbers, NativeMethods.RASEO2.SharePhoneNumbers);
+            options |= (NativeMethods.RASEO2)SetFlag(entry.Options.SecureFileAndPrint, NativeMethods.RASEO2.SecureFileAndPrint);
+            options |= (NativeMethods.RASEO2)SetFlag(entry.Options.SecureClientForMSNet, NativeMethods.RASEO2.SecureClientForMSNet);
+            options |= (NativeMethods.RASEO2)SetFlag(entry.Options.DoNotNegotiateMultilink, NativeMethods.RASEO2.DoNotNegotiateMultilink);
+            options |= (NativeMethods.RASEO2)SetFlag(entry.Options.DoNotUseRasCredentials, NativeMethods.RASEO2.DoNotUseRasCredentials);
+            options |= (NativeMethods.RASEO2)SetFlag(entry.Options.UsePreSharedKey, NativeMethods.RASEO2.UsePreSharedKey);
+            options |= (NativeMethods.RASEO2)SetFlag(entry.Options.Internet, NativeMethods.RASEO2.Internet);
+            options |= (NativeMethods.RASEO2)SetFlag(entry.Options.DisableNbtOverIP, NativeMethods.RASEO2.DisableNbtOverIP);
+            options |= (NativeMethods.RASEO2)SetFlag(entry.Options.UseGlobalDeviceSettings, NativeMethods.RASEO2.UseGlobalDeviceSettings);
+            options |= (NativeMethods.RASEO2)SetFlag(entry.Options.ReconnectIfDropped, NativeMethods.RASEO2.ReconnectIfDropped);
+            options |= (NativeMethods.RASEO2)SetFlag(entry.Options.SharePhoneNumbers, NativeMethods.RASEO2.SharePhoneNumbers);
 
 #if (WIN2K8 || WIN7 || WIN8)
 
-            options |= (NativeMethods.RASEO2)Utilities.SetFlag(entry.Options.SecureRoutingCompartment, NativeMethods.RASEO2.SecureRoutingCompartment);
-            options |= (NativeMethods.RASEO2)Utilities.SetFlag(entry.Options.UseTypicalSettings, NativeMethods.RASEO2.UseTypicalSettings);
-            options |= (NativeMethods.RASEO2)Utilities.SetFlag(!Utilities.IsIPAddressNullOrAnyAddress(entry.IPv6DnsAddress) || !Utilities.IsIPAddressNullOrAnyAddress(entry.IPv6DnsAddressAlt), NativeMethods.RASEO2.IPv6SpecificNameServer);
-            options |= (NativeMethods.RASEO2)Utilities.SetFlag(entry.Options.IPv6RemoteDefaultGateway, NativeMethods.RASEO2.IPv6RemoteDefaultGateway);
-            options |= (NativeMethods.RASEO2)Utilities.SetFlag(entry.Options.RegisterIPWithDns, NativeMethods.RASEO2.RegisterIPWithDns);
-            options |= (NativeMethods.RASEO2)Utilities.SetFlag(entry.Options.UseDnsSuffixForRegistration, NativeMethods.RASEO2.UseDnsSuffixForRegistration);
-            options |= (NativeMethods.RASEO2)Utilities.SetFlag(entry.IPv4InterfaceMetric != 0, NativeMethods.RASEO2.IPv4ExplicitMetric);
-            options |= (NativeMethods.RASEO2)Utilities.SetFlag(entry.IPv6InterfaceMetric != 0, NativeMethods.RASEO2.IPv6ExplicitMetric);
-            options |= (NativeMethods.RASEO2)Utilities.SetFlag(entry.Options.DisableIkeNameEkuCheck, NativeMethods.RASEO2.DisableIkeNameEkuCheck);
+            options |= (NativeMethods.RASEO2)SetFlag(entry.Options.SecureRoutingCompartment, NativeMethods.RASEO2.SecureRoutingCompartment);
+            options |= (NativeMethods.RASEO2)SetFlag(entry.Options.UseTypicalSettings, NativeMethods.RASEO2.UseTypicalSettings);
+            options |= (NativeMethods.RASEO2)SetFlag(!IsIPAddressNullOrAnyAddress(entry.IPv6DnsAddress) || !IsIPAddressNullOrAnyAddress(entry.IPv6DnsAddressAlt), NativeMethods.RASEO2.IPv6SpecificNameServer);
+            options |= (NativeMethods.RASEO2)SetFlag(entry.Options.IPv6RemoteDefaultGateway, NativeMethods.RASEO2.IPv6RemoteDefaultGateway);
+            options |= (NativeMethods.RASEO2)SetFlag(entry.Options.RegisterIPWithDns, NativeMethods.RASEO2.RegisterIPWithDns);
+            options |= (NativeMethods.RASEO2)SetFlag(entry.Options.UseDnsSuffixForRegistration, NativeMethods.RASEO2.UseDnsSuffixForRegistration);
+            options |= (NativeMethods.RASEO2)SetFlag(entry.IPv4InterfaceMetric != 0, NativeMethods.RASEO2.IPv4ExplicitMetric);
+            options |= (NativeMethods.RASEO2)SetFlag(entry.IPv6InterfaceMetric != 0, NativeMethods.RASEO2.IPv6ExplicitMetric);
+            options |= (NativeMethods.RASEO2)SetFlag(entry.Options.DisableIkeNameEkuCheck, NativeMethods.RASEO2.DisableIkeNameEkuCheck);
 
 #endif
 #if (WIN7 || WIN8)
 
-            options |= (NativeMethods.RASEO2)Utilities.SetFlag(entry.Options.DisableClassBasedStaticRoute, NativeMethods.RASEO2.DisableClassBasedStaticRoute);
-            options |= (NativeMethods.RASEO2)Utilities.SetFlag(!Utilities.IsIPAddressNullOrAnyAddress(entry.IPv6Address), NativeMethods.RASEO2.IPv6SpecificAddress);
-            options |= (NativeMethods.RASEO2)Utilities.SetFlag(entry.Options.DisableMobility, NativeMethods.RASEO2.DisableMobility);
-            options |= (NativeMethods.RASEO2)Utilities.SetFlag(entry.Options.RequireMachineCertificates, NativeMethods.RASEO2.RequireMachineCertificates);
+            options |= (NativeMethods.RASEO2)SetFlag(entry.Options.DisableClassBasedStaticRoute, NativeMethods.RASEO2.DisableClassBasedStaticRoute);
+            options |= (NativeMethods.RASEO2)SetFlag(!IsIPAddressNullOrAnyAddress(entry.IPv6Address), NativeMethods.RASEO2.IPv6SpecificAddress);
+            options |= (NativeMethods.RASEO2)SetFlag(entry.Options.DisableMobility, NativeMethods.RASEO2.DisableMobility);
+            options |= (NativeMethods.RASEO2)SetFlag(entry.Options.RequireMachineCertificates, NativeMethods.RASEO2.RequireMachineCertificates);
 
 #endif
 #if (WIN8)
@@ -334,32 +334,32 @@ namespace DotRas.Internal
 
             RasEntryOptions options = entry.Options;
 
-            options.SecureFileAndPrint = Utilities.HasFlag(value, NativeMethods.RASEO2.SecureFileAndPrint);
-            options.SecureClientForMSNet = Utilities.HasFlag(value, NativeMethods.RASEO2.SecureClientForMSNet);
-            options.DoNotNegotiateMultilink = Utilities.HasFlag(value, NativeMethods.RASEO2.DoNotNegotiateMultilink);
-            options.DoNotUseRasCredentials = Utilities.HasFlag(value, NativeMethods.RASEO2.DoNotUseRasCredentials);
-            options.UsePreSharedKey = Utilities.HasFlag(value, NativeMethods.RASEO2.UsePreSharedKey);
-            options.Internet = Utilities.HasFlag(value, NativeMethods.RASEO2.Internet);
-            options.DisableNbtOverIP = Utilities.HasFlag(value, NativeMethods.RASEO2.DisableNbtOverIP);
-            options.UseGlobalDeviceSettings = Utilities.HasFlag(value, NativeMethods.RASEO2.UseGlobalDeviceSettings);
-            options.ReconnectIfDropped = Utilities.HasFlag(value, NativeMethods.RASEO2.ReconnectIfDropped);
-            options.SharePhoneNumbers = Utilities.HasFlag(value, NativeMethods.RASEO2.SharePhoneNumbers);
+            options.SecureFileAndPrint = HasFlag(value, NativeMethods.RASEO2.SecureFileAndPrint);
+            options.SecureClientForMSNet = HasFlag(value, NativeMethods.RASEO2.SecureClientForMSNet);
+            options.DoNotNegotiateMultilink = HasFlag(value, NativeMethods.RASEO2.DoNotNegotiateMultilink);
+            options.DoNotUseRasCredentials = HasFlag(value, NativeMethods.RASEO2.DoNotUseRasCredentials);
+            options.UsePreSharedKey = HasFlag(value, NativeMethods.RASEO2.UsePreSharedKey);
+            options.Internet = HasFlag(value, NativeMethods.RASEO2.Internet);
+            options.DisableNbtOverIP = HasFlag(value, NativeMethods.RASEO2.DisableNbtOverIP);
+            options.UseGlobalDeviceSettings = HasFlag(value, NativeMethods.RASEO2.UseGlobalDeviceSettings);
+            options.ReconnectIfDropped = HasFlag(value, NativeMethods.RASEO2.ReconnectIfDropped);
+            options.SharePhoneNumbers = HasFlag(value, NativeMethods.RASEO2.SharePhoneNumbers);
 
 #if (WIN2K8 || WIN7 || WIN8)
 
-            options.SecureRoutingCompartment = Utilities.HasFlag(value, NativeMethods.RASEO2.SecureRoutingCompartment);
-            options.UseTypicalSettings = Utilities.HasFlag(value, NativeMethods.RASEO2.UseTypicalSettings);
-            options.IPv6RemoteDefaultGateway = Utilities.HasFlag(value, NativeMethods.RASEO2.IPv6RemoteDefaultGateway);
-            options.RegisterIPWithDns = Utilities.HasFlag(value, NativeMethods.RASEO2.RegisterIPWithDns);
-            options.UseDnsSuffixForRegistration = Utilities.HasFlag(value, NativeMethods.RASEO2.UseDnsSuffixForRegistration);
-            options.DisableIkeNameEkuCheck = Utilities.HasFlag(value, NativeMethods.RASEO2.DisableIkeNameEkuCheck);
+            options.SecureRoutingCompartment = HasFlag(value, NativeMethods.RASEO2.SecureRoutingCompartment);
+            options.UseTypicalSettings = HasFlag(value, NativeMethods.RASEO2.UseTypicalSettings);
+            options.IPv6RemoteDefaultGateway = HasFlag(value, NativeMethods.RASEO2.IPv6RemoteDefaultGateway);
+            options.RegisterIPWithDns = HasFlag(value, NativeMethods.RASEO2.RegisterIPWithDns);
+            options.UseDnsSuffixForRegistration = HasFlag(value, NativeMethods.RASEO2.UseDnsSuffixForRegistration);
+            options.DisableIkeNameEkuCheck = HasFlag(value, NativeMethods.RASEO2.DisableIkeNameEkuCheck);
 
 #endif
 #if (WIN7 || WIN8)
 
-            options.DisableClassBasedStaticRoute = Utilities.HasFlag(value, NativeMethods.RASEO2.DisableClassBasedStaticRoute);
-            options.DisableMobility = Utilities.HasFlag(value, NativeMethods.RASEO2.DisableMobility);
-            options.RequireMachineCertificates = Utilities.HasFlag(value, NativeMethods.RASEO2.RequireMachineCertificates);
+            options.DisableClassBasedStaticRoute = HasFlag(value, NativeMethods.RASEO2.DisableClassBasedStaticRoute);
+            options.DisableMobility = HasFlag(value, NativeMethods.RASEO2.DisableMobility);
+            options.RequireMachineCertificates = HasFlag(value, NativeMethods.RASEO2.RequireMachineCertificates);
 
 #endif
 #if (WIN8)
@@ -385,9 +385,9 @@ namespace DotRas.Internal
         {
             if (options != null)
             {
-                options.MobileIke = Utilities.HasFlag(value, NativeMethods.RASIKEV2.MobileIke);
-                options.ClientBehindNat = Utilities.HasFlag(value, NativeMethods.RASIKEV2.ClientBehindNat);
-                options.ServerBehindNat = Utilities.HasFlag(value, NativeMethods.RASIKEV2.ServerBehindNat);
+                options.MobileIke = HasFlag(value, NativeMethods.RASIKEV2.MobileIke);
+                options.ClientBehindNat = HasFlag(value, NativeMethods.RASIKEV2.ClientBehindNat);
+                options.ServerBehindNat = HasFlag(value, NativeMethods.RASIKEV2.ServerBehindNat);
             }
         }
 
@@ -773,7 +773,7 @@ namespace DotRas.Internal
                 {
                     IntPtr current = new IntPtr(ptr.ToInt64() + (index * size));
 
-                    NativeMethods.RASIPADDR address = Utilities.PtrToStructure<NativeMethods.RASIPADDR>(current);
+                    NativeMethods.RASIPADDR address = PtrToStructure<NativeMethods.RASIPADDR>(current);
                     retval.Add(new IPAddress(address.addr));
                 }
             }
@@ -799,7 +799,7 @@ namespace DotRas.Internal
                 {
                     IntPtr current = new IntPtr(ptr.ToInt64() + (index * size));
 
-                    NativeMethods.RASIPV6ADDR address = Utilities.PtrToStructure<NativeMethods.RASIPV6ADDR>(current);
+                    NativeMethods.RASIPV6ADDR address = PtrToStructure<NativeMethods.RASIPV6ADDR>(current);
                     retval.Add(new IPAddress(address.addr));
                 }
             }

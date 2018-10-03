@@ -15,8 +15,8 @@
 namespace DotRas
 {
     using System;
-    using DotRas.Internal;
-    using DotRas.Properties;
+    using Internal;
+    using Properties;
 
     /// <summary>
     /// Validates the format of an entry name for a phone book. This class cannot be inherited.
@@ -132,20 +132,20 @@ namespace DotRas
         {
             try
             {
-                int errorCode = SafeNativeMethods.Instance.ValidateEntryName(this.PhoneBookPath, this.EntryName);
+                int errorCode = SafeNativeMethods.Instance.ValidateEntryName(PhoneBookPath, EntryName);
 
-                if (errorCode == NativeMethods.SUCCESS || (this.AllowExistingEntries && errorCode == NativeMethods.ERROR_ALREADY_EXISTS) || (this.AllowNonExistentPhoneBook && errorCode == NativeMethods.ERROR_CANNOT_OPEN_PHONEBOOK))
+                if (errorCode == NativeMethods.SUCCESS || (AllowExistingEntries && errorCode == NativeMethods.ERROR_ALREADY_EXISTS) || (AllowNonExistentPhoneBook && errorCode == NativeMethods.ERROR_CANNOT_OPEN_PHONEBOOK))
                 {
-                    this.ErrorCode = NativeMethods.SUCCESS;
-                    this.ErrorMessage = null;
+                    ErrorCode = NativeMethods.SUCCESS;
+                    ErrorMessage = null;
                 }
                 else
                 {
-                    this.ErrorCode = errorCode;
-                    this.ErrorMessage = RasHelper.Instance.GetRasErrorString(errorCode);
+                    ErrorCode = errorCode;
+                    ErrorMessage = RasHelper.Instance.GetRasErrorString(errorCode);
                 }
 
-                this.IsValid = this.ErrorCode == NativeMethods.SUCCESS;
+                IsValid = ErrorCode == NativeMethods.SUCCESS;
             }
             catch (EntryPointNotFoundException)
             {

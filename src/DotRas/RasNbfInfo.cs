@@ -62,11 +62,11 @@ namespace DotRas
         /// <param name="lana">The NetBIOS network adapter identifier on which the remote access connection was established.</param>
         internal RasNbfInfo(int errorCode, int netBiosErrorCode, string netBiosErrorMessage, string workstationName, byte lana)
         {
-            this.ErrorCode = errorCode;
-            this.NetBiosErrorCode = netBiosErrorCode;
-            this.NetBiosErrorMessage = netBiosErrorMessage;
-            this.WorkstationName = workstationName;
-            this.Lana = lana;
+            ErrorCode = errorCode;
+            NetBiosErrorCode = netBiosErrorCode;
+            NetBiosErrorMessage = netBiosErrorMessage;
+            WorkstationName = workstationName;
+            Lana = lana;
         }
 
         #endregion

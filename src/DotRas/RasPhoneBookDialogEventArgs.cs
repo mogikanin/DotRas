@@ -31,9 +31,9 @@ namespace DotRas
         /// <param name="data">A pointer to an additional buffer of data whose meaning depends on the event which was raised.</param>
         public RasPhoneBookDialogEventArgs(IntPtr callbackId, string text, IntPtr data)
         {
-            this.CallbackId = callbackId;
-            this.Text = text;
-            this.Data = data;
+            CallbackId = callbackId;
+            Text = text;
+            Data = data;
         }
 
         #endregion

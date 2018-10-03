@@ -18,8 +18,8 @@ namespace DotRas
     using System.Collections.ObjectModel;
     using System.Diagnostics;
     using System.Net;
-    using DotRas.Internal;
-    using DotRas.Properties;
+    using Internal;
+    using Properties;
 
     /// <summary>
     /// Represents a remote access connection. This class cannot be inherited.
@@ -143,17 +143,17 @@ namespace DotRas
         {
             get
             {
-                if (this.connectionOptions == null)
+                if (connectionOptions == null)
                 {
-                    this.connectionOptions = new RasConnectionOptions();
+                    connectionOptions = new RasConnectionOptions();
                 }
 
-                return this.connectionOptions;
+                return connectionOptions;
             }
 
             internal set
             {
-                this.connectionOptions = value;
+                connectionOptions = value;
             }
         }
 
@@ -337,7 +337,7 @@ namespace DotRas
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate", Justification = "This should not be a property.")]
         public RasConnectionStatus GetConnectionStatus()
         {
-            return RasHelper.Instance.GetConnectionStatus(this.Handle);
+            return RasHelper.Instance.GetConnectionStatus(Handle);
         }
 
         /// <summary>
@@ -347,7 +347,7 @@ namespace DotRas
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate", Justification = "This should not be a property.")]
         public RasLinkStatistics GetConnectionStatistics()
         {
-            return RasHelper.Instance.GetConnectionStatistics(this.Handle);
+            return RasHelper.Instance.GetConnectionStatistics(Handle);
         }
 
         /// <summary>
@@ -356,7 +356,7 @@ namespace DotRas
         /// <returns><b>true</b> if the function succeeds, otherwise <b>false</b>.</returns>
         public bool ClearConnectionStatistics()
         {
-            return RasHelper.Instance.ClearConnectionStatistics(this.Handle);
+            return RasHelper.Instance.ClearConnectionStatistics(Handle);
         }
 
         /// <summary>
@@ -365,7 +365,7 @@ namespace DotRas
         /// <returns><b>true</b> if the function succeeds, otherwise <b>false</b>.</returns>
         public bool ClearLinkStatistics()
         {
-            return RasHelper.Instance.ClearLinkStatistics(this.Handle, this.SubEntryId);
+            return RasHelper.Instance.ClearLinkStatistics(Handle, SubEntryId);
         }
 
         /// <summary>
@@ -375,7 +375,7 @@ namespace DotRas
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate", Justification = "This should not be a property.")]
         public RasLinkStatistics GetLinkStatistics()
         {
-            return RasHelper.Instance.GetLinkStatistics(this.Handle, this.SubEntryId);
+            return RasHelper.Instance.GetLinkStatistics(Handle, SubEntryId);
         }
 
 #if (WIN2K8 || WIN7 || WIN8)
@@ -388,7 +388,7 @@ namespace DotRas
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate", Justification = "This should not be a property.")]
         public RasNapStatus GetNapStatus()
         {
-            return RasHelper.Instance.GetNapStatus(this.Handle);
+            return RasHelper.Instance.GetNapStatus(Handle);
         }
 
 #endif
@@ -408,7 +408,7 @@ namespace DotRas
             if (projectionType == RasProjectionType.Ppp || projectionType == RasProjectionType.IkeV2)
             {
                 // The projection type requested is for the new projection types, pull it from the new extended method.
-                object retval = RasHelper.Instance.GetProjectionInfoEx(this.Handle);
+                object retval = RasHelper.Instance.GetProjectionInfoEx(Handle);
                 if (retval != null && ((projectionType == RasProjectionType.Ppp && (!(retval is RasPppInfo))) || (projectionType == RasProjectionType.IkeV2 && (!(retval is RasIkeV2Info)))))
                 {
                     retval = null;
@@ -460,7 +460,7 @@ namespace DotRas
 #endif
             }
 
-            return RasHelper.Instance.GetProjectionInfo(this.Handle, projection);
+            return RasHelper.Instance.GetProjectionInfo(Handle, projection);
         }
 
         /// <summary>
@@ -476,7 +476,7 @@ namespace DotRas
                 ThrowHelper.ThrowArgumentException("subEntryId", Resources.Argument_ValueCannotBeLessThanOrEqualToZero);
             }
 
-            return RasHelper.Instance.GetSubEntryHandle(this.Handle, subEntryId);
+            return RasHelper.Instance.GetSubEntryHandle(Handle, subEntryId);
         }
 
         /// <summary>
@@ -484,7 +484,7 @@ namespace DotRas
         /// </summary>
         public void HangUp()
         {
-            this.HangUp(NativeMethods.HangUpPollingInterval, true);
+            HangUp(NativeMethods.HangUpPollingInterval, true);
         }
 
         /// <summary>
@@ -493,7 +493,7 @@ namespace DotRas
         /// <param name="pollingInterval">The length of time, in milliseconds, the thread must be paused while polling whether the connection has terminated.</param>
         public void HangUp(int pollingInterval)
         {
-            this.HangUp(pollingInterval, true);
+            HangUp(pollingInterval, true);
         }
 
         /// <summary>
@@ -502,7 +502,7 @@ namespace DotRas
         /// <param name="closeAllReferences"><b>true</b> to disconnect all connection references, otherwise <b>false</b>.</param>
         public void HangUp(bool closeAllReferences)
         {
-            this.HangUp(NativeMethods.HangUpPollingInterval, closeAllReferences);
+            HangUp(NativeMethods.HangUpPollingInterval, closeAllReferences);
         }        
 
         /// <summary>
@@ -518,7 +518,7 @@ namespace DotRas
                 ThrowHelper.ThrowArgumentOutOfRangeException("pollingInterval", pollingInterval, Resources.Argument_ValueCannotBeLessThanZero);
             }
 
-            RasHelper.Instance.HangUp(this.Handle, pollingInterval, closeAllReferences);
+            RasHelper.Instance.HangUp(Handle, pollingInterval, closeAllReferences);
         }        
 
 #if (WIN7 || WIN8)
@@ -532,7 +532,7 @@ namespace DotRas
         /// <remarks><b>Windows 7 and later:</b> This property is available.</remarks>
         public void UpdateConnection(int interfaceIndex, IPAddress localEndPoint, IPAddress remoteEndPoint)
         {
-            RasHelper.Instance.UpdateConnection(this.Handle, interfaceIndex, localEndPoint, remoteEndPoint);
+            RasHelper.Instance.UpdateConnection(Handle, interfaceIndex, localEndPoint, remoteEndPoint);
         }
 
 #endif

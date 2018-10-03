@@ -71,20 +71,20 @@ namespace DotRas
         /// <param name="serverOptions">The additional options for the remote computer.</param>
         internal RasLcpInfo(bool bundled, int errorCode, RasLcpAuthenticationType authenticationProtocol, RasLcpAuthenticationDataType authenticationData, int eapTypeId, RasLcpAuthenticationType serverAuthenticatonProtocol, RasLcpAuthenticationDataType serverAuthenticationData, int serverEapTypeId, bool multilink, int terminateReason, int serverTerminateReason, string replyMessage, RasLcpOptions options, RasLcpOptions serverOptions)
         {
-            this.Bundled = bundled;
-            this.ErrorCode = errorCode;
-            this.AuthenticationProtocol = authenticationProtocol;
-            this.AuthenticationData = authenticationData;
-            this.EapTypeId = eapTypeId;
-            this.ServerAuthenticationProtocol = serverAuthenticatonProtocol;
-            this.ServerAuthenticationData = serverAuthenticationData;
-            this.ServerEapTypeId = serverEapTypeId;
-            this.Multilink = multilink;
-            this.TerminateReason = terminateReason;
-            this.ServerTerminateReason = serverTerminateReason;
-            this.ReplyMessage = replyMessage;
-            this.Options = options;
-            this.ServerOptions = serverOptions;
+            Bundled = bundled;
+            ErrorCode = errorCode;
+            AuthenticationProtocol = authenticationProtocol;
+            AuthenticationData = authenticationData;
+            EapTypeId = eapTypeId;
+            ServerAuthenticationProtocol = serverAuthenticatonProtocol;
+            ServerAuthenticationData = serverAuthenticationData;
+            ServerEapTypeId = serverEapTypeId;
+            Multilink = multilink;
+            TerminateReason = terminateReason;
+            ServerTerminateReason = serverTerminateReason;
+            ReplyMessage = replyMessage;
+            Options = options;
+            ServerOptions = serverOptions;
         }
 
         #endregion

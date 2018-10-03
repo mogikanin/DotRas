@@ -19,8 +19,8 @@ namespace DotRas
     using System.Diagnostics;
     using System.IO;
     using System.Net;
-    using DotRas.Internal;
-    using DotRas.Properties;
+    using Internal;
+    using Properties;
 
     /// <summary>
     /// Represents a remote access service (RAS) entry. This class cannot be inherited.
@@ -87,37 +87,37 @@ namespace DotRas
                 ThrowHelper.ThrowArgumentException("name", Resources.Argument_StringCannotBeNullOrEmpty);
             }
 
-            this.Name = name;            
-            this.AreaCode = string.Empty;
+            Name = name;            
+            AreaCode = string.Empty;
 #pragma warning disable 0618
-            this.AutoDialDll = string.Empty;
-            this.AutoDialFunc = string.Empty;
+            AutoDialDll = string.Empty;
+            AutoDialFunc = string.Empty;
 #pragma warning restore 0618
-            this.CustomDialDll = string.Empty;
-            this.DnsAddress = IPAddress.Any;
-            this.DnsAddressAlt = IPAddress.Any;
-            this.IPAddress = IPAddress.Any;
-            this.Script = string.Empty;            
-            this.WinsAddress = IPAddress.Any;
-            this.WinsAddressAlt = IPAddress.Any;
-            this.X25PadType = string.Empty;
-            this.X25Address = string.Empty;
-            this.X25Facilities = string.Empty;
-            this.X25UserData = string.Empty;
+            CustomDialDll = string.Empty;
+            DnsAddress = IPAddress.Any;
+            DnsAddressAlt = IPAddress.Any;
+            IPAddress = IPAddress.Any;
+            Script = string.Empty;            
+            WinsAddress = IPAddress.Any;
+            WinsAddressAlt = IPAddress.Any;
+            X25PadType = string.Empty;
+            X25Address = string.Empty;
+            X25Facilities = string.Empty;
+            X25UserData = string.Empty;
 
 #if (WINXP || WIN2K8 || WIN7 || WIN8)
-            this.DnsSuffix = string.Empty;
-            this.PrerequisiteEntryName = string.Empty;
-            this.PrerequisitePhoneBook = string.Empty;
+            DnsSuffix = string.Empty;
+            PrerequisiteEntryName = string.Empty;
+            PrerequisitePhoneBook = string.Empty;
 #endif
 
 #if (WIN2K8 || WIN7 || WIN8)
-            this.IPv6DnsAddress = IPAddress.IPv6Any;
-            this.IPv6DnsAddressAlt = IPAddress.IPv6Any;
+            IPv6DnsAddress = IPAddress.IPv6Any;
+            IPv6DnsAddressAlt = IPAddress.IPv6Any;
 #endif
 
 #if (WIN7 || WIN8)
-            this.IPv6Address = IPAddress.IPv6Any;
+            IPv6Address = IPAddress.IPv6Any;
 #endif            
         }
 
@@ -150,17 +150,17 @@ namespace DotRas
         {
             get
             {
-                if (this.options == null)
+                if (options == null)
                 {
-                    this.options = new RasEntryOptions();
+                    options = new RasEntryOptions();
                 }
 
-                return this.options;
+                return options;
             }
 
             set
             {
-                this.options = value;
+                options = value;
             }
         }
 
@@ -207,17 +207,17 @@ namespace DotRas
         {
             get
             {
-                if (this.alternatePhoneNumbers == null)
+                if (alternatePhoneNumbers == null)
                 {
-                    this.alternatePhoneNumbers = new Collection<string>();
+                    alternatePhoneNumbers = new Collection<string>();
                 }
 
-                return this.alternatePhoneNumbers;
+                return alternatePhoneNumbers;
             }
 
             internal set
             {
-                this.alternatePhoneNumbers = value;
+                alternatePhoneNumbers = value;
             }
         }
 
@@ -286,17 +286,17 @@ namespace DotRas
         {
             get
             {
-                if (this.networkProtocols == null)
+                if (networkProtocols == null)
                 {
-                    this.networkProtocols = new RasNetworkProtocols();
+                    networkProtocols = new RasNetworkProtocols();
                 }
 
-                return this.networkProtocols;
+                return networkProtocols;
             }
 
             set
             {
-                this.networkProtocols = value;
+                networkProtocols = value;
             }
         }
 
@@ -407,12 +407,12 @@ namespace DotRas
         {
             get
             {
-                if (this.subEntries == null)
+                if (subEntries == null)
                 {
-                    this.subEntries = new RasSubEntryCollection(this);
+                    subEntries = new RasSubEntryCollection(this);
                 }
 
-                return this.subEntries;
+                return subEntries;
             }
         }
 
@@ -927,7 +927,7 @@ namespace DotRas
         /// <exception cref="System.ArgumentNullException"><paramref name="device"/> is a null reference (<b>Nothing</b> in Visual Basic).</exception>
         public static RasEntry CreateBroadbandEntry(string name, RasDevice device)
         {
-            return RasEntry.CreateBroadbandEntry(name, device, true);
+            return CreateBroadbandEntry(name, device, true);
         }
 
         /// <summary>
@@ -1008,87 +1008,87 @@ namespace DotRas
         /// <returns>A new <see cref="DotRas.RasEntry"/> object.</returns>
         public object Clone()
         {
-            RasEntry retval = new RasEntry(this.Name);
+            RasEntry retval = new RasEntry(Name);
 
-            if (this.AlternatePhoneNumbers != null && this.AlternatePhoneNumbers.Count > 0)
+            if (AlternatePhoneNumbers != null && AlternatePhoneNumbers.Count > 0)
             {
                 retval.AlternatePhoneNumbers = new Collection<string>();
-                foreach (string value in this.AlternatePhoneNumbers)
+                foreach (string value in AlternatePhoneNumbers)
                 {
                     retval.AlternatePhoneNumbers.Add(value);
                 }
             }
 
-            retval.AreaCode = this.AreaCode;
+            retval.AreaCode = AreaCode;
 
 #pragma warning disable 0618
-            retval.AutoDialDll = this.AutoDialDll;
-            retval.AutoDialFunc = this.AutoDialFunc;
+            retval.AutoDialDll = AutoDialDll;
+            retval.AutoDialFunc = AutoDialFunc;
 #pragma warning restore 0618
 
-            retval.Channels = this.Channels;
-            retval.CountryCode = this.CountryCode;
-            retval.CountryId = this.CountryId;
-            retval.CustomAuthKey = this.CustomAuthKey;
-            retval.CustomDialDll = this.CustomDialDll;
-            retval.Device = this.Device;
-            retval.DialExtraPercent = this.DialExtraPercent;
-            retval.DialExtraSampleSeconds = this.DialExtraSampleSeconds;
-            retval.DialMode = this.DialMode;
-            retval.DnsAddress = this.DnsAddress;
-            retval.DnsAddressAlt = this.DnsAddressAlt;
-            retval.EncryptionType = this.EncryptionType;
-            retval.EntryType = this.EntryType;
-            retval.FrameSize = this.FrameSize;
-            retval.FramingProtocol = this.FramingProtocol;
-            retval.HangUpExtraPercent = this.HangUpExtraPercent;
-            retval.HangUpExtraSampleSeconds = this.HangUpExtraSampleSeconds;
-            retval.IdleDisconnectSeconds = this.IdleDisconnectSeconds;
-            retval.IPAddress = this.IPAddress;
-            retval.NetworkProtocols = this.NetworkProtocols;
-            retval.Options = (RasEntryOptions)this.Options.Clone();
-            retval.PhoneNumber = this.PhoneNumber;
-            retval.Script = this.Script;
+            retval.Channels = Channels;
+            retval.CountryCode = CountryCode;
+            retval.CountryId = CountryId;
+            retval.CustomAuthKey = CustomAuthKey;
+            retval.CustomDialDll = CustomDialDll;
+            retval.Device = Device;
+            retval.DialExtraPercent = DialExtraPercent;
+            retval.DialExtraSampleSeconds = DialExtraSampleSeconds;
+            retval.DialMode = DialMode;
+            retval.DnsAddress = DnsAddress;
+            retval.DnsAddressAlt = DnsAddressAlt;
+            retval.EncryptionType = EncryptionType;
+            retval.EntryType = EntryType;
+            retval.FrameSize = FrameSize;
+            retval.FramingProtocol = FramingProtocol;
+            retval.HangUpExtraPercent = HangUpExtraPercent;
+            retval.HangUpExtraSampleSeconds = HangUpExtraSampleSeconds;
+            retval.IdleDisconnectSeconds = IdleDisconnectSeconds;
+            retval.IPAddress = IPAddress;
+            retval.NetworkProtocols = NetworkProtocols;
+            retval.Options = (RasEntryOptions)Options.Clone();
+            retval.PhoneNumber = PhoneNumber;
+            retval.Script = Script;
 
-            if (this.SubEntries != null && this.SubEntries.Count > 0)
+            if (SubEntries != null && SubEntries.Count > 0)
             {
-                foreach (RasSubEntry subEntry in this.SubEntries)
+                foreach (RasSubEntry subEntry in SubEntries)
                 {
                     retval.SubEntries.Add((RasSubEntry)subEntry.Clone());
                 }
             }
 
-            retval.VpnStrategy = this.VpnStrategy;
-            retval.WinsAddress = this.WinsAddress;
-            retval.WinsAddressAlt = this.WinsAddressAlt;
-            retval.X25Address = this.X25Address;
-            retval.X25Facilities = this.X25Facilities;
-            retval.X25PadType = this.X25PadType;
-            retval.X25UserData = this.X25UserData;
+            retval.VpnStrategy = VpnStrategy;
+            retval.WinsAddress = WinsAddress;
+            retval.WinsAddressAlt = WinsAddressAlt;
+            retval.X25Address = X25Address;
+            retval.X25Facilities = X25Facilities;
+            retval.X25PadType = X25PadType;
+            retval.X25UserData = X25UserData;
 
 #if (WINXP || WIN2K8 || WIN7 || WIN8)
 
-            retval.DnsSuffix = this.DnsSuffix;
-            retval.TcpWindowSize = this.TcpWindowSize;
-            retval.PrerequisitePhoneBook = this.PrerequisitePhoneBook;
-            retval.PrerequisiteEntryName = this.PrerequisiteEntryName;
-            retval.RedialCount = this.RedialCount;
-            retval.RedialPause = this.RedialPause;
+            retval.DnsSuffix = DnsSuffix;
+            retval.TcpWindowSize = TcpWindowSize;
+            retval.PrerequisitePhoneBook = PrerequisitePhoneBook;
+            retval.PrerequisiteEntryName = PrerequisiteEntryName;
+            retval.RedialCount = RedialCount;
+            retval.RedialPause = RedialPause;
 
 #endif
 #if (WIN2K8 || WIN7 || WIN8)
 
-            retval.IPv6DnsAddress = this.IPv6DnsAddress;
-            retval.IPv6DnsAddressAlt = this.IPv6DnsAddressAlt;
-            retval.IPv4InterfaceMetric = this.IPv4InterfaceMetric;
-            retval.IPv6InterfaceMetric = this.IPv6InterfaceMetric;
+            retval.IPv6DnsAddress = IPv6DnsAddress;
+            retval.IPv6DnsAddressAlt = IPv6DnsAddressAlt;
+            retval.IPv4InterfaceMetric = IPv4InterfaceMetric;
+            retval.IPv6InterfaceMetric = IPv6InterfaceMetric;
 
 #endif
 #if (WIN7 || WIN8)
 
-            retval.IPv6Address = this.IPv6Address;
-            retval.IPv6PrefixLength = this.IPv6PrefixLength;
-            retval.NetworkOutageTime = this.NetworkOutageTime;
+            retval.IPv6Address = IPv6Address;
+            retval.IPv6PrefixLength = IPv6PrefixLength;
+            retval.NetworkOutageTime = NetworkOutageTime;
 
 #endif
 
@@ -1102,7 +1102,7 @@ namespace DotRas
         /// <exception cref="System.InvalidOperationException">The entry is not associated with a phone book.</exception>
         public bool ClearCredentials()
         {
-            if (this.Owner == null)
+            if (Owner == null)
             {
                 ThrowHelper.ThrowInvalidOperationException(Resources.Exception_EntryNotInPhoneBook);
             }
@@ -1114,7 +1114,7 @@ namespace DotRas
 
             credentials.options = NativeMethods.RASCM.UserName | NativeMethods.RASCM.Password | NativeMethods.RASCM.Domain;
 
-            return RasHelper.Instance.SetCredentials(this.Owner.Path, this.Name, credentials, true);
+            return RasHelper.Instance.SetCredentials(Owner.Path, Name, credentials, true);
         }
 
 #if (WINXP || WIN2K8 || WIN7 || WIN8)
@@ -1132,7 +1132,7 @@ namespace DotRas
         /// <exception cref="System.InvalidOperationException">The entry is not associated with a phone book.</exception>
         public bool ClearCredentials(RasPreSharedKey key)
         {
-            if (this.Owner == null)
+            if (Owner == null)
             {
                 ThrowHelper.ThrowInvalidOperationException(Resources.Exception_EntryNotInPhoneBook);
             }
@@ -1155,7 +1155,7 @@ namespace DotRas
                     break;
             }
 
-            return RasHelper.Instance.SetCredentials(this.Owner.Path, this.Name, credentials, true);
+            return RasHelper.Instance.SetCredentials(Owner.Path, Name, credentials, true);
         }
 
 #endif
@@ -1168,12 +1168,12 @@ namespace DotRas
         /// <exception cref="System.UnauthorizedAccessException">The caller does not have the required permission to perform the action requested.</exception>
         public NetworkCredential GetCredentials()
         {
-            if (this.Owner == null)
+            if (Owner == null)
             {
                 ThrowHelper.ThrowInvalidOperationException(Resources.Exception_EntryNotInPhoneBook);
             }
 
-            return RasHelper.Instance.GetCredentials(this.Owner.Path, this.Name, NativeMethods.RASCM.UserName | NativeMethods.RASCM.Password | NativeMethods.RASCM.Domain);
+            return RasHelper.Instance.GetCredentials(Owner.Path, Name, NativeMethods.RASCM.UserName | NativeMethods.RASCM.Password | NativeMethods.RASCM.Domain);
         }
 
 #if (WINXP || WIN2K8 || WIN7 || WIN8)
@@ -1192,7 +1192,7 @@ namespace DotRas
         /// <exception cref="System.UnauthorizedAccessException">The caller does not have the required permission to perform the action requested.</exception>
         public NetworkCredential GetCredentials(RasPreSharedKey key)
         {
-            if (this.Owner == null)
+            if (Owner == null)
             {
                 ThrowHelper.ThrowInvalidOperationException(Resources.Exception_EntryNotInPhoneBook);
             }
@@ -1213,7 +1213,7 @@ namespace DotRas
                     break;
             }
 
-            return RasHelper.Instance.GetCredentials(this.Owner.Path, this.Name, value);
+            return RasHelper.Instance.GetCredentials(Owner.Path, Name, value);
         }
 
 #endif
@@ -1226,12 +1226,12 @@ namespace DotRas
         /// <exception cref="System.InvalidOperationException">The entry is not associated with a phone book.</exception>
         public byte[] GetCustomAuthData()
         {
-            if (this.Owner == null)
+            if (Owner == null)
             {
                 ThrowHelper.ThrowInvalidOperationException(Resources.Exception_EntryNotInPhoneBook);
             }
 
-            return RasHelper.Instance.GetCustomAuthData(this.Owner.Path, this.Name);
+            return RasHelper.Instance.GetCustomAuthData(Owner.Path, Name);
         }
 
         /// <summary>
@@ -1241,12 +1241,12 @@ namespace DotRas
         /// <exception cref="System.InvalidOperationException">The entry is not associated with a phone book.</exception>
         public byte[] GetEapUserData()
         {
-            if (this.Owner == null)
+            if (Owner == null)
             {
                 ThrowHelper.ThrowInvalidOperationException(Resources.Exception_EntryNotInPhoneBook);
             }
 
-            return RasHelper.Instance.GetEapUserData(IntPtr.Zero, this.Owner.Path, this.Name);
+            return RasHelper.Instance.GetEapUserData(IntPtr.Zero, Owner.Path, Name);
         }
 
         /// <summary>
@@ -1265,22 +1265,22 @@ namespace DotRas
 
             bool retval = false;
 
-            if (this.Owner == null)
+            if (Owner == null)
             {
-                this.Name = newEntryName;
+                Name = newEntryName;
                 retval = true;
             }
             else
             {
-                if (!RasHelper.Instance.IsValidEntryName(this.Owner, newEntryName))
+                if (!RasHelper.Instance.IsValidEntryName(Owner, newEntryName))
                 {
                     ThrowHelper.ThrowArgumentException("newEntryName", Resources.Argument_InvalidEntryName, "newEntryName", newEntryName);
                 }
 
-                if (RasHelper.Instance.RenameEntry(this.Owner, this.Name, newEntryName))
+                if (RasHelper.Instance.RenameEntry(Owner, Name, newEntryName))
                 {
-                    this.Owner.Entries.ChangeKey(this, newEntryName);
-                    this.Name = newEntryName;
+                    Owner.Entries.ChangeKey(this, newEntryName);
+                    Name = newEntryName;
 
                     retval = true;
                 }
@@ -1297,9 +1297,9 @@ namespace DotRas
         {
             bool retval = false;
 
-            if (this.Owner != null)
+            if (Owner != null)
             {
-                retval = this.Owner.Entries.Remove(this);
+                retval = Owner.Entries.Remove(this);
             }
 
             return retval;
@@ -1312,12 +1312,12 @@ namespace DotRas
         /// <exception cref="System.InvalidOperationException">The entry is not associated with a phone book.</exception>
         public bool Update()
         {
-            if (this.Owner == null)
+            if (Owner == null)
             {
                 ThrowHelper.ThrowInvalidOperationException(Resources.Exception_EntryNotInPhoneBook);
             }
 
-            return RasHelper.Instance.SetEntryProperties(this.Owner, this);
+            return RasHelper.Instance.SetEntryProperties(Owner, this);
         }
 
         /// <summary>
@@ -1328,12 +1328,12 @@ namespace DotRas
         /// <exception cref="System.InvalidOperationException">The entry is not associated with a phone book.</exception>
         public bool UpdateCustomAuthData(byte[] data)
         {
-            if (this.Owner == null)
+            if (Owner == null)
             {
                 ThrowHelper.ThrowInvalidOperationException(Resources.Exception_EntryNotInPhoneBook);
             }
 
-            return RasHelper.Instance.SetCustomAuthData(this.Owner.Path, this.Name, data);
+            return RasHelper.Instance.SetCustomAuthData(Owner.Path, Name, data);
         }
 
         /// <summary>
@@ -1345,7 +1345,7 @@ namespace DotRas
         /// <exception cref="System.InvalidOperationException">The entry is not associated with a phone book.</exception>
         public bool UpdateEapUserData(byte[] data)
         {
-            if (this.Owner == null)
+            if (Owner == null)
             {
                 ThrowHelper.ThrowInvalidOperationException(Resources.Exception_EntryNotInPhoneBook);
             }
@@ -1355,7 +1355,7 @@ namespace DotRas
                 ThrowHelper.ThrowArgumentNullException("data");
             }
 
-            return RasHelper.Instance.SetEapUserData(IntPtr.Zero, this.Owner.Path, this.Name, data);
+            return RasHelper.Instance.SetEapUserData(IntPtr.Zero, Owner.Path, Name, data);
         }
 
         /// <summary>
@@ -1368,7 +1368,7 @@ namespace DotRas
         /// <exception cref="System.UnauthorizedAccessException">The caller does not have the required permission to perform the action requested.</exception>
         public bool UpdateCredentials(NetworkCredential value)
         {
-            if (this.Owner == null)
+            if (Owner == null)
             {
                 ThrowHelper.ThrowInvalidOperationException(Resources.Exception_EntryNotInPhoneBook);
             }
@@ -1378,7 +1378,7 @@ namespace DotRas
                 ThrowHelper.ThrowArgumentNullException("value");
             }
 
-            return Utilities.UpdateCredentials(this.Owner.Path, this.Name, value, RasUpdateCredential.User);
+            return Utilities.UpdateCredentials(Owner.Path, Name, value, RasUpdateCredential.User);
         }
 
 #if (WINXP || WIN2K8 || WIN7 || WIN8)
@@ -1399,7 +1399,7 @@ namespace DotRas
         /// <exception cref="System.UnauthorizedAccessException">The caller does not have the required permission to perform the action requested.</exception>
         public bool UpdateCredentials(NetworkCredential value, bool storeCredentialsForAllUsers)
         {
-            if (this.Owner == null)
+            if (Owner == null)
             {
                 ThrowHelper.ThrowInvalidOperationException(Resources.Exception_EntryNotInPhoneBook);
             }
@@ -1409,7 +1409,7 @@ namespace DotRas
                 ThrowHelper.ThrowArgumentNullException("value");
             }
 
-            return Utilities.UpdateCredentials(this.Owner.Path, this.Name, value, storeCredentialsForAllUsers ? RasUpdateCredential.AllUsers : RasUpdateCredential.User);
+            return Utilities.UpdateCredentials(Owner.Path, Name, value, storeCredentialsForAllUsers ? RasUpdateCredential.AllUsers : RasUpdateCredential.User);
         }
 
         /// <summary>
@@ -1425,7 +1425,7 @@ namespace DotRas
         /// </remarks>
         public bool UpdateCredentials(RasPreSharedKey key, string value)
         {
-            if (this.Owner == null)
+            if (Owner == null)
             {
                 ThrowHelper.ThrowInvalidOperationException(Resources.Exception_EntryNotInPhoneBook);
             }
@@ -1448,7 +1448,7 @@ namespace DotRas
                     break;
             }
 
-            return RasHelper.Instance.SetCredentials(this.Owner.Path, this.Name, credentials, false);
+            return RasHelper.Instance.SetCredentials(Owner.Path, Name, credentials, false);
         }
 
 #endif

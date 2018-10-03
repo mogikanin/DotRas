@@ -37,9 +37,9 @@ namespace DotRas
         public DialCompletedEventArgs(RasHandle handle, Exception error, bool cancelled, bool timedOut, bool connected, object userState)
             : base(error, cancelled, userState)
         {
-            this.Handle = handle;
-            this.TimedOut = timedOut;
-            this.Connected = connected;
+            Handle = handle;
+            TimedOut = timedOut;
+            Connected = connected;
         }
 
         #endregion

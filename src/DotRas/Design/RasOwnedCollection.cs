@@ -15,7 +15,7 @@
 namespace DotRas.Design
 {
     using System;
-    using DotRas.Internal;
+    using Internal;
 
     /// <summary>
     /// Provides the abstract base class for a remote-capable collection whose objects are owned by other objects. This class must be inherited.
@@ -46,7 +46,7 @@ namespace DotRas.Design
                 ThrowHelper.ThrowArgumentNullException("owner");
             }
 
-            this._owner = owner;
+            _owner = owner;
         }
 
         #endregion
@@ -58,7 +58,7 @@ namespace DotRas.Design
         /// </summary>
         protected TOwner Owner
         {
-            get { return this._owner; }
+            get { return _owner; }
         }
 
         #endregion

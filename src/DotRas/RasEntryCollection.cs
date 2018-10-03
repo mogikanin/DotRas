@@ -16,9 +16,9 @@ namespace DotRas
 {
     using System;
     using System.Collections.ObjectModel;
-    using DotRas.Design;
-    using DotRas.Internal;
-    using DotRas.Properties;
+    using Design;
+    using Internal;
+    using Properties;
 
     /// <summary>
     /// Represents a strongly-typed collection of <see cref="DotRas.RasEntry"/> objects. This class cannot be inherited.
@@ -41,7 +41,7 @@ namespace DotRas
         internal RasEntryCollection(RasPhoneBook owner)
             : base(owner)
         {
-            this._lookUpTable = new RasEntryItemCollection();
+            _lookUpTable = new RasEntryItemCollection();
         }
 
         #endregion
@@ -55,7 +55,7 @@ namespace DotRas
         /// <returns>An <see cref="RasEntry"/> object.</returns>
         public RasEntry this[string name]
         {
-            get { return this._lookUpTable[name]; }
+            get { return _lookUpTable[name]; }
         }
 
         #endregion
@@ -75,7 +75,7 @@ namespace DotRas
                 ThrowHelper.ThrowArgumentException("name", Resources.Argument_StringCannotBeNullOrEmpty);
             }
 
-            return this._lookUpTable.Contains(name);
+            return _lookUpTable.Contains(name);
         }
 
         /// <summary>
@@ -93,12 +93,12 @@ namespace DotRas
 
             bool retval = false;
 
-            if (this.Contains(name))
+            if (Contains(name))
             {
                 RasEntry item = this[name];
                 if (item != null)
                 {
-                    retval = this.Remove(item);
+                    retval = Remove(item);
                 }
             }
 
@@ -112,37 +112,37 @@ namespace DotRas
         /// <exception cref="System.UnauthorizedAccessException">The caller does not have the required permission to perform the action requested.</exception>
         internal void Load()
         {
-            if (string.IsNullOrEmpty(this.Owner.Path))
+            if (string.IsNullOrEmpty(Owner.Path))
             {
                 ThrowHelper.ThrowInvalidOperationException(Resources.Exception_PhoneBookNotOpened);
             }
 
             try
             {
-                this.BeginLock();
-                this.IsInitializing = true;
+                BeginLock();
+                IsInitializing = true;
 
-                this.Clear();
+                Clear();
 
-                NativeMethods.RASENTRYNAME[] entries = RasHelper.Instance.GetEntryNames(this.Owner);
+                NativeMethods.RASENTRYNAME[] entries = RasHelper.Instance.GetEntryNames(Owner);
                 if (entries != null && entries.Length > 0)
                 {
                     for (int index = 0; index < entries.Length; index++)
                     {
                         NativeMethods.RASENTRYNAME entry = entries[index];
 
-                        RasEntry item = RasHelper.Instance.GetEntryProperties(this.Owner, entry.name);
+                        RasEntry item = RasHelper.Instance.GetEntryProperties(Owner, entry.name);
                         if (item != null)
                         {
-                            this.Add(item);
+                            Add(item);
                         }
                     }
                 }
             }
             finally
             {
-                this.IsInitializing = false;
-                this.EndLock();
+                IsInitializing = false;
+                EndLock();
             }
         }
 
@@ -155,7 +155,7 @@ namespace DotRas
         /// <exception cref="System.ArgumentNullException"><paramref name="item"/> is a null reference (<b>Nothing</b> in Visual Basic).</exception>
         internal void ChangeKey(RasEntry item, string newKey)
         {
-            this._lookUpTable.ChangeKey(item, newKey);
+            _lookUpTable.ChangeKey(item, newKey);
         }
 
         /// <summary>
@@ -167,21 +167,21 @@ namespace DotRas
 
             try
             {
-                isFileWatcherEnabled = this.Owner.EnableFileWatcher;
-                this.Owner.EnableFileWatcher = false;
+                isFileWatcherEnabled = Owner.EnableFileWatcher;
+                Owner.EnableFileWatcher = false;
 
-                while (this.Count > 0)
+                while (Count > 0)
                 {
-                    this.RemoveAt(0);
+                    RemoveAt(0);
                 }
             }
             finally
             {
-                this.Owner.EnableFileWatcher = isFileWatcherEnabled;
+                Owner.EnableFileWatcher = isFileWatcherEnabled;
 
-                if (!this.IsInitializing)
+                if (!IsInitializing)
                 {
-                    this.Load();
+                    Load();
                 }
             }
         }
@@ -199,28 +199,28 @@ namespace DotRas
                 ThrowHelper.ThrowArgumentNullException("item");
             }
 
-            if (this.Owner == null || string.IsNullOrEmpty(this.Owner.Path))
+            if (Owner == null || string.IsNullOrEmpty(Owner.Path))
             {
                 ThrowHelper.ThrowInvalidOperationException(Resources.Exception_PhoneBookNotOpened);
             }
 
-            if (this.Contains(item.Name))
+            if (Contains(item.Name))
             {
                 ThrowHelper.ThrowArgumentException("item", Resources.Argument_EntryAlreadyExists, item.Name);
             }
 
-            item.Owner = this.Owner;
+            item.Owner = Owner;
 
-            if (this.IsInitializing)
+            if (IsInitializing)
             {
-                this._lookUpTable.Insert(index, item);
+                _lookUpTable.Insert(index, item);
             }
             else
             {
-                if (RasHelper.Instance.SetEntryProperties(this.Owner, item) && !this.Owner.EnableFileWatcher)
+                if (RasHelper.Instance.SetEntryProperties(Owner, item) && !Owner.EnableFileWatcher)
                 {
                     // The item was inserted while file monitoring was off, manually add it to the collection.
-                    this._lookUpTable.Insert(index, item);
+                    _lookUpTable.Insert(index, item);
                 }
             }
 
@@ -233,12 +233,12 @@ namespace DotRas
         /// <param name="index">The zero-based index of the item to remove.</param>
         protected override void RemoveItem(int index)
         {
-            if (this.Owner == null || string.IsNullOrEmpty(this.Owner.Path))
+            if (Owner == null || string.IsNullOrEmpty(Owner.Path))
             {
                 ThrowHelper.ThrowInvalidOperationException(Resources.Exception_PhoneBookNotOpened);
             }
 
-            if (!this.IsInitializing)
+            if (!IsInitializing)
             {
                 RasEntry entry = this[index];
                 if (entry != null)
@@ -248,7 +248,7 @@ namespace DotRas
             }
 
             // Remove the entry from the lookup table.
-            this._lookUpTable.RemoveAt(index);
+            _lookUpTable.RemoveAt(index);
 
             base.RemoveItem(index);
         }
@@ -294,7 +294,7 @@ namespace DotRas
                     ThrowHelper.ThrowArgumentException("newKey", Resources.Argument_StringCannotBeNullOrEmpty);
                 }
 
-                this.ChangeItemKey(item, newKey);
+                ChangeItemKey(item, newKey);
             }
 
             /// <summary>

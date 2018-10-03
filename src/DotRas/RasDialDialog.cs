@@ -14,9 +14,9 @@
 
 namespace DotRas
 {
-    using DotRas.Design;
-    using DotRas.Internal;
-    using DotRas.Properties;
+    using Design;
+    using Internal;
+    using Properties;
     using System;
     using System.ComponentModel;
     using System.Drawing;
@@ -131,10 +131,10 @@ namespace DotRas
         /// </summary>
         public override void Reset()
         {
-            this.PhoneBookPath = null;
-            this.EntryName = null;
-            this.PhoneNumber = null;
-            this.SubEntryId = 0;
+            PhoneBookPath = null;
+            EntryName = null;
+            PhoneNumber = null;
+            SubEntryId = 0;
 
             base.Reset();
         }
@@ -149,12 +149,12 @@ namespace DotRas
             NativeMethods.RASDIALDLG dlg = new NativeMethods.RASDIALDLG();
             dlg.size = Marshal.SizeOf(typeof(NativeMethods.RASDIALDLG));
             dlg.hwndOwner = hwndOwner;
-            dlg.subEntryId = this.SubEntryId;
+            dlg.subEntryId = SubEntryId;
 
-            if (this.Location != Point.Empty)
+            if (Location != Point.Empty)
             {
-                dlg.left = this.Location.X;
-                dlg.top = this.Location.Y;
+                dlg.left = Location.X;
+                dlg.top = Location.Y;
 
                 dlg.flags |= NativeMethods.RASDDFLAG.PositionDlg;
             }
@@ -162,11 +162,11 @@ namespace DotRas
             bool retval = false;
             try
             {
-                retval = UnsafeNativeMethods.Instance.DialDlg(this.PhoneBookPath, this.EntryName, this.PhoneNumber, ref dlg);
+                retval = UnsafeNativeMethods.Instance.DialDlg(PhoneBookPath, EntryName, PhoneNumber, ref dlg);
                 if (!retval && dlg.error != NativeMethods.SUCCESS)
                 {
                     RasErrorEventArgs e = new RasErrorEventArgs(dlg.error, RasHelper.Instance.GetRasErrorString(dlg.error));
-                    this.OnError(e);
+                    OnError(e);
                 }
             }
             catch (EntryPointNotFoundException)

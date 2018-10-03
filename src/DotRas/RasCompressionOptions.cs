@@ -15,7 +15,7 @@
 namespace DotRas
 {
     using System;
-    using DotRas.Internal;
+    using Internal;
 
     /// <summary>
     /// Represents remote access service (RAS) compression options. This class cannot be inherited.
@@ -38,11 +38,11 @@ namespace DotRas
         /// <param name="value">The flags value to set.</param>
         internal RasCompressionOptions(NativeMethods.RASCCPO value)
         {
-            this.CompressionOnly = Utilities.HasFlag(value, NativeMethods.RASCCPO.CompressionOnly);
-            this.HistoryLess = Utilities.HasFlag(value, NativeMethods.RASCCPO.HistoryLess);
-            this.Encryption56Bit = Utilities.HasFlag(value, NativeMethods.RASCCPO.Encryption56Bit);
-            this.Encryption40Bit = Utilities.HasFlag(value, NativeMethods.RASCCPO.Encryption40Bit);
-            this.Encryption128Bit = Utilities.HasFlag(value, NativeMethods.RASCCPO.Encryption128Bit);
+            CompressionOnly = Utilities.HasFlag(value, NativeMethods.RASCCPO.CompressionOnly);
+            HistoryLess = Utilities.HasFlag(value, NativeMethods.RASCCPO.HistoryLess);
+            Encryption56Bit = Utilities.HasFlag(value, NativeMethods.RASCCPO.Encryption56Bit);
+            Encryption40Bit = Utilities.HasFlag(value, NativeMethods.RASCCPO.Encryption40Bit);
+            Encryption128Bit = Utilities.HasFlag(value, NativeMethods.RASCCPO.Encryption128Bit);
         }
 
         #endregion
@@ -106,11 +106,11 @@ namespace DotRas
         {
             RasCompressionOptions retval = new RasCompressionOptions();
 
-            retval.CompressionOnly = this.CompressionOnly;
-            retval.HistoryLess = this.HistoryLess;
-            retval.Encryption56Bit = this.Encryption56Bit;
-            retval.Encryption40Bit = this.Encryption40Bit;
-            retval.Encryption128Bit = this.Encryption128Bit;
+            retval.CompressionOnly = CompressionOnly;
+            retval.HistoryLess = HistoryLess;
+            retval.Encryption56Bit = Encryption56Bit;
+            retval.Encryption40Bit = Encryption40Bit;
+            retval.Encryption128Bit = Encryption128Bit;
 
             return retval;
         }

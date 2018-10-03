@@ -84,19 +84,19 @@ namespace DotRas
         /// <param name="serverIPv6Addresses">The collection of available IPv6 addresses the server can switch to on the IKEv2 connection.</param>
         internal RasIkeV2Info(int ipv4NegotiationErrorCode, IPAddress ipv4Address, IPAddress serverIPv4Address, int ipv6NegotiationErrorCode, IPAddress ipv6Address, IPAddress serverIPv6Address, int prefixLength, RasIkeV2AuthenticationType authenticationProtocol, int eapTypeId, RasIkeV2Options options, RasIPSecEncryptionType encryptionMethod, Collection<IPAddress> serverIPv4Addresses, Collection<IPAddress> serverIPv6Addresses)
         {
-            this.IPv4NegotiationErrorCode = ipv4NegotiationErrorCode;
-            this.IPv4Address = ipv4Address;
-            this.ServerIPv4Address = serverIPv4Address;
-            this.IPv6NegotiationErrorCode = ipv6NegotiationErrorCode;
-            this.IPv6Address = ipv6Address;
-            this.ServerIPv6Address = serverIPv6Address;
-            this.PrefixLength = prefixLength;
-            this.AuthenticationProtocol = authenticationProtocol;
-            this.EapTypeId = eapTypeId;
-            this.Options = options;
-            this.EncryptionMethod = encryptionMethod;
-            this.ServerIPv4Addresses = serverIPv4Addresses;
-            this.ServerIPv6Addresses = serverIPv6Addresses;
+            IPv4NegotiationErrorCode = ipv4NegotiationErrorCode;
+            IPv4Address = ipv4Address;
+            ServerIPv4Address = serverIPv4Address;
+            IPv6NegotiationErrorCode = ipv6NegotiationErrorCode;
+            IPv6Address = ipv6Address;
+            ServerIPv6Address = serverIPv6Address;
+            PrefixLength = prefixLength;
+            AuthenticationProtocol = authenticationProtocol;
+            EapTypeId = eapTypeId;
+            Options = options;
+            EncryptionMethod = encryptionMethod;
+            ServerIPv4Addresses = serverIPv4Addresses;
+            ServerIPv6Addresses = serverIPv6Addresses;
         }
 
         #endregion

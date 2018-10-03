@@ -148,7 +148,7 @@ namespace DotRas.Internal
         {
             IPAddress addr = (IPAddress)value;
 
-            if (destinationType == typeof(NativeMethods.RASIPADDR) && (addr == null || (addr != null && addr.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)))
+            if (destinationType == typeof(NativeMethods.RASIPADDR) && (addr == null || (addr != null && addr.AddressFamily == AddressFamily.InterNetwork)))
             {
                 NativeMethods.RASIPADDR ipv4 = new NativeMethods.RASIPADDR();
 
@@ -164,7 +164,7 @@ namespace DotRas.Internal
                 return ipv4;
             }
 #if (WIN2K8 || WIN7 || WIN8)
-            else if (destinationType == typeof(NativeMethods.RASIPV6ADDR) && (addr == null || (addr != null && addr.AddressFamily == System.Net.Sockets.AddressFamily.InterNetworkV6)))
+            else if (destinationType == typeof(NativeMethods.RASIPV6ADDR) && (addr == null || (addr != null && addr.AddressFamily == AddressFamily.InterNetworkV6)))
             {
                 NativeMethods.RASIPV6ADDR ipv6 = new NativeMethods.RASIPV6ADDR();
 

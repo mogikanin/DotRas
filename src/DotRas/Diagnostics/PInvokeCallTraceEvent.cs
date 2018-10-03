@@ -18,8 +18,8 @@ namespace DotRas.Diagnostics
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Text;
-    using DotRas.Internal;
-    using DotRas.Properties;
+    using Internal;
+    using Properties;
 
     /// <summary>
     /// Represents the trace event for a p/invoke call. This class cannot be inherited.
@@ -52,8 +52,8 @@ namespace DotRas.Diagnostics
                 ThrowHelper.ThrowArgumentException("entryPoint", Resources.Argument_StringCannotBeNullOrEmpty);
             }
 
-            this.DllName = dllName;
-            this.EntryPoint = entryPoint;
+            DllName = dllName;
+            EntryPoint = entryPoint;
         }
 
         #endregion
@@ -67,12 +67,12 @@ namespace DotRas.Diagnostics
         {
             get
             {
-                if (this._data == null)
+                if (_data == null)
                 {
-                    this._data = new Dictionary<string, object>();
+                    _data = new Dictionary<string, object>();
                 }
 
-                return this._data;
+                return _data;
             }
         }
 
@@ -115,11 +115,11 @@ namespace DotRas.Diagnostics
         {
             StringBuilder sb = new StringBuilder();
 
-            sb.AppendFormat("DllName: {0}", this.DllName).AppendLine();
-            sb.AppendFormat("EntryPoint: {0}", this.EntryPoint).AppendLine();
-            sb.AppendFormat("ResultCode: {0}", this.ResultCode).AppendLine();
+            sb.AppendFormat("DllName: {0}", DllName).AppendLine();
+            sb.AppendFormat("EntryPoint: {0}", EntryPoint).AppendLine();
+            sb.AppendFormat("ResultCode: {0}", ResultCode).AppendLine();
 
-            foreach (KeyValuePair<string, object> pair in this.Data)
+            foreach (KeyValuePair<string, object> pair in Data)
             {
                 object value = pair.Value;
                 sb.AppendFormat("{0}: '{1}'", pair.Key, value == null ? "[NULL]" : value).AppendLine();

@@ -15,7 +15,7 @@
 namespace DotRas
 {
     using System;
-    using DotRas.Internal;
+    using Internal;
 
     /// <summary>
     /// Represents remote access service (RAS) link control protocol options. This class cannot be inherited.
@@ -38,16 +38,16 @@ namespace DotRas
         /// <param name="value">The flags value to set.</param>
         internal RasLcpOptions(NativeMethods.RASLCPO value)
         {
-            this.Pfc = Utilities.HasFlag(value, NativeMethods.RASLCPO.Pfc);
-            this.Acfc = Utilities.HasFlag(value, NativeMethods.RASLCPO.Acfc);
-            this.Sshf = Utilities.HasFlag(value, NativeMethods.RASLCPO.Sshf);
-            this.Des56 = Utilities.HasFlag(value, NativeMethods.RASLCPO.Des56);
-            this.TripleDes = Utilities.HasFlag(value, NativeMethods.RASLCPO.TripleDes);
+            Pfc = Utilities.HasFlag(value, NativeMethods.RASLCPO.Pfc);
+            Acfc = Utilities.HasFlag(value, NativeMethods.RASLCPO.Acfc);
+            Sshf = Utilities.HasFlag(value, NativeMethods.RASLCPO.Sshf);
+            Des56 = Utilities.HasFlag(value, NativeMethods.RASLCPO.Des56);
+            TripleDes = Utilities.HasFlag(value, NativeMethods.RASLCPO.TripleDes);
 
 #if (WIN2K8 || WIN7 || WIN8)
 
-            this.Aes128 = Utilities.HasFlag(value, NativeMethods.RASLCPO.Aes128);
-            this.Aes256 = Utilities.HasFlag(value, NativeMethods.RASLCPO.Aes256);
+            Aes128 = Utilities.HasFlag(value, NativeMethods.RASLCPO.Aes128);
+            Aes256 = Utilities.HasFlag(value, NativeMethods.RASLCPO.Aes256);
 
 #endif
         }
@@ -137,16 +137,16 @@ namespace DotRas
         {
             RasLcpOptions retval = new RasLcpOptions();
 
-            retval.Pfc = this.Pfc;
-            retval.Acfc = this.Acfc;
-            retval.Sshf = this.Sshf;
-            retval.Des56 = this.Des56;
-            retval.TripleDes = this.TripleDes;
+            retval.Pfc = Pfc;
+            retval.Acfc = Acfc;
+            retval.Sshf = Sshf;
+            retval.Des56 = Des56;
+            retval.TripleDes = TripleDes;
 
 #if (WIN2K8 || WIN7 || WIN8)
 
-            retval.Aes128 = this.Aes128;
-            retval.Aes256 = this.Aes256;
+            retval.Aes128 = Aes128;
+            retval.Aes256 = Aes256;
 
 #endif
 

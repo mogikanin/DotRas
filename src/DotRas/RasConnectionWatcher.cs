@@ -18,9 +18,9 @@ namespace DotRas
     using System.Collections.ObjectModel;
     using System.ComponentModel;
     using System.Threading;
-    using DotRas.Design;
-    using DotRas.Internal;
-    using DotRas.Properties;
+    using Design;
+    using Internal;
+    using Properties;
 
     /// <summary>
     /// Listens to the remote access service (RAS) change notifications and raises events when connections change. This class cannot be inherited.
@@ -95,7 +95,7 @@ namespace DotRas
         /// </summary>
         public RasConnectionWatcher()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         /// <summary>
@@ -105,7 +105,7 @@ namespace DotRas
         public RasConnectionWatcher(IContainer container)
             : base(container)
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         #endregion
@@ -152,7 +152,7 @@ namespace DotRas
         {
             get
             {
-                return this._handle;
+                return _handle;
             }
 
             set
@@ -163,11 +163,11 @@ namespace DotRas
                     ThrowHelper.ThrowInvalidHandleException(value, Resources.Exception_InvalidOrClosedHandle);
                 }
 
-                if (this._handle != value)
+                if (_handle != value)
                 {
-                    this._handle = value;
+                    _handle = value;
 
-                    this.Restart();
+                    Restart();
                 }
             }
         }
@@ -182,24 +182,24 @@ namespace DotRas
         {
             get
             {
-                return this._enableRaisingEvents;
+                return _enableRaisingEvents;
             }
 
             set
             {
-                if (this._enableRaisingEvents != value)
+                if (_enableRaisingEvents != value)
                 {
-                    this._enableRaisingEvents = value;
+                    _enableRaisingEvents = value;
 
-                    if (!this.IsSuspended())
+                    if (!IsSuspended())
                     {
-                        if (this._enableRaisingEvents)
+                        if (_enableRaisingEvents)
                         {
-                            this.StartRaisingEvents();
+                            StartRaisingEvents();
                         }
                         else
                         {
-                            this.StopRaisingEvents();
+                            StopRaisingEvents();
                         }
                     }
                 }
@@ -215,11 +215,11 @@ namespace DotRas
         /// </summary>
         public void BeginInit()
         {
-            bool enabled = this.EnableRaisingEvents;
-            this.StopRaisingEvents();
+            bool enabled = EnableRaisingEvents;
+            StopRaisingEvents();
 
-            this.EnableRaisingEvents = enabled;
-            this._initializing = true;
+            EnableRaisingEvents = enabled;
+            _initializing = true;
         }
 
         /// <summary>
@@ -227,10 +227,10 @@ namespace DotRas
         /// </summary>
         public void EndInit()
         {
-            this._initializing = false;
-            if (!this.IsSuspended() && this.EnableRaisingEvents)
+            _initializing = false;
+            if (!IsSuspended() && EnableRaisingEvents)
             {
-                this.StartRaisingEvents();
+                StartRaisingEvents();
             }
         }
 
@@ -239,7 +239,7 @@ namespace DotRas
         /// </summary>
         protected override void InitializeComponent()
         {
-            this._stateObjects = new Collection<RasConnectionWatcherStateObject>();
+            _stateObjects = new Collection<RasConnectionWatcherStateObject>();
 
             base.InitializeComponent();
         }
@@ -284,21 +284,21 @@ namespace DotRas
         {
             // Retrieve the current state of the connections on the machine. This is used for comparisons to determine what has changed
             // once the events are raised.
-            this._lastState = RasConnection.GetActiveConnections();
+            _lastState = RasConnection.GetActiveConnections();
 
             try
             {
-                this.Register(NativeMethods.RASCN.Connection, NativeMethods.INVALID_HANDLE_VALUE);
+                Register(NativeMethods.RASCN.Connection, NativeMethods.INVALID_HANDLE_VALUE);
 
-                if (this.Handle == null || this.Handle.IsInvalid)
+                if (Handle == null || Handle.IsInvalid)
                 {
-                    this.Register(NativeMethods.RASCN.Disconnection, NativeMethods.INVALID_HANDLE_VALUE);
+                    Register(NativeMethods.RASCN.Disconnection, NativeMethods.INVALID_HANDLE_VALUE);
                 }
                 else
                 {
-                    this.Register(NativeMethods.RASCN.Disconnection, this.Handle);
-                    this.Register(NativeMethods.RASCN.BandwidthAdded, this.Handle);
-                    this.Register(NativeMethods.RASCN.BandwidthRemoved, this.Handle);
+                    Register(NativeMethods.RASCN.Disconnection, Handle);
+                    Register(NativeMethods.RASCN.BandwidthAdded, Handle);
+                    Register(NativeMethods.RASCN.BandwidthRemoved, Handle);
                 }
             }
             catch (EntryPointNotFoundException)
@@ -312,16 +312,16 @@ namespace DotRas
         /// </summary>
         private void StopRaisingEvents()
         {
-            if (!this.IsSuspended() && this.EnableRaisingEvents)
+            if (!IsSuspended() && EnableRaisingEvents)
             {				
-                int count = this._stateObjects.Count;
+                int count = _stateObjects.Count;
 
                 for (int index = 0; index < count; index++)
                 {
-                    RasConnectionWatcherStateObject item = this._stateObjects[0];
+                    RasConnectionWatcherStateObject item = _stateObjects[0];
                     if (item != null)
                     {
-                        this.Unregister(item);
+                        Unregister(item);
                     }
                 }
             }
@@ -332,10 +332,10 @@ namespace DotRas
         /// </summary>
         private void Restart()
         {
-            if (!this.IsSuspended() && this.EnableRaisingEvents)
+            if (!IsSuspended() && EnableRaisingEvents)
             {
-                this.StopRaisingEvents();
-                this.StartRaisingEvents();
+                StopRaisingEvents();
+                StartRaisingEvents();
             }
         }
 
@@ -355,9 +355,9 @@ namespace DotRas
                 RasConnectionWatcherStateObject stateObject = new RasConnectionWatcherStateObject(changeType);
 
                 stateObject.WaitObject = waitObject;
-                stateObject.WaitHandle = ThreadPool.RegisterWaitForSingleObject(waitObject, new WaitOrTimerCallback(this.ConnectionStateChanged), stateObject, Timeout.Infinite, false);
+                stateObject.WaitHandle = ThreadPool.RegisterWaitForSingleObject(waitObject, new WaitOrTimerCallback(ConnectionStateChanged), stateObject, Timeout.Infinite, false);
 
-                this._stateObjects.Add(stateObject);
+                _stateObjects.Add(stateObject);
             }
         }
 
@@ -372,7 +372,7 @@ namespace DotRas
                 item.WaitHandle.Unregister(item.WaitObject);
                 item.WaitObject.Close();
 
-                this._stateObjects.Remove(item);
+                _stateObjects.Remove(item);
             }
         }
 
@@ -384,9 +384,9 @@ namespace DotRas
         {
             bool retval = true;
 
-            if (!this._initializing)
+            if (!_initializing)
             {
-                retval = this.DesignMode;
+                retval = DesignMode;
             }
 
             return retval;
@@ -400,9 +400,9 @@ namespace DotRas
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Justification = "The exception is passed to an error event to prevent an uncatchable exception from crashing the host application.")]
         private void ConnectionStateChanged(object obj, bool timedOut)
         {
-            lock (this.lockObject)
+            lock (lockObject)
             {
-                if (this.EnableRaisingEvents)
+                if (EnableRaisingEvents)
                 {
                     try
                     {
@@ -413,47 +413,47 @@ namespace DotRas
                         switch (((RasConnectionWatcherStateObject)obj).ChangeType)
                         {
                             case NativeMethods.RASCN.Connection:
-                                connection = FindEntry(connections, this._lastState);
+                                connection = FindEntry(connections, _lastState);
                                 if (connection != null)
                                 {
-                                    this.OnConnected(new RasConnectionEventArgs(connection));
+                                    OnConnected(new RasConnectionEventArgs(connection));
                                 }
 
-                                this._lastState = connections;
+                                _lastState = connections;
 
                                 break;
 
                             case NativeMethods.RASCN.Disconnection:
                                 // The handle has not been set or it's invalid, the item that has disconnected will need to be
                                 // determined.
-                                connection = FindEntry(this._lastState, connections);
+                                connection = FindEntry(_lastState, connections);
                                 if (connection != null)
                                 {
-                                    this.OnDisconnected(new RasConnectionEventArgs(connection));
+                                    OnDisconnected(new RasConnectionEventArgs(connection));
                                 }
 
-                                if (this.Handle != null)
+                                if (Handle != null)
                                 {
                                     // The handle that was being monitored has been disconnected.
-                                    this.Handle = null;
+                                    Handle = null;
                                 }
 
-                                this._lastState = connections;
+                                _lastState = connections;
 
                                 break;
 
                             case NativeMethods.RASCN.BandwidthAdded:
-                                if (this.Handle != null && !this.Handle.IsInvalid)
+                                if (Handle != null && !Handle.IsInvalid)
                                 {
-                                    this.OnBandwidthAdded(EventArgs.Empty);
+                                    OnBandwidthAdded(EventArgs.Empty);
                                 }
 
                                 break;
 
                             case NativeMethods.RASCN.BandwidthRemoved:
-                                if (this.Handle != null && !this.Handle.IsInvalid)
+                                if (Handle != null && !Handle.IsInvalid)
                                 {
-                                    this.OnBandwidthRemoved(EventArgs.Empty);
+                                    OnBandwidthRemoved(EventArgs.Empty);
                                 }
 
                                 break;
@@ -461,7 +461,7 @@ namespace DotRas
                     }
                     catch (Exception ex)
                     {
-                        this.OnError(new System.IO.ErrorEventArgs(ex));
+                        OnError(new System.IO.ErrorEventArgs(ex));
                     }
                 }
             }
@@ -473,7 +473,7 @@ namespace DotRas
         /// <param name="e">An <see cref="DotRas.RasConnectionEventArgs"/> containing event data.</param>
         private void OnConnected(RasConnectionEventArgs e)
         {
-            this.RaiseEvent<RasConnectionEventArgs>(this.Connected, e);
+            RaiseEvent<RasConnectionEventArgs>(Connected, e);
         }
 
         /// <summary>
@@ -482,7 +482,7 @@ namespace DotRas
         /// <param name="e">An <see cref="DotRas.RasConnectionEventArgs"/> containing event data.</param>
         private void OnDisconnected(RasConnectionEventArgs e)
         {
-            this.RaiseEvent<RasConnectionEventArgs>(this.Disconnected, e);
+            RaiseEvent<RasConnectionEventArgs>(Disconnected, e);
         }
 
         /// <summary>
@@ -491,7 +491,7 @@ namespace DotRas
         /// <param name="e">An <see cref="System.EventArgs"/> containing event data.</param>
         private void OnBandwidthAdded(EventArgs e)
         {
-            this.RaiseEvent<EventArgs>(this.BandwidthAdded, e);
+            RaiseEvent<EventArgs>(BandwidthAdded, e);
         }
 
         /// <summary>
@@ -500,7 +500,7 @@ namespace DotRas
         /// <param name="e">An <see cref="System.EventArgs"/> containing event data.</param>
         private void OnBandwidthRemoved(EventArgs e)
         {
-            this.RaiseEvent<EventArgs>(this.BandwidthRemoved, e);
+            RaiseEvent<EventArgs>(BandwidthRemoved, e);
         }
 
         #endregion
@@ -528,7 +528,7 @@ namespace DotRas
             /// <param name="changeType">The change type being monitored.</param>
             public RasConnectionWatcherStateObject(NativeMethods.RASCN changeType)
             {
-                this._changeType = changeType;
+                _changeType = changeType;
             }
 
             #endregion
@@ -540,7 +540,7 @@ namespace DotRas
             /// </summary>
             public NativeMethods.RASCN ChangeType
             {
-                get { return this._changeType; }
+                get { return _changeType; }
             }
 
             /// <summary>
@@ -548,8 +548,8 @@ namespace DotRas
             /// </summary>
             public RegisteredWaitHandle WaitHandle
             {
-                get { return this._waitHandle; }
-                set { this._waitHandle = value; }
+                get { return _waitHandle; }
+                set { _waitHandle = value; }
             }
 
             /// <summary>
@@ -557,8 +557,8 @@ namespace DotRas
             /// </summary>
             public AutoResetEvent WaitObject
             {
-                get { return this._waitObject; }
-                set { this._waitObject = value; }
+                get { return _waitObject; }
+                set { _waitObject = value; }
             }
 
             #endregion

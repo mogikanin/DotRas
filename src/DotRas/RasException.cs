@@ -17,7 +17,7 @@ namespace DotRas
     using System;
     using System.Runtime.Serialization;
     using System.Security.Permissions;
-    using DotRas.Internal;
+    using Internal;
 
     /// <summary>
     /// The exception that is thrown when a remote access service (RAS) error occurs.
@@ -56,7 +56,7 @@ namespace DotRas
         public RasException(int errorCode)
             : base(RasHelper.Instance.GetRasErrorString(errorCode))
         {
-            this._errorCode = errorCode;
+            _errorCode = errorCode;
         }
 
         /// <summary>
@@ -77,7 +77,7 @@ namespace DotRas
         protected RasException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
-            this._errorCode = (int)info.GetValue("ErrorCode", typeof(int));
+            _errorCode = (int)info.GetValue("ErrorCode", typeof(int));
         }
 
         #endregion
@@ -89,7 +89,7 @@ namespace DotRas
         /// </summary>
         public int ErrorCode
         {
-            get { return this._errorCode; }
+            get { return _errorCode; }
         }
 
         #endregion
@@ -106,7 +106,7 @@ namespace DotRas
         {
             if (info != null)
             {
-                info.AddValue("ErrorCode", this._errorCode, typeof(int));
+                info.AddValue("ErrorCode", _errorCode, typeof(int));
             }
 
             base.GetObjectData(info, context);

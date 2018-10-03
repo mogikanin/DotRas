@@ -56,7 +56,7 @@ namespace DotRas
         public RasDialException(int errorCode, int extendedErrorCode)
             : base(errorCode)
         {
-            this._extendedErrorCode = extendedErrorCode;
+            _extendedErrorCode = extendedErrorCode;
         }
 
         /// <summary>
@@ -77,7 +77,7 @@ namespace DotRas
         protected RasDialException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
-            this._extendedErrorCode = (int)info.GetValue("ExtendedErrorCode", typeof(int));
+            _extendedErrorCode = (int)info.GetValue("ExtendedErrorCode", typeof(int));
         }
 
         #endregion
@@ -89,7 +89,7 @@ namespace DotRas
         /// </summary>
         public int ExtendedErrorCode
         {
-            get { return this._extendedErrorCode; }
+            get { return _extendedErrorCode; }
         }
 
         #endregion
@@ -106,7 +106,7 @@ namespace DotRas
         {
             if (info != null)
             {
-                info.AddValue("ExtendedErrorCode", this._extendedErrorCode, typeof(int));
+                info.AddValue("ExtendedErrorCode", _extendedErrorCode, typeof(int));
             }
 
             base.GetObjectData(info, context);

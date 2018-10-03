@@ -62,11 +62,11 @@ namespace DotRas
         /// <param name="serverOptions">The compression options on the server.</param>
         internal RasCcpInfo(int errorCode, RasCompressionType compressionAlgorithm, RasCompressionOptions options, RasCompressionType serverCompressionAlgorithm, RasCompressionOptions serverOptions)
         {
-            this.ErrorCode = errorCode;
-            this.CompressionAlgorithm = compressionAlgorithm;
-            this.Options = options;
-            this.ServerCompressionAlgorithm = serverCompressionAlgorithm;
-            this.ServerOptions = serverOptions;
+            ErrorCode = errorCode;
+            CompressionAlgorithm = compressionAlgorithm;
+            Options = options;
+            ServerCompressionAlgorithm = serverCompressionAlgorithm;
+            ServerOptions = serverOptions;
         }
 
         #endregion

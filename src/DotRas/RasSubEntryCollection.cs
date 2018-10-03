@@ -15,9 +15,9 @@
 namespace DotRas
 {
     using System;
-    using DotRas.Design;
-    using DotRas.Internal;
-    using DotRas.Properties;
+    using Design;
+    using Internal;
+    using Properties;
 
     /// <summary>
     /// Represents a strongly-typed collection of <see cref="DotRas.RasSubEntry"/> objects. This class cannot be inherited.
@@ -60,22 +60,22 @@ namespace DotRas
 
             try
             {
-                this.BeginLock();
-                this.IsInitializing = true;
+                BeginLock();
+                IsInitializing = true;
 
                 for (int index = 0; index < count; index++)
                 {
-                    RasSubEntry subEntry = RasHelper.Instance.GetSubEntryProperties(phoneBook, this.Owner, index);
+                    RasSubEntry subEntry = RasHelper.Instance.GetSubEntryProperties(phoneBook, Owner, index);
                     if (subEntry != null)
                     {
-                        this.Add(subEntry);
+                        Add(subEntry);
                     }
                 }
             }
             finally
             {
-                this.IsInitializing = false;
-                this.EndLock();
+                IsInitializing = false;
+                EndLock();
             }
         }
 
@@ -94,20 +94,20 @@ namespace DotRas
                 ThrowHelper.ThrowArgumentNullException("item");
             }
 
-            if (!this.IsInitializing && (this.Owner == null || this.Owner.Owner == null))
+            if (!IsInitializing && (Owner == null || Owner.Owner == null))
             {
                 ThrowHelper.ThrowInvalidOperationException(Resources.Exception_PhoneBookNotOpened);
             }
 
-            item.Owner = this.Owner;
+            item.Owner = Owner;
 
-            if (this.IsInitializing)
+            if (IsInitializing)
             {
                 base.InsertItem(index, item);
             }
             else
             {
-                if (RasHelper.Instance.SetSubEntryProperties(this.Owner.Owner, this.Owner, index, item))
+                if (RasHelper.Instance.SetSubEntryProperties(Owner.Owner, Owner, index, item))
                 {
                     base.InsertItem(index, item);
                 }
@@ -121,19 +121,19 @@ namespace DotRas
         /// <exception cref="System.InvalidOperationException">The phone book of the entry collection has not been opened.</exception>
         protected sealed override void RemoveItem(int index)
         {
-            if (!this.IsInitializing && (this.Owner == null || this.Owner.Owner == null))
+            if (!IsInitializing && (Owner == null || Owner.Owner == null))
             {
                 ThrowHelper.ThrowInvalidOperationException(Resources.Exception_PhoneBookNotOpened);
             }
 
-            if (this.IsInitializing)
+            if (IsInitializing)
             {
                 base.RemoveItem(index);
             }
             else
             {
 #if (WINXP || WIN2K8 || WIN7 || WIN8)
-                if (RasHelper.Instance.DeleteSubEntry(this.Owner.Owner.Path, this.Owner.Name, index + 2))
+                if (RasHelper.Instance.DeleteSubEntry(Owner.Owner.Path, Owner.Name, index + 2))
                 {
                     base.RemoveItem(index);
                 }

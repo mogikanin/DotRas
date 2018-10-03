@@ -19,7 +19,7 @@ namespace DotRas
     using System.Diagnostics;
     using System.Runtime.InteropServices;
     using System.Text;
-    using DotRas.Internal;
+    using Internal;
 
     /// <summary>
     /// Represents a locally unique identifier (LUID).
@@ -113,7 +113,7 @@ namespace DotRas
 
             if (obj is Luid)
             {
-                retval = this.Equals((Luid)obj);
+                retval = Equals((Luid)obj);
             }
 
             return retval;
@@ -126,7 +126,7 @@ namespace DotRas
         /// <returns><b>true</b> if the objects are equal, otherwise <b>false</b>.</returns>
         public bool Equals(Luid other)
         {
-            return this.highPart == other.highPart && this.lowPart == other.lowPart;
+            return highPart == other.highPart && lowPart == other.lowPart;
         }
 
         /// <summary>
@@ -135,7 +135,7 @@ namespace DotRas
         /// <returns>The hash code for the instance.</returns>
         public override int GetHashCode()
         {
-            long hashCode = (long)this.highPart + (long)this.lowPart;
+            long hashCode = (long)highPart + (long)lowPart;
 
             int retval = 0;
             if (hashCode < int.MinValue)
@@ -164,7 +164,7 @@ namespace DotRas
         /// <returns>A <see cref="System.String"/> representation of this locally unique identifier.</returns>
         public override string ToString()
         {
-            return this.ToString(null, null);
+            return ToString(null, null);
         }
 
         /// <summary>
@@ -174,7 +174,7 @@ namespace DotRas
         /// <returns>A <see cref="System.String"/> representation of this locally unique identifier.</returns>
         public string ToString(string format)
         {
-            return this.ToString(format, null);
+            return ToString(format, null);
         }
 
         /// <summary>
@@ -186,7 +186,7 @@ namespace DotRas
         public string ToString(string format, IFormatProvider formatProvider)
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append(this.lowPart.ToString(format, formatProvider)).Append("-").Append(this.highPart.ToString(format, formatProvider));
+            sb.Append(lowPart.ToString(format, formatProvider)).Append("-").Append(highPart.ToString(format, formatProvider));
 
             return sb.ToString();
         }

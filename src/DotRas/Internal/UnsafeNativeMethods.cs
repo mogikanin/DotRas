@@ -17,7 +17,7 @@ namespace DotRas.Internal
     using System;
     using System.Diagnostics;
     using System.Runtime.InteropServices;
-    using DotRas.Diagnostics;
+    using Diagnostics;
 
     /// <summary>
     /// Contains the unsafe remote access service (RAS) API function declarations.
@@ -86,7 +86,7 @@ namespace DotRas.Internal
 
             try
             {
-                UnsafeNativeMethods.CopyMemory(destination, source, length);
+                CopyMemory(destination, source, length);
             }
             finally
             {
@@ -110,7 +110,7 @@ namespace DotRas.Internal
 
             try
             {
-                result = UnsafeNativeMethods.RasDeleteEntry(phoneBookPath, entryName);
+                result = RasDeleteEntry(phoneBookPath, entryName);
                 evt.ResultCode = result;
             }
             finally
@@ -141,7 +141,7 @@ namespace DotRas.Internal
 
             try
             {
-                result = UnsafeNativeMethods.RasDialDlg(phoneBookPath, entryName, phoneNumber, ref info);
+                result = RasDialDlg(phoneBookPath, entryName, phoneNumber, ref info);
                 evt.ResultCode = result ? 1 : 0;
             }
             finally
@@ -171,7 +171,7 @@ namespace DotRas.Internal
 
             try
             {
-                result = UnsafeNativeMethods.RasDeleteSubEntry(phoneBookPath, entryName, subEntryId);
+                result = RasDeleteSubEntry(phoneBookPath, entryName, subEntryId);
                 evt.ResultCode = result;
             }
             finally
@@ -201,7 +201,7 @@ namespace DotRas.Internal
 
             try
             {
-                result = UnsafeNativeMethods.RasEntryDlg(phoneBookPath, entryName, ref info);
+                result = RasEntryDlg(phoneBookPath, entryName, ref info);
                 evt.ResultCode = result ? 1 : 0;
             }
             finally
@@ -222,7 +222,7 @@ namespace DotRas.Internal
             IntPtr bufferSize = value.BufferSize;
             IntPtr count = value.Count;
 
-            int ret = UnsafeNativeMethods.RasEnumAutodialAddresses(value.Address, ref bufferSize, ref count);
+            int ret = RasEnumAutodialAddresses(value.Address, ref bufferSize, ref count);
             value.BufferSize = bufferSize;
             value.Count = count;
 
@@ -251,7 +251,7 @@ namespace DotRas.Internal
 
             try
             {
-                result = UnsafeNativeMethods.RasEnumEntries(reserved, phoneBookPath, entryName, ref bufferSize, ref count);
+                result = RasEnumEntries(reserved, phoneBookPath, entryName, ref bufferSize, ref count);
                 evt.ResultCode = result;
                 evt.Data.Add("bufferSize-OUT", bufferSize);
                 evt.Data.Add("count-OUT", count);
@@ -282,7 +282,7 @@ namespace DotRas.Internal
 
             try
             {
-                result = UnsafeNativeMethods.RasGetCredentials(phoneBookPath, entryName, credentials);
+                result = RasGetCredentials(phoneBookPath, entryName, credentials);
                 evt.ResultCode = result;
             }
             finally
@@ -319,7 +319,7 @@ namespace DotRas.Internal
 
             try
             {
-                result = UnsafeNativeMethods.RasGetAutodialAddress(value.AutodialAddress, value.Reserved, value.Address, ref bufferSize, ref count);
+                result = RasGetAutodialAddress(value.AutodialAddress, value.Reserved, value.Address, ref bufferSize, ref count);
                 evt.ResultCode = result;
                 evt.Data.Add("bufferSize-OUT", bufferSize);
                 evt.Data.Add("count-OUT", count);
@@ -356,7 +356,7 @@ namespace DotRas.Internal
 
             try
             {
-                result = UnsafeNativeMethods.RasGetAutodialEnable(value.DialingLocation, ref enabled);
+                result = RasGetAutodialEnable(value.DialingLocation, ref enabled);
                 evt.ResultCode = result;
                 evt.Data.Add("enabled-OUT", enabled);
 
@@ -393,7 +393,7 @@ namespace DotRas.Internal
 
             try
             {
-                result = UnsafeNativeMethods.RasGetAutodialParam(value.Key, value.Address, ref bufferSize);
+                result = RasGetAutodialParam(value.Key, value.Address, ref bufferSize);
                 evt.ResultCode = result;
                 evt.Data.Add("bufferSize-OUT", bufferSize);
 
@@ -431,7 +431,7 @@ namespace DotRas.Internal
 
             try
             {
-                result = UnsafeNativeMethods.RasGetEntryProperties(phoneBookPath, entryName, entry, ref bufferSize, deviceInfo, deviceInfoSize);
+                result = RasGetEntryProperties(phoneBookPath, entryName, entry, ref bufferSize, deviceInfo, deviceInfoSize);
                 evt.ResultCode = result;
                 evt.Data.Add("bufferSize-OUT", bufferSize);
             }
@@ -469,7 +469,7 @@ namespace DotRas.Internal
 
             try
             {
-                result = UnsafeNativeMethods.RasGetSubEntryProperties(phoneBookPath, entryName, index, subentry, ref bufferSize, deviceConfig, deviceBufferSize);
+                result = RasGetSubEntryProperties(phoneBookPath, entryName, index, subentry, ref bufferSize, deviceConfig, deviceBufferSize);
                 evt.ResultCode = result;
                 evt.Data.Add("bufferSize-OUT", bufferSize);
             }
@@ -499,7 +499,7 @@ namespace DotRas.Internal
 
             try
             {
-                result = UnsafeNativeMethods.RasPhonebookDlg(phoneBookPath, entryName, ref info);
+                result = RasPhonebookDlg(phoneBookPath, entryName, ref info);
                 evt.ResultCode = result ? 1 : 0;
             }
             finally
@@ -528,7 +528,7 @@ namespace DotRas.Internal
 
             try
             {
-                result = UnsafeNativeMethods.RasRenameEntry(phoneBookPath, oldEntryName, newEntryName);
+                result = RasRenameEntry(phoneBookPath, oldEntryName, newEntryName);
                 evt.ResultCode = result;
             }
             finally
@@ -561,7 +561,7 @@ namespace DotRas.Internal
 
             try
             {
-                result = UnsafeNativeMethods.RasSetAutodialAddress(address, reserved, addresses, bufferSize, count);
+                result = RasSetAutodialAddress(address, reserved, addresses, bufferSize, count);
                 evt.ResultCode = result;
             }
             finally
@@ -588,7 +588,7 @@ namespace DotRas.Internal
 
             try
             {
-                result = UnsafeNativeMethods.RasSetAutodialEnable(dialingLocation, enabled);
+                result = RasSetAutodialEnable(dialingLocation, enabled);
                 evt.ResultCode = result;
             }
             finally
@@ -617,7 +617,7 @@ namespace DotRas.Internal
 
             try
             {
-                result = UnsafeNativeMethods.RasSetAutodialParam(key, value, bufferSize);
+                result = RasSetAutodialParam(key, value, bufferSize);
                 evt.ResultCode = result;
             }
             finally
@@ -648,7 +648,7 @@ namespace DotRas.Internal
 
             try
             {
-                result = UnsafeNativeMethods.RasSetCredentials(phoneBookPath, entryName, credentials, clearCredentials);
+                result = RasSetCredentials(phoneBookPath, entryName, credentials, clearCredentials);
                 evt.ResultCode = result;
             }
             finally
@@ -679,7 +679,7 @@ namespace DotRas.Internal
 
             try
             {
-                result = UnsafeNativeMethods.RasSetCustomAuthData(phoneBookPath, entryName, customAuthData, sizeOfCustomAuthData);
+                result = RasSetCustomAuthData(phoneBookPath, entryName, customAuthData, sizeOfCustomAuthData);
                 evt.ResultCode = result;
             }
             finally
@@ -712,7 +712,7 @@ namespace DotRas.Internal
 
             try
             {
-                result = UnsafeNativeMethods.RasSetEapUserData(handle, phoneBookPath, entryName, eapData, sizeOfEapData);
+                result = RasSetEapUserData(handle, phoneBookPath, entryName, eapData, sizeOfEapData);
                 evt.ResultCode = result;
             }
             finally
@@ -747,7 +747,7 @@ namespace DotRas.Internal
 
             try
             {
-                result = UnsafeNativeMethods.RasSetEntryProperties(phoneBookPath, entryName, entry, bufferSize, device, deviceBufferSize);
+                result = RasSetEntryProperties(phoneBookPath, entryName, entry, bufferSize, device, deviceBufferSize);
                 evt.ResultCode = result;
             }
             finally
@@ -784,7 +784,7 @@ namespace DotRas.Internal
 
             try
             {
-                result = UnsafeNativeMethods.RasSetSubEntryProperties(phoneBookPath, entryName, index, subentry, bufferSize, deviceConfig, deviceConfigSize);
+                result = RasSetSubEntryProperties(phoneBookPath, entryName, index, subentry, bufferSize, deviceConfig, deviceConfigSize);
                 evt.ResultCode = result;
             }
             finally
@@ -812,7 +812,7 @@ namespace DotRas.Internal
 
             try
             {
-                result = UnsafeNativeMethods.RasUpdateConnection(handle, updateData);
+                result = RasUpdateConnection(handle, updateData);
                 evt.ResultCode = result;
             }
             finally

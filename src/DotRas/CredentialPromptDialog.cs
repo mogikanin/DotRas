@@ -19,8 +19,8 @@ namespace DotRas
     using System.Runtime.InteropServices;
     using System.Text;
     using System.Windows.Forms;
-    using DotRas.Internal;
-    using DotRas.Properties;
+    using Internal;
+    using Properties;
     using Microsoft.Win32;
 
 #if (WINXP || WIN2K8 || WIN7 || WIN8)
@@ -101,7 +101,7 @@ namespace DotRas
         /// </summary>
         public CredentialPromptDialog()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         /// <summary>
@@ -115,7 +115,7 @@ namespace DotRas
                 container.Add(this);
             }
 
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         #endregion
@@ -208,7 +208,7 @@ namespace DotRas
         {
             get
             {
-                return this.maxUserNameLength;
+                return maxUserNameLength;
             }
 
             set
@@ -218,7 +218,7 @@ namespace DotRas
                     ThrowHelper.ThrowArgumentException("value", Resources.Argument_ValueMustBeGreaterThanZeroLessThanOrEqualToOtherValue, NativeMethods.CREDUI_MAX_USERNAME_LENGTH);
                 }
 
-                this.maxUserNameLength = value;
+                maxUserNameLength = value;
             }
         }
 
@@ -233,7 +233,7 @@ namespace DotRas
         {
             get
             {
-                return this.maxPasswordLength;
+                return maxPasswordLength;
             }
 
             set
@@ -243,7 +243,7 @@ namespace DotRas
                     ThrowHelper.ThrowArgumentException("value", Resources.Argument_ValueMustBeGreaterThanZeroLessThanOrEqualToOtherValue, NativeMethods.CREDUI_MAX_PASSWORD_LENGTH);
                 }
 
-                this.maxPasswordLength = value;
+                maxPasswordLength = value;
             }
         }
 
@@ -293,16 +293,16 @@ namespace DotRas
         /// </summary>
         public override void Reset()
         {
-            this.Caption = null;
-            this.UserName = null;
-            this.Password = null;
-            this.TargetName = null;
-            this.Message = null;
-            this.MaxUserNameLength = 0;
-            this.MaxPasswordLength = 0;
-            this.DisableUserName = false;
-            this.ShowSaveCheckBox = false;
-            this.NotifyIncorrectPassword = false;
+            Caption = null;
+            UserName = null;
+            Password = null;
+            TargetName = null;
+            Message = null;
+            MaxUserNameLength = 0;
+            MaxPasswordLength = 0;
+            DisableUserName = false;
+            ShowSaveCheckBox = false;
+            NotifyIncorrectPassword = false;
         }
 
         /// <summary>
@@ -312,7 +312,7 @@ namespace DotRas
         /// <returns><b>true</b> if the user completed the entry successfully, otherwise <b>false</b>.</returns>
         protected override bool RunDialog(IntPtr hwndOwner)
         {
-            if (this.TargetName == null)
+            if (TargetName == null)
             {
                 ThrowHelper.ThrowInvalidOperationException(Resources.Exception_TargetNameCannotBeNullReference);
             }
@@ -327,35 +327,35 @@ namespace DotRas
                 NativeMethods.CREDUI_INFO dlg = new NativeMethods.CREDUI_INFO();
                 dlg.size = size;                
 
-                dlg.caption = this.Caption;
-                dlg.message = this.Message;
+                dlg.caption = Caption;
+                dlg.message = Message;
                 dlg.hwndOwner = hwndOwner;
 
                 pUiCred = Marshal.AllocHGlobal(size);
                 Marshal.StructureToPtr(dlg, pUiCred, true);
 
-                bool saveChecked = this.SaveChecked;
+                bool saveChecked = SaveChecked;
 
                 // Use the default maximum lengths if the caller did not provide a different value.
-                int userNameLength = this.MaxUserNameLength == 0 ? NativeMethods.CREDUI_MAX_USERNAME_LENGTH : this.MaxUserNameLength;
-                int passwordLength = this.MaxPasswordLength == 0 ? NativeMethods.CREDUI_MAX_PASSWORD_LENGTH : this.MaxPasswordLength;
+                int userNameLength = MaxUserNameLength == 0 ? NativeMethods.CREDUI_MAX_USERNAME_LENGTH : MaxUserNameLength;
+                int passwordLength = MaxPasswordLength == 0 ? NativeMethods.CREDUI_MAX_PASSWORD_LENGTH : MaxPasswordLength;
 
                 StringBuilder userNameBuffer = new StringBuilder(userNameLength);
                 StringBuilder passwordBuffer = new StringBuilder(passwordLength);
 
-                if (!string.IsNullOrEmpty(this.UserName))
+                if (!string.IsNullOrEmpty(UserName))
                 {
-                    userNameBuffer.Append(this.UserName);
+                    userNameBuffer.Append(UserName);
                 }
 
-                if (!string.IsNullOrEmpty(this.Password))
+                if (!string.IsNullOrEmpty(Password))
                 {
-                    passwordBuffer.Append(this.Password);
+                    passwordBuffer.Append(Password);
                 }
 
-                NativeMethods.CREDUI_FLAGS flags = this.BuildDialogOptions();
+                NativeMethods.CREDUI_FLAGS flags = BuildDialogOptions();
 
-                int ret = SafeNativeMethods.Instance.PromptForCredentials(pUiCred, this.TargetName, IntPtr.Zero, NativeMethods.SUCCESS, userNameBuffer, userNameLength, passwordBuffer, passwordLength, ref saveChecked, flags);
+                int ret = SafeNativeMethods.Instance.PromptForCredentials(pUiCred, TargetName, IntPtr.Zero, NativeMethods.SUCCESS, userNameBuffer, userNameLength, passwordBuffer, passwordLength, ref saveChecked, flags);
                 if (ret == NativeMethods.ERROR_CANCELLED)
                 {
                     retval = false;
@@ -363,10 +363,10 @@ namespace DotRas
                 else if (ret == NativeMethods.SUCCESS)
                 {
                     // Update the output values on the component with the new values returned from the dialog box.
-                    this.SaveChecked = saveChecked;
+                    SaveChecked = saveChecked;
 
-                    this.UserName = userNameBuffer.ToString();
-                    this.Password = passwordBuffer.ToString();
+                    UserName = userNameBuffer.ToString();
+                    Password = passwordBuffer.ToString();
 
                     retval = true;
                 }
@@ -415,7 +415,7 @@ namespace DotRas
             }
             else
             {
-                if (this.ShowSaveCheckBox)
+                if (ShowSaveCheckBox)
                 {
                     result = result | NativeMethods.CREDUI_FLAGS.ShowSaveCheckBox | NativeMethods.CREDUI_FLAGS.DoNotPersist;
                 }
@@ -425,12 +425,12 @@ namespace DotRas
                 }
             }
 
-            if (this.DisableUserName)
+            if (DisableUserName)
             {
                 result = result | NativeMethods.CREDUI_FLAGS.KeepUserName;
             }
 
-            if (this.NotifyIncorrectPassword)
+            if (NotifyIncorrectPassword)
             {
                 result = result | NativeMethods.CREDUI_FLAGS.IncorrectPassword;
             }
@@ -443,8 +443,8 @@ namespace DotRas
         /// </summary>
         private void InitializeComponent()
         {
-            this.MaxPasswordLength = NativeMethods.CREDUI_MAX_PASSWORD_LENGTH;
-            this.MaxUserNameLength = NativeMethods.CREDUI_MAX_USERNAME_LENGTH;
+            MaxPasswordLength = NativeMethods.CREDUI_MAX_PASSWORD_LENGTH;
+            MaxUserNameLength = NativeMethods.CREDUI_MAX_USERNAME_LENGTH;
         }
 
         #endregion

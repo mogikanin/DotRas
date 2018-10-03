@@ -47,8 +47,8 @@ namespace DotRas
         /// <param name="entryName">The name of the existing phone book entry to dial.</param>
         public RasAutoDialEntry(int dialingLocation, string entryName)
         {
-            this._dialingLocation = dialingLocation;
-            this._entryName = entryName;
+            _dialingLocation = dialingLocation;
+            _entryName = entryName;
         }
 
         #endregion
@@ -61,8 +61,8 @@ namespace DotRas
         /// <remarks>For more information about TAPI dialing locations, see the TAPI Programmer's Reference in the Platform SDK.</remarks>
         public int DialingLocation
         {
-            get { return this._dialingLocation; }
-            set { this._dialingLocation = value; }
+            get { return _dialingLocation; }
+            set { _dialingLocation = value; }
         }
 
         /// <summary>
@@ -70,8 +70,8 @@ namespace DotRas
         /// </summary>
         public string EntryName
         {
-            get { return this._entryName; }
-            set { this._entryName = value; }
+            get { return _entryName; }
+            set { _entryName = value; }
         }
 
         #endregion

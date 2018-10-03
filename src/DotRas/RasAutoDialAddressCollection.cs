@@ -16,8 +16,8 @@ namespace DotRas
 {
     using System;
     using System.Collections.ObjectModel;
-    using DotRas.Design;
-    using DotRas.Internal;
+    using Design;
+    using Internal;
 
     /// <summary>
     /// Represents a strongly-typed collection of <see cref="DotRas.RasAutoDialAddress"/> objects. This class cannot be inherited.
@@ -37,7 +37,7 @@ namespace DotRas
         /// </summary>
         internal RasAutoDialAddressCollection()
         {
-            this._lookUpTable = new RasAutoDialAddressItemCollection();
+            _lookUpTable = new RasAutoDialAddressItemCollection();
         }
 
         #endregion
@@ -51,7 +51,7 @@ namespace DotRas
         /// <returns>An <see cref="RasAutoDialAddress"/> object.</returns>
         public RasAutoDialAddress this[string address]
         {
-            get { return this._lookUpTable[address]; }
+            get { return _lookUpTable[address]; }
         }
 
         #endregion
@@ -65,10 +65,10 @@ namespace DotRas
         {
             try
             {
-                this.BeginLock();
-                this.IsInitializing = true;
+                BeginLock();
+                IsInitializing = true;
 
-                this.Clear();
+                Clear();
 
                 Collection<string> addresses = RasHelper.Instance.GetAutoDialAddresses();
                 if (addresses != null && addresses.Count > 0)
@@ -78,15 +78,15 @@ namespace DotRas
                         RasAutoDialAddress item = RasHelper.Instance.GetAutoDialAddress(addresses[index]);
                         if (item != null)
                         {
-                            this.Add(item);
+                            Add(item);
                         }
                     }
                 }
             }
             finally
             {
-                this.IsInitializing = false;
-                this.EndLock();
+                IsInitializing = false;
+                EndLock();
             }
         }
 
@@ -95,9 +95,9 @@ namespace DotRas
         /// </summary>
         protected override void ClearItems()
         {
-            while (this.Count > 0)
+            while (Count > 0)
             {
-                this.RemoveAt(0);
+                RemoveAt(0);
             }
         }
 
@@ -114,9 +114,9 @@ namespace DotRas
                 ThrowHelper.ThrowArgumentNullException("item");
             }
 
-            if (this.IsInitializing)
+            if (IsInitializing)
             {
-                this._lookUpTable.Insert(index, item);
+                _lookUpTable.Insert(index, item);
             }
             else
             {
@@ -126,7 +126,7 @@ namespace DotRas
                     // is already in the database. Removing an item from the database does not clear existing entries.
                     item = RasHelper.Instance.GetAutoDialAddress(item.Address);
 
-                    this._lookUpTable.Insert(index, item);
+                    _lookUpTable.Insert(index, item);
                 }
             }
 
@@ -139,14 +139,14 @@ namespace DotRas
         /// <param name="index">The zero-based index of the item to remove.</param>
         protected override void RemoveItem(int index)
         {
-            if (!this.IsInitializing)
+            if (!IsInitializing)
             {
                 RasAutoDialAddress item = this[index];
                 if (item != null)
                 {
                     if (RasHelper.Instance.SetAutoDialAddress(item.Address, null))
                     {
-                        this._lookUpTable.RemoveAt(index);
+                        _lookUpTable.RemoveAt(index);
                     }
                 }
             }

@@ -2988,9 +2988,9 @@ namespace DotRas.Internal
             public int size;
             public int errorCode;
             public RasCompressionType compressionAlgorithm;
-            public NativeMethods.RASCCPO options;
+            public RASCCPO options;
             public RasCompressionType serverCompressionAlgorithm;
-            public NativeMethods.RASCCPO serverOptions;
+            public RASCCPO serverOptions;
         }
 
         #endregion
@@ -3055,8 +3055,8 @@ namespace DotRas.Internal
             public int serverTerminateReason;
             [MarshalAs(UnmanagedType.ByValTStr, SizeConst = RAS_MaxReplyMessage)]
             public string replyMessage;
-            public NativeMethods.RASLCPO options;
-            public NativeMethods.RASLCPO serverOptions;
+            public RASLCPO options;
+            public RASLCPO serverOptions;
         }
 
         #endregion
@@ -3142,7 +3142,7 @@ namespace DotRas.Internal
             public int subEntryId;
             public Guid entryId;
 #if (WINXP || WIN2K8 || WIN7 || WIN8)
-            public NativeMethods.RASCF connectionOptions;
+            public RASCF connectionOptions;
             public Luid sessionId;
 #endif
 #if (WIN2K8 || WIN7 || WIN8)
@@ -3260,7 +3260,7 @@ namespace DotRas.Internal
         public struct RASDIALEXTENSIONS
         {
             public int size;
-            public NativeMethods.RDEOPT options;
+            public RDEOPT options;
             public IntPtr handle;
             public IntPtr reserved;
             public IntPtr reserved1;
@@ -3315,7 +3315,7 @@ namespace DotRas.Internal
         public struct RASENTRY
         {
             public int size;
-            public NativeMethods.RASEO options;
+            public RASEO options;
 
             // Location and phone number
             public int countryId;
@@ -3335,7 +3335,7 @@ namespace DotRas.Internal
 
             // Framing
             public int frameSize;
-            public NativeMethods.RASNP networkProtocols;
+            public RASNP networkProtocols;
             public RasFramingProtocol framingProtocol;
 
             // Scripting 
@@ -3389,7 +3389,7 @@ namespace DotRas.Internal
             public RasVpnStrategy vpnStrategy;
 
 #if (WINXP || WIN2K8 || WIN7 || WIN8)
-            public NativeMethods.RASEO2 options2;
+            public RASEO2 options2;
             public int options3;
             [MarshalAs(UnmanagedType.ByValTStr, SizeConst = RAS_MaxDnsSuffix)]
             public string dnsSuffix;
@@ -3475,7 +3475,7 @@ namespace DotRas.Internal
             public int prefixLength;
             public RasIkeV2AuthenticationType authenticationProtocol;
             public int eapTypeId;
-            public NativeMethods.RASIKEV2 options;
+            public RASIKEV2 options;
             public RasIPSecEncryptionType encryptionMethod;
             public int numIPv4ServerAddresses;
             public IntPtr ipv4ServerAddresses;
@@ -3588,12 +3588,12 @@ namespace DotRas.Internal
             public RasLcpAuthenticationDataType serverAuthenticationData;
             public int eapTypeId;
             public int serverEapTypeId;
-            public NativeMethods.RASLCPO lcpOptions;
-            public NativeMethods.RASLCPO serverLcpOptions;
+            public RASLCPO lcpOptions;
+            public RASLCPO serverLcpOptions;
             public RasCompressionType ccpCompressionAlgorithm;
             public RasCompressionType serverCcpCompressionAlgorithm;
-            public NativeMethods.RASCCPO ccpOptions;
-            public NativeMethods.RASCCPO serverCcpOptions;
+            public RASCCPO ccpOptions;
+            public RASCCPO serverCcpOptions;
         }
 
         #endregion

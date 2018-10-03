@@ -17,9 +17,9 @@ namespace DotRas
     using System;
     using System.ComponentModel;
     using System.IO;
-    using DotRas.Design;
-    using DotRas.Internal;
-    using DotRas.Properties;
+    using Design;
+    using Internal;
+    using Properties;
 
     /// <summary>
     /// Represents a remote access service (RAS) phone book. This class cannot be inherited.
@@ -103,7 +103,7 @@ namespace DotRas
         /// </summary>
         public RasPhoneBook()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         /// <summary>
@@ -113,7 +113,7 @@ namespace DotRas
         public RasPhoneBook(IContainer container)
             : base(container)
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         #endregion
@@ -174,12 +174,12 @@ namespace DotRas
         {
             get
             {
-                if (this.entries == null)
+                if (entries == null)
                 {
-                    this.entries = new RasEntryCollection(this);
+                    entries = new RasEntryCollection(this);
                 }
 
-                return this.entries;
+                return entries;
             }
         }
 
@@ -193,17 +193,17 @@ namespace DotRas
         {
             get
             {
-                return this.enableFileWatcher;
+                return enableFileWatcher;
             }
 
             set
             {
-                this.enableFileWatcher = value;
+                enableFileWatcher = value;
 
-                if (this.opened)
+                if (opened)
                 {
                     // The phone book has already been opened, update the setting on the watcher.
-                    this.watcher.EnableRaisingEvents = value;
+                    watcher.EnableRaisingEvents = value;
                 }
             }
         }
@@ -287,23 +287,23 @@ namespace DotRas
             }
 
             RasPhoneBookType phoneBookType = RasPhoneBookType.Custom;
-            if (string.Equals(phoneBookPath, RasPhoneBook.GetPhoneBookPath(RasPhoneBookType.AllUsers), StringComparison.CurrentCultureIgnoreCase))
+            if (string.Equals(phoneBookPath, GetPhoneBookPath(RasPhoneBookType.AllUsers), StringComparison.CurrentCultureIgnoreCase))
             {
                 phoneBookType = RasPhoneBookType.AllUsers;
             }
-            else if (string.Equals(phoneBookPath, RasPhoneBook.GetPhoneBookPath(RasPhoneBookType.User), StringComparison.CurrentCultureIgnoreCase))
+            else if (string.Equals(phoneBookPath, GetPhoneBookPath(RasPhoneBookType.User), StringComparison.CurrentCultureIgnoreCase))
             {
                 phoneBookType = RasPhoneBookType.User;
             }
 
-            this.Path = file.FullName;
-            this.PhoneBookType = phoneBookType;
+            Path = file.FullName;
+            PhoneBookType = phoneBookType;
 
             // Setup the watcher used to monitor the file for changes, and attempt to load the entries.
-            this.SetupFileWatcher(file);
-            this.Entries.Load();
+            SetupFileWatcher(file);
+            Entries.Load();
 
-            this.opened = true;
+            opened = true;
         }
 
         /// <summary>
@@ -311,14 +311,14 @@ namespace DotRas
         /// </summary>
         protected override void InitializeComponent()
         {
-            this.watcher = new System.IO.FileSystemWatcher();
-            this.watcher.BeginInit();
+            watcher = new FileSystemWatcher();
+            watcher.BeginInit();
 
-            this.watcher.Renamed += new System.IO.RenamedEventHandler(this.WatcherRenamed);
-            this.watcher.Deleted += new System.IO.FileSystemEventHandler(this.WatcherDeleted);
-            this.watcher.Changed += new System.IO.FileSystemEventHandler(this.WatcherChanged);
+            watcher.Renamed += new RenamedEventHandler(WatcherRenamed);
+            watcher.Deleted += new FileSystemEventHandler(WatcherDeleted);
+            watcher.Changed += new FileSystemEventHandler(WatcherChanged);
 
-            this.watcher.EndInit();
+            watcher.EndInit();
 
             base.InitializeComponent();
         }
@@ -331,13 +331,13 @@ namespace DotRas
         {
             if (disposing)
             {
-                if (this.watcher != null)
+                if (watcher != null)
                 {
-                    this.watcher.Dispose();
+                    watcher.Dispose();
                 }
 
-                this.Path = null;
-                this.entries = null;
+                Path = null;
+                entries = null;
             }
 
             base.Dispose(disposing);
@@ -349,7 +349,7 @@ namespace DotRas
         /// <param name="e">An <see cref="System.EventArgs"/> containing event data.</param>
         private void OnChanged(EventArgs e)
         {
-            this.RaiseEvent<EventArgs>(this.Changed, e);
+            RaiseEvent<EventArgs>(Changed, e);
         }
 
         /// <summary>
@@ -358,7 +358,7 @@ namespace DotRas
         /// <param name="e">An <see cref="System.EventArgs"/> containing event data.</param>
         private void OnDeleted(EventArgs e)
         {
-            this.RaiseEvent<EventArgs>(this.Deleted, e);
+            RaiseEvent<EventArgs>(Deleted, e);
         }
 
         /// <summary>
@@ -367,7 +367,7 @@ namespace DotRas
         /// <param name="e">An <see cref="System.EventArgs"/> containing event data.</param>
         private void OnRenamed(RenamedEventArgs e)
         {
-            this.RaiseEvent<RenamedEventArgs>(this.Renamed, e);
+            RaiseEvent<RenamedEventArgs>(Renamed, e);
         }
 
         /// <summary>
@@ -380,13 +380,13 @@ namespace DotRas
         {
             try
             {
-                this.Entries.Load();
+                Entries.Load();
 
-                this.OnChanged(EventArgs.Empty);
+                OnChanged(EventArgs.Empty);
             }
             catch (Exception ex)
             {
-                this.OnError(new ErrorEventArgs(ex));
+                OnError(new ErrorEventArgs(ex));
             }
         }
 
@@ -400,13 +400,13 @@ namespace DotRas
         {
             try
             {
-                this.Entries.Load();
+                Entries.Load();
 
-                this.OnDeleted(EventArgs.Empty);
+                OnDeleted(EventArgs.Empty);
             }
             catch (Exception ex)
             {
-                this.OnError(new ErrorEventArgs(ex));
+                OnError(new ErrorEventArgs(ex));
             }
         }
 
@@ -422,19 +422,19 @@ namespace DotRas
             {
                 if (e.ChangeType == WatcherChangeTypes.Renamed)
                 {
-                    this.Path = e.FullPath;
+                    Path = e.FullPath;
 
                     // Force the file watcher to disable temporarily while the file being monitored is updated.
-                    this.watcher.EnableRaisingEvents = false;
-                    this.watcher.Filter = e.Name;
-                    this.watcher.EnableRaisingEvents = this.EnableFileWatcher;
+                    watcher.EnableRaisingEvents = false;
+                    watcher.Filter = e.Name;
+                    watcher.EnableRaisingEvents = EnableFileWatcher;
                 }
 
-                this.OnRenamed(e);
+                OnRenamed(e);
             }
             catch (Exception ex)
             {
-                this.OnError(new ErrorEventArgs(ex));
+                OnError(new ErrorEventArgs(ex));
             }
         }
 
@@ -450,9 +450,9 @@ namespace DotRas
                 Utilities.CreateFile(file);
             }
 
-            this.watcher.Path = file.DirectoryName;
-            this.watcher.Filter = file.Name;
-            this.watcher.EnableRaisingEvents = this.EnableFileWatcher;
+            watcher.Path = file.DirectoryName;
+            watcher.Filter = file.Name;
+            watcher.EnableRaisingEvents = EnableFileWatcher;
         }
 
         #endregion

@@ -16,7 +16,7 @@ namespace DotRas.Internal
 {
     using System;
     using System.ComponentModel;
-    using DotRas.Properties;
+    using Properties;
 
     /// <summary>
     /// Specifies the name of the category in which to group the property or event based on the string resource specified. This class cannot be inherited.

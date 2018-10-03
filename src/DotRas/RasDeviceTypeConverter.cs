@@ -17,8 +17,8 @@ namespace DotRas
     using System;
     using System.ComponentModel;
     using System.Globalization;
-    using DotRas.Internal;
-    using DotRas.Properties;
+    using Internal;
+    using Properties;
 
     /// <summary>
     /// Provides a converter for <see cref="RasDeviceType"/>. This class cannot be inherited.
@@ -156,7 +156,7 @@ namespace DotRas
         /// <param name="value">The object to convert.</param>
         /// <param name="destinationType">The type to convert the <paramref name="value"/> parameter to.</param>
         /// <returns>An object that represents the converted value.</returns>
-        public override object ConvertTo(ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value, Type destinationType)
+        public override object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
         {
             if (destinationType == typeof(string))
             {

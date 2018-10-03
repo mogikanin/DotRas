@@ -60,8 +60,8 @@ namespace DotRas
         /// <param name="ipAddress">The client IP address on the connection.</param>
         internal RasSlipInfo(int errorCode, IPAddress ipAddress)
         {
-            this.ErrorCode = errorCode;
-            this.IPAddress = ipAddress;
+            ErrorCode = errorCode;
+            IPAddress = ipAddress;
         }
 
         #endregion
