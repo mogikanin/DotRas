@@ -12,6 +12,8 @@
 // </copyright>
 //--------------------------------------------------------------------------
 
+using JetBrains.Annotations;
+
 namespace DotRas
 {
     using System;
@@ -71,6 +73,7 @@ namespace DotRas
     /// ]]>
     /// </code>
     /// </example>
+    [PublicAPI]
     public sealed partial class RasConnectionWatcher : RasComponent, ISupportInitialize
     {
         #region Fields

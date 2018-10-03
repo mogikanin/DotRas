@@ -12,6 +12,8 @@
 // </copyright>
 //--------------------------------------------------------------------------
 
+using JetBrains.Annotations;
+
 namespace DotRas
 {
     using System;
@@ -57,6 +59,7 @@ namespace DotRas
     /// </code>
     /// </example>
     [DebuggerDisplay("PhoneNumber = {PhoneNumber}")]
+    [PublicAPI]
     public sealed class RasSubEntry : MarshalByRefObject, ICloneable
     {
         #region Fields
@@ -157,7 +160,7 @@ namespace DotRas
         /// <exception cref="System.InvalidOperationException">The collection is not associated with a phone book.</exception>
         public bool Update()
         {
-            if (Owner == null || Owner.Owner == null)
+            if (Owner?.Owner == null)
             {
                 ThrowHelper.ThrowInvalidOperationException(Resources.Exception_EntryNotInPhoneBook);
             }

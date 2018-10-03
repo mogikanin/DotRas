@@ -12,6 +12,8 @@
 // </copyright>
 //--------------------------------------------------------------------------
 
+using JetBrains.Annotations;
+
 namespace DotRas.Design
 {
     using System;
@@ -27,6 +29,7 @@ namespace DotRas.Design
     /// </summary>
     /// <typeparam name="TObject">The type of object contained in the collection.</typeparam>
     [DebuggerDisplay("Count = {Count}")]
+    [PublicAPI]
     public abstract class RasCollection<TObject> : MarshalByRefObject, ICollection<TObject>
         where TObject : class
     {
@@ -145,11 +148,6 @@ namespace DotRas.Design
         /// <exception cref="System.ArgumentOutOfRangeException"><paramref name="arrayIndex"/> is less than zero.</exception>
         public void CopyTo(TObject[] array, int arrayIndex)
         {
-            if (array == null)
-            {
-                ThrowHelper.ThrowArgumentNullException("array");
-            }
-
             if (arrayIndex < 0)
             {
                 ThrowHelper.ThrowArgumentOutOfRangeException("arrayIndex", arrayIndex, Resources.Argument_ValueCannotBeLessThanZero);

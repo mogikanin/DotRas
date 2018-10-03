@@ -12,6 +12,8 @@
 // </copyright>
 //--------------------------------------------------------------------------
 
+using JetBrains.Annotations;
+
 namespace DotRas
 {
     using System;
@@ -19,6 +21,7 @@ namespace DotRas
     /// <summary>
     /// Provides data for <see cref="RasPhoneBookDialog"/> events.
     /// </summary>
+    [PublicAPI]
     public class RasPhoneBookDialogEventArgs : EventArgs
     {
         #region Constructors

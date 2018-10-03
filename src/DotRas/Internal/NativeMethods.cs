@@ -12,6 +12,9 @@
 // </copyright>
 //--------------------------------------------------------------------------
 
+using System.Diagnostics.CodeAnalysis;
+using JetBrains.Annotations;
+
 namespace DotRas.Internal
 {
     using System;
@@ -1574,6 +1577,7 @@ namespace DotRas.Internal
         /// Defines the credential user interface flags.
         /// </summary>
         [Flags]
+        [SuppressMessage("ReSharper", "UnusedMember.Global")]
         public enum CREDUI_FLAGS
         {
             /// <summary>
@@ -1709,6 +1713,7 @@ namespace DotRas.Internal
         /// <summary>
         /// Defines the version of a data structure.
         /// </summary>
+        [SuppressMessage("ReSharper", "UnusedMember.Global")]
         public enum RASAPIVERSION
         {
             /// <summary>
@@ -2393,6 +2398,7 @@ namespace DotRas.Internal
         /// <summary>
         /// Defines the events that occur for RasPhoneBookDialog boxes.
         /// </summary>
+        [SuppressMessage("ReSharper", "UnusedMember.Global")]
         public enum RASPBDEVENT
         {
             /// <summary>
@@ -2542,6 +2548,7 @@ namespace DotRas.Internal
         /// Defines the options available for entry dialog boxes.
         /// </summary>
         [Flags]
+        [SuppressMessage("ReSharper", "UnusedMember.Global")]
         public enum RASEDFLAG
         {
             /// <summary>

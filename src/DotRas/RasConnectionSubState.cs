@@ -12,6 +12,8 @@
 // </copyright>
 //--------------------------------------------------------------------------
 
+using JetBrains.Annotations;
+
 namespace DotRas
 {
     using Internal;
@@ -23,6 +25,7 @@ namespace DotRas
     /// </summary>
     /// <remarks>These states are not available to other tunneling protocols.</remarks>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1027:MarkEnumsWithFlags", Justification = "Values are defined in the Windows SDK.")]
+    [PublicAPI]
     public enum RasConnectionSubState
     {
         /// <summary>

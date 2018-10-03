@@ -12,6 +12,8 @@
 // </copyright>
 //--------------------------------------------------------------------------
 
+using JetBrains.Annotations;
+
 namespace DotRas
 {
     using System;
@@ -53,6 +55,7 @@ namespace DotRas
     /// </code>
     /// </example>
     [DebuggerDisplay("EntryName = {EntryName}")]
+    [PublicAPI]
     public sealed class RasConnection : MarshalByRefObject
     {
         #region Fields

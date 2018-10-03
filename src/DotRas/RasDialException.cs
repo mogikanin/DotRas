@@ -12,6 +12,8 @@
 // </copyright>
 //--------------------------------------------------------------------------
 
+using JetBrains.Annotations;
+
 namespace DotRas
 {
     using System;
@@ -33,6 +35,7 @@ namespace DotRas
         /// <summary>
         /// Initializes a new instance of the <see cref="DotRas.RasDialException"/> class.
         /// </summary>
+        [UsedImplicitly]
         public RasDialException()
         {
         }

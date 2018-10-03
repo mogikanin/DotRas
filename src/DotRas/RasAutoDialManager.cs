@@ -12,6 +12,8 @@
 // </copyright>
 //--------------------------------------------------------------------------
 
+using JetBrains.Annotations;
+
 namespace DotRas
 {
     using System.ComponentModel;
@@ -104,6 +106,7 @@ namespace DotRas
         [SRCategory("CatBehavior")]
         [SRDescription("RADMLogOnSessionDisableDesc")]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "The design is ok.")]
+        [PublicAPI]
         public bool LogOnSessionDisable
         {
             get => RasHelper.Instance.GetAutoDialParameter(NativeMethods.RASADP.LogOnSessionDisable) != 0;

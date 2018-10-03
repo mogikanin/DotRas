@@ -12,6 +12,8 @@
 // </copyright>
 //--------------------------------------------------------------------------
 
+using JetBrains.Annotations;
+
 namespace DotRas
 {
     using System;
@@ -20,6 +22,7 @@ namespace DotRas
     /// <summary>
     /// Represents a wrapper class for remote access service (RAS) handles. This class cannot be inherited.
     /// </summary>
+    [PublicAPI]
     public sealed class RasHandle : SafeHandleZeroOrMinusOneIsInvalid, IEquatable<RasHandle>
     {
         #region Constructors

@@ -12,12 +12,15 @@
 // </copyright>
 //--------------------------------------------------------------------------
 
+using JetBrains.Annotations;
+
 namespace DotRas
 {
     /// <summary>
     /// Defines the entry types.
     /// </summary>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1027:MarkEnumsWithFlags", Justification = "This enum is not a flag.")]
+    [PublicAPI]
     public enum RasEntryType
     {
         /// <summary>

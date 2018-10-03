@@ -12,6 +12,8 @@
 // </copyright>
 //--------------------------------------------------------------------------
 
+using JetBrains.Annotations;
+
 namespace DotRas
 {
     using System;
@@ -22,6 +24,7 @@ namespace DotRas
     /// </summary>
     [Serializable]
     [DebuggerDisplay("DialingLocation = {DialingLocation}, EntryName = {EntryName}")]
+    [PublicAPI]
     public sealed class RasAutoDialEntry
     {
         #region Fields

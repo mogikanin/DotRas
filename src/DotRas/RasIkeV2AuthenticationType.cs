@@ -12,6 +12,8 @@
 // </copyright>
 //--------------------------------------------------------------------------
 
+using JetBrains.Annotations;
+
 namespace DotRas
 {
 #if (WIN7 || WIN8)
@@ -27,6 +29,7 @@ namespace DotRas
     /// </list>
     /// </para>
     /// </remarks>
+    [PublicAPI]
     public enum RasIkeV2AuthenticationType
     {
         /// <summary>

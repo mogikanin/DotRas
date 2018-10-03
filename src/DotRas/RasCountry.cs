@@ -12,6 +12,8 @@
 // </copyright>
 //--------------------------------------------------------------------------
 
+using JetBrains.Annotations;
+
 namespace DotRas
 {
     using System;
@@ -44,6 +46,7 @@ namespace DotRas
     /// </example>
     [Serializable]
     [DebuggerDisplay("Id = {Id}, Name = {Name}")]
+    [PublicAPI]
     public sealed class RasCountry
     {
         #region Fields

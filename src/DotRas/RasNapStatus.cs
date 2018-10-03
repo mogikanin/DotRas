@@ -12,6 +12,8 @@
 // </copyright>
 //--------------------------------------------------------------------------
 
+using JetBrains.Annotations;
+
 namespace DotRas
 {
     using System;
@@ -57,6 +59,7 @@ namespace DotRas
     /// </code>
     /// </example>
     [Serializable]
+    [PublicAPI]
     public sealed class RasNapStatus
     {
         #region Constructors

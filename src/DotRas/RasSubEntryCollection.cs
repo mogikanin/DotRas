@@ -93,7 +93,7 @@ namespace DotRas
                 ThrowHelper.ThrowArgumentNullException("item");
             }
 
-            if (!IsInitializing && (Owner == null || Owner.Owner == null))
+            if (!IsInitializing && (Owner?.Owner == null))
             {
                 ThrowHelper.ThrowInvalidOperationException(Resources.Exception_PhoneBookNotOpened);
             }

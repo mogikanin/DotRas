@@ -12,6 +12,8 @@
 // </copyright>
 //--------------------------------------------------------------------------
 
+using JetBrains.Annotations;
+
 namespace DotRas
 {
     using System.Collections.ObjectModel;
@@ -22,6 +24,7 @@ namespace DotRas
     /// <summary>
     /// Represents a strongly-typed collection of <see cref="DotRas.RasEntry"/> objects. This class cannot be inherited.
     /// </summary>
+    [PublicAPI]
     public sealed class RasEntryCollection : RasOwnedCollection<RasPhoneBook, RasEntry>
     {
         #region Fields

@@ -12,6 +12,8 @@
 // </copyright>
 //--------------------------------------------------------------------------
 
+using JetBrains.Annotations;
+
 namespace DotRas
 {
     using System;
@@ -43,6 +45,7 @@ namespace DotRas
     /// ]]>
     /// </code>
     /// </example>
+    [PublicAPI]
     public sealed class RasEntryNameValidator
     {
         #region Constructors

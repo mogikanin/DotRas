@@ -12,6 +12,8 @@
 // </copyright>
 //--------------------------------------------------------------------------
 
+using JetBrains.Annotations;
+
 namespace DotRas
 {
     using System;
@@ -35,6 +37,7 @@ namespace DotRas
         /// <summary>
         /// Initializes a new instance of the <see cref="DotRas.InvalidHandleException"/> class.
         /// </summary>
+        [UsedImplicitly]
         public InvalidHandleException()
         {
         }
@@ -125,8 +128,7 @@ namespace DotRas
         [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.SerializationFormatter)]
         public override void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            info?.AddValue("Handle", Handle, typeof(RasHandle));
-
+            info.AddValue("Handle", Handle, typeof(RasHandle));
             base.GetObjectData(info, context);
         }
 

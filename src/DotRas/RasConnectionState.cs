@@ -12,6 +12,8 @@
 // </copyright>
 //--------------------------------------------------------------------------
 
+using JetBrains.Annotations;
+
 namespace DotRas
 {
     using Internal;
@@ -21,6 +23,7 @@ namespace DotRas
     /// </summary>
     /// <remarks>Do not write code that depends on the order or occurrence of a particular connection state, because this can vary between platforms.</remarks>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1027:MarkEnumsWithFlags", Justification = "This enum is not a flag.")]
+    [PublicAPI]
     public enum RasConnectionState
     {
         /// <summary>

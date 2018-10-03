@@ -12,6 +12,8 @@
 // </copyright>
 //--------------------------------------------------------------------------
 
+using JetBrains.Annotations;
+
 namespace DotRas
 {
     using Design;
@@ -60,6 +62,7 @@ namespace DotRas
     /// ]]>
     /// </code>
     /// </example>
+    [UsedImplicitly]
     public sealed class RasEntryDialog : RasCommonDialog
     {
         #region Constructors
