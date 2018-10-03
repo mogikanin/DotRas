@@ -27,8 +27,6 @@ namespace DotRas.Design
     {
         #region Fields
 
-        private Point _location;
-
         #endregion
 
         #region Constructors
@@ -60,11 +58,7 @@ namespace DotRas.Design
         [DefaultValue(typeof(Point), "0,0")]
         [SRCategory("CatLayout")]
         [SRDescription("RCDLocationDesc")]
-        public Point Location
-        {
-            get { return _location; }
-            set { _location = value; }
-        }
+        public Point Location { get; set; }
 
         #endregion
 

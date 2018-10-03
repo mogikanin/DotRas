@@ -191,10 +191,7 @@ namespace DotRas
         [SRDescription("RPBEnableFileWatcherDesc")]
         public bool EnableFileWatcher
         {
-            get
-            {
-                return enableFileWatcher;
-            }
+            get => enableFileWatcher;
 
             set
             {

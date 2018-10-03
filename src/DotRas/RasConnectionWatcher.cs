@@ -150,10 +150,7 @@ namespace DotRas
         [Browsable(false)]
         public RasHandle Handle
         {
-            get
-            {
-                return _handle;
-            }
+            get => _handle;
 
             set
             {
@@ -180,10 +177,7 @@ namespace DotRas
         [SRDescription("RCWEnableRaisingEventsDesc")]
         public bool EnableRaisingEvents
         {
-            get
-            {
-                return _enableRaisingEvents;
-            }
+            get => _enableRaisingEvents;
 
             set
             {
@@ -514,10 +508,6 @@ namespace DotRas
         {
             #region Fields
 
-            private RegisteredWaitHandle _waitHandle;
-            private AutoResetEvent _waitObject;
-            private NativeMethods.RASCN _changeType;
-
             #endregion
 
             #region Constructors
@@ -528,7 +518,7 @@ namespace DotRas
             /// <param name="changeType">The change type being monitored.</param>
             public RasConnectionWatcherStateObject(NativeMethods.RASCN changeType)
             {
-                _changeType = changeType;
+                ChangeType = changeType;
             }
 
             #endregion
@@ -538,28 +528,17 @@ namespace DotRas
             /// <summary>
             /// Gets the change type being monitored.
             /// </summary>
-            public NativeMethods.RASCN ChangeType
-            {
-                get { return _changeType; }
-            }
+            public NativeMethods.RASCN ChangeType { get; }
 
             /// <summary>
             /// Gets or sets the wait handle registered for callback operations.
             /// </summary>
-            public RegisteredWaitHandle WaitHandle
-            {
-                get { return _waitHandle; }
-                set { _waitHandle = value; }
-            }
+            public RegisteredWaitHandle WaitHandle { get; set; }
 
             /// <summary>
             /// Gets or sets the wait object receiving signaling for connection state changes.
             /// </summary>
-            public AutoResetEvent WaitObject
-            {
-                get { return _waitObject; }
-                set { _waitObject = value; }
-            }
+            public AutoResetEvent WaitObject { get; set; }
 
             #endregion
         }

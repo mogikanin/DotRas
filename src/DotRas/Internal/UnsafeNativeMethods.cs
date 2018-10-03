@@ -61,10 +61,7 @@ namespace DotRas.Internal
                 return instance;
             }
 
-            set
-            {
-                instance = value;
-            }
+            set => instance = value;
         }
 
         #endregion

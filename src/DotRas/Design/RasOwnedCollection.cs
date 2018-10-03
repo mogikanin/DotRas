@@ -28,8 +28,6 @@ namespace DotRas.Design
     {
         #region Fields
 
-        private TOwner _owner;
-
         #endregion
 
         #region Constructors
@@ -46,7 +44,7 @@ namespace DotRas.Design
                 ThrowHelper.ThrowArgumentNullException("owner");
             }
 
-            _owner = owner;
+            Owner = owner;
         }
 
         #endregion
@@ -56,10 +54,7 @@ namespace DotRas.Design
         /// <summary>
         /// Gets the owner of the collection.
         /// </summary>
-        protected TOwner Owner
-        {
-            get { return _owner; }
-        }
+        protected TOwner Owner { get; }
 
         #endregion
     }

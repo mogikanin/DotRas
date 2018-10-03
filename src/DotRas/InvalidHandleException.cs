@@ -109,8 +109,8 @@ namespace DotRas
         /// </summary>
         public RasHandle Handle
         {
-            get { return _handle; }
-            private set { _handle = value; }
+            get => _handle;
+            private set => _handle = value;
         }
 
         #endregion

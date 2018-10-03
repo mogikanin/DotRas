@@ -27,7 +27,6 @@ namespace DotRas
     {
         #region Fields
 
-        private string _address;
         private Collection<RasAutoDialEntry> _entries;
 
         #endregion
@@ -40,7 +39,7 @@ namespace DotRas
         /// <param name="address">The network address.</param>
         public RasAutoDialAddress(string address)
         {
-            _address = address;
+            Address = address;
         }
 
         #endregion
@@ -50,10 +49,7 @@ namespace DotRas
         /// <summary>
         /// Gets the network address.
         /// </summary>
-        public string Address
-        {
-            get { return _address; }
-        }
+        public string Address { get; }
 
         /// <summary>
         /// Gets the collection of entries associated with the address.

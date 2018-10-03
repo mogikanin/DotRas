@@ -121,10 +121,7 @@ namespace DotRas
                 return alternatePhoneNumbers;
             }
 
-            internal set
-            {
-                alternatePhoneNumbers = value;
-            }
+            internal set => alternatePhoneNumbers = value;
         }
 
         #endregion

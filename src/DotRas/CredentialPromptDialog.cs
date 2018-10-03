@@ -206,10 +206,7 @@ namespace DotRas
         [SRDescription("CPDMaxUserNameLengthDesc")]
         public int MaxUserNameLength
         {
-            get
-            {
-                return maxUserNameLength;
-            }
+            get => maxUserNameLength;
 
             set
             {
@@ -231,10 +228,7 @@ namespace DotRas
         [SRDescription("CPDMaxPasswordLengthDesc")]
         public int MaxPasswordLength
         {
-            get
-            {
-                return maxPasswordLength;
-            }
+            get => maxPasswordLength;
 
             set
             {

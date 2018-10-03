@@ -158,10 +158,7 @@ namespace DotRas
                 return options;
             }
 
-            set
-            {
-                options = value;
-            }
+            set => options = value;
         }
 
         /// <summary>
@@ -215,10 +212,7 @@ namespace DotRas
                 return alternatePhoneNumbers;
             }
 
-            internal set
-            {
-                alternatePhoneNumbers = value;
-            }
+            internal set => alternatePhoneNumbers = value;
         }
 
         /// <summary>
@@ -294,10 +288,7 @@ namespace DotRas
                 return networkProtocols;
             }
 
-            set
-            {
-                networkProtocols = value;
-            }
+            set => networkProtocols = value;
         }
 
         /// <summary>

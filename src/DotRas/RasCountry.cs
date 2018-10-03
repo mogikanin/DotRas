@@ -48,10 +48,6 @@ namespace DotRas
     {
         #region Fields
 
-        private int _id;
-        private int _code;
-        private string _name;
-
         #endregion
 
         #region Constructors
@@ -64,9 +60,9 @@ namespace DotRas
         /// <param name="name">The name of the country.</param>
         internal RasCountry(int id, int code, string name)
         {
-            _id = id;
-            _code = code;
-            _name = name;
+            Id = id;
+            Code = code;
+            Name = name;
         }
 
         #endregion
@@ -76,26 +72,17 @@ namespace DotRas
         /// <summary>
         /// Gets the TAPI identifier.
         /// </summary>
-        public int Id
-        {
-            get { return _id; }
-        }
+        public int Id { get; }
 
         /// <summary>
         /// Gets the country or region code.
         /// </summary>
-        public int Code
-        {
-            get { return _code; }
-        }
+        public int Code { get; }
 
         /// <summary>
         /// Gets the name.
         /// </summary>
-        public string Name
-        {
-            get { return _name; }
-        }
+        public string Name { get; }
 
         #endregion
 

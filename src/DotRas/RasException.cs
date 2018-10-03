@@ -27,8 +27,6 @@ namespace DotRas
     {
         #region Fields
 
-        private int _errorCode;
-
         #endregion
 
         #region Constructors
@@ -56,7 +54,7 @@ namespace DotRas
         public RasException(int errorCode)
             : base(RasHelper.Instance.GetRasErrorString(errorCode))
         {
-            _errorCode = errorCode;
+            ErrorCode = errorCode;
         }
 
         /// <summary>
@@ -77,7 +75,7 @@ namespace DotRas
         protected RasException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
-            _errorCode = (int)info.GetValue("ErrorCode", typeof(int));
+            ErrorCode = (int)info.GetValue("ErrorCode", typeof(int));
         }
 
         #endregion
@@ -87,10 +85,7 @@ namespace DotRas
         /// <summary>
         /// Gets the error code that caused the exception.
         /// </summary>
-        public int ErrorCode
-        {
-            get { return _errorCode; }
-        }
+        public int ErrorCode { get; }
 
         #endregion
 
@@ -106,7 +101,7 @@ namespace DotRas
         {
             if (info != null)
             {
-                info.AddValue("ErrorCode", _errorCode, typeof(int));
+                info.AddValue("ErrorCode", ErrorCode, typeof(int));
             }
 
             base.GetObjectData(info, context);

@@ -37,7 +37,6 @@ namespace DotRas.Design
         /// </summary>
         private readonly object _syncRoot = new object();
 
-        private bool _initializing;
         private List<TObject> _items;
 
         #endregion
@@ -59,37 +58,24 @@ namespace DotRas.Design
         /// <summary>
         /// Gets the number of entries contained in the collection.
         /// </summary>
-        public int Count
-        {
-            get { return _items.Count; }
-        }
+        public int Count => _items.Count;
 
         /// <summary>
         /// Gets a value indicating whether the collection is read-only.
         /// </summary>
-        public bool IsReadOnly
-        {
-            get { return false; }
-        }
+        public bool IsReadOnly => false;
 
         /// <summary>
         /// Gets or sets a value indicating whether the collection is initializing.
         /// </summary>
-        protected bool IsInitializing
-        {
-            get { return _initializing; }
-            set { _initializing = value; }
-        }
+        protected bool IsInitializing { get; set; }
 
         /// <summary>
         /// Gets an entry from the collection.
         /// </summary>
         /// <param name="index">The zero-based index of the entry to get.</param>
         /// <returns>An <typeparamref name="TObject"/> object.</returns>
-        public TObject this[int index]
-        {
-            get { return _items[index]; }
-        }
+        public TObject this[int index] => _items[index];
 
         #endregion
 
@@ -281,7 +267,6 @@ namespace DotRas.Design
             #region Fields
 
             private RasCollection<TObject> _c;
-            private TObject _current;
             private int _index = -1;
 
             #endregion
@@ -318,18 +303,12 @@ namespace DotRas.Design
             /// <summary>
             /// Gets the current object.
             /// </summary>
-            public TObject Current
-            {
-                get { return _current; }
-            }
+            public TObject Current { get; private set; }
 
             /// <summary>
             /// Gets the current object.
             /// </summary>
-            object IEnumerator.Current
-            {
-                get { return _current; }
-            }
+            object IEnumerator.Current => Current;
 
             #endregion
 
@@ -354,12 +333,12 @@ namespace DotRas.Design
                 if (_index == _c.Count)
                 {
                     _index = -1;
-                    _current = null;
+                    Current = null;
 
                     return false;
                 }
 
-                _current = _c[_index];
+                Current = _c[_index];
                 return true;
             }
 
@@ -369,7 +348,7 @@ namespace DotRas.Design
             public void Reset()
             {
                 _index = -1;
-                _current = null;
+                Current = null;
             }
 
             /// <summary>
@@ -383,7 +362,7 @@ namespace DotRas.Design
                     _c.EndLock();
 
                     _index = -1;
-                    _current = null;
+                    Current = null;
                 }
             }
 

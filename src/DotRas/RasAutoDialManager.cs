@@ -85,10 +85,7 @@ namespace DotRas
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "The design is ok.")]
         public bool DisableConnectionQuery
         {
-            get
-            {
-                return RasHelper.Instance.GetAutoDialParameter(NativeMethods.RASADP.DisableConnectionQuery) != 0;
-            }
+            get => RasHelper.Instance.GetAutoDialParameter(NativeMethods.RASADP.DisableConnectionQuery) != 0;
 
             set
             {
@@ -113,10 +110,7 @@ namespace DotRas
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "The design is ok.")]
         public bool LogOnSessionDisable
         {
-            get
-            {
-                return RasHelper.Instance.GetAutoDialParameter(NativeMethods.RASADP.LogOnSessionDisable) != 0;
-            }
+            get => RasHelper.Instance.GetAutoDialParameter(NativeMethods.RASADP.LogOnSessionDisable) != 0;
 
             set
             {
@@ -141,15 +135,9 @@ namespace DotRas
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "The design is ok.")]
         public int SavedAddressesLimit
         {
-            get
-            {
-                return RasHelper.Instance.GetAutoDialParameter(NativeMethods.RASADP.SavedAddressesLimit);
-            }
+            get => RasHelper.Instance.GetAutoDialParameter(NativeMethods.RASADP.SavedAddressesLimit);
 
-            set
-            {
-                RasHelper.Instance.SetAutoDialParameter(NativeMethods.RASADP.SavedAddressesLimit, value);
-            }
+            set => RasHelper.Instance.SetAutoDialParameter(NativeMethods.RASADP.SavedAddressesLimit, value);
         }
 
         /// <summary>
@@ -162,15 +150,9 @@ namespace DotRas
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "The design is ok.")]
         public int FailedConnectionTimeout
         {
-            get
-            {
-                return RasHelper.Instance.GetAutoDialParameter(NativeMethods.RASADP.FailedConnectionTimeout);
-            }
+            get => RasHelper.Instance.GetAutoDialParameter(NativeMethods.RASADP.FailedConnectionTimeout);
 
-            set
-            {
-                RasHelper.Instance.SetAutoDialParameter(NativeMethods.RASADP.FailedConnectionTimeout, value);
-            }
+            set => RasHelper.Instance.SetAutoDialParameter(NativeMethods.RASADP.FailedConnectionTimeout, value);
         }
 
         /// <summary>
@@ -183,15 +165,9 @@ namespace DotRas
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "The design is ok.")]
         public int ConnectionQueryTimeout
         {
-            get
-            {
-                return RasHelper.Instance.GetAutoDialParameter(NativeMethods.RASADP.ConnectionQueryTimeout);
-            }
+            get => RasHelper.Instance.GetAutoDialParameter(NativeMethods.RASADP.ConnectionQueryTimeout);
 
-            set
-            {
-                RasHelper.Instance.SetAutoDialParameter(NativeMethods.RASADP.ConnectionQueryTimeout, value);
-            }
+            set => RasHelper.Instance.SetAutoDialParameter(NativeMethods.RASADP.ConnectionQueryTimeout, value);
         }
 
         #endregion

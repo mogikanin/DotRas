@@ -53,10 +53,7 @@ namespace DotRas
         /// </summary>
         /// <param name="name">The name of the entry to get.</param>
         /// <returns>An <see cref="RasEntry"/> object.</returns>
-        public RasEntry this[string name]
-        {
-            get { return _lookUpTable[name]; }
-        }
+        public RasEntry this[string name] => _lookUpTable[name];
 
         #endregion
 

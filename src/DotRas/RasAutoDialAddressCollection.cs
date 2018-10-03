@@ -49,10 +49,7 @@ namespace DotRas
         /// </summary>
         /// <param name="address">The address to get.</param>
         /// <returns>An <see cref="RasAutoDialAddress"/> object.</returns>
-        public RasAutoDialAddress this[string address]
-        {
-            get { return _lookUpTable[address]; }
-        }
+        public RasAutoDialAddress this[string address] => _lookUpTable[address];
 
         #endregion
 

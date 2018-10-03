@@ -158,10 +158,7 @@ namespace DotRas
                 return retval;
             }
 
-            private set
-            {
-                _isBusy = value;
-            }
+            private set => _isBusy = value;
         }
 
         /// <summary>
@@ -289,10 +286,7 @@ namespace DotRas
                 return _options;
             }
 
-            set
-            {
-                _options = value;
-            }
+            set => _options = value;
         }        
 
         /// <summary>
@@ -312,10 +306,7 @@ namespace DotRas
                 return _eapOptions;
             }
 
-            set
-            {
-                _eapOptions = value;
-            }
+            set => _eapOptions = value;
         }
 
         /// <summary>

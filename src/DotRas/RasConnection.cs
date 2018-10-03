@@ -151,10 +151,7 @@ namespace DotRas
                 return connectionOptions;
             }
 
-            internal set
-            {
-                connectionOptions = value;
-            }
+            internal set => connectionOptions = value;
         }
 
         /// <summary>

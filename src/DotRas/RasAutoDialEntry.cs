@@ -61,8 +61,8 @@ namespace DotRas
         /// <remarks>For more information about TAPI dialing locations, see the TAPI Programmer's Reference in the Platform SDK.</remarks>
         public int DialingLocation
         {
-            get { return _dialingLocation; }
-            set { _dialingLocation = value; }
+            get => _dialingLocation;
+            set => _dialingLocation = value;
         }
 
         /// <summary>
@@ -70,8 +70,8 @@ namespace DotRas
         /// </summary>
         public string EntryName
         {
-            get { return _entryName; }
-            set { _entryName = value; }
+            get => _entryName;
+            set => _entryName = value;
         }
 
         #endregion
