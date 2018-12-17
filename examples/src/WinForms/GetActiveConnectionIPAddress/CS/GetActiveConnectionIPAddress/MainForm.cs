@@ -12,40 +12,37 @@ namespace DotRas.Samples.GetActiveConnectionIPAddress
 
         private void LoadConnectionsComboBox()
         {
-            this.ConnectionsComboBox.Items.Add(new ComboBoxItem("Choose one...", null));
+            ConnectionsComboBox.Items.Add(new ComboBoxItem("Choose one...", null));
 
-            foreach (RasConnection connection in RasConnection.GetActiveConnections())
+            foreach (var connection in RasConnection.GetActiveConnections())
             {
-                this.ConnectionsComboBox.Items.Add(new ComboBoxItem(connection.EntryName, connection.EntryId));
+                ConnectionsComboBox.Items.Add(new ComboBoxItem(connection.EntryName, connection.EntryId));
             }
 
-            this.ConnectionsComboBox.SelectedIndex = 0;
+            ConnectionsComboBox.SelectedIndex = 0;
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            this.LoadConnectionsComboBox();
+            LoadConnectionsComboBox();
         }
 
         private void GetAddressButton_Click(object sender, EventArgs e)
         {
-            foreach (RasConnection connection in RasConnection.GetActiveConnections())
+            foreach (var connection in RasConnection.GetActiveConnections())
             {
-                if (connection.EntryId == (Guid)((ComboBoxItem)this.ConnectionsComboBox.SelectedItem).Value)
-                {
-                    RasIPInfo ipAddresses = (RasIPInfo)connection.GetProjectionInfo(RasProjectionType.IP);
-                    if (ipAddresses != null)
-                    {
-                        this.ClientAddressTextBox.Text = ipAddresses.IPAddress.ToString();
-                        this.ServerAddressTextBox.Text = ipAddresses.ServerIPAddress.ToString();
-                    }
-                }
+                if (connection.EntryId != (Guid) ((ComboBoxItem) ConnectionsComboBox.SelectedItem).Value) continue;
+                var ipAddresses = (RasIPInfo)connection.GetProjectionInfo(RasProjectionType.IP);
+                if (ipAddresses == null) continue;
+
+                ClientAddressTextBox.Text = ipAddresses.IPAddress.ToString();
+                ServerAddressTextBox.Text = ipAddresses.ServerIPAddress.ToString();
             }
         }
 
         private void ConnectionsComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.GetAddressButton.Enabled = this.ConnectionsComboBox.SelectedIndex > 0;
+            GetAddressButton.Enabled = ConnectionsComboBox.SelectedIndex > 0;
         }
     }
 }
