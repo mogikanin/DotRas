@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using DotRas;
 
 namespace EnablingDiagnosticLogging
@@ -9,13 +7,13 @@ namespace EnablingDiagnosticLogging
     {
         static void Main(string[] args)
         {
-            string phoneBookPath = RasPhoneBook.GetPhoneBookPath(RasPhoneBookType.AllUsers);
+            var phoneBookPath = RasPhoneBook.GetPhoneBookPath(RasPhoneBookType.AllUsers);
 
-            using (DotRas.RasPhoneBook pbk = new DotRas.RasPhoneBook())
+            using (var pbk = new RasPhoneBook())
             {
                 pbk.Open(phoneBookPath);
 
-                foreach (RasEntry entry in pbk.Entries)
+                foreach (var entry in pbk.Entries)
                 {
                     Console.WriteLine(entry.Name);
                 }

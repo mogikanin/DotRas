@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>EnablingDiagnosticLogging</RootNamespace>
     <AssemblyName>EnablingDiagnosticLogging</AssemblyName>
-    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -58,7 +58,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DotRas">
-      <HintPath>..\..\..\..\..\Libraries\NET20\WIN2K\DotRas.dll</HintPath>
+      <HintPath>..\..\..\..\..\Libraries\DotRas.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
