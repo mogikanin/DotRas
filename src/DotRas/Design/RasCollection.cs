@@ -71,7 +71,7 @@ namespace DotRas.Design
         /// <summary>
         /// Gets or sets a value indicating whether the collection is initializing.
         /// </summary>
-        protected bool IsInitializing { get; set; }
+        public bool IsInitializing { get; protected set; }
 
         /// <summary>
         /// Gets an entry from the collection.
