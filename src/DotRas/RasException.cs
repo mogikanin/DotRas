@@ -30,6 +30,8 @@ namespace DotRas
     {
         #region Fields
 
+        private int _errorCode;
+
         #endregion
 
         #region Constructors
@@ -88,7 +90,15 @@ namespace DotRas
         /// <summary>
         /// Gets the error code that caused the exception.
         /// </summary>
-        public int ErrorCode { get; }
+        public int ErrorCode
+        {
+            get => _errorCode;
+            private set
+            {
+                _errorCode = value;
+                Data["ErrorCode"] = value;
+            }
+        }
 
         #endregion
 

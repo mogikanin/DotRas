@@ -28,6 +28,8 @@ namespace DotRas
     {
         #region Fields
 
+        private int _extendedErrorCode;
+
         #endregion
 
         #region Constructors
@@ -88,7 +90,15 @@ namespace DotRas
         /// <summary>
         /// Gets the extended error code (if any) that occurred.
         /// </summary>
-        public int ExtendedErrorCode { get; }
+        public int ExtendedErrorCode
+        {
+            get => _extendedErrorCode;
+            private set
+            {
+                _extendedErrorCode = value;
+                Data["ExtendedErrorCode"] = value;
+            }
+        }
 
         #endregion
 
