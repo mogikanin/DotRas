@@ -240,11 +240,6 @@
             Specifies the base class used for displaying remote access service (RAS) dialog boxes on the screen. This class must be inherited.
             </summary>
         </member>
-        <member name="M:DotRas.Design.RasCommonDialog.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:DotRas.Design.RasCommonDialog"/> class.
-            </summary>
-        </member>
         <member name="E:DotRas.Design.RasCommonDialog.Error">
             <summary>
             Occurs when the dialog has encountered an error.
@@ -637,11 +632,6 @@
             Provides the base class for trace events. This class must be inherited.
             </summary>
         </member>
-        <member name="M:DotRas.Diagnostics.TraceEvent.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:DotRas.Diagnostics.TraceEvent"/> class.
-            </summary>
-        </member>
         <member name="M:DotRas.Diagnostics.TraceEvent.Serialize">
             <summary>
             Serializes the event.
@@ -651,11 +641,6 @@
         <member name="T:DotRas.Internal.RasGetCustomAuthDataParams">
             <summary>
             Provides information for the RasGetCustomAuthData API call.
-            </summary>
-        </member>
-        <member name="M:DotRas.Internal.RasGetCustomAuthDataParams.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:DotRas.Internal.RasGetCustomAuthDataParams"/> class.
             </summary>
         </member>
         <member name="P:DotRas.Internal.RasGetCustomAuthDataParams.PhoneBookPath">
@@ -671,11 +656,6 @@
         <member name="T:DotRas.Internal.RasGetEapUserDataParams">
             <summary>
             Provides information for the RasGetEapUserData API call.
-            </summary>
-        </member>
-        <member name="M:DotRas.Internal.RasGetEapUserDataParams.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:DotRas.Internal.RasGetEapUserDataParams"/> class.
             </summary>
         </member>
         <member name="P:DotRas.Internal.RasGetEapUserDataParams.UserToken">
@@ -696,11 +676,6 @@
         <member name="T:DotRas.Internal.IPAddressConverter">
             <summary>
             Provides a type converter used for converting <see cref="T:System.Net.IPAddress"/> values.
-            </summary>
-        </member>
-        <member name="M:DotRas.Internal.IPAddressConverter.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:DotRas.Internal.IPAddressConverter"/> class.
             </summary>
         </member>
         <member name="M:DotRas.Internal.IPAddressConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)">
@@ -743,11 +718,6 @@
             Provides the implementation for buffered p/invoke information classes which return a count of the number of structs in the buffer.
             </summary>
         </member>
-        <member name="M:DotRas.Internal.StructBufferedPInvokeParams.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:DotRas.Internal.StructBufferedPInvokeParams"/> class.
-            </summary>
-        </member>
         <member name="P:DotRas.Internal.StructBufferedPInvokeParams.Count">
             <summary>
             Gets or sets the number of items at the memory address.
@@ -756,11 +726,6 @@
         <member name="T:DotRas.Internal.BufferedPInvokeParams">
             <summary>
             Provides the base implementation for buffered p/invoke information classes.
-            </summary>
-        </member>
-        <member name="M:DotRas.Internal.BufferedPInvokeParams.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:DotRas.Internal.BufferedPInvokeParams"/> class.
             </summary>
         </member>
         <member name="P:DotRas.Internal.BufferedPInvokeParams.Address">
@@ -1568,11 +1533,6 @@
             Provides information for the RasGetAutodialAddress API call.
             </summary>
         </member>
-        <member name="M:DotRas.Internal.RasGetAutodialAddressParams.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:DotRas.Internal.RasGetAutodialAddressParams"/> class.
-            </summary>
-        </member>
         <member name="P:DotRas.Internal.RasGetAutodialAddressParams.AutodialAddress">
             <summary>
             Gets or sets the Autodial address for which information is being requested.
@@ -1589,11 +1549,6 @@
             Provides information for the RasGetAutodialEnable API call.
             </summary>
         </member>
-        <member name="M:DotRas.Internal.RasGetAutodialEnableParams.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:DotRas.Internal.RasGetAutodialEnableParams"/> class.
-            </summary>
-        </member>
         <member name="P:DotRas.Internal.RasGetAutodialEnableParams.DialingLocation">
             <summary>
             Gets or sets the dialing location.
@@ -1607,11 +1562,6 @@
         <member name="T:DotRas.Internal.RasGetAutodialParamParams">
             <summary>
             Provides information for the RasGetAutodialParam API call.
-            </summary>
-        </member>
-        <member name="M:DotRas.Internal.RasGetAutodialParamParams.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:DotRas.Internal.RasGetAutodialParamParams"/> class.
             </summary>
         </member>
         <member name="P:DotRas.Internal.RasGetAutodialParamParams.Key">
@@ -1757,6 +1707,11 @@
         <member name="F:DotRas.Internal.NativeMethods.RASDT_PPPoE">
             <summary>
             Point-to-Point Protocol over Ethernet.
+            </summary>
+        </member>
+        <member name="F:DotRas.Internal.NativeMethods.RASDT_Gre">
+            <summary>
+             Generic Routing Encapsulation (GRE).
             </summary>
         </member>
         <member name="F:DotRas.Internal.NativeMethods.RAS_MaxDeviceType">
@@ -3225,11 +3180,6 @@
             Contains the instance used to handle calls.
             </summary>
         </member>
-        <member name="M:DotRas.Internal.RasHelper.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:DotRas.Internal.RasHelper"/> class.
-            </summary>
-        </member>
         <member name="P:DotRas.Internal.RasHelper.Instance">
             <summary>
             Gets or sets the instance of the <see cref="T:DotRas.Internal.IRasHelper"/> class to handle calls.
@@ -3779,11 +3729,6 @@
             Contains the instance used to handle calls.
             </summary>
         </member>
-        <member name="M:DotRas.Internal.SafeNativeMethods.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:DotRas.Internal.SafeNativeMethods"/> class.
-            </summary>
-        </member>
         <member name="P:DotRas.Internal.SafeNativeMethods.Instance">
             <summary>
             Gets or sets the instance of the <see cref="T:DotRas.Internal.ISafeNativeMethods"/> class to handle calls.
@@ -4220,11 +4165,6 @@
         <member name="F:DotRas.Internal.UnsafeNativeMethods.instance">
             <summary>
             Contains the instance used to handle calls.
-            </summary>
-        </member>
-        <member name="M:DotRas.Internal.UnsafeNativeMethods.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:DotRas.Internal.UnsafeNativeMethods"/> class.
             </summary>
         </member>
         <member name="P:DotRas.Internal.UnsafeNativeMethods.Instance">
@@ -4995,11 +4935,6 @@
             Represents a collection of <see cref="T:DotRas.RasAutoDialAddress"/> objects keyed by the entry address.
             </summary>
         </member>
-        <member name="M:DotRas.RasAutoDialAddressCollection.RasAutoDialAddressItemCollection.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:DotRas.RasAutoDialAddressCollection.RasAutoDialAddressItemCollection"/> class.
-            </summary>
-        </member>
         <member name="M:DotRas.RasAutoDialAddressCollection.RasAutoDialAddressItemCollection.GetKeyForItem(DotRas.RasAutoDialAddress)">
             <summary>
             Extracts the key for the <see cref="T:DotRas.RasAutoDialAddress"/> object.
@@ -5250,14 +5185,14 @@
             </para>
             </summary>
         </member>
+        <member name="F:DotRas.RasDeviceType.Gre">
+            <summary>
+            Generic Routing Encapsulation (GRE) tunnel capability for the RAS Gateway.
+            </summary>
+        </member>
         <member name="T:DotRas.RasDeviceTypeConverter">
             <summary>
             Provides a converter for <see cref="T:DotRas.RasDeviceType"/>. This class cannot be inherited.
-            </summary>
-        </member>
-        <member name="M:DotRas.RasDeviceTypeConverter.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:DotRas.RasDeviceTypeConverter"/> class.
             </summary>
         </member>
         <member name="M:DotRas.RasDeviceTypeConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)">
@@ -5298,11 +5233,6 @@
         <member name="T:DotRas.RasDialOptionsConverter">
             <summary>
             Provides methods to convert a <see cref="T:DotRas.RasDialOptions"/> instance from one data type to another. Access this class through the <see cref="T:System.ComponentModel.TypeDescriptor"/> object.
-            </summary>
-        </member>
-        <member name="M:DotRas.RasDialOptionsConverter.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:DotRas.RasDialOptionsConverter"/> class.
             </summary>
         </member>
         <member name="M:DotRas.RasDialOptionsConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)">
@@ -5359,11 +5289,6 @@
         <member name="T:DotRas.RasEapOptionsConverter">
             <summary>
             Provides methods to convert a <see cref="T:DotRas.RasEapOptions"/> instance from one data type to another. Access this class through the <see cref="T:System.ComponentModel.TypeDescriptor"/> object.
-            </summary>
-        </member>
-        <member name="M:DotRas.RasEapOptionsConverter.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:DotRas.RasEapOptionsConverter"/> class.
             </summary>
         </member>
         <member name="M:DotRas.RasEapOptionsConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)">
@@ -5443,11 +5368,6 @@
             ]]>
             </code>
             </example>
-        </member>
-        <member name="M:DotRas.RasEntryNameValidator.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:DotRas.RasEntryNameValidator"/> class.
-            </summary>
         </member>
         <member name="P:DotRas.RasEntryNameValidator.ErrorCode">
             <summary>
@@ -7657,11 +7577,6 @@
             </code>
             </example>
         </member>
-        <member name="M:DotRas.RasDialDialog.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:DotRas.RasDialDialog"/> class.
-            </summary>
-        </member>
         <member name="P:DotRas.RasDialDialog.PhoneBookPath">
             <summary>
             Gets or sets the full path (including filename) to the phone book.
@@ -9399,11 +9314,6 @@
             </code>
             </example>
         </member>
-        <member name="M:DotRas.RasEntryDialog.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:DotRas.RasEntryDialog"/> class.
-            </summary>
-        </member>
         <member name="P:DotRas.RasEntryDialog.EntryName">
             <summary>
             Gets or sets the name of the entry.
@@ -9701,11 +9611,6 @@
             Represents a collection of <see cref="T:DotRas.RasEntry"/> objects keyed by the entry name.
             </summary>
         </member>
-        <member name="M:DotRas.RasEntryCollection.RasEntryItemCollection.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:DotRas.RasEntryCollection.RasEntryItemCollection"/> class.
-            </summary>
-        </member>
         <member name="M:DotRas.RasEntryCollection.RasEntryItemCollection.ChangeKey(DotRas.RasEntry,System.String)">
             <summary>
             Changes the lookup table key for the item specified.
@@ -9936,11 +9841,6 @@
         <member name="T:DotRas.RasEntryOptions">
             <summary>
             Represents options for a remote access service (RAS) entry. This class cannot be inherited.
-            </summary>
-        </member>
-        <member name="M:DotRas.RasEntryOptions.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:DotRas.RasEntryOptions"/> class.
             </summary>
         </member>
         <member name="P:DotRas.RasEntryOptions.UseCountryAndAreaCodes">
@@ -10486,11 +10386,6 @@
             Represents network protocols for a remote access service (RAS) entry. This class cannot be inherited.
             </summary>
         </member>
-        <member name="M:DotRas.RasNetworkProtocols.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:DotRas.RasNetworkProtocols"/> class.
-            </summary>
-        </member>
         <member name="P:DotRas.RasNetworkProtocols.NetBeui">
             <summary>
             Gets or sets a value indicating whether the NetBEUI protocol will be negotiated.
@@ -10973,11 +10868,6 @@
             ]]>
             </code>
             </example>
-        </member>
-        <member name="M:DotRas.RasSubEntry.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:DotRas.RasSubEntry"/> class.
-            </summary>
         </member>
         <member name="P:DotRas.RasSubEntry.Owner">
             <summary>

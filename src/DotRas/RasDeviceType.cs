@@ -93,6 +93,11 @@ namespace DotRas
         /// <b>Windows XP or later:</b> This value is supported.
         /// </para>
         /// </summary>
-        PPPoE
+        PPPoE,
+
+        /// <summary>
+        /// Generic Routing Encapsulation (GRE) tunnel capability for the RAS Gateway.
+        /// </summary>
+        Gre,
     }
 }

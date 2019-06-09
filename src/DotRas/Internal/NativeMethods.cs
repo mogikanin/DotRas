@@ -162,6 +162,11 @@ namespace DotRas.Internal
         /// </summary>
         public const string RASDT_PPPoE = "PPPoE";
 
+        /// <summary>
+        ///  Generic Routing Encapsulation (GRE).
+        /// </summary>
+        public const string RASDT_Gre = "GRE";
+
         #endregion
 
         /// <summary>

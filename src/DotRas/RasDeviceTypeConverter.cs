@@ -132,6 +132,10 @@ namespace DotRas
                 {
                     return RasDeviceType.PPPoE;
                 }
+                else if (string.Equals(v, NativeMethods.RASDT_Gre, StringComparison.CurrentCultureIgnoreCase))
+                {
+                    return RasDeviceType.Gre;
+                }
                 else
                 {
                     ThrowHelper.ThrowNotSupportedException(Resources.Exception_ConversionNotSupported, value);
@@ -198,6 +202,9 @@ namespace DotRas
 
                     case RasDeviceType.PPPoE:
                         return NativeMethods.RASDT_PPPoE;
+
+                    case RasDeviceType.Gre:
+                        return NativeMethods.RASDT_Gre;
                 }
             }
 
