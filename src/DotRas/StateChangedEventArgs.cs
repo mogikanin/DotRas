@@ -12,7 +12,7 @@
 // </copyright>
 //--------------------------------------------------------------------------
 
-using JetBrains.Annotations;
+
 
 namespace DotRas
 {
@@ -21,7 +21,7 @@ namespace DotRas
     /// <summary>
     /// Provides data for the <see cref="RasDialer.StateChanged"/> event.
     /// </summary>
-    [PublicAPI]
+    
     public class StateChangedEventArgs : EventArgs
     {
         #region Constructors

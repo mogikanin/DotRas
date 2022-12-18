@@ -12,7 +12,7 @@
 // </copyright>
 //--------------------------------------------------------------------------
 
-using JetBrains.Annotations;
+
 
 namespace DotRas
 {
@@ -44,7 +44,7 @@ namespace DotRas
         /// </summary>
         public bool AllUsers
         {
-            [UsedImplicitly] get;
+            get;
             internal set;
         }
 
@@ -53,7 +53,7 @@ namespace DotRas
         /// </summary>
         public bool GlobalCredentials
         {
-            [UsedImplicitly] get;
+            get;
             internal set;
         }
 
@@ -62,7 +62,7 @@ namespace DotRas
         /// </summary>
         public bool OwnerKnown
         {
-            [UsedImplicitly] get;
+            get;
             internal set;
         }
 
@@ -71,7 +71,7 @@ namespace DotRas
         /// </summary>
         public bool OwnerMatch
         {
-            [UsedImplicitly] get;
+            get;
             internal set;
         }
 

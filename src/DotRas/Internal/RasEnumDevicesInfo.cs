@@ -14,22 +14,22 @@
 
 namespace DotRas.Internal
 {
-    using System;
+    //using System;
 
-    /// <summary>
-    /// Provides information for the RasEnumDevices API call. This class cannot be inherited.
-    /// </summary>
-    internal sealed class RasEnumDevicesInfo : BufferedPInvokeInfo
-    {
-        #region Constructors
+    ///// <summary>
+    ///// Provides information for the RasEnumDevices API call. This class cannot be inherited.
+    ///// </summary>
+    //internal sealed class RasEnumDevicesInfo : BufferedPInvokeInfo
+    //{
+    //    #region Constructors
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="RasEnumDevicesInfo"/> class.
-        /// </summary>
-        public RasEnumDevicesInfo()
-        {
-        }
+    //    /// <summary>
+    //    /// Initializes a new instance of the <see cref="RasEnumDevicesInfo"/> class.
+    //    /// </summary>
+    //    public RasEnumDevicesInfo()
+    //    {
+    //    }
 
-        #endregion
-    }
+    //    #endregion
+    //}
 }

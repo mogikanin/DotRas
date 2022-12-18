@@ -12,14 +12,14 @@
 // </copyright>
 //--------------------------------------------------------------------------
 
-using JetBrains.Annotations;
+
 
 namespace DotRas
 {
     /// <summary>
     /// Defines the Link Control Protocol (LCP) authentication data types.
     /// </summary>
-    [PublicAPI]
+    
     public enum RasLcpAuthenticationDataType
     {
         /// <summary>

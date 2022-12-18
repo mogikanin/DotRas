@@ -12,7 +12,7 @@
 // </copyright>
 //--------------------------------------------------------------------------
 
-using JetBrains.Annotations;
+
 
 namespace DotRas
 {
@@ -49,7 +49,7 @@ namespace DotRas
         /// <param name="noUser"><b>true</b> if no user is present, otherwise <b>false</b>.</param>
         /// <param name="router"><b>true</b> if the connecting device is a router, otherwise <b>false</b>.</param>
         /// <param name="customDial"><b>true</b> if the connection should be dialed normally rather than calling the custom dial entry point of the custom dialer, otherwise <b>false</b>.</param>
-        [UsedImplicitly]
+       
         public RasDialOptions(bool usePrefixSuffix, bool pausedStates, bool setModemSpeaker, bool setSoftwareCompression, bool disableConnectedUI, bool disableReconnectUI, bool disableReconnect, bool noUser, bool router, bool customDial)
         {
             UsePrefixSuffix = usePrefixSuffix;

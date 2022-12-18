@@ -12,7 +12,7 @@
 // </copyright>
 //--------------------------------------------------------------------------
 
-using JetBrains.Annotations;
+
 
 namespace DotRas
 {
@@ -25,7 +25,7 @@ namespace DotRas
     /// The exception that is thrown when a remote access service (RAS) error occurs.
     /// </summary>
     [Serializable]
-    [PublicAPI]
+    
     public class RasException : Exception
     {
         #region Fields

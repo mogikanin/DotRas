@@ -14,22 +14,22 @@
 
 namespace DotRas.Internal
 {
-    using System;
+    //using System;
 
-    /// <summary>
-    /// Provides information for the RasEnumConnections API call. This class cannot be inherited.
-    /// </summary>
-    internal sealed class RasEnumConnectionsInfo : BufferedPInvokeInfo
-    {
-        #region Constructors
+    ///// <summary>
+    ///// Provides information for the RasEnumConnections API call. This class cannot be inherited.
+    ///// </summary>
+    //internal sealed class RasEnumConnectionsInfo : BufferedPInvokeInfo
+    //{
+    //    #region Constructors
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="DotRas.Internal.RasEnumConnectionsInfo"/> class.
-        /// </summary>
-        public RasEnumConnectionsInfo()
-        {
-        }
+    //    /// <summary>
+    //    /// Initializes a new instance of the <see cref="DotRas.Internal.RasEnumConnectionsInfo"/> class.
+    //    /// </summary>
+    //    public RasEnumConnectionsInfo()
+    //    {
+    //    }
 
-        #endregion
-    }
+    //    #endregion
+    //}
 }

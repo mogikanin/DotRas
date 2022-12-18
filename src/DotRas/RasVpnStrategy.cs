@@ -12,14 +12,13 @@
 // </copyright>
 //--------------------------------------------------------------------------
 
-using JetBrains.Annotations;
+
 
 namespace DotRas
 {
     /// <summary>
     /// Defines the VPN strategies.
     /// </summary>
-    [PublicAPI]
     public enum RasVpnStrategy
     {
         /// <summary>

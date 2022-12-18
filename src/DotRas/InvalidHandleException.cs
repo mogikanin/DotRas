@@ -12,7 +12,7 @@
 // </copyright>
 //--------------------------------------------------------------------------
 
-using JetBrains.Annotations;
+
 
 namespace DotRas
 {
@@ -37,7 +37,7 @@ namespace DotRas
         /// <summary>
         /// Initializes a new instance of the <see cref="DotRas.InvalidHandleException"/> class.
         /// </summary>
-        [UsedImplicitly]
+       
         public InvalidHandleException()
         {
         }

@@ -12,14 +12,14 @@
 // </copyright>
 //--------------------------------------------------------------------------
 
-using JetBrains.Annotations;
+
 
 namespace DotRas
 {
     /// <summary>
     /// Defines the encryption types.
     /// </summary>
-    [PublicAPI]
+    
     public enum RasEncryptionType
     {
         /// <summary>

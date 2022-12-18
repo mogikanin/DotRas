@@ -12,14 +12,14 @@
 // </copyright>
 //--------------------------------------------------------------------------
 
-using JetBrains.Annotations;
+
 
 namespace DotRas
 {
     /// <summary>
     /// Defines the dial modes.
     /// </summary>
-    [PublicAPI]
+    
     public enum RasDialMode
     {
         /// <summary>

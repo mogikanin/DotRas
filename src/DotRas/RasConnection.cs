@@ -12,7 +12,7 @@
 // </copyright>
 //--------------------------------------------------------------------------
 
-using JetBrains.Annotations;
+
 
 namespace DotRas
 {
@@ -55,7 +55,7 @@ namespace DotRas
     /// </code>
     /// </example>
     [DebuggerDisplay("EntryName = {EntryName}")]
-    [PublicAPI]
+    
     public sealed class RasConnection : MarshalByRefObject
     {
         #region Fields

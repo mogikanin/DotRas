@@ -12,7 +12,7 @@
 // </copyright>
 //--------------------------------------------------------------------------
 
-using JetBrains.Annotations;
+
 
 namespace DotRas.Design
 {
@@ -24,7 +24,7 @@ namespace DotRas.Design
     /// <summary>
     /// Provides the base implementation for remote access service (RAS) components. This class must be inherited. 
     /// </summary>
-    [PublicAPI]
+    
     public abstract class RasComponent : Component
     {
         #region Constructors

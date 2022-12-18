@@ -12,7 +12,7 @@
 // </copyright>
 //--------------------------------------------------------------------------
 
-using JetBrains.Annotations;
+
 
 namespace DotRas.Design
 {
@@ -29,7 +29,7 @@ namespace DotRas.Design
     /// </summary>
     /// <typeparam name="TObject">The type of object contained in the collection.</typeparam>
     [DebuggerDisplay("Count = {Count}")]
-    [PublicAPI]
+    
     public abstract class RasCollection<TObject> : MarshalByRefObject, ICollection<TObject>
         where TObject : class
     {

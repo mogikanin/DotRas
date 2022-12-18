@@ -12,7 +12,7 @@
 // </copyright>
 //--------------------------------------------------------------------------
 
-using JetBrains.Annotations;
+
 
 namespace DotRas
 {
@@ -22,7 +22,7 @@ namespace DotRas
     /// <summary>
     /// Provides data for the <see cref="RasDialer.DialCompleted"/> event.
     /// </summary>
-    [PublicAPI]
+    
     public class DialCompletedEventArgs : AsyncCompletedEventArgs
     {
         #region Constructors

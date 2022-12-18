@@ -12,7 +12,7 @@
 // </copyright>
 //--------------------------------------------------------------------------
 
-using JetBrains.Annotations;
+
 
 namespace DotRas
 {
@@ -22,7 +22,7 @@ namespace DotRas
     /// Defines the framing protocols.
     /// </summary>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1027:MarkEnumsWithFlags", Justification = "The Windows SDK indicates the values are not flags.")]
-    [PublicAPI]
+    
     public enum RasFramingProtocol
     {
         /// <summary>

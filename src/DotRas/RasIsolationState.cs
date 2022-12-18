@@ -12,7 +12,7 @@
 // </copyright>
 //--------------------------------------------------------------------------
 
-using JetBrains.Annotations;
+
 
 namespace DotRas
 {
@@ -29,7 +29,7 @@ namespace DotRas
     /// </list>
     /// </para>
     /// </remarks>
-    [PublicAPI]
+    
     public enum RasIsolationState
     {
         /// <summary>

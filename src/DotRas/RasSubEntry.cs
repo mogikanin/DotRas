@@ -12,8 +12,6 @@
 // </copyright>
 //--------------------------------------------------------------------------
 
-using JetBrains.Annotations;
-
 namespace DotRas
 {
     using System;
@@ -59,7 +57,6 @@ namespace DotRas
     /// </code>
     /// </example>
     [DebuggerDisplay("PhoneNumber = {PhoneNumber}")]
-    [PublicAPI]
     public sealed class RasSubEntry : MarshalByRefObject, ICloneable
     {
         #region Fields

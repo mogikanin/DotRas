@@ -12,7 +12,7 @@
 // </copyright>
 //--------------------------------------------------------------------------
 
-using JetBrains.Annotations;
+
 
 namespace DotRas
 {
@@ -22,7 +22,7 @@ namespace DotRas
     /// Provides data for remote access service (RAS) error events.
     /// </summary>
     [Serializable]
-    [PublicAPI]
+    
     public class RasErrorEventArgs : EventArgs
     {
         #region Constructors

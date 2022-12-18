@@ -12,7 +12,7 @@
 // </copyright>
 //--------------------------------------------------------------------------
 
-using JetBrains.Annotations;
+
 
 namespace DotRas
 {
@@ -112,7 +112,7 @@ namespace DotRas
         /// Initializes a new instance of the <see cref="DotRas.RasPhoneBook"/> class.
         /// </summary>
         /// <param name="container">An <see cref="System.ComponentModel.IContainer"/> that will contain the component.</param>
-        [UsedImplicitly]
+       
         public RasPhoneBook(IContainer container)
             : base(container)
         {

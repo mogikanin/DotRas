@@ -12,7 +12,7 @@
 // </copyright>
 //--------------------------------------------------------------------------
 
-using JetBrains.Annotations;
+
 
 namespace DotRas
 {
@@ -62,7 +62,7 @@ namespace DotRas
     /// ]]>
     /// </code>
     /// </example>
-    [UsedImplicitly]
+   
     public sealed class RasEntryDialog : RasCommonDialog
     {
         #region Constructors
