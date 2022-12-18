@@ -12,6 +12,7 @@
 // </copyright>
 //--------------------------------------------------------------------------
 
+#if !NO_UI
 namespace DotRas
 {
     using System;
@@ -441,3 +442,4 @@ namespace DotRas
 
 #endif
 }
+#endif

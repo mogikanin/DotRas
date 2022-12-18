@@ -6,9 +6,9 @@
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-		<UseWindowsForms>true</UseWindowsForms>
 		<SignAssembly>True</SignAssembly>
 		<AssemblyOriginatorKeyFile>..\Public.snk</AssemblyOriginatorKeyFile>
+		<Configurations>Debug;Release</Configurations>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
 		<DefineConstants>$(DefineConstants);WIN7</DefineConstants>

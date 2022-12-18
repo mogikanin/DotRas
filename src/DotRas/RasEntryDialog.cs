@@ -12,7 +12,7 @@
 // </copyright>
 //--------------------------------------------------------------------------
 
-
+#if !NO_UI
 
 namespace DotRas
 {
@@ -200,6 +200,7 @@ namespace DotRas
             return retval;
         }
 
-        #endregion
+#endregion
     }
 }
+#endif

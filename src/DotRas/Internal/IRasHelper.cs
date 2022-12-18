@@ -17,7 +17,6 @@ namespace DotRas.Internal
     using System;
     using System.Collections.ObjectModel;
     using System.Net;
-    using System.Windows.Forms;
 
     /// <summary>
     /// Defines the members for the remote access service (RAS) helper.
@@ -236,7 +235,11 @@ namespace DotRas.Internal
         /// <param name="owner">The parent window for the UI dialog (if needed).</param>
         /// <param name="identity">Upon return, contains the Extensible Authentication Protocol (EAP) user identity information.</param>
         /// <returns><b>true</b> if the user identity information was returned, otherwise <b>false</b>.</returns>
-        bool TryGetEapUserIdentity(string phoneBookPath, string entryName, NativeMethods.RASEAPF eapOptions, IWin32Window owner, out NativeMethods.RASEAPUSERIDENTITY identity);
+        bool TryGetEapUserIdentity(string phoneBookPath, string entryName, NativeMethods.RASEAPF eapOptions,
+#if !NO_UI
+            System.Windows.Forms.IWin32Window owner, 
+#endif
+            out NativeMethods.RASEAPUSERIDENTITY identity);
 
 #if (WIN2K8 || WIN7 || WIN8)
         /// <summary>
@@ -378,6 +381,6 @@ namespace DotRas.Internal
         void UpdateConnection(RasHandle handle, int interfaceIndex, IPAddress localEndPoint, IPAddress remoteEndPoint);
 #endif
 
-        #endregion
+#endregion
     }
 }

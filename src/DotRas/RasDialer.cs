@@ -20,7 +20,6 @@ namespace DotRas
     using System.Net;
     using System.Runtime.InteropServices;
     using System.Threading;
-    using System.Windows.Forms;
     using Design;
     using Diagnostics;
     using Internal;
@@ -291,6 +290,7 @@ namespace DotRas
             set => _eapOptions = value;
         }
 
+#if !NO_UI
         /// <summary>
         /// Gets or sets the parent window.
         /// </summary>
@@ -298,11 +298,12 @@ namespace DotRas
         [DefaultValue(null)]
         [SRCategory("CatBehavior")]
         [SRDescription("RDOwnerDesc")]
-        public IWin32Window Owner
+        public System.Windows.Forms.IWin32Window Owner
         {
             get;
             set;
         }
+#endif
 
         /// <summary>
         /// Gets or sets the length of time (in milliseconds) until the asynchronous connection attempt times out.
@@ -369,9 +370,9 @@ namespace DotRas
 
 #endif
 
-        #endregion
+#endregion
 
-        #region Methods
+#region Methods
 
         /// <summary>
         /// Dials the connection.
@@ -622,8 +623,11 @@ namespace DotRas
                 result.devSpecificInfo = new NativeMethods.RASDEVSPECIFICINFO {cookie = AuthenticationCookie};
             }
 #endif
-
+#if !NO_UI
             result.handle = Owner != null ? Owner.Handle : IntPtr.Zero;
+#else
+            result.handle = IntPtr.Zero;
+#endif
 
             return result;
         }
@@ -880,6 +884,6 @@ namespace DotRas
             return retval;
         }
 
-        #endregion
+#endregion
     }
 }

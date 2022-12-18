@@ -6,14 +6,21 @@
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-		<UseWindowsForms>true</UseWindowsForms>
 		<SignAssembly>True</SignAssembly>
 		<AssemblyOriginatorKeyFile>..\Public.snk</AssemblyOriginatorKeyFile>
+		<Configurations>Debug;Release;Release_No_Ui</Configurations>
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
 	  <DefineConstants>$(DefineConstants);WIN7</DefineConstants>
+	  <UseWindowsForms>true</UseWindowsForms>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
 	  <DefineConstants>$(DefineConstants);WIN7</DefineConstants>
+      <UseWindowsForms>true</UseWindowsForms>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_No_Ui|AnyCPU'">
+		<DefineConstants>$(DefineConstants);WIN7;NO_UI</DefineConstants>
+		<Optimize>True</Optimize>
 	</PropertyGroup>
 </Project>

@@ -22,7 +22,6 @@ namespace DotRas.Internal
     using System.Net;
     using System.Runtime.InteropServices;
     using System.Threading;
-    using System.Windows.Forms;
     using Properties;
 
     /// <summary>
@@ -1721,7 +1720,11 @@ namespace DotRas.Internal
         /// <param name="identity">Upon return, contains the Extensible Authentication Protocol (EAP) user identity information.</param>
         /// <returns><b>true</b> if the user identity information was returned, otherwise <b>false</b>.</returns>
         /// <exception cref="System.ArgumentException"><paramref name="entryName"/> is an empty string or null reference (<b>Nothing</b> in Visual Basic).</exception>
-        public bool TryGetEapUserIdentity(string phoneBookPath, string entryName, NativeMethods.RASEAPF eapOptions, IWin32Window owner, out NativeMethods.RASEAPUSERIDENTITY identity)
+        public bool TryGetEapUserIdentity(string phoneBookPath, string entryName, NativeMethods.RASEAPF eapOptions,
+#if !NO_UI
+            System.Windows.Forms.IWin32Window owner,
+#endif
+            out NativeMethods.RASEAPUSERIDENTITY identity)
         {
             if (string.IsNullOrEmpty(entryName))
             {
@@ -1734,7 +1737,13 @@ namespace DotRas.Internal
             var lpRasEapUserIdentity = IntPtr.Zero;
             try
             {
-                var ret = SafeNativeMethods.Instance.GetEapUserIdentity(phoneBookPath, entryName, eapOptions, owner?.Handle ?? IntPtr.Zero, ref lpRasEapUserIdentity);
+#if !NO_UI
+                var handle = owner?.Handle ?? IntPtr.Zero;
+#else
+                var handle = IntPtr.Zero;
+#endif
+
+                var ret = SafeNativeMethods.Instance.GetEapUserIdentity(phoneBookPath, entryName, eapOptions, handle, ref lpRasEapUserIdentity);
                 if (ret == NativeMethods.ERROR_INTERACTIVE_MODE)
                 {
                     ThrowHelper.ThrowArgumentException("options", Resources.Argument_EapOptionsRequireInteractiveMode);
@@ -2200,7 +2209,7 @@ namespace DotRas.Internal
 
             return retval;
         }
-#endif 
+#endif
 
         /// <summary>
         /// Retrieves an error message for a specified RAS error code.
@@ -3026,6 +3035,6 @@ namespace DotRas.Internal
 #endif
         }
 
-        #endregion
+#endregion
     }
 }

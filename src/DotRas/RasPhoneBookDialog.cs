@@ -11,6 +11,7 @@
 //      You must not remove this notice, or any other, from this software.
 // </copyright>
 //--------------------------------------------------------------------------
+#if !NO_UI
 
 namespace DotRas
 {
@@ -326,6 +327,7 @@ namespace DotRas
             }
         }
 
-        #endregion
+#endregion
     }
 }
+#endif

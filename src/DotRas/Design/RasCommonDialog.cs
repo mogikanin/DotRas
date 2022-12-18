@@ -11,7 +11,7 @@
 //      You must not remove this notice, or any other, from this software.
 // </copyright>
 //--------------------------------------------------------------------------
-
+#if !NO_UI
 namespace DotRas.Design
 {
     using Internal;
@@ -77,3 +77,4 @@ namespace DotRas.Design
         #endregion
     }
 }
+#endif

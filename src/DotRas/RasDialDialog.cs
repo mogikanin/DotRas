@@ -12,7 +12,7 @@
 // </copyright>
 //--------------------------------------------------------------------------
 
-
+#if !NO_UI
 
 namespace DotRas
 {
@@ -178,3 +178,4 @@ namespace DotRas
         #endregion
     }
 }
+#endif
